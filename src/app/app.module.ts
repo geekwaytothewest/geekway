@@ -13,12 +13,14 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import {MatTreeModule} from '@angular/material/tree';
 import { RedirectionMessageComponent } from './shared/redirection-message/redirection-message.component';
+import { CountdownComponent } from './shared/countdown/countdown.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavigationComponent,
-    RedirectionMessageComponent
+    RedirectionMessageComponent,
+    CountdownComponent
   ],
   imports: [
     BrowserModule,
