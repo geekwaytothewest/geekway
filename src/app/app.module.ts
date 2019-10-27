@@ -14,6 +14,7 @@ import { MatListModule } from '@angular/material/list';
 import {MatTreeModule} from '@angular/material/tree';
 import { RedirectionMessageComponent } from './shared/redirection-message/redirection-message.component';
 import { ConventionComponent } from './shared/convention/convention.component';
+import { GraphQLModule } from './graphql.module';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { ConventionComponent } from './shared/convention/convention.component';
     MatSidenavModule,
     MatIconModule,
     MatListModule,
-    MatTreeModule
+    MatTreeModule,
+    GraphQLModule
   ],
   providers: [],
   bootstrap: [AppComponent]
