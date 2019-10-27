@@ -3,11 +3,19 @@
       [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
       [mode]="(isHandset$ | async) ? 'over' : 'side'"
       [opened]="(isHandset$ | async) === false">
-    <mat-toolbar>Menu</mat-toolbar>
+    <mat-toolbar>Menu</mat-toolbar> 
     <mat-nav-list>
-      <a mat-list-item href="#">Link 1</a>
-      <a mat-list-item href="#">Link 2</a>
-      <a mat-list-item href="#">Link 3</a>
+      <a mat-list-item href="#">Home</a>
+      <a mat-list-item href="about">About</a>
+      <a mat-list-item href="conventions">Conventions</a>
+      <a mat-list-item href="policies">Policies</a>
+      <a mat-list-item href="events">Events</a>
+      <a mat-list-item href="vendors">Vendors</a>
+      <a mat-list-item href="library">Library</a>
+      <a mat-list-item href="geekguides">Geek Guides</a>
+      <a mat-list-item href="venues">Venues</a>
+      <a mat-list-item href="news">News Posts</a>
+      <a mat-list-item href="blog">Blog Posts</a>
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>
