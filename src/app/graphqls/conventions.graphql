@@ -28,10 +28,7 @@ query conventions {
       }
       BGGID      
     }
-    type {
-      Name
-      Description
-    }
+    Type
     venues {
       Type
       Address

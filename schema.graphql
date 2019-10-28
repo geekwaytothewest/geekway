@@ -1,8 +1,7 @@
-# source: https://cms.geekwaytothewest.com/graphql
-# timestamp: Sun Oct 27 2019 18:57:43 GMT-0500 (Central Daylight Time)
-
-directive @cacheControl(maxAge: Int, scope: CacheControlScope) on FIELD_DEFINITION | OBJECT | INTERFACE
-
+directive @cacheControl(
+  maxAge: Int
+  scope: CacheControlScope
+) on FIELD_DEFINITION | OBJECT | INTERFACE
 type Blogpost {
   Title: String
   slug: String
@@ -175,8 +174,8 @@ type Convention {
   Icon: String
   Theme: String
   Logo: UploadFile
-  type: Conventiontype
   registrationUrl: String
+  Type: ENUM_CONVENTION_TYPE
   playAndWins(sort: String, limit: Int, start: Int, where: JSON): [Game]
   doorPrizes(sort: String, limit: Int, start: Int, where: JSON): [Game]
   venues(sort: String, limit: Int, start: Int, where: JSON): [Venue]
@@ -243,7 +242,7 @@ type ConventionConnectionTheme {
 }
 
 type ConventionConnectionType {
-  key: ID
+  key: String
   connection: ConventionConnection
 }
 
@@ -258,8 +257,8 @@ type ConventionGroupBy {
   Icon: [ConventionConnectionIcon]
   Theme: [ConventionConnectionTheme]
   Logo: [ConventionConnectionLogo]
-  type: [ConventionConnectionType]
   registrationUrl: [ConventionConnectionRegistrationUrl]
+  Type: [ConventionConnectionType]
   _id: [ConventionConnection_id]
   id: [ConventionConnectionId]
   createdAt: [ConventionConnectionCreatedAt]
@@ -275,9 +274,9 @@ input ConventionInput {
   Logo: ID
   playAndWins: [ID]
   doorPrizes: [ID]
-  type: ID
   venues: [ID]
   registrationUrl: String
+  Type: ENUM_CONVENTION_TYPE
 }
 
 type Conventiontype {
@@ -285,7 +284,6 @@ type Conventiontype {
   Description: String
   Logo: UploadFile
   Icon: String
-  conventions(sort: String, limit: Int, start: Int, where: JSON): [Convention]
   _id: ID!
   id: ID!
   createdAt: DateTime!
@@ -359,7 +357,6 @@ input ConventiontypeInput {
   Description: String
   Logo: ID
   Icon: String
-  conventions: [ID]
 }
 
 input createBlogpostInput {
@@ -582,9 +579,9 @@ input editConventionInput {
   Logo: ID
   playAndWins: [ID]
   doorPrizes: [ID]
-  type: ID
   venues: [ID]
   registrationUrl: String
+  Type: ENUM_CONVENTION_TYPE
 }
 
 input editConventiontypeInput {
@@ -592,7 +589,6 @@ input editConventiontypeInput {
   Description: String
   Logo: ID
   Icon: String
-  conventions: [ID]
 }
 
 input editFileInput {
@@ -674,6 +670,12 @@ input editVenueInput {
   groupCode: String
   maps: [ID]
   Name: String
+}
+
+enum ENUM_CONVENTION_TYPE {
+  GeekwayToTheWest
+  GeekwayMini
+  GeekwayMicro
 }
 
 enum ENUM_VENUE_TYPE {
@@ -867,11 +869,216 @@ input LibraryInput {
   games: [ID]
 }
 
-"""The `Long` scalar type represents 52-bit integers"""
+# The `Long` scalar type represents 52-bit integers
 scalar Long
 
-union Morph = UsersPermissionsMe | UsersPermissionsMeRole | UsersPermissionsLoginPayload | Blogpost | createBlogpostPayload | updateBlogpostPayload | deleteBlogpostPayload | BlogpostConnection | BlogpostAggregator | BlogpostGroupBy | BlogpostConnectionTitle | BlogpostConnectionSlug | BlogpostConnectionPostDate | BlogpostConnectionAuthor | BlogpostConnectionFeatured | BlogpostConnectionContent | BlogpostConnection_id | BlogpostConnectionId | BlogpostConnectionCreatedAt | BlogpostConnectionUpdatedAt | Boardmember | createBoardmemberPayload | updateBoardmemberPayload | deleteBoardmemberPayload | BoardmemberConnection | BoardmemberAggregator | BoardmemberGroupBy | BoardmemberConnectionName | BoardmemberConnectionJob | BoardmemberConnection_id | BoardmemberConnectionId | BoardmemberConnectionCreatedAt | BoardmemberConnectionUpdatedAt | Convention | createConventionPayload | updateConventionPayload | deleteConventionPayload | ConventionConnection | ConventionAggregator | ConventionGroupBy | ConventionConnectionStartDate | ConventionConnectionEndDate | ConventionConnectionIcon | ConventionConnectionTheme | ConventionConnectionLogo | ConventionConnectionType | ConventionConnectionRegistrationUrl | ConventionConnection_id | ConventionConnectionId | ConventionConnectionCreatedAt | ConventionConnectionUpdatedAt | Conventiontype | createConventiontypePayload | updateConventiontypePayload | deleteConventiontypePayload | ConventiontypeConnection | ConventiontypeAggregator | ConventiontypeGroupBy | ConventiontypeConnectionName | ConventiontypeConnectionDescription | ConventiontypeConnectionLogo | ConventiontypeConnectionIcon | ConventiontypeConnection_id | ConventiontypeConnectionId | ConventiontypeConnectionCreatedAt | ConventiontypeConnectionUpdatedAt | Game | createGamePayload | updateGamePayload | deleteGamePayload | GameConnection | GameAggregator | GameAggregatorSum | GameAggregatorAvg | GameAggregatorMin | GameAggregatorMax | GameGroupBy | GameConnectionName | GameConnectionBGGID | GameConnectionBoxart | GameConnection_id | GameConnectionId | GameConnectionCreatedAt | GameConnectionUpdatedAt | Library | createLibraryPayload | updateLibraryPayload | deleteLibraryPayload | LibraryConnection | LibraryAggregator | LibraryGroupBy | LibraryConnectionName | LibraryConnection_id | LibraryConnectionId | LibraryConnectionCreatedAt | LibraryConnectionUpdatedAt | Newspost | createNewspostPayload | updateNewspostPayload | deleteNewspostPayload | NewspostConnection | NewspostAggregator | NewspostGroupBy | NewspostConnectionTitle | NewspostConnectionSlug | NewspostConnectionPostDate | NewspostConnectionAuthor | NewspostConnectionFeatured | NewspostConnectionContent | NewspostConnection_id | NewspostConnectionId | NewspostConnectionCreatedAt | NewspostConnectionUpdatedAt | Policy | createPolicyPayload | updatePolicyPayload | deletePolicyPayload | PolicyConnection | PolicyAggregator | PolicyGroupBy | PolicyConnectionName | PolicyConnectionContent | PolicyConnection_id | PolicyConnectionId | PolicyConnectionCreatedAt | PolicyConnectionUpdatedAt | Premiereevent | createPremiereeventPayload | updatePremiereeventPayload | deletePremiereeventPayload | PremiereeventConnection | PremiereeventAggregator | PremiereeventGroupBy | PremiereeventConnectionName | PremiereeventConnectionHeaderPhoto | PremiereeventConnectionContent | PremiereeventConnection_id | PremiereeventConnectionId | PremiereeventConnectionCreatedAt | PremiereeventConnectionUpdatedAt | Venue | createVenuePayload | updateVenuePayload | deleteVenuePayload | VenueConnection | VenueAggregator | VenueGroupBy | VenueConnectionType | VenueConnectionAddress | VenueConnectionPhoneNumber | VenueConnectionWebsite | VenueConnectionGroupCode | VenueConnectionName | VenueConnection_id | VenueConnectionId | VenueConnectionCreatedAt | VenueConnectionUpdatedAt | UploadFile | UploadFileConnection | UploadFileAggregator | UploadFileGroupBy | UploadFileConnectionName | UploadFileConnectionHash | UploadFileConnectionSha256 | UploadFileConnectionExt | UploadFileConnectionMime | UploadFileConnectionSize | UploadFileConnectionUrl | UploadFileConnectionProvider | UploadFileConnectionProvider_metadata | UploadFileConnection_id | UploadFileConnectionId | UploadFileConnectionCreatedAt | UploadFileConnectionUpdatedAt | UsersPermissionsPermission | UsersPermissionsRole | createRolePayload | updateRolePayload | deleteRolePayload | UsersPermissionsRoleConnection | UsersPermissionsRoleAggregator | UsersPermissionsRoleGroupBy | UsersPermissionsRoleConnectionName | UsersPermissionsRoleConnectionDescription | UsersPermissionsRoleConnectionType | UsersPermissionsRoleConnection_id | UsersPermissionsRoleConnectionId | UsersPermissionsRoleConnectionCreatedAt | UsersPermissionsRoleConnectionUpdatedAt | UsersPermissionsUser | createUserPayload | updateUserPayload | deleteUserPayload | UsersPermissionsUserConnection | UsersPermissionsUserAggregator | UsersPermissionsUserGroupBy | UsersPermissionsUserConnectionUsername | UsersPermissionsUserConnectionEmail | UsersPermissionsUserConnectionProvider | UsersPermissionsUserConnectionConfirmed | UsersPermissionsUserConnectionBlocked | UsersPermissionsUserConnectionRole | UsersPermissionsUserConnection_id | UsersPermissionsUserConnectionId | UsersPermissionsUserConnectionCreatedAt | UsersPermissionsUserConnectionUpdatedAt
-
+union Morph =
+    UsersPermissionsMe
+  | UsersPermissionsMeRole
+  | UsersPermissionsLoginPayload
+  | Blogpost
+  | createBlogpostPayload
+  | updateBlogpostPayload
+  | deleteBlogpostPayload
+  | BlogpostConnection
+  | BlogpostAggregator
+  | BlogpostGroupBy
+  | BlogpostConnectionTitle
+  | BlogpostConnectionSlug
+  | BlogpostConnectionPostDate
+  | BlogpostConnectionAuthor
+  | BlogpostConnectionFeatured
+  | BlogpostConnectionContent
+  | BlogpostConnection_id
+  | BlogpostConnectionId
+  | BlogpostConnectionCreatedAt
+  | BlogpostConnectionUpdatedAt
+  | Boardmember
+  | createBoardmemberPayload
+  | updateBoardmemberPayload
+  | deleteBoardmemberPayload
+  | BoardmemberConnection
+  | BoardmemberAggregator
+  | BoardmemberGroupBy
+  | BoardmemberConnectionName
+  | BoardmemberConnectionJob
+  | BoardmemberConnection_id
+  | BoardmemberConnectionId
+  | BoardmemberConnectionCreatedAt
+  | BoardmemberConnectionUpdatedAt
+  | Convention
+  | createConventionPayload
+  | updateConventionPayload
+  | deleteConventionPayload
+  | ConventionConnection
+  | ConventionAggregator
+  | ConventionGroupBy
+  | ConventionConnectionStartDate
+  | ConventionConnectionEndDate
+  | ConventionConnectionIcon
+  | ConventionConnectionTheme
+  | ConventionConnectionLogo
+  | ConventionConnectionRegistrationUrl
+  | ConventionConnectionType
+  | ConventionConnection_id
+  | ConventionConnectionId
+  | ConventionConnectionCreatedAt
+  | ConventionConnectionUpdatedAt
+  | Conventiontype
+  | createConventiontypePayload
+  | updateConventiontypePayload
+  | deleteConventiontypePayload
+  | ConventiontypeConnection
+  | ConventiontypeAggregator
+  | ConventiontypeGroupBy
+  | ConventiontypeConnectionName
+  | ConventiontypeConnectionDescription
+  | ConventiontypeConnectionLogo
+  | ConventiontypeConnectionIcon
+  | ConventiontypeConnection_id
+  | ConventiontypeConnectionId
+  | ConventiontypeConnectionCreatedAt
+  | ConventiontypeConnectionUpdatedAt
+  | Game
+  | createGamePayload
+  | updateGamePayload
+  | deleteGamePayload
+  | GameConnection
+  | GameAggregator
+  | GameAggregatorSum
+  | GameAggregatorAvg
+  | GameAggregatorMin
+  | GameAggregatorMax
+  | GameGroupBy
+  | GameConnectionName
+  | GameConnectionBGGID
+  | GameConnectionBoxart
+  | GameConnection_id
+  | GameConnectionId
+  | GameConnectionCreatedAt
+  | GameConnectionUpdatedAt
+  | Library
+  | createLibraryPayload
+  | updateLibraryPayload
+  | deleteLibraryPayload
+  | LibraryConnection
+  | LibraryAggregator
+  | LibraryGroupBy
+  | LibraryConnectionName
+  | LibraryConnection_id
+  | LibraryConnectionId
+  | LibraryConnectionCreatedAt
+  | LibraryConnectionUpdatedAt
+  | Newspost
+  | createNewspostPayload
+  | updateNewspostPayload
+  | deleteNewspostPayload
+  | NewspostConnection
+  | NewspostAggregator
+  | NewspostGroupBy
+  | NewspostConnectionTitle
+  | NewspostConnectionSlug
+  | NewspostConnectionPostDate
+  | NewspostConnectionAuthor
+  | NewspostConnectionFeatured
+  | NewspostConnectionContent
+  | NewspostConnection_id
+  | NewspostConnectionId
+  | NewspostConnectionCreatedAt
+  | NewspostConnectionUpdatedAt
+  | Policy
+  | createPolicyPayload
+  | updatePolicyPayload
+  | deletePolicyPayload
+  | PolicyConnection
+  | PolicyAggregator
+  | PolicyGroupBy
+  | PolicyConnectionName
+  | PolicyConnectionContent
+  | PolicyConnection_id
+  | PolicyConnectionId
+  | PolicyConnectionCreatedAt
+  | PolicyConnectionUpdatedAt
+  | Premiereevent
+  | createPremiereeventPayload
+  | updatePremiereeventPayload
+  | deletePremiereeventPayload
+  | PremiereeventConnection
+  | PremiereeventAggregator
+  | PremiereeventGroupBy
+  | PremiereeventConnectionName
+  | PremiereeventConnectionHeaderPhoto
+  | PremiereeventConnectionContent
+  | PremiereeventConnection_id
+  | PremiereeventConnectionId
+  | PremiereeventConnectionCreatedAt
+  | PremiereeventConnectionUpdatedAt
+  | Venue
+  | createVenuePayload
+  | updateVenuePayload
+  | deleteVenuePayload
+  | VenueConnection
+  | VenueAggregator
+  | VenueGroupBy
+  | VenueConnectionType
+  | VenueConnectionAddress
+  | VenueConnectionPhoneNumber
+  | VenueConnectionWebsite
+  | VenueConnectionGroupCode
+  | VenueConnectionName
+  | VenueConnection_id
+  | VenueConnectionId
+  | VenueConnectionCreatedAt
+  | VenueConnectionUpdatedAt
+  | UploadFile
+  | UploadFileConnection
+  | UploadFileAggregator
+  | UploadFileGroupBy
+  | UploadFileConnectionName
+  | UploadFileConnectionHash
+  | UploadFileConnectionSha256
+  | UploadFileConnectionExt
+  | UploadFileConnectionMime
+  | UploadFileConnectionSize
+  | UploadFileConnectionUrl
+  | UploadFileConnectionProvider
+  | UploadFileConnectionProvider_metadata
+  | UploadFileConnection_id
+  | UploadFileConnectionId
+  | UploadFileConnectionCreatedAt
+  | UploadFileConnectionUpdatedAt
+  | UsersPermissionsPermission
+  | UsersPermissionsRole
+  | createRolePayload
+  | updateRolePayload
+  | deleteRolePayload
+  | UsersPermissionsRoleConnection
+  | UsersPermissionsRoleAggregator
+  | UsersPermissionsRoleGroupBy
+  | UsersPermissionsRoleConnectionName
+  | UsersPermissionsRoleConnectionDescription
+  | UsersPermissionsRoleConnectionType
+  | UsersPermissionsRoleConnection_id
+  | UsersPermissionsRoleConnectionId
+  | UsersPermissionsRoleConnectionCreatedAt
+  | UsersPermissionsRoleConnectionUpdatedAt
+  | UsersPermissionsUser
+  | createUserPayload
+  | updateUserPayload
+  | deleteUserPayload
+  | UsersPermissionsUserConnection
+  | UsersPermissionsUserAggregator
+  | UsersPermissionsUserGroupBy
+  | UsersPermissionsUserConnectionUsername
+  | UsersPermissionsUserConnectionEmail
+  | UsersPermissionsUserConnectionProvider
+  | UsersPermissionsUserConnectionConfirmed
+  | UsersPermissionsUserConnectionBlocked
+  | UsersPermissionsUserConnectionRole
+  | UsersPermissionsUserConnection_id
+  | UsersPermissionsUserConnectionId
+  | UsersPermissionsUserConnectionCreatedAt
+  | UsersPermissionsUserConnectionUpdatedAt
 type Mutation {
   createBlogpost(input: createBlogpostInput): createBlogpostPayload
   updateBlogpost(input: updateBlogpostInput): updateBlogpostPayload
@@ -882,9 +1089,15 @@ type Mutation {
   createConvention(input: createConventionInput): createConventionPayload
   updateConvention(input: updateConventionInput): updateConventionPayload
   deleteConvention(input: deleteConventionInput): deleteConventionPayload
-  createConventiontype(input: createConventiontypeInput): createConventiontypePayload
-  updateConventiontype(input: updateConventiontypeInput): updateConventiontypePayload
-  deleteConventiontype(input: deleteConventiontypeInput): deleteConventiontypePayload
+  createConventiontype(
+    input: createConventiontypeInput
+  ): createConventiontypePayload
+  updateConventiontype(
+    input: updateConventiontypeInput
+  ): updateConventiontypePayload
+  deleteConventiontype(
+    input: deleteConventiontypeInput
+  ): deleteConventiontypePayload
   createGame(input: createGameInput): createGamePayload
   updateGame(input: updateGameInput): updateGamePayload
   deleteGame(input: deleteGameInput): deleteGamePayload
@@ -897,32 +1110,44 @@ type Mutation {
   createPolicy(input: createPolicyInput): createPolicyPayload
   updatePolicy(input: updatePolicyInput): updatePolicyPayload
   deletePolicy(input: deletePolicyInput): deletePolicyPayload
-  createPremiereevent(input: createPremiereeventInput): createPremiereeventPayload
-  updatePremiereevent(input: updatePremiereeventInput): updatePremiereeventPayload
-  deletePremiereevent(input: deletePremiereeventInput): deletePremiereeventPayload
+  createPremiereevent(
+    input: createPremiereeventInput
+  ): createPremiereeventPayload
+  updatePremiereevent(
+    input: updatePremiereeventInput
+  ): updatePremiereeventPayload
+  deletePremiereevent(
+    input: deletePremiereeventInput
+  ): deletePremiereeventPayload
   createVenue(input: createVenueInput): createVenuePayload
   updateVenue(input: updateVenueInput): updateVenuePayload
   deleteVenue(input: deleteVenueInput): deleteVenuePayload
-
-  """Create a new role"""
+  # Create a new role
   createRole(input: createRoleInput): createRolePayload
-
-  """Update an existing role"""
+  # Update an existing role
   updateRole(input: updateRoleInput): updateRolePayload
-
-  """Delete an existing role"""
+  # Delete an existing role
   deleteRole(input: deleteRoleInput): deleteRolePayload
-
-  """Create a new user"""
+  # Create a new user
   createUser(input: createUserInput): createUserPayload
-
-  """Update an existing user"""
+  # Update an existing user
   updateUser(input: updateUserInput): updateUserPayload
-
-  """Delete an existing user"""
+  # Delete an existing user
   deleteUser(input: deleteUserInput): deleteUserPayload
-  upload(refId: ID, ref: String, field: String, source: String, file: Upload!): UploadFile!
-  multipleUpload(refId: ID, ref: String, field: String, source: String, files: [Upload]!): [UploadFile]!
+  upload(
+    refId: ID
+    ref: String
+    field: String
+    source: String
+    file: Upload!
+  ): UploadFile!
+  multipleUpload(
+    refId: ID
+    ref: String
+    field: String
+    source: String
+    files: [Upload]!
+  ): [UploadFile]!
   login(input: UsersPermissionsLoginInput!): UsersPermissionsLoginPayload!
   register(input: UserInput!): UsersPermissionsLoginPayload!
 }
@@ -1164,46 +1389,128 @@ input PremiereeventInput {
 type Query {
   blogpost(id: ID!): Blogpost
   blogposts(sort: String, limit: Int, start: Int, where: JSON): [Blogpost]
-  blogpostsConnection(sort: String, limit: Int, start: Int, where: JSON): BlogpostConnection
+  blogpostsConnection(
+    sort: String
+    limit: Int
+    start: Int
+    where: JSON
+  ): BlogpostConnection
   boardmember(id: ID!): Boardmember
   boardmembers(sort: String, limit: Int, start: Int, where: JSON): [Boardmember]
-  boardmembersConnection(sort: String, limit: Int, start: Int, where: JSON): BoardmemberConnection
+  boardmembersConnection(
+    sort: String
+    limit: Int
+    start: Int
+    where: JSON
+  ): BoardmemberConnection
   convention(id: ID!): Convention
   conventions(sort: String, limit: Int, start: Int, where: JSON): [Convention]
-  conventionsConnection(sort: String, limit: Int, start: Int, where: JSON): ConventionConnection
+  conventionsConnection(
+    sort: String
+    limit: Int
+    start: Int
+    where: JSON
+  ): ConventionConnection
   conventiontype(id: ID!): Conventiontype
-  conventiontypes(sort: String, limit: Int, start: Int, where: JSON): [Conventiontype]
-  conventiontypesConnection(sort: String, limit: Int, start: Int, where: JSON): ConventiontypeConnection
+  conventiontypes(
+    sort: String
+    limit: Int
+    start: Int
+    where: JSON
+  ): [Conventiontype]
+  conventiontypesConnection(
+    sort: String
+    limit: Int
+    start: Int
+    where: JSON
+  ): ConventiontypeConnection
   game(id: ID!): Game
   games(sort: String, limit: Int, start: Int, where: JSON): [Game]
-  gamesConnection(sort: String, limit: Int, start: Int, where: JSON): GameConnection
+  gamesConnection(
+    sort: String
+    limit: Int
+    start: Int
+    where: JSON
+  ): GameConnection
   library(id: ID!): Library
   libraries(sort: String, limit: Int, start: Int, where: JSON): [Library]
-  librariesConnection(sort: String, limit: Int, start: Int, where: JSON): LibraryConnection
+  librariesConnection(
+    sort: String
+    limit: Int
+    start: Int
+    where: JSON
+  ): LibraryConnection
   newspost(id: ID!): Newspost
   newsposts(sort: String, limit: Int, start: Int, where: JSON): [Newspost]
-  newspostsConnection(sort: String, limit: Int, start: Int, where: JSON): NewspostConnection
+  newspostsConnection(
+    sort: String
+    limit: Int
+    start: Int
+    where: JSON
+  ): NewspostConnection
   policy(id: ID!): Policy
   policies(sort: String, limit: Int, start: Int, where: JSON): [Policy]
-  policiesConnection(sort: String, limit: Int, start: Int, where: JSON): PolicyConnection
+  policiesConnection(
+    sort: String
+    limit: Int
+    start: Int
+    where: JSON
+  ): PolicyConnection
   premiereevent(id: ID!): Premiereevent
-  premiereevents(sort: String, limit: Int, start: Int, where: JSON): [Premiereevent]
-  premiereeventsConnection(sort: String, limit: Int, start: Int, where: JSON): PremiereeventConnection
+  premiereevents(
+    sort: String
+    limit: Int
+    start: Int
+    where: JSON
+  ): [Premiereevent]
+  premiereeventsConnection(
+    sort: String
+    limit: Int
+    start: Int
+    where: JSON
+  ): PremiereeventConnection
   venue(id: ID!): Venue
   venues(sort: String, limit: Int, start: Int, where: JSON): [Venue]
-  venuesConnection(sort: String, limit: Int, start: Int, where: JSON): VenueConnection
+  venuesConnection(
+    sort: String
+    limit: Int
+    start: Int
+    where: JSON
+  ): VenueConnection
   files(sort: String, limit: Int, start: Int, where: JSON): [UploadFile]
-  filesConnection(sort: String, limit: Int, start: Int, where: JSON): UploadFileConnection
+  filesConnection(
+    sort: String
+    limit: Int
+    start: Int
+    where: JSON
+  ): UploadFileConnection
   role(id: ID!): UsersPermissionsRole
-
-  """
-  Retrieve all the existing roles. You can't apply filters on this query.
-  """
-  roles(sort: String, limit: Int, start: Int, where: JSON): [UsersPermissionsRole]
-  rolesConnection(sort: String, limit: Int, start: Int, where: JSON): UsersPermissionsRoleConnection
+  # Retrieve all the existing roles. You can't apply filters on this query.
+  roles(
+    sort: String
+    limit: Int
+    start: Int
+    where: JSON
+  ): [UsersPermissionsRole]
+  rolesConnection(
+    sort: String
+    limit: Int
+    start: Int
+    where: JSON
+  ): UsersPermissionsRoleConnection
   user(id: ID!): UsersPermissionsUser
-  users(sort: String, limit: Int, start: Int, where: JSON): [UsersPermissionsUser]
-  usersConnection(sort: String, limit: Int, start: Int, where: JSON): UsersPermissionsUserConnection
+  users(
+    sort: String
+    limit: Int
+    start: Int
+    where: JSON
+  ): [UsersPermissionsUser]
+  usersConnection(
+    sort: String
+    limit: Int
+    start: Int
+    where: JSON
+  ): UsersPermissionsUserConnection
   me: UsersPermissionsMe
 }
 
@@ -1323,7 +1630,7 @@ type updateVenuePayload {
   venue: Venue
 }
 
-"""The `Upload` scalar type represents a file upload."""
+# The `Upload` scalar type represents a file upload.
 scalar Upload
 
 type UploadFile {
@@ -1490,8 +1797,18 @@ type UsersPermissionsRole {
   name: String!
   description: String
   type: String
-  permissions(sort: String, limit: Int, start: Int, where: JSON): [UsersPermissionsPermission]
-  users(sort: String, limit: Int, start: Int, where: JSON): [UsersPermissionsUser]
+  permissions(
+    sort: String
+    limit: Int
+    start: Int
+    where: JSON
+  ): [UsersPermissionsPermission]
+  users(
+    sort: String
+    limit: Int
+    start: Int
+    where: JSON
+  ): [UsersPermissionsUser]
   _id: ID!
   id: ID!
   createdAt: DateTime!
@@ -1738,3 +2055,4 @@ input VenueInput {
   maps: [ID]
   Name: String
 }
+

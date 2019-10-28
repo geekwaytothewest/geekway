@@ -1,12 +1,9 @@
-query nextGeekwayToTheWest($currentDateTime: DateTime!) {
+query nextConventionWhere($whereClause: JSON!) {
   conventions (
-    limit: 1,
-    sort: "startDate:desc"
-    where: {
-        type: {
-            Name: "Geekway to the West"
-        }
-    }) {
+    sort: "startDate:asc",
+    where: $whereClause,
+    limit: 1
+    ) {
         startDate
         endDate
         registrationDates {
@@ -35,10 +32,7 @@ query nextGeekwayToTheWest($currentDateTime: DateTime!) {
         }
         BGGID      
         }
-        type {
-            Name
-            Description
-        }
+        Type
         venues {
             Type
             Address

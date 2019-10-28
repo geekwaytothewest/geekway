@@ -14,7 +14,6 @@ import { MatListModule } from '@angular/material/list';
 import { RedirectionMessageComponent } from './shared/redirection-message/redirection-message.component';
 import { ConventionComponent } from './shared/convention/convention.component';
 import { GraphQLModule } from './graphql.module';
-import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -33,8 +32,7 @@ import { HttpClientModule } from '@angular/common/http';
     MatSidenavModule,
     MatIconModule,
     MatListModule,
-    GraphQLModule,
-    HttpClientModule
+    GraphQLModule
   ],
   providers: [],
   bootstrap: [AppComponent]
