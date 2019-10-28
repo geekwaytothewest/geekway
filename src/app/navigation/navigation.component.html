@@ -8,6 +8,7 @@
       <a mat-list-item href="#">Home</a>
       <a mat-list-item href="about">About</a>
       <a mat-list-item href="conventions">Conventions</a>
+      <a mat-list-item href="registration">Registration</a>
       <a mat-list-item href="policies">Policies</a>
       <a mat-list-item href="events">Events</a>
       <a mat-list-item href="vendors">Vendors</a>
@@ -28,7 +29,8 @@
         *ngIf="isHandset$ | async">
         <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
       </button>
-      <span>geekway</span>
+      <img class="headerIcon" src="assets/images/geekwaylogo.png">
+      <span>Four Days of Peace, Love,<br *ngIf="(isHandset$ | async)"/>and Board Games</span>
     </mat-toolbar>
     <div class="padded">
         <router-outlet></router-outlet>
