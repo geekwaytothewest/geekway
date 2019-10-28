@@ -1,5 +1,9 @@
 query conventions {
   conventions {
+    id
+    _id
+    createdAt
+    updatedAt
     startDate
     endDate
     registrationDates {
@@ -29,6 +33,15 @@ query conventions {
       BGGID      
     }
     Type
+    conventionType {
+      Name
+      Description
+      Logo  {                
+        name
+        url
+      }
+      Icon
+    }
     venues {
       Type
       Address

@@ -4,6 +4,10 @@ query nextConventionWhere($whereClause: JSON!) {
     where: $whereClause,
     limit: 1
     ) {
+        id
+        _id
+        createdAt
+        updatedAt
         startDate
         endDate
         registrationDates {
@@ -33,6 +37,15 @@ query nextConventionWhere($whereClause: JSON!) {
         BGGID      
         }
         Type
+        conventionType {
+            Name
+            Description
+            Logo {                
+                name
+                url
+            }
+            Icon 
+        }
         venues {
             Type
             Address

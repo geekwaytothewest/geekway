@@ -29,7 +29,8 @@
             ],
             "styles": [
               "src/styles.scss",
-              "node_modules/flipclock/dist/flipclock.css"
+              "node_modules/flipclock/dist/flipclock.css",
+              "node_modules/@fortawesome/fontawesome-free"
             ],
             "scripts": [
               "node_modules/flipclock/dist/flipclock.js"

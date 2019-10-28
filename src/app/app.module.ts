@@ -14,6 +14,7 @@ import { MatListModule } from '@angular/material/list';
 import { RedirectionMessageComponent } from './shared/redirection-message/redirection-message.component';
 import { ConventionComponent } from './shared/convention/convention.component';
 import { GraphQLModule } from './graphql.module';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { GraphQLModule } from './graphql.module';
     MatSidenavModule,
     MatIconModule,
     MatListModule,
-    GraphQLModule
+    GraphQLModule,
+    FontAwesomeModule
   ],
   providers: [],
   bootstrap: [AppComponent]

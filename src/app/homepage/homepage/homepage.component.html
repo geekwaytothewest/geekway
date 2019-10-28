@@ -1,6 +1,30 @@
-Homepage works
+<br/>
 
-<div *ngFor="let g of geekwayToTheWest | async">
-    {{g?.startDate}}<br/>
-    {{g?.endDate}}
+<mat-card *ngFor="let g of geekwayToTheWest | async" (click)="redirect('geekwaytothewest')">
+    <img *ngIf="g.Logo" class="cardImage" matCardImage src="https://cms.geekwaytothewest.com{{ g.Logo.url }}">
+    <img *ngIf="g.Logo === null" class="cardImage" matCardImage src="https://cms.geekwaytothewest.com{{ g.conventionType.Logo.url }}">
+    <mat-card-content>
+        {{ g.conventionType.Name }} - {{ g.conventionType.Description }}
+    </mat-card-content>
+</mat-card>
+
+<br/>
+
+<div class="flexbox">
+
+    <mat-card *ngFor="let g of geekwayMini | async" (click)="redirect('geekwaytothewest')">
+        <img *ngIf="g.Logo" class="cardImage" matCardImage src="https://cms.geekwaytothewest.com{{ g.Logo.url }}">
+        <img *ngIf="g.Logo === null" class="cardImage" matCardImage src="https://cms.geekwaytothewest.com{{ g.conventionType.Logo.url }}">
+        <mat-card-content>
+            {{ g.conventionType.Name }} - {{ g.conventionType.Description }}
+        </mat-card-content>
+    </mat-card>
+
+    <mat-card *ngFor="let g of geekwayMicro | async" (click)="redirect('geekwaytothewest')">
+        <img *ngIf="g.Logo" class="cardImage" matCardImage src="https://cms.geekwaytothewest.com{{ g.Logo.url }}">
+        <img *ngIf="g.Logo === null" class="cardImage" matCardImage src="https://cms.geekwaytothewest.com{{ g.conventionType.Logo.url }}">
+        <mat-card-content>
+            {{ g.conventionType.Name }} - {{ g.conventionType.Description }}
+        </mat-card-content>
+    </mat-card>
 </div>
