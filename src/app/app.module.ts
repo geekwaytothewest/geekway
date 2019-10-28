@@ -11,10 +11,10 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
-import {MatTreeModule} from '@angular/material/tree';
 import { RedirectionMessageComponent } from './shared/redirection-message/redirection-message.component';
 import { ConventionComponent } from './shared/convention/convention.component';
 import { GraphQLModule } from './graphql.module';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -33,8 +33,8 @@ import { GraphQLModule } from './graphql.module';
     MatSidenavModule,
     MatIconModule,
     MatListModule,
-    MatTreeModule,
-    GraphQLModule
+    GraphQLModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

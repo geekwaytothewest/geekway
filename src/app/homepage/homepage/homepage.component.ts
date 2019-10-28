@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { ApiService } from 'src/app/services/api.service';
-import { Convention } from 'src/app/services/api.types';
+import { Convention, NextGeekwayToTheWestGQL } from '../../../generated/types.graphql-gen'
+import { map } from 'rxjs/operators';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-homepage',
@@ -8,32 +9,21 @@ import { Convention } from 'src/app/services/api.types';
   styleUrls: ['./homepage.component.scss']
 })
 export class HomepageComponent implements OnInit {
-
-  geekwayToTheWest: Convention;
-  geekwayMini: Convention;
-  geekwayMicro: Convention;
-
-  constructor(svc: ApiService) { 
-    svc
-      .loadNextGeekwayToTheWest()
-      .subscribe(convention => {
-        this.geekwayToTheWest = convention[0];
-      });
-      
-    svc
-      .loadNextGeekwayMini()
-      .subscribe(convention => {
-        this.geekwayMini = convention[0];
-      });
-      
-    svc
-      .loadNextGeekwayMicro()
-      .subscribe(convention => {
-        this.geekwayMicro = convention[0];
-      });
+  geekwayToTheWest: Observable<Convention>
+  
+  constructor(private nextGeekwayToTheWestGQL: NextGeekwayToTheWestGQL) { 
   }
 
   ngOnInit() {
+    this.geekwayToTheWest = this.nextGeekwayToTheWestGQL.watch({
+      currentDateTime: new Date()
+    })
+      .valueChanges
+      .pipe(
+        map(result => result.data.conventions)
+      )[0];
+
+      console.log(this.geekwayToTheWest);
   }
 
 }

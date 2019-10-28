@@ -1,0 +1,49 @@
+query conventions {
+  conventions {
+    startDate
+    endDate
+    registrationDates {
+      type
+      date
+    }
+    Icon
+    Theme
+    Logo {
+      name
+      url
+    }
+    playAndWins {
+      Name
+      Boxart {
+        name
+        url
+      }
+      BGGID
+    }
+    doorPrizes {
+      Name
+      Boxart {
+        name
+        url
+      }
+      BGGID      
+    }
+    type {
+      Name
+      Description
+    }
+    venues {
+      Type
+      Address
+      phoneNumber
+      website
+      groupCode
+      maps {
+      	name
+      	url
+      }
+      Name
+    }
+    registrationUrl
+  }
+}

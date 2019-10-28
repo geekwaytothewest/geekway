@@ -1,0 +1,1740 @@
+# source: https://cms.geekwaytothewest.com/graphql
+# timestamp: Sun Oct 27 2019 18:57:43 GMT-0500 (Central Daylight Time)
+
+directive @cacheControl(maxAge: Int, scope: CacheControlScope) on FIELD_DEFINITION | OBJECT | INTERFACE
+
+type Blogpost {
+  Title: String
+  slug: String
+  postDate: DateTime
+  author: Boardmember
+  featured: Boolean
+  content: String
+  _id: ID!
+  id: ID!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+type BlogpostAggregator {
+  count: Int
+  totalCount: Int
+}
+
+type BlogpostConnection {
+  values: [Blogpost]
+  groupBy: BlogpostGroupBy
+  aggregate: BlogpostAggregator
+}
+
+type BlogpostConnection_id {
+  key: ID
+  connection: BlogpostConnection
+}
+
+type BlogpostConnectionAuthor {
+  key: ID
+  connection: BlogpostConnection
+}
+
+type BlogpostConnectionContent {
+  key: String
+  connection: BlogpostConnection
+}
+
+type BlogpostConnectionCreatedAt {
+  key: DateTime
+  connection: BlogpostConnection
+}
+
+type BlogpostConnectionFeatured {
+  key: Boolean
+  connection: BlogpostConnection
+}
+
+type BlogpostConnectionId {
+  key: ID
+  connection: BlogpostConnection
+}
+
+type BlogpostConnectionPostDate {
+  key: DateTime
+  connection: BlogpostConnection
+}
+
+type BlogpostConnectionSlug {
+  key: String
+  connection: BlogpostConnection
+}
+
+type BlogpostConnectionTitle {
+  key: String
+  connection: BlogpostConnection
+}
+
+type BlogpostConnectionUpdatedAt {
+  key: DateTime
+  connection: BlogpostConnection
+}
+
+type BlogpostGroupBy {
+  Title: [BlogpostConnectionTitle]
+  slug: [BlogpostConnectionSlug]
+  postDate: [BlogpostConnectionPostDate]
+  author: [BlogpostConnectionAuthor]
+  featured: [BlogpostConnectionFeatured]
+  content: [BlogpostConnectionContent]
+  _id: [BlogpostConnection_id]
+  id: [BlogpostConnectionId]
+  createdAt: [BlogpostConnectionCreatedAt]
+  updatedAt: [BlogpostConnectionUpdatedAt]
+}
+
+input BlogpostInput {
+  Title: String
+  slug: String
+  postDate: DateTime
+  author: ID
+  featured: Boolean
+  content: String
+}
+
+type Boardmember {
+  Name: String!
+  Job: String
+  _id: ID!
+  id: ID!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+type BoardmemberAggregator {
+  count: Int
+  totalCount: Int
+}
+
+type BoardmemberConnection {
+  values: [Boardmember]
+  groupBy: BoardmemberGroupBy
+  aggregate: BoardmemberAggregator
+}
+
+type BoardmemberConnection_id {
+  key: ID
+  connection: BoardmemberConnection
+}
+
+type BoardmemberConnectionCreatedAt {
+  key: DateTime
+  connection: BoardmemberConnection
+}
+
+type BoardmemberConnectionId {
+  key: ID
+  connection: BoardmemberConnection
+}
+
+type BoardmemberConnectionJob {
+  key: String
+  connection: BoardmemberConnection
+}
+
+type BoardmemberConnectionName {
+  key: String
+  connection: BoardmemberConnection
+}
+
+type BoardmemberConnectionUpdatedAt {
+  key: DateTime
+  connection: BoardmemberConnection
+}
+
+type BoardmemberGroupBy {
+  Name: [BoardmemberConnectionName]
+  Job: [BoardmemberConnectionJob]
+  _id: [BoardmemberConnection_id]
+  id: [BoardmemberConnectionId]
+  createdAt: [BoardmemberConnectionCreatedAt]
+  updatedAt: [BoardmemberConnectionUpdatedAt]
+}
+
+input BoardmemberInput {
+  Name: String!
+  Job: String
+}
+
+enum CacheControlScope {
+  PUBLIC
+  PRIVATE
+}
+
+type Convention {
+  startDate: DateTime
+  endDate: DateTime
+  registrationDates: [GroupRegistrationDate]
+  Icon: String
+  Theme: String
+  Logo: UploadFile
+  type: Conventiontype
+  registrationUrl: String
+  playAndWins(sort: String, limit: Int, start: Int, where: JSON): [Game]
+  doorPrizes(sort: String, limit: Int, start: Int, where: JSON): [Game]
+  venues(sort: String, limit: Int, start: Int, where: JSON): [Venue]
+  _id: ID!
+  id: ID!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+type ConventionAggregator {
+  count: Int
+  totalCount: Int
+}
+
+type ConventionConnection {
+  values: [Convention]
+  groupBy: ConventionGroupBy
+  aggregate: ConventionAggregator
+}
+
+type ConventionConnection_id {
+  key: ID
+  connection: ConventionConnection
+}
+
+type ConventionConnectionCreatedAt {
+  key: DateTime
+  connection: ConventionConnection
+}
+
+type ConventionConnectionEndDate {
+  key: DateTime
+  connection: ConventionConnection
+}
+
+type ConventionConnectionIcon {
+  key: String
+  connection: ConventionConnection
+}
+
+type ConventionConnectionId {
+  key: ID
+  connection: ConventionConnection
+}
+
+type ConventionConnectionLogo {
+  key: ID
+  connection: ConventionConnection
+}
+
+type ConventionConnectionRegistrationUrl {
+  key: String
+  connection: ConventionConnection
+}
+
+type ConventionConnectionStartDate {
+  key: DateTime
+  connection: ConventionConnection
+}
+
+type ConventionConnectionTheme {
+  key: String
+  connection: ConventionConnection
+}
+
+type ConventionConnectionType {
+  key: ID
+  connection: ConventionConnection
+}
+
+type ConventionConnectionUpdatedAt {
+  key: DateTime
+  connection: ConventionConnection
+}
+
+type ConventionGroupBy {
+  startDate: [ConventionConnectionStartDate]
+  endDate: [ConventionConnectionEndDate]
+  Icon: [ConventionConnectionIcon]
+  Theme: [ConventionConnectionTheme]
+  Logo: [ConventionConnectionLogo]
+  type: [ConventionConnectionType]
+  registrationUrl: [ConventionConnectionRegistrationUrl]
+  _id: [ConventionConnection_id]
+  id: [ConventionConnectionId]
+  createdAt: [ConventionConnectionCreatedAt]
+  updatedAt: [ConventionConnectionUpdatedAt]
+}
+
+input ConventionInput {
+  startDate: DateTime
+  endDate: DateTime
+  registrationDates: [GroupregistrationdateInput]
+  Icon: String
+  Theme: String
+  Logo: ID
+  playAndWins: [ID]
+  doorPrizes: [ID]
+  type: ID
+  venues: [ID]
+  registrationUrl: String
+}
+
+type Conventiontype {
+  Name: String!
+  Description: String
+  Logo: UploadFile
+  Icon: String
+  conventions(sort: String, limit: Int, start: Int, where: JSON): [Convention]
+  _id: ID!
+  id: ID!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+type ConventiontypeAggregator {
+  count: Int
+  totalCount: Int
+}
+
+type ConventiontypeConnection {
+  values: [Conventiontype]
+  groupBy: ConventiontypeGroupBy
+  aggregate: ConventiontypeAggregator
+}
+
+type ConventiontypeConnection_id {
+  key: ID
+  connection: ConventiontypeConnection
+}
+
+type ConventiontypeConnectionCreatedAt {
+  key: DateTime
+  connection: ConventiontypeConnection
+}
+
+type ConventiontypeConnectionDescription {
+  key: String
+  connection: ConventiontypeConnection
+}
+
+type ConventiontypeConnectionIcon {
+  key: String
+  connection: ConventiontypeConnection
+}
+
+type ConventiontypeConnectionId {
+  key: ID
+  connection: ConventiontypeConnection
+}
+
+type ConventiontypeConnectionLogo {
+  key: ID
+  connection: ConventiontypeConnection
+}
+
+type ConventiontypeConnectionName {
+  key: String
+  connection: ConventiontypeConnection
+}
+
+type ConventiontypeConnectionUpdatedAt {
+  key: DateTime
+  connection: ConventiontypeConnection
+}
+
+type ConventiontypeGroupBy {
+  Name: [ConventiontypeConnectionName]
+  Description: [ConventiontypeConnectionDescription]
+  Logo: [ConventiontypeConnectionLogo]
+  Icon: [ConventiontypeConnectionIcon]
+  _id: [ConventiontypeConnection_id]
+  id: [ConventiontypeConnectionId]
+  createdAt: [ConventiontypeConnectionCreatedAt]
+  updatedAt: [ConventiontypeConnectionUpdatedAt]
+}
+
+input ConventiontypeInput {
+  Name: String!
+  Description: String
+  Logo: ID
+  Icon: String
+  conventions: [ID]
+}
+
+input createBlogpostInput {
+  data: BlogpostInput
+}
+
+type createBlogpostPayload {
+  blogpost: Blogpost
+}
+
+input createBoardmemberInput {
+  data: BoardmemberInput
+}
+
+type createBoardmemberPayload {
+  boardmember: Boardmember
+}
+
+input createConventionInput {
+  data: ConventionInput
+}
+
+type createConventionPayload {
+  convention: Convention
+}
+
+input createConventiontypeInput {
+  data: ConventiontypeInput
+}
+
+type createConventiontypePayload {
+  conventiontype: Conventiontype
+}
+
+input createGameInput {
+  data: GameInput
+}
+
+type createGamePayload {
+  game: Game
+}
+
+input createLibraryInput {
+  data: LibraryInput
+}
+
+type createLibraryPayload {
+  library: Library
+}
+
+input createNewspostInput {
+  data: NewspostInput
+}
+
+type createNewspostPayload {
+  newspost: Newspost
+}
+
+input createPolicyInput {
+  data: PolicyInput
+}
+
+type createPolicyPayload {
+  policy: Policy
+}
+
+input createPremiereeventInput {
+  data: PremiereeventInput
+}
+
+type createPremiereeventPayload {
+  premiereevent: Premiereevent
+}
+
+input createRoleInput {
+  data: RoleInput
+}
+
+type createRolePayload {
+  role: UsersPermissionsRole
+}
+
+input createUserInput {
+  data: UserInput
+}
+
+type createUserPayload {
+  user: UsersPermissionsUser
+}
+
+input createVenueInput {
+  data: VenueInput
+}
+
+type createVenuePayload {
+  venue: Venue
+}
+
+"""
+The `DateTime` scalar represents a date and time following the ISO 8601 standard
+"""
+scalar DateTime
+
+input deleteBlogpostInput {
+  where: InputID
+}
+
+type deleteBlogpostPayload {
+  blogpost: Blogpost
+}
+
+input deleteBoardmemberInput {
+  where: InputID
+}
+
+type deleteBoardmemberPayload {
+  boardmember: Boardmember
+}
+
+input deleteConventionInput {
+  where: InputID
+}
+
+type deleteConventionPayload {
+  convention: Convention
+}
+
+input deleteConventiontypeInput {
+  where: InputID
+}
+
+type deleteConventiontypePayload {
+  conventiontype: Conventiontype
+}
+
+input deleteGameInput {
+  where: InputID
+}
+
+type deleteGamePayload {
+  game: Game
+}
+
+input deleteLibraryInput {
+  where: InputID
+}
+
+type deleteLibraryPayload {
+  library: Library
+}
+
+input deleteNewspostInput {
+  where: InputID
+}
+
+type deleteNewspostPayload {
+  newspost: Newspost
+}
+
+input deletePolicyInput {
+  where: InputID
+}
+
+type deletePolicyPayload {
+  policy: Policy
+}
+
+input deletePremiereeventInput {
+  where: InputID
+}
+
+type deletePremiereeventPayload {
+  premiereevent: Premiereevent
+}
+
+input deleteRoleInput {
+  where: InputID
+}
+
+type deleteRolePayload {
+  role: UsersPermissionsRole
+}
+
+input deleteUserInput {
+  where: InputID
+}
+
+type deleteUserPayload {
+  user: UsersPermissionsUser
+}
+
+input deleteVenueInput {
+  where: InputID
+}
+
+type deleteVenuePayload {
+  venue: Venue
+}
+
+input editBlogpostInput {
+  Title: String
+  slug: String
+  postDate: DateTime
+  author: ID
+  featured: Boolean
+  content: String
+}
+
+input editBoardmemberInput {
+  Name: String
+  Job: String
+}
+
+input editConventionInput {
+  startDate: DateTime
+  endDate: DateTime
+  registrationDates: [editGroupregistrationdateInput]
+  Icon: String
+  Theme: String
+  Logo: ID
+  playAndWins: [ID]
+  doorPrizes: [ID]
+  type: ID
+  venues: [ID]
+  registrationUrl: String
+}
+
+input editConventiontypeInput {
+  Name: String
+  Description: String
+  Logo: ID
+  Icon: String
+  conventions: [ID]
+}
+
+input editFileInput {
+  name: String
+  hash: String
+  sha256: String
+  ext: String
+  mime: String
+  size: String
+  url: String
+  provider: String
+  provider_metadata: JSON
+  related: [ID]
+}
+
+input editGameInput {
+  Name: String
+  BGGID: Int
+  Boxart: ID
+  libraries: [ID]
+}
+
+input editGroupregistrationdateInput {
+  id: ID
+  type: String
+  date: DateTime
+}
+
+input editLibraryInput {
+  Name: String
+  games: [ID]
+}
+
+input editNewspostInput {
+  Title: String
+  slug: String
+  postDate: DateTime
+  author: ID
+  featured: Boolean
+  content: String
+}
+
+input editPolicyInput {
+  Name: String
+  Content: String
+}
+
+input editPremiereeventInput {
+  Name: String
+  HeaderPhoto: ID
+  Content: String
+  Photos: [ID]
+}
+
+input editRoleInput {
+  name: String
+  description: String
+  type: String
+  permissions: [ID]
+  users: [ID]
+}
+
+input editUserInput {
+  username: String
+  email: String
+  provider: String
+  password: String
+  resetPasswordToken: String
+  confirmed: Boolean
+  blocked: Boolean
+  role: ID
+}
+
+input editVenueInput {
+  Type: ENUM_VENUE_TYPE
+  Address: String
+  phoneNumber: String
+  website: String
+  groupCode: String
+  maps: [ID]
+  Name: String
+}
+
+enum ENUM_VENUE_TYPE {
+  ConventionCenter
+  Hotel
+  GameStore
+}
+
+input FileInput {
+  name: String!
+  hash: String!
+  sha256: String
+  ext: String
+  mime: String!
+  size: String!
+  url: String!
+  provider: String!
+  provider_metadata: JSON
+  related: [ID]
+}
+
+type Game {
+  Name: String
+  BGGID: Int
+  Boxart: UploadFile
+  libraries(sort: String, limit: Int, start: Int, where: JSON): [Library]
+  _id: ID!
+  id: ID!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+type GameAggregator {
+  count: Int
+  totalCount: Int
+  sum: GameAggregatorSum
+  avg: GameAggregatorAvg
+  min: GameAggregatorMin
+  max: GameAggregatorMax
+}
+
+type GameAggregatorAvg {
+  BGGID: Float
+}
+
+type GameAggregatorMax {
+  BGGID: Float
+}
+
+type GameAggregatorMin {
+  BGGID: Float
+}
+
+type GameAggregatorSum {
+  BGGID: Float
+}
+
+type GameConnection {
+  values: [Game]
+  groupBy: GameGroupBy
+  aggregate: GameAggregator
+}
+
+type GameConnection_id {
+  key: ID
+  connection: GameConnection
+}
+
+type GameConnectionBGGID {
+  key: Int
+  connection: GameConnection
+}
+
+type GameConnectionBoxart {
+  key: ID
+  connection: GameConnection
+}
+
+type GameConnectionCreatedAt {
+  key: DateTime
+  connection: GameConnection
+}
+
+type GameConnectionId {
+  key: ID
+  connection: GameConnection
+}
+
+type GameConnectionName {
+  key: String
+  connection: GameConnection
+}
+
+type GameConnectionUpdatedAt {
+  key: DateTime
+  connection: GameConnection
+}
+
+type GameGroupBy {
+  Name: [GameConnectionName]
+  BGGID: [GameConnectionBGGID]
+  Boxart: [GameConnectionBoxart]
+  _id: [GameConnection_id]
+  id: [GameConnectionId]
+  createdAt: [GameConnectionCreatedAt]
+  updatedAt: [GameConnectionUpdatedAt]
+}
+
+input GameInput {
+  Name: String
+  BGGID: Int
+  Boxart: ID
+  libraries: [ID]
+}
+
+type GroupRegistrationDate {
+  type: String
+  date: DateTime
+  id: ID!
+  _id: ID!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+input GroupregistrationdateInput {
+  type: String
+  date: DateTime
+}
+
+input InputID {
+  id: ID!
+}
+
+scalar JSON
+
+type Library {
+  Name: String
+  games(sort: String, limit: Int, start: Int, where: JSON): [Game]
+  _id: ID!
+  id: ID!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+type LibraryAggregator {
+  count: Int
+  totalCount: Int
+}
+
+type LibraryConnection {
+  values: [Library]
+  groupBy: LibraryGroupBy
+  aggregate: LibraryAggregator
+}
+
+type LibraryConnection_id {
+  key: ID
+  connection: LibraryConnection
+}
+
+type LibraryConnectionCreatedAt {
+  key: DateTime
+  connection: LibraryConnection
+}
+
+type LibraryConnectionId {
+  key: ID
+  connection: LibraryConnection
+}
+
+type LibraryConnectionName {
+  key: String
+  connection: LibraryConnection
+}
+
+type LibraryConnectionUpdatedAt {
+  key: DateTime
+  connection: LibraryConnection
+}
+
+type LibraryGroupBy {
+  Name: [LibraryConnectionName]
+  _id: [LibraryConnection_id]
+  id: [LibraryConnectionId]
+  createdAt: [LibraryConnectionCreatedAt]
+  updatedAt: [LibraryConnectionUpdatedAt]
+}
+
+input LibraryInput {
+  Name: String
+  games: [ID]
+}
+
+"""The `Long` scalar type represents 52-bit integers"""
+scalar Long
+
+union Morph = UsersPermissionsMe | UsersPermissionsMeRole | UsersPermissionsLoginPayload | Blogpost | createBlogpostPayload | updateBlogpostPayload | deleteBlogpostPayload | BlogpostConnection | BlogpostAggregator | BlogpostGroupBy | BlogpostConnectionTitle | BlogpostConnectionSlug | BlogpostConnectionPostDate | BlogpostConnectionAuthor | BlogpostConnectionFeatured | BlogpostConnectionContent | BlogpostConnection_id | BlogpostConnectionId | BlogpostConnectionCreatedAt | BlogpostConnectionUpdatedAt | Boardmember | createBoardmemberPayload | updateBoardmemberPayload | deleteBoardmemberPayload | BoardmemberConnection | BoardmemberAggregator | BoardmemberGroupBy | BoardmemberConnectionName | BoardmemberConnectionJob | BoardmemberConnection_id | BoardmemberConnectionId | BoardmemberConnectionCreatedAt | BoardmemberConnectionUpdatedAt | Convention | createConventionPayload | updateConventionPayload | deleteConventionPayload | ConventionConnection | ConventionAggregator | ConventionGroupBy | ConventionConnectionStartDate | ConventionConnectionEndDate | ConventionConnectionIcon | ConventionConnectionTheme | ConventionConnectionLogo | ConventionConnectionType | ConventionConnectionRegistrationUrl | ConventionConnection_id | ConventionConnectionId | ConventionConnectionCreatedAt | ConventionConnectionUpdatedAt | Conventiontype | createConventiontypePayload | updateConventiontypePayload | deleteConventiontypePayload | ConventiontypeConnection | ConventiontypeAggregator | ConventiontypeGroupBy | ConventiontypeConnectionName | ConventiontypeConnectionDescription | ConventiontypeConnectionLogo | ConventiontypeConnectionIcon | ConventiontypeConnection_id | ConventiontypeConnectionId | ConventiontypeConnectionCreatedAt | ConventiontypeConnectionUpdatedAt | Game | createGamePayload | updateGamePayload | deleteGamePayload | GameConnection | GameAggregator | GameAggregatorSum | GameAggregatorAvg | GameAggregatorMin | GameAggregatorMax | GameGroupBy | GameConnectionName | GameConnectionBGGID | GameConnectionBoxart | GameConnection_id | GameConnectionId | GameConnectionCreatedAt | GameConnectionUpdatedAt | Library | createLibraryPayload | updateLibraryPayload | deleteLibraryPayload | LibraryConnection | LibraryAggregator | LibraryGroupBy | LibraryConnectionName | LibraryConnection_id | LibraryConnectionId | LibraryConnectionCreatedAt | LibraryConnectionUpdatedAt | Newspost | createNewspostPayload | updateNewspostPayload | deleteNewspostPayload | NewspostConnection | NewspostAggregator | NewspostGroupBy | NewspostConnectionTitle | NewspostConnectionSlug | NewspostConnectionPostDate | NewspostConnectionAuthor | NewspostConnectionFeatured | NewspostConnectionContent | NewspostConnection_id | NewspostConnectionId | NewspostConnectionCreatedAt | NewspostConnectionUpdatedAt | Policy | createPolicyPayload | updatePolicyPayload | deletePolicyPayload | PolicyConnection | PolicyAggregator | PolicyGroupBy | PolicyConnectionName | PolicyConnectionContent | PolicyConnection_id | PolicyConnectionId | PolicyConnectionCreatedAt | PolicyConnectionUpdatedAt | Premiereevent | createPremiereeventPayload | updatePremiereeventPayload | deletePremiereeventPayload | PremiereeventConnection | PremiereeventAggregator | PremiereeventGroupBy | PremiereeventConnectionName | PremiereeventConnectionHeaderPhoto | PremiereeventConnectionContent | PremiereeventConnection_id | PremiereeventConnectionId | PremiereeventConnectionCreatedAt | PremiereeventConnectionUpdatedAt | Venue | createVenuePayload | updateVenuePayload | deleteVenuePayload | VenueConnection | VenueAggregator | VenueGroupBy | VenueConnectionType | VenueConnectionAddress | VenueConnectionPhoneNumber | VenueConnectionWebsite | VenueConnectionGroupCode | VenueConnectionName | VenueConnection_id | VenueConnectionId | VenueConnectionCreatedAt | VenueConnectionUpdatedAt | UploadFile | UploadFileConnection | UploadFileAggregator | UploadFileGroupBy | UploadFileConnectionName | UploadFileConnectionHash | UploadFileConnectionSha256 | UploadFileConnectionExt | UploadFileConnectionMime | UploadFileConnectionSize | UploadFileConnectionUrl | UploadFileConnectionProvider | UploadFileConnectionProvider_metadata | UploadFileConnection_id | UploadFileConnectionId | UploadFileConnectionCreatedAt | UploadFileConnectionUpdatedAt | UsersPermissionsPermission | UsersPermissionsRole | createRolePayload | updateRolePayload | deleteRolePayload | UsersPermissionsRoleConnection | UsersPermissionsRoleAggregator | UsersPermissionsRoleGroupBy | UsersPermissionsRoleConnectionName | UsersPermissionsRoleConnectionDescription | UsersPermissionsRoleConnectionType | UsersPermissionsRoleConnection_id | UsersPermissionsRoleConnectionId | UsersPermissionsRoleConnectionCreatedAt | UsersPermissionsRoleConnectionUpdatedAt | UsersPermissionsUser | createUserPayload | updateUserPayload | deleteUserPayload | UsersPermissionsUserConnection | UsersPermissionsUserAggregator | UsersPermissionsUserGroupBy | UsersPermissionsUserConnectionUsername | UsersPermissionsUserConnectionEmail | UsersPermissionsUserConnectionProvider | UsersPermissionsUserConnectionConfirmed | UsersPermissionsUserConnectionBlocked | UsersPermissionsUserConnectionRole | UsersPermissionsUserConnection_id | UsersPermissionsUserConnectionId | UsersPermissionsUserConnectionCreatedAt | UsersPermissionsUserConnectionUpdatedAt
+
+type Mutation {
+  createBlogpost(input: createBlogpostInput): createBlogpostPayload
+  updateBlogpost(input: updateBlogpostInput): updateBlogpostPayload
+  deleteBlogpost(input: deleteBlogpostInput): deleteBlogpostPayload
+  createBoardmember(input: createBoardmemberInput): createBoardmemberPayload
+  updateBoardmember(input: updateBoardmemberInput): updateBoardmemberPayload
+  deleteBoardmember(input: deleteBoardmemberInput): deleteBoardmemberPayload
+  createConvention(input: createConventionInput): createConventionPayload
+  updateConvention(input: updateConventionInput): updateConventionPayload
+  deleteConvention(input: deleteConventionInput): deleteConventionPayload
+  createConventiontype(input: createConventiontypeInput): createConventiontypePayload
+  updateConventiontype(input: updateConventiontypeInput): updateConventiontypePayload
+  deleteConventiontype(input: deleteConventiontypeInput): deleteConventiontypePayload
+  createGame(input: createGameInput): createGamePayload
+  updateGame(input: updateGameInput): updateGamePayload
+  deleteGame(input: deleteGameInput): deleteGamePayload
+  createLibrary(input: createLibraryInput): createLibraryPayload
+  updateLibrary(input: updateLibraryInput): updateLibraryPayload
+  deleteLibrary(input: deleteLibraryInput): deleteLibraryPayload
+  createNewspost(input: createNewspostInput): createNewspostPayload
+  updateNewspost(input: updateNewspostInput): updateNewspostPayload
+  deleteNewspost(input: deleteNewspostInput): deleteNewspostPayload
+  createPolicy(input: createPolicyInput): createPolicyPayload
+  updatePolicy(input: updatePolicyInput): updatePolicyPayload
+  deletePolicy(input: deletePolicyInput): deletePolicyPayload
+  createPremiereevent(input: createPremiereeventInput): createPremiereeventPayload
+  updatePremiereevent(input: updatePremiereeventInput): updatePremiereeventPayload
+  deletePremiereevent(input: deletePremiereeventInput): deletePremiereeventPayload
+  createVenue(input: createVenueInput): createVenuePayload
+  updateVenue(input: updateVenueInput): updateVenuePayload
+  deleteVenue(input: deleteVenueInput): deleteVenuePayload
+
+  """Create a new role"""
+  createRole(input: createRoleInput): createRolePayload
+
+  """Update an existing role"""
+  updateRole(input: updateRoleInput): updateRolePayload
+
+  """Delete an existing role"""
+  deleteRole(input: deleteRoleInput): deleteRolePayload
+
+  """Create a new user"""
+  createUser(input: createUserInput): createUserPayload
+
+  """Update an existing user"""
+  updateUser(input: updateUserInput): updateUserPayload
+
+  """Delete an existing user"""
+  deleteUser(input: deleteUserInput): deleteUserPayload
+  upload(refId: ID, ref: String, field: String, source: String, file: Upload!): UploadFile!
+  multipleUpload(refId: ID, ref: String, field: String, source: String, files: [Upload]!): [UploadFile]!
+  login(input: UsersPermissionsLoginInput!): UsersPermissionsLoginPayload!
+  register(input: UserInput!): UsersPermissionsLoginPayload!
+}
+
+type Newspost {
+  Title: String
+  slug: String
+  postDate: DateTime
+  author: Boardmember
+  featured: Boolean
+  content: String
+  _id: ID!
+  id: ID!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+type NewspostAggregator {
+  count: Int
+  totalCount: Int
+}
+
+type NewspostConnection {
+  values: [Newspost]
+  groupBy: NewspostGroupBy
+  aggregate: NewspostAggregator
+}
+
+type NewspostConnection_id {
+  key: ID
+  connection: NewspostConnection
+}
+
+type NewspostConnectionAuthor {
+  key: ID
+  connection: NewspostConnection
+}
+
+type NewspostConnectionContent {
+  key: String
+  connection: NewspostConnection
+}
+
+type NewspostConnectionCreatedAt {
+  key: DateTime
+  connection: NewspostConnection
+}
+
+type NewspostConnectionFeatured {
+  key: Boolean
+  connection: NewspostConnection
+}
+
+type NewspostConnectionId {
+  key: ID
+  connection: NewspostConnection
+}
+
+type NewspostConnectionPostDate {
+  key: DateTime
+  connection: NewspostConnection
+}
+
+type NewspostConnectionSlug {
+  key: String
+  connection: NewspostConnection
+}
+
+type NewspostConnectionTitle {
+  key: String
+  connection: NewspostConnection
+}
+
+type NewspostConnectionUpdatedAt {
+  key: DateTime
+  connection: NewspostConnection
+}
+
+type NewspostGroupBy {
+  Title: [NewspostConnectionTitle]
+  slug: [NewspostConnectionSlug]
+  postDate: [NewspostConnectionPostDate]
+  author: [NewspostConnectionAuthor]
+  featured: [NewspostConnectionFeatured]
+  content: [NewspostConnectionContent]
+  _id: [NewspostConnection_id]
+  id: [NewspostConnectionId]
+  createdAt: [NewspostConnectionCreatedAt]
+  updatedAt: [NewspostConnectionUpdatedAt]
+}
+
+input NewspostInput {
+  Title: String
+  slug: String
+  postDate: DateTime
+  author: ID
+  featured: Boolean
+  content: String
+}
+
+type Policy {
+  Name: String
+  Content: String
+  _id: ID!
+  id: ID!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+type PolicyAggregator {
+  count: Int
+  totalCount: Int
+}
+
+type PolicyConnection {
+  values: [Policy]
+  groupBy: PolicyGroupBy
+  aggregate: PolicyAggregator
+}
+
+type PolicyConnection_id {
+  key: ID
+  connection: PolicyConnection
+}
+
+type PolicyConnectionContent {
+  key: String
+  connection: PolicyConnection
+}
+
+type PolicyConnectionCreatedAt {
+  key: DateTime
+  connection: PolicyConnection
+}
+
+type PolicyConnectionId {
+  key: ID
+  connection: PolicyConnection
+}
+
+type PolicyConnectionName {
+  key: String
+  connection: PolicyConnection
+}
+
+type PolicyConnectionUpdatedAt {
+  key: DateTime
+  connection: PolicyConnection
+}
+
+type PolicyGroupBy {
+  Name: [PolicyConnectionName]
+  Content: [PolicyConnectionContent]
+  _id: [PolicyConnection_id]
+  id: [PolicyConnectionId]
+  createdAt: [PolicyConnectionCreatedAt]
+  updatedAt: [PolicyConnectionUpdatedAt]
+}
+
+input PolicyInput {
+  Name: String
+  Content: String
+}
+
+type Premiereevent {
+  Name: String
+  HeaderPhoto: UploadFile
+  Content: String
+  Photos(sort: String, limit: Int, start: Int, where: JSON): [UploadFile]
+  _id: ID!
+  id: ID!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+type PremiereeventAggregator {
+  count: Int
+  totalCount: Int
+}
+
+type PremiereeventConnection {
+  values: [Premiereevent]
+  groupBy: PremiereeventGroupBy
+  aggregate: PremiereeventAggregator
+}
+
+type PremiereeventConnection_id {
+  key: ID
+  connection: PremiereeventConnection
+}
+
+type PremiereeventConnectionContent {
+  key: String
+  connection: PremiereeventConnection
+}
+
+type PremiereeventConnectionCreatedAt {
+  key: DateTime
+  connection: PremiereeventConnection
+}
+
+type PremiereeventConnectionHeaderPhoto {
+  key: ID
+  connection: PremiereeventConnection
+}
+
+type PremiereeventConnectionId {
+  key: ID
+  connection: PremiereeventConnection
+}
+
+type PremiereeventConnectionName {
+  key: String
+  connection: PremiereeventConnection
+}
+
+type PremiereeventConnectionUpdatedAt {
+  key: DateTime
+  connection: PremiereeventConnection
+}
+
+type PremiereeventGroupBy {
+  Name: [PremiereeventConnectionName]
+  HeaderPhoto: [PremiereeventConnectionHeaderPhoto]
+  Content: [PremiereeventConnectionContent]
+  _id: [PremiereeventConnection_id]
+  id: [PremiereeventConnectionId]
+  createdAt: [PremiereeventConnectionCreatedAt]
+  updatedAt: [PremiereeventConnectionUpdatedAt]
+}
+
+input PremiereeventInput {
+  Name: String
+  HeaderPhoto: ID
+  Content: String
+  Photos: [ID]
+}
+
+type Query {
+  blogpost(id: ID!): Blogpost
+  blogposts(sort: String, limit: Int, start: Int, where: JSON): [Blogpost]
+  blogpostsConnection(sort: String, limit: Int, start: Int, where: JSON): BlogpostConnection
+  boardmember(id: ID!): Boardmember
+  boardmembers(sort: String, limit: Int, start: Int, where: JSON): [Boardmember]
+  boardmembersConnection(sort: String, limit: Int, start: Int, where: JSON): BoardmemberConnection
+  convention(id: ID!): Convention
+  conventions(sort: String, limit: Int, start: Int, where: JSON): [Convention]
+  conventionsConnection(sort: String, limit: Int, start: Int, where: JSON): ConventionConnection
+  conventiontype(id: ID!): Conventiontype
+  conventiontypes(sort: String, limit: Int, start: Int, where: JSON): [Conventiontype]
+  conventiontypesConnection(sort: String, limit: Int, start: Int, where: JSON): ConventiontypeConnection
+  game(id: ID!): Game
+  games(sort: String, limit: Int, start: Int, where: JSON): [Game]
+  gamesConnection(sort: String, limit: Int, start: Int, where: JSON): GameConnection
+  library(id: ID!): Library
+  libraries(sort: String, limit: Int, start: Int, where: JSON): [Library]
+  librariesConnection(sort: String, limit: Int, start: Int, where: JSON): LibraryConnection
+  newspost(id: ID!): Newspost
+  newsposts(sort: String, limit: Int, start: Int, where: JSON): [Newspost]
+  newspostsConnection(sort: String, limit: Int, start: Int, where: JSON): NewspostConnection
+  policy(id: ID!): Policy
+  policies(sort: String, limit: Int, start: Int, where: JSON): [Policy]
+  policiesConnection(sort: String, limit: Int, start: Int, where: JSON): PolicyConnection
+  premiereevent(id: ID!): Premiereevent
+  premiereevents(sort: String, limit: Int, start: Int, where: JSON): [Premiereevent]
+  premiereeventsConnection(sort: String, limit: Int, start: Int, where: JSON): PremiereeventConnection
+  venue(id: ID!): Venue
+  venues(sort: String, limit: Int, start: Int, where: JSON): [Venue]
+  venuesConnection(sort: String, limit: Int, start: Int, where: JSON): VenueConnection
+  files(sort: String, limit: Int, start: Int, where: JSON): [UploadFile]
+  filesConnection(sort: String, limit: Int, start: Int, where: JSON): UploadFileConnection
+  role(id: ID!): UsersPermissionsRole
+
+  """
+  Retrieve all the existing roles. You can't apply filters on this query.
+  """
+  roles(sort: String, limit: Int, start: Int, where: JSON): [UsersPermissionsRole]
+  rolesConnection(sort: String, limit: Int, start: Int, where: JSON): UsersPermissionsRoleConnection
+  user(id: ID!): UsersPermissionsUser
+  users(sort: String, limit: Int, start: Int, where: JSON): [UsersPermissionsUser]
+  usersConnection(sort: String, limit: Int, start: Int, where: JSON): UsersPermissionsUserConnection
+  me: UsersPermissionsMe
+}
+
+input RoleInput {
+  name: String!
+  description: String
+  type: String
+  permissions: [ID]
+  users: [ID]
+}
+
+input updateBlogpostInput {
+  where: InputID
+  data: editBlogpostInput
+}
+
+type updateBlogpostPayload {
+  blogpost: Blogpost
+}
+
+input updateBoardmemberInput {
+  where: InputID
+  data: editBoardmemberInput
+}
+
+type updateBoardmemberPayload {
+  boardmember: Boardmember
+}
+
+input updateConventionInput {
+  where: InputID
+  data: editConventionInput
+}
+
+type updateConventionPayload {
+  convention: Convention
+}
+
+input updateConventiontypeInput {
+  where: InputID
+  data: editConventiontypeInput
+}
+
+type updateConventiontypePayload {
+  conventiontype: Conventiontype
+}
+
+input updateGameInput {
+  where: InputID
+  data: editGameInput
+}
+
+type updateGamePayload {
+  game: Game
+}
+
+input updateLibraryInput {
+  where: InputID
+  data: editLibraryInput
+}
+
+type updateLibraryPayload {
+  library: Library
+}
+
+input updateNewspostInput {
+  where: InputID
+  data: editNewspostInput
+}
+
+type updateNewspostPayload {
+  newspost: Newspost
+}
+
+input updatePolicyInput {
+  where: InputID
+  data: editPolicyInput
+}
+
+type updatePolicyPayload {
+  policy: Policy
+}
+
+input updatePremiereeventInput {
+  where: InputID
+  data: editPremiereeventInput
+}
+
+type updatePremiereeventPayload {
+  premiereevent: Premiereevent
+}
+
+input updateRoleInput {
+  where: InputID
+  data: editRoleInput
+}
+
+type updateRolePayload {
+  role: UsersPermissionsRole
+}
+
+input updateUserInput {
+  where: InputID
+  data: editUserInput
+}
+
+type updateUserPayload {
+  user: UsersPermissionsUser
+}
+
+input updateVenueInput {
+  where: InputID
+  data: editVenueInput
+}
+
+type updateVenuePayload {
+  venue: Venue
+}
+
+"""The `Upload` scalar type represents a file upload."""
+scalar Upload
+
+type UploadFile {
+  name: String!
+  hash: String!
+  sha256: String
+  ext: String
+  mime: String!
+  size: String!
+  url: String!
+  provider: String!
+  provider_metadata: JSON
+  related(sort: String, limit: Int, start: Int, where: JSON): [Morph]
+  _id: ID!
+  id: ID!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+type UploadFileAggregator {
+  count: Int
+  totalCount: Int
+}
+
+type UploadFileConnection {
+  values: [UploadFile]
+  groupBy: UploadFileGroupBy
+  aggregate: UploadFileAggregator
+}
+
+type UploadFileConnection_id {
+  key: ID
+  connection: UploadFileConnection
+}
+
+type UploadFileConnectionCreatedAt {
+  key: DateTime
+  connection: UploadFileConnection
+}
+
+type UploadFileConnectionExt {
+  key: String
+  connection: UploadFileConnection
+}
+
+type UploadFileConnectionHash {
+  key: String
+  connection: UploadFileConnection
+}
+
+type UploadFileConnectionId {
+  key: ID
+  connection: UploadFileConnection
+}
+
+type UploadFileConnectionMime {
+  key: String
+  connection: UploadFileConnection
+}
+
+type UploadFileConnectionName {
+  key: String
+  connection: UploadFileConnection
+}
+
+type UploadFileConnectionProvider {
+  key: String
+  connection: UploadFileConnection
+}
+
+type UploadFileConnectionProvider_metadata {
+  key: JSON
+  connection: UploadFileConnection
+}
+
+type UploadFileConnectionSha256 {
+  key: String
+  connection: UploadFileConnection
+}
+
+type UploadFileConnectionSize {
+  key: String
+  connection: UploadFileConnection
+}
+
+type UploadFileConnectionUpdatedAt {
+  key: DateTime
+  connection: UploadFileConnection
+}
+
+type UploadFileConnectionUrl {
+  key: String
+  connection: UploadFileConnection
+}
+
+type UploadFileGroupBy {
+  name: [UploadFileConnectionName]
+  hash: [UploadFileConnectionHash]
+  sha256: [UploadFileConnectionSha256]
+  ext: [UploadFileConnectionExt]
+  mime: [UploadFileConnectionMime]
+  size: [UploadFileConnectionSize]
+  url: [UploadFileConnectionUrl]
+  provider: [UploadFileConnectionProvider]
+  provider_metadata: [UploadFileConnectionProvider_metadata]
+  _id: [UploadFileConnection_id]
+  id: [UploadFileConnectionId]
+  createdAt: [UploadFileConnectionCreatedAt]
+  updatedAt: [UploadFileConnectionUpdatedAt]
+}
+
+input UserInput {
+  username: String!
+  email: String!
+  provider: String
+  password: String
+  resetPasswordToken: String
+  confirmed: Boolean
+  blocked: Boolean
+  role: ID
+}
+
+input UsersPermissionsLoginInput {
+  identifier: String!
+  password: String!
+  provider: String = "local"
+}
+
+type UsersPermissionsLoginPayload {
+  jwt: String!
+  user: UsersPermissionsUser!
+}
+
+type UsersPermissionsMe {
+  id: ID!
+  username: String!
+  email: String!
+  confirmed: Boolean
+  blocked: Boolean
+  role: UsersPermissionsMeRole
+}
+
+type UsersPermissionsMeRole {
+  id: ID!
+  name: String!
+  description: String
+  type: String
+}
+
+type UsersPermissionsPermission {
+  type: String!
+  controller: String!
+  action: String!
+  enabled: Boolean!
+  policy: String
+  role: UsersPermissionsRole
+  _id: ID!
+  id: ID!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+type UsersPermissionsRole {
+  name: String!
+  description: String
+  type: String
+  permissions(sort: String, limit: Int, start: Int, where: JSON): [UsersPermissionsPermission]
+  users(sort: String, limit: Int, start: Int, where: JSON): [UsersPermissionsUser]
+  _id: ID!
+  id: ID!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+type UsersPermissionsRoleAggregator {
+  count: Int
+  totalCount: Int
+}
+
+type UsersPermissionsRoleConnection {
+  values: [UsersPermissionsRole]
+  groupBy: UsersPermissionsRoleGroupBy
+  aggregate: UsersPermissionsRoleAggregator
+}
+
+type UsersPermissionsRoleConnection_id {
+  key: ID
+  connection: UsersPermissionsRoleConnection
+}
+
+type UsersPermissionsRoleConnectionCreatedAt {
+  key: DateTime
+  connection: UsersPermissionsRoleConnection
+}
+
+type UsersPermissionsRoleConnectionDescription {
+  key: String
+  connection: UsersPermissionsRoleConnection
+}
+
+type UsersPermissionsRoleConnectionId {
+  key: ID
+  connection: UsersPermissionsRoleConnection
+}
+
+type UsersPermissionsRoleConnectionName {
+  key: String
+  connection: UsersPermissionsRoleConnection
+}
+
+type UsersPermissionsRoleConnectionType {
+  key: String
+  connection: UsersPermissionsRoleConnection
+}
+
+type UsersPermissionsRoleConnectionUpdatedAt {
+  key: DateTime
+  connection: UsersPermissionsRoleConnection
+}
+
+type UsersPermissionsRoleGroupBy {
+  name: [UsersPermissionsRoleConnectionName]
+  description: [UsersPermissionsRoleConnectionDescription]
+  type: [UsersPermissionsRoleConnectionType]
+  _id: [UsersPermissionsRoleConnection_id]
+  id: [UsersPermissionsRoleConnectionId]
+  createdAt: [UsersPermissionsRoleConnectionCreatedAt]
+  updatedAt: [UsersPermissionsRoleConnectionUpdatedAt]
+}
+
+type UsersPermissionsUser {
+  username: String!
+  email: String!
+  provider: String
+  confirmed: Boolean
+  blocked: Boolean
+  role: UsersPermissionsRole
+  _id: ID!
+  id: ID!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+type UsersPermissionsUserAggregator {
+  count: Int
+  totalCount: Int
+}
+
+type UsersPermissionsUserConnection {
+  values: [UsersPermissionsUser]
+  groupBy: UsersPermissionsUserGroupBy
+  aggregate: UsersPermissionsUserAggregator
+}
+
+type UsersPermissionsUserConnection_id {
+  key: ID
+  connection: UsersPermissionsUserConnection
+}
+
+type UsersPermissionsUserConnectionBlocked {
+  key: Boolean
+  connection: UsersPermissionsUserConnection
+}
+
+type UsersPermissionsUserConnectionConfirmed {
+  key: Boolean
+  connection: UsersPermissionsUserConnection
+}
+
+type UsersPermissionsUserConnectionCreatedAt {
+  key: DateTime
+  connection: UsersPermissionsUserConnection
+}
+
+type UsersPermissionsUserConnectionEmail {
+  key: String
+  connection: UsersPermissionsUserConnection
+}
+
+type UsersPermissionsUserConnectionId {
+  key: ID
+  connection: UsersPermissionsUserConnection
+}
+
+type UsersPermissionsUserConnectionProvider {
+  key: String
+  connection: UsersPermissionsUserConnection
+}
+
+type UsersPermissionsUserConnectionRole {
+  key: ID
+  connection: UsersPermissionsUserConnection
+}
+
+type UsersPermissionsUserConnectionUpdatedAt {
+  key: DateTime
+  connection: UsersPermissionsUserConnection
+}
+
+type UsersPermissionsUserConnectionUsername {
+  key: String
+  connection: UsersPermissionsUserConnection
+}
+
+type UsersPermissionsUserGroupBy {
+  username: [UsersPermissionsUserConnectionUsername]
+  email: [UsersPermissionsUserConnectionEmail]
+  provider: [UsersPermissionsUserConnectionProvider]
+  confirmed: [UsersPermissionsUserConnectionConfirmed]
+  blocked: [UsersPermissionsUserConnectionBlocked]
+  role: [UsersPermissionsUserConnectionRole]
+  _id: [UsersPermissionsUserConnection_id]
+  id: [UsersPermissionsUserConnectionId]
+  createdAt: [UsersPermissionsUserConnectionCreatedAt]
+  updatedAt: [UsersPermissionsUserConnectionUpdatedAt]
+}
+
+type Venue {
+  Type: ENUM_VENUE_TYPE
+  Address: String
+  phoneNumber: String
+  website: String
+  groupCode: String
+  Name: String
+  maps(sort: String, limit: Int, start: Int, where: JSON): [UploadFile]
+  _id: ID!
+  id: ID!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+type VenueAggregator {
+  count: Int
+  totalCount: Int
+}
+
+type VenueConnection {
+  values: [Venue]
+  groupBy: VenueGroupBy
+  aggregate: VenueAggregator
+}
+
+type VenueConnection_id {
+  key: ID
+  connection: VenueConnection
+}
+
+type VenueConnectionAddress {
+  key: String
+  connection: VenueConnection
+}
+
+type VenueConnectionCreatedAt {
+  key: DateTime
+  connection: VenueConnection
+}
+
+type VenueConnectionGroupCode {
+  key: String
+  connection: VenueConnection
+}
+
+type VenueConnectionId {
+  key: ID
+  connection: VenueConnection
+}
+
+type VenueConnectionName {
+  key: String
+  connection: VenueConnection
+}
+
+type VenueConnectionPhoneNumber {
+  key: String
+  connection: VenueConnection
+}
+
+type VenueConnectionType {
+  key: String
+  connection: VenueConnection
+}
+
+type VenueConnectionUpdatedAt {
+  key: DateTime
+  connection: VenueConnection
+}
+
+type VenueConnectionWebsite {
+  key: String
+  connection: VenueConnection
+}
+
+type VenueGroupBy {
+  Type: [VenueConnectionType]
+  Address: [VenueConnectionAddress]
+  phoneNumber: [VenueConnectionPhoneNumber]
+  website: [VenueConnectionWebsite]
+  groupCode: [VenueConnectionGroupCode]
+  Name: [VenueConnectionName]
+  _id: [VenueConnection_id]
+  id: [VenueConnectionId]
+  createdAt: [VenueConnectionCreatedAt]
+  updatedAt: [VenueConnectionUpdatedAt]
+}
+
+input VenueInput {
+  Type: ENUM_VENUE_TYPE
+  Address: String
+  phoneNumber: String
+  website: String
+  groupCode: String
+  maps: [ID]
+  Name: String
+}
