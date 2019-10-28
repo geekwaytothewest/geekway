@@ -9,7 +9,7 @@ const uri = 'https://cms.geekwaytothewest.com/graphql';
 export function createApollo(httpLink: HttpLink) {
   return {
     link: httpLink.create({uri}),
-    cache: new InMemoryCache(),
+    cache: new InMemoryCache()
   };
 }
 

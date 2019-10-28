@@ -12,7 +12,6 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { RedirectionMessageComponent } from './shared/redirection-message/redirection-message.component';
-import { ConventionComponent } from './shared/convention/convention.component';
 import { GraphQLModule } from './graphql.module';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
@@ -20,8 +19,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
   declarations: [
     AppComponent,
     NavigationComponent,
-    RedirectionMessageComponent,
-    ConventionComponent
+    RedirectionMessageComponent
   ],
   imports: [
     BrowserModule,

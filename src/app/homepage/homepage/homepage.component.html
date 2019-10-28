@@ -1,30 +1,48 @@
 <br/>
 
-<mat-card *ngFor="let g of geekwayToTheWest | async" (click)="redirect('geekwaytothewest')">
-    <img *ngIf="g.Logo" class="cardImage" matCardImage src="https://cms.geekwaytothewest.com{{ g.Logo.url }}">
-    <img *ngIf="g.Logo === null" class="cardImage" matCardImage src="https://cms.geekwaytothewest.com{{ g.conventionType.Logo.url }}">
+<mat-card *ngFor="let gw of geekwayToTheWest | async" (click)="redirect('geekway')">
+    <img *ngIf="gw.Logo; else gwLogo" class="cardImage" matCardImage src="https://cms.geekwaytothewest.com{{ gw.Logo.url }}">
+    <ng-template #gwLogo>
+        <img class="cardImage" matCardImage src="https://cms.geekwaytothewest.com{{ gw.conventionType.Logo.url }}">
+    </ng-template>
     <mat-card-content>
-        {{ g.conventionType.Name }} - {{ g.conventionType.Description }}
+        <div class="flexbox">
+            <div>
+                <i class="{{gw.conventionType.Icon}}"></i>{{ gw.conventionType.Name }} - {{ gw.conventionType.Description }}
+            </div>
+            <div>
+                <app-flipclock id="gwCountdown" [date]="gw.startDate"></app-flipclock>
+            </div>
+        </div>
     </mat-card-content>
 </mat-card>
 
 <br/>
 
-<div class="flexbox">
-
-    <mat-card *ngFor="let g of geekwayMini | async" (click)="redirect('geekwaytothewest')">
-        <img *ngIf="g.Logo" class="cardImage" matCardImage src="https://cms.geekwaytothewest.com{{ g.Logo.url }}">
-        <img *ngIf="g.Logo === null" class="cardImage" matCardImage src="https://cms.geekwaytothewest.com{{ g.conventionType.Logo.url }}">
+<div class="flexbox">    
+    <mat-card *ngFor="let gwMini of geekwayMini | async" (click)="redirect('mini')">
+        <img *ngIf="gwMini.Logo; else gwMiniLogo" class="cardImage" matCardImage src="https://cms.geekwaytothewest.com{{ gwMini.Logo.url }}">
+        <ng-template #gwMiniLogo>
+            <img class="cardImage" matCardImage src="https://cms.geekwaytothewest.com{{ gwMini.conventionType.Logo.url }}">
+        </ng-template>
         <mat-card-content>
-            {{ g.conventionType.Name }} - {{ g.conventionType.Description }}
+            <i class="{{gwMini.conventionType.Icon}}"></i> {{ gwMini.conventionType.Name }} - {{ gwMini.conventionType.Description }}
+            <br/><br/>
+            <app-flipclock id="gwMiniCountdown" [date]="gwMini.startDate"></app-flipclock>
         </mat-card-content>
     </mat-card>
 
-    <mat-card *ngFor="let g of geekwayMicro | async" (click)="redirect('geekwaytothewest')">
-        <img *ngIf="g.Logo" class="cardImage" matCardImage src="https://cms.geekwaytothewest.com{{ g.Logo.url }}">
-        <img *ngIf="g.Logo === null" class="cardImage" matCardImage src="https://cms.geekwaytothewest.com{{ g.conventionType.Logo.url }}">
+    <mat-card *ngFor="let gwMicro of geekwayMicro | async" (click)="redirect('micro')">
+        <img *ngIf="gwMicro.Logo; else gwMicroLogo" class="cardImage" matCardImage src="https://cms.geekwaytothewest.com{{ gwMicro.Logo.url }">
+        <ng-template #gwMicroLogo>
+            <img class="cardImage" matCardImage src="https://cms.geekwaytothewest.com{{ gwMicro.conventionType.Logo.url }}">
+        </ng-template>
         <mat-card-content>
-            {{ g.conventionType.Name }} - {{ g.conventionType.Description }}
+            <i class="{{gwMicro.conventionType.Icon}}"></i> {{ gwMicro.conventionType.Name }} - {{ gwMicro.conventionType.Description }}
+            <br/><br/>
+            <app-flipclock id="gwMicroCountdown" [date]="gwMicro.startDate"></app-flipclock>
         </mat-card-content>
     </mat-card>
 </div>
+
+<br/><br/>

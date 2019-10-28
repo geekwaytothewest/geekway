@@ -4,4 +4,16 @@
     mat-card {
         flex: 1;
     }
+
+    mat-card:not(:last-of-type) {
+        margin-right: 10px;
+    }
+
+    div {
+        flex: 1;
+    }
+
+    div:not(:last-of-type) {
+        margin-right: 10px;
+    }
 }

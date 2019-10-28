@@ -1,5 +1,4 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { count } from 'rxjs/operators';
 declare var FlipClock: any;
 
 @Component({
@@ -10,6 +9,7 @@ declare var FlipClock: any;
 export class FlipclockComponent implements OnInit {
 
   @Input() date: Date | string;
+  @Input() id: string;
 
   constructor() { }
 
@@ -22,7 +22,7 @@ export class FlipclockComponent implements OnInit {
       countdownDate = this.date;
     }
 
-    const el = document.querySelector('.countdown');
+    const el = document.querySelector('#' + this.id);
 
     const clock = new FlipClock(el, countdownDate, {
       face: 'DayCounter',

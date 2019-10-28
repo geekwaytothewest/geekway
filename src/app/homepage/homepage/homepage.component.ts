@@ -20,7 +20,11 @@ export class HomepageComponent implements OnInit {
   geekwayMicro: Observable<Convention[]>;
   geekwayMicroSubscription: Subscription
   
-  constructor(private nextConventionWhere: NextConventionWhereGQL, private router: Router) { 
+  constructor(
+    private nextGWConventionWhere: NextConventionWhereGQL, 
+    private nextGWMiniConventionWhere: NextConventionWhereGQL, 
+    private nextGWMicroConventionWhere: NextConventionWhereGQL,
+    private router: Router) { 
   }
 
   ngOnInit() {
@@ -29,7 +33,7 @@ export class HomepageComponent implements OnInit {
       "endDate_gt": new Date().toISOString()
     };
 
-    this.geekwayToTheWest = this.nextConventionWhere.watch({whereClause: whereClauseGW})
+    this.geekwayToTheWest = this.nextGWConventionWhere.watch({whereClause: whereClauseGW})
       .valueChanges
       .pipe(        
         map(result => result.data.conventions)
@@ -42,26 +46,26 @@ export class HomepageComponent implements OnInit {
       "endDate_gt": new Date().toISOString()
     };
 
-    this.geekwayMini = this.nextConventionWhere.watch({whereClause: whereClauseGWMini})
+    this.geekwayMini = this.nextGWMiniConventionWhere.watch({whereClause: whereClauseGWMini})
       .valueChanges
-      .pipe(        
+      .pipe(
         map(result => result.data.conventions)
       );
       
-    this.geekwayMiniSubscription = this.geekwayToTheWest.subscribe();
+    this.geekwayMiniSubscription = this.geekwayMini.subscribe();
     
     let whereClauseGWMicro = {
       "Type": "GeekwayMicro",
       "endDate_gt": new Date().toISOString()
     };
 
-    this.geekwayMicro = this.nextConventionWhere.watch({whereClause: whereClauseGWMicro})
+    this.geekwayMicro = this.nextGWMicroConventionWhere.watch({whereClause: whereClauseGWMicro})
       .valueChanges
       .pipe(
         map(result => result.data.conventions)
       );
       
-    this.geekwayMicroSubscription = this.geekwayToTheWest.subscribe();
+    this.geekwayMicroSubscription = this.geekwayMicro.subscribe();
   }
 
   ngOnDestroy() {
