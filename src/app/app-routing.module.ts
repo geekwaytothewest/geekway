@@ -51,10 +51,6 @@ const routes: Routes = [
     loadChildren: () => import('./events/events.module').then(m => m.EventsModule)
   },
   {
-    path: 'vendors',
-    loadChildren: () => import('./vendors/vendors.module').then(m => m.VendorsModule)
-  },
-  {
     path: 'library',
     loadChildren: () => import('./library/library.module').then(m => m.LibraryModule)
   },
