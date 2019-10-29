@@ -1,1 +1,55 @@
-<p>registration works!</p>
+<h1>Registration Dates</h1>
+
+<div class="flexbox">
+    <mat-card *ngFor="let g of geekwayToTheWest | async">
+        <mat-card-title>{{ g.conventionType.Name }} {{ g.startDate | amTz: 'America/Chicago' | amDateFormat: 'YYYY'}}</mat-card-title>
+        <mat-card-subtitle>{{ g.Theme }}</mat-card-subtitle>
+        <img *ngIf="g.Logo; else gwLogo" class="cardImage" matCardImage src="https://cms.geekwaytothewest.com{{ g.Logo.url }}">
+        <ng-template #gwLogo>
+            <img class="cardImage" matCardImage src="https://cms.geekwaytothewest.com{{ g.conventionType.LogoSquare.url }}">
+        </ng-template>
+        <mat-card-content>
+            <div *ngFor="let r of g.registrationDates; let i = index" class="registrationBlock">
+                <b>{{ r.type }} registration begins:</b> {{ r.date | amTz: 'America/Chicago' | amDateFormat: 'MMMM Do YYYY, h:mm a' }}
+                <br/><br/>
+                <app-flipclock [id]="'gw' + i" [date]="r.date"></app-flipclock>
+            </div>
+        </mat-card-content>
+    </mat-card>
+
+    <mat-card *ngFor="let g of geekwayMini | async">
+        <mat-card-title>{{ g.conventionType.Name }} {{ g.startDate | amTz: 'America/Chicago' | amDateFormat: 'YYYY'}}</mat-card-title>
+        <mat-card-subtitle>{{ g.Theme }}</mat-card-subtitle>
+        <img *ngIf="g.Logo; else gwLogo" class="cardImage" matCardImage src="https://cms.geekwaytothewest.com{{ g.LogoSquare.url }}">
+        <ng-template #gwLogo>
+            <img class="cardImage" matCardImage src="https://cms.geekwaytothewest.com{{ g.conventionType.LogoSquare.url }}">
+        </ng-template>
+        <mat-card-content>
+            <div *ngFor="let r of g.registrationDates; let i = index" class="registrationBlock">
+                <b>{{ r.type }} registration begins:</b> {{ r.date | amTz: 'America/Chicago' | amDateFormat: 'MMMM Do YYYY, h:mm a' }}
+                <br/><br/>
+                <app-flipclock [id]="'gwMini' + i" [date]="r.date"></app-flipclock>
+            </div>
+        </mat-card-content>
+    </mat-card>
+
+    <mat-card *ngFor="let g of geekwayMicro | async">
+        <mat-card-title>{{ g.conventionType.Name }} {{ g.startDate | amTz: 'America/Chicago' | amDateFormat: 'YYYY'}}</mat-card-title>
+        <mat-card-subtitle>{{ g.Theme }}</mat-card-subtitle>
+        <img *ngIf="g.Logo; else gwLogo" class="cardImage" matCardImage src="https://cms.geekwaytothewest.com{{ g.LogoSquare.url }}">
+        <ng-template #gwLogo>
+            <img class="cardImage" matCardImage src="https://cms.geekwaytothewest.com{{ g.conventionType.LogoSquare.url }}">
+        </ng-template>
+        <mat-card-content>
+            <div *ngFor="let r of g.registrationDates; let i = index" class="registrationBlock">
+                <b>{{ r.type }}</b>
+                <br/>
+                {{ r.date | amTz: 'America/Chicago' | amDateFormat: 'MMMM Do YYYY, h:mm a' }}
+                <br/><br/>
+                <app-flipclock [id]="'gwMicro' + i" [date]="r.date"></app-flipclock>
+            </div>
+        </mat-card-content>
+    </mat-card>
+</div>
+
+<br/><br/>

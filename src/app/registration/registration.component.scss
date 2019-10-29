@@ -1,0 +1,22 @@
+.flexbox {
+    display: flex;
+    width: 100%;
+}
+
+mat-card {
+    flex: 1;
+    text-align: center;
+    &:not(:last-of-type) {
+        margin-right: 10px;
+    }
+}
+
+.registrationBlock:not(:last-of-type) {
+    margin-bottom: 10px;
+}
+
+app-flipclock {
+    zoom: 0.50;
+    display: inline-block;
+    width: auto;
+}

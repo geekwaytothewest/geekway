@@ -43,6 +43,10 @@ query conventions {
         url
       }
       Icon
+      LogoSquare {
+        name
+        url
+      }
     }
     venues {
       Type
@@ -71,5 +75,9 @@ query conventions {
     registrationUrl
     Annual
     Size
+    LogoSquare {
+      name
+      url
+    }    
   }
 }
