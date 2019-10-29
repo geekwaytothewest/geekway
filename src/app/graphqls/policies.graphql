@@ -1,0 +1,11 @@
+query policies {
+    policies {
+        id
+        _id
+        createdAt
+        updatedAt
+        Name
+        Content
+        Slug
+    }
+}

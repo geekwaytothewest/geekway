@@ -1,0 +1,14 @@
+query singlePolicy($whereClause: JSON!) {
+    policies (
+        where: $whereClause,
+        limit: 1
+    ) {
+        id
+        _id
+        createdAt
+        updatedAt
+        Name
+        Content
+        Slug
+    }
+}

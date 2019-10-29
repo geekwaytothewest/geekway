@@ -1,1 +1,5 @@
-<p>policies works!</p>
+<h1>Geekway Policies</h1>
+
+<div *ngFor="let p of policies | async" class="policy">
+    <a href="policies/policy/{{ p.Slug }}">{{ p.Name }}</a>
+</div>
