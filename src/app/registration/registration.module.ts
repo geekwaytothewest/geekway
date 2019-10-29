@@ -4,7 +4,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { RegistrationComponent } from './registration.component';
 import { MomentTimezoneModule } from '../shared/moment-timezone/moment-timezone.module';
 import { MomentModule } from 'ngx-moment';
-import { MatCardModule } from '@angular/material';
+import { MatCardModule, MatButtonModule } from '@angular/material';
 import { FlipclockComponent } from '../shared/flipclock/flipclock.component';
 
 const registrationRoutes: Routes = [
@@ -21,6 +21,7 @@ const registrationRoutes: Routes = [
     MomentTimezoneModule,
     MomentModule,
     MatCardModule,
+    MatButtonModule,
     RouterModule.forChild(registrationRoutes)
   ]
 })

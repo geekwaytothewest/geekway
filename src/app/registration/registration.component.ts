@@ -23,7 +23,9 @@ export class RegistrationComponent implements OnInit {
   constructor(
     private nextGWConventionWhere: NextConventionWhereGQL, 
     private nextGWMiniConventionWhere: NextConventionWhereGQL, 
-    private nextGWMicroConventionWhere: NextConventionWhereGQL) { 
+    private nextGWMicroConventionWhere: NextConventionWhereGQL,
+    private router: Router
+  ) { 
   }
 
   ngOnInit() {
@@ -72,6 +74,19 @@ export class RegistrationComponent implements OnInit {
     this.geekwayToTheWestSubscription.unsubscribe();
     this.geekwayMiniSubscription.unsubscribe();
     this.geekwayMicroSubscription.unsubscribe();
+  }
+
+  redirect(url: string) {
+    console.log(url);
+    if (url.startsWith("http")) {
+      this.router.navigate(['/externalRedirect', { externalUrl: url }], {
+        skipLocationChange: true,
+      });
+    } else {
+      this.router.navigate([url]);
+    }
+    
+    event.preventDefault();
   }
 
 }

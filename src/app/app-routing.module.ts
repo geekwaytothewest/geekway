@@ -1,5 +1,5 @@
 import { NgModule, InjectionToken } from '@angular/core';
-import { Routes, RouterModule, Router } from '@angular/router';
+import { Routes, RouterModule, Router, ActivatedRouteSnapshot } from '@angular/router';
 import { RedirectionMessageComponent } from './shared/redirection-message/redirection-message.component';
 import { NotfoundComponent } from './notfound/notfound.component';
 
@@ -79,6 +79,15 @@ const routes: Routes = [
 ];
 
 @NgModule({
+  providers: [
+    {
+        provide: externalUrlProvider,
+        useValue: (route: ActivatedRouteSnapshot) => {
+            const externalUrl = route.paramMap.get('externalUrl');
+            window.open(externalUrl, '_self');
+        },
+    },
+  ],
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })

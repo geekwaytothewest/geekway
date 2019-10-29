@@ -15,6 +15,9 @@
                 <app-flipclock [id]="'gw' + i" [date]="r.date"></app-flipclock>
             </div>
         </mat-card-content>
+        <mat-card-actions *ngIf="g.registrationUrl">
+            <button mat-button (click)="redirect(g.registrationUrl)">Register at {{g.registrationUrl}}</button>
+        </mat-card-actions>
     </mat-card>
 
     <mat-card *ngFor="let g of geekwayMini | async">
@@ -29,8 +32,11 @@
                 <b>{{ r.type }} registration begins:</b> {{ r.date | amTz: 'America/Chicago' | amDateFormat: 'MMMM Do YYYY, h:mm a' }}
                 <br/><br/>
                 <app-flipclock [id]="'gwMini' + i" [date]="r.date"></app-flipclock>
-            </div>
+            </div>            
         </mat-card-content>
+        <mat-card-actions *ngIf="g.registrationUrl">
+            <button mat-button (click)="redirect(g.registrationUrl)">Register on Tabletop.Events</button>
+        </mat-card-actions>
     </mat-card>
 
     <mat-card *ngFor="let g of geekwayMicro | async">
@@ -49,6 +55,9 @@
                 <app-flipclock [id]="'gwMicro' + i" [date]="r.date"></app-flipclock>
             </div>
         </mat-card-content>
+        <mat-card-actions *ngIf="g.registrationUrl">
+            <button mat-button (click)="redirect(g.registrationUrl)">Register on Tabletop.Events</button>
+        </mat-card-actions>
     </mat-card>
 </div>
 
