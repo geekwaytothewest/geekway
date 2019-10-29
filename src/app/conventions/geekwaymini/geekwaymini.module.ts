@@ -1,10 +1,11 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { GeekwayminiComponent } from './geekwaymini.component';
 
 
 
 @NgModule({
-  declarations: [],
+  declarations: [GeekwayminiComponent],
   imports: [
     CommonModule
   ]

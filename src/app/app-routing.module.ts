@@ -1,6 +1,9 @@
 import { NgModule, InjectionToken } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import { Routes, RouterModule, Router } from '@angular/router';
 import { RedirectionMessageComponent } from './shared/redirection-message/redirection-message.component';
+import { Page, PagesGQL } from 'src/generated/types.graphql-gen';
+import { Observable, Subscription } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 const externalUrlProvider = new InjectionToken('externalUrlRedirectResolver');
 
@@ -18,16 +21,24 @@ const routes: Routes = [
     component: RedirectionMessageComponent
   },
   {
-    path: 'about',
-    loadChildren: () => import('./about/about.module').then(m => m.AboutModule)
-  },
-  {
     path: 'conventions',
     loadChildren: () => import('./conventions/conventions.module').then(m => m.ConventionsModule)
   },
   {
     path: 'policies',
     loadChildren: () => import('./policies/policies.module').then(m => m.PoliciesModule)
+  },
+  {
+    path: 'geekway',
+    loadChildren: () => import('./conventions/geekwaytothewest/geekwaytothewest.module').then(m => m.GeekwaytothewestModule)
+  },
+  {
+    path: 'mini',
+    loadChildren: () => import('./conventions/geekwaymini/geekwaymini.module').then(m => m.GeekwayminiModule)
+  },
+  {
+    path: 'micro',
+    loadChildren: () => import('./conventions/geekwaymicro/geekwaymicro.module').then(m => m.GeekwaymicroModule)
   },
   {
     path: 'events',
@@ -42,10 +53,6 @@ const routes: Routes = [
     loadChildren: () => import('./library/library.module').then(m => m.LibraryModule)
   },
   {
-    path: 'geekguides',
-    loadChildren: () => import('./geekguides/geekguides.module').then(m => m.GeekguidesModule)
-  },
-  {
     path: 'venues',
     loadChildren: () => import('./venues/venues.module').then(m => m.VenuesModule)
   },
@@ -56,6 +63,10 @@ const routes: Routes = [
   {
     path: 'blog',
     loadChildren: () => import('./blogs/blogs.module').then(m => m.BlogsModule)
+  },
+  {
+    path: 'page/:slug',
+    loadChildren: () => import('./pages/pages.module').then(m => m.PagesModule)
   }
 ];
 

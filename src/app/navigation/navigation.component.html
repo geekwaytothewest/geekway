@@ -6,14 +6,14 @@
     <mat-toolbar>Menu</mat-toolbar> 
     <mat-nav-list>
       <a mat-list-item href="#">Home</a>
-      <a mat-list-item href="about">About</a>
+      <a mat-list-item href="page/about">About</a>
       <a mat-list-item href="conventions">Conventions</a>
       <a mat-list-item href="registration">Registration</a>
       <a mat-list-item href="policies">Policies</a>
       <a mat-list-item href="events">Events</a>
       <a mat-list-item href="vendors">Vendors</a>
       <a mat-list-item href="library">Library</a>
-      <a mat-list-item href="geekguides">Geek Guides</a>
+      <a mat-list-item href="page/geekguides">Geek Guides</a>
       <a mat-list-item href="venues">Venues</a>
       <a mat-list-item href="news">News Posts</a>
       <a mat-list-item href="blog">Blog Posts</a>
@@ -29,8 +29,9 @@
         *ngIf="isHandset$ | async">
         <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
       </button>
-      <img class="headerIcon" src="assets/images/geekwaylogo.png">
-      <span>Four Days of Peace, Love,<br *ngIf="(isHandset$ | async)"/>and Board Games</span>
+      <img *ngIf="!(isHandset$ | async)" class="headerIcon" src="assets/images/geekwaylogo.png">
+      <img *ngIf="(isHandset$ | async)" class="headerIcon" src="assets/images/gw-square.png">
+      <span>Four Days of Peace, Love, <br *ngIf="(isHandset$ | async)"/> and Board Games</span>
     </mat-toolbar>
     <div class="padded">
         <router-outlet></router-outlet>

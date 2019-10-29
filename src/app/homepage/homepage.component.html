@@ -7,10 +7,10 @@
     </ng-template>
     <mat-card-content>
         <div class="flexbox">
-            <div>
+            <div class="center">
                 <i class="{{gw.conventionType.Icon}}"></i>{{ gw.conventionType.Name }} - {{ gw.conventionType.Description }}
             </div>
-            <div>
+            <div class="center">
                 <app-flipclock id="gwCountdown" [date]="gw.startDate"></app-flipclock>
             </div>
         </div>
@@ -25,10 +25,10 @@
         <ng-template #gwMiniLogo>
             <img class="cardImage" matCardImage src="https://cms.geekwaytothewest.com{{ gwMini.conventionType.Logo.url }}">
         </ng-template>
-        <mat-card-content>
+        <mat-card-content class="center">
             <i class="{{gwMini.conventionType.Icon}}"></i> {{ gwMini.conventionType.Name }} - {{ gwMini.conventionType.Description }}
             <br/><br/>
-            <app-flipclock id="gwMiniCountdown" [date]="gwMini.startDate"></app-flipclock>
+            <div class="center"><app-flipclock id="gwMiniCountdown" [date]="gwMini.startDate"></app-flipclock></div>
         </mat-card-content>
     </mat-card>
 
@@ -37,12 +37,10 @@
         <ng-template #gwMicroLogo>
             <img class="cardImage" matCardImage src="https://cms.geekwaytothewest.com{{ gwMicro.conventionType.Logo.url }}">
         </ng-template>
-        <mat-card-content>
+        <mat-card-content class="center">
             <i class="{{gwMicro.conventionType.Icon}}"></i> {{ gwMicro.conventionType.Name }} - {{ gwMicro.conventionType.Description }}
             <br/><br/>
-            <app-flipclock id="gwMicroCountdown" [date]="gwMicro.startDate"></app-flipclock>
+            <div class="center"><app-flipclock id="gwMicroCountdown" [date]="gwMicro.startDate"></app-flipclock></div>
         </mat-card-content>
     </mat-card>
 </div>
-
-<br/><br/>

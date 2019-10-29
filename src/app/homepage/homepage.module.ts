@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Routes, RouterModule } from '@angular/router';
-import { HomepageComponent } from './homepage/homepage.component';
+import { HomepageComponent } from './homepage.component';
 import { MatCardModule, MatButtonModule } from '@angular/material';
 import { FlipclockComponent } from '../shared/flipclock/flipclock.component';
 

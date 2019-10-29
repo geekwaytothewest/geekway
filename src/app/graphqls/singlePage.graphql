@@ -1,0 +1,22 @@
+query singlePage($whereClause: JSON!) {
+    pages (
+        where: $whereClause,
+        limit: 1
+    ) {
+        id
+        _id
+        createdAt
+        updatedAt
+        Name
+        slug
+        HeaderImage {            
+            name
+            url
+        }
+        Content
+        Author {
+            Name
+            Job
+        }
+    }
+}
