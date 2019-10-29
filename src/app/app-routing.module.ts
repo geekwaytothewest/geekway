@@ -1,9 +1,7 @@
 import { NgModule, InjectionToken } from '@angular/core';
 import { Routes, RouterModule, Router } from '@angular/router';
 import { RedirectionMessageComponent } from './shared/redirection-message/redirection-message.component';
-import { Page, PagesGQL } from 'src/generated/types.graphql-gen';
-import { Observable, Subscription } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { NotfoundComponent } from './notfound/notfound.component';
 
 const externalUrlProvider = new InjectionToken('externalUrlRedirectResolver');
 
@@ -67,7 +65,9 @@ const routes: Routes = [
   {
     path: 'page/:slug',
     loadChildren: () => import('./pages/pages.module').then(m => m.PagesModule)
-  }
+  },
+  {path: '404', component: NotfoundComponent},
+  {path: '**', redirectTo: '/404'} 
 ];
 
 @NgModule({

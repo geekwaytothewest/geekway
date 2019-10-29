@@ -15,12 +15,14 @@ import { RedirectionMessageComponent } from './shared/redirection-message/redire
 import { GraphQLModule } from './graphql.module';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { MarkdownModule } from 'ngx-markdown';
+import { NotfoundComponent } from './notfound/notfound.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavigationComponent,
-    RedirectionMessageComponent
+    RedirectionMessageComponent,
+    NotfoundComponent
   ],
   imports: [
     BrowserModule,
