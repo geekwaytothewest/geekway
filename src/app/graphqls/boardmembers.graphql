@@ -1,11 +1,14 @@
 query boardmembers {
-  boardmembers {
+  boardmembers (
+    sort: "Rank:desc,Name:asc"
+  ) {
     id
     _id
     createdAt
     updatedAt
     Name
     Job
+    Rank
     Photo {
       name
       url

@@ -1,11 +1,12 @@
 .flexbox {
     display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
 }
 
 .boardmember {
-    padding: 10px;
-
-    flex: 1;
+    padding-bottom: 10px;
+    flex-basis: 50%;
     
     img {
         float: left;
