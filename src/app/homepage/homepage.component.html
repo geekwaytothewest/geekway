@@ -9,6 +9,8 @@
         <div class="flexbox">
             <div class="center">
                 <i class="{{gw.conventionType.Icon}}"></i> {{ gw.conventionType.Name }} - {{ gw.conventionType.Description }}
+                <br/><br/>
+                {{ gw.startDate | amLocal  | amDateFormat: 'MMMM Do YYYY, h a' }} through {{ gw.endDate | amLocal  | amDateFormat: 'MMMM Do YYYY, h a' }}
             </div>
             <div class="center">
                 <app-flipclock id="gwCountdown" [date]="gw.startDate"></app-flipclock>
@@ -28,6 +30,8 @@
         <mat-card-content class="center">
             <i class="{{gwMini.conventionType.Icon}}"></i> {{ gwMini.conventionType.Name }} - {{ gwMini.conventionType.Description }}
             <br/><br/>
+            {{ gwMini.startDate | amLocal  | amDateFormat: 'MMMM Do YYYY, h a' }} through {{ gwMini.endDate | amLocal  | amDateFormat: 'MMMM Do YYYY, h a' }}
+            <br/><br/>
             <div class="center"><app-flipclock id="gwMiniCountdown" [date]="gwMini.startDate"></app-flipclock></div>
         </mat-card-content>
     </mat-card>
@@ -39,6 +43,8 @@
         </ng-template>
         <mat-card-content class="center">
             <i class="{{gwMicro.conventionType.Icon}}"></i> {{ gwMicro.conventionType.Name }} - {{ gwMicro.conventionType.Description }}
+            <br/><br/>
+            {{ gwMicro.startDate | amLocal  | amDateFormat: 'MMMM Do YYYY, h a' }} through {{ gwMicro.endDate | amLocal  | amDateFormat: 'MMMM Do YYYY, h a' }}
             <br/><br/>
             <div class="center"><app-flipclock id="gwMicroCountdown" [date]="gwMicro.startDate"></app-flipclock></div>
         </mat-card-content>
