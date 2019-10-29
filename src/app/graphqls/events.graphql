@@ -1,0 +1,19 @@
+query events {
+    premiereevents {
+        id
+        _id
+        createdAt
+        updatedAt
+        Name
+        Slug
+        HeaderPhoto {
+            name
+            url
+        }
+        Photos {
+            name
+            url
+        }
+        Content
+    }
+}

@@ -1,0 +1,5 @@
+<h1>Official Geekway Events</h1>
+
+<div *ngFor="let e of events | async" class="event">
+    <a href="events/event/{{ e.Slug }}">{{ e.Name }}</a>
+</div>

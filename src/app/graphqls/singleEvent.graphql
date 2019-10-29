@@ -1,0 +1,22 @@
+query singleEvent($whereClause: JSON!) {
+    premiereevents (
+        where: $whereClause,
+        limit: 1
+    ) {
+        id
+        _id
+        createdAt
+        updatedAt
+        Name
+        Slug
+        HeaderPhoto {
+            name
+            url
+        }
+        Photos {
+            name
+            url
+        }
+        Content
+    }
+}
