@@ -58,6 +58,20 @@ query nextConventionWhere($whereClause: JSON!) {
             }
             Name
         }
+        PrimaryVenue {
+            Type
+            Address
+            phoneNumber
+            website
+            groupCode
+            maps {
+                name
+                url
+            }
+            Name
+        }
         registrationUrl
+        Annual
+        Size
     }
 }

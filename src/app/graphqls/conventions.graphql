@@ -1,5 +1,7 @@
 query conventions {
-  conventions {
+  conventions (
+    sort: "startDate:desc"
+  ) {
     id
     _id
     createdAt
@@ -54,6 +56,20 @@ query conventions {
       }
       Name
     }
+    PrimaryVenue {
+      Type
+      Address
+      phoneNumber
+      website
+      groupCode
+      maps {
+      	name
+      	url
+      }
+      Name
+    }
     registrationUrl
+    Annual
+    Size
   }
 }

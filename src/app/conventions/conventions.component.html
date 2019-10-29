@@ -1,0 +1,30 @@
+<h1>Conventions - Past, Present, and Future</h1>
+
+<table mat-table [dataSource]="conventions">
+    <ng-container matColumnDef="Type">
+        <th mat-header-cell *matHeaderCellDef> Convention </th>
+        <td mat-cell *matCellDef="let c"> {{ c.conventionType.Name }} {{ c.startDate | amDateFormat: 'YYYY' }}</td>
+    </ng-container>
+    <ng-container matColumnDef="Theme">
+        <th mat-header-cell *matHeaderCellDef> Theme </th>
+        <td mat-cell *matCellDef="let c"> {{ c.Theme }}</td>
+    </ng-container>
+    <ng-container matColumnDef="Dates">
+        <th mat-header-cell *matHeaderCellDef> Dates </th>
+        <td mat-cell *matCellDef="let c"> {{ c.startDate | amTz: 'America/Chicago' | amDateFormat: 'MMMM Do YYYY' }} through {{ c.endDate | amTz: 'America/Chicago'  | amDateFormat: 'MMMM Do YYYY' }}</td>
+    </ng-container>
+    <ng-container matColumnDef="Location">
+        <th mat-header-cell *matHeaderCellDef> Location </th>
+        <td mat-cell *matCellDef="let c">{{ c.PrimaryVenue.Name }}</td>
+    </ng-container>
+    <ng-container matColumnDef="Annual">
+        <th mat-header-cell *matHeaderCellDef> Annual </th>
+        <td mat-cell *matCellDef="let c">{{ c.Annual }}</td>
+    </ng-container>
+    <ng-container matColumnDef="Size">
+        <th mat-header-cell *matHeaderCellDef> Size </th>
+        <td mat-cell *matCellDef="let c">{{ c.Size }}</td>
+    </ng-container>
+    <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
+    <tr mat-row *matRowDef="let myRowData; columns: columnsToDisplay"></tr>
+</table>
