@@ -3,7 +3,6 @@ import { ActivatedRoute, ParamMap } from '@angular/router';
 import { Observable } from 'rxjs';
 import { Page, SinglePageGQL } from 'src/generated/types.graphql-gen';
 import { switchMap, map } from 'rxjs/operators';
-import { MarkdownService } from 'ngx-markdown';
 
 @Component({
   selector: 'app-page',
@@ -16,8 +15,7 @@ export class PageComponent implements OnInit {
   
   constructor(
     private route: ActivatedRoute,
-    private singlepageGQL: SinglePageGQL,
-    private markdownService: MarkdownService
+    private singlepageGQL: SinglePageGQL
   ) { }
 
   ngOnInit() {
