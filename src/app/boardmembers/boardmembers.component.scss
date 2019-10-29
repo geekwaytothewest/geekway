@@ -1,0 +1,14 @@
+.flexbox {
+    display: flex;
+}
+
+.boardmember {
+    padding: 10px;
+
+    flex: 1;
+    
+    img {
+        float: left;
+        margin-right: 10px;
+    }
+}

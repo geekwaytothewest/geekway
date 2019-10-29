@@ -1,0 +1,14 @@
+query boardmembers {
+  boardmembers {
+    id
+    _id
+    createdAt
+    updatedAt
+    Name
+    Job
+    Photo {
+      name
+      url
+    }
+  }
+}

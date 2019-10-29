@@ -1,0 +1,10 @@
+<h1>Board Members</h1>
+
+<div class="flex">
+    <div *ngFor="let b of boardMembers | async" class="boardmember">    
+        <img *ngIf="b.Photo" src="https://cms.geekwaytothewest.com/{{ b.Photo?.url }}">
+        <b>{{ b.Name }}</b>
+        <br/>
+        {{ b.Job }}
+    </div>
+</div>
