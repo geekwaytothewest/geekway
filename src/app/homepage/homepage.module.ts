@@ -5,6 +5,7 @@ import { HomepageComponent } from './homepage.component';
 import { MatCardModule, MatButtonModule } from '@angular/material';
 import { FlipclockComponent } from '../shared/flipclock/flipclock.component';
 import { MomentModule } from 'ngx-moment';
+import { MomentTimezoneModule } from '../shared/moment-timezone/moment-timezone.module'
 
 const homepageRoutes: Routes = [
   { path: '', component: HomepageComponent, pathMatch: 'full' }
@@ -20,6 +21,7 @@ const homepageRoutes: Routes = [
     MatCardModule,
     MatButtonModule,
     MomentModule,
+    MomentTimezoneModule,
     RouterModule.forChild(homepageRoutes)
   ]
 })
