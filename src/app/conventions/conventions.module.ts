@@ -2,13 +2,14 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Routes, RouterModule } from '@angular/router';
 import { ConventionsComponent } from './conventions.component';
-import { MatTableModule } from '@angular/material';
+import { MatTableModule, MatCardModule } from '@angular/material';
 import { MomentModule } from 'ngx-moment';
 import { MomentTimezoneModule } from '../shared/moment-timezone/moment-timezone.module';
 import { ConventionComponent } from './convention/convention.component';
 import { GeekwaytothewestComponent } from './geekwaytothewest/geekwaytothewest.component';
 import { GeekwaymicroComponent } from './geekwaymicro/geekwaymicro.component';
 import { GeekwayminiComponent } from './geekwaymini/geekwaymini.component';
+import { FlipclockModule } from '../shared/flipclock/flipclock.module';
 
 const conventionsRoutes: Routes = [
   { path: '', component: ConventionsComponent, pathMatch: 'full' },
@@ -31,6 +32,8 @@ const conventionsRoutes: Routes = [
     MatTableModule,
     MomentModule,
     MomentTimezoneModule,
+    MatCardModule,
+    FlipclockModule,
     RouterModule.forChild(conventionsRoutes)
   ]
 })
