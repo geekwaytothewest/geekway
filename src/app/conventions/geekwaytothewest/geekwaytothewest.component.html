@@ -1,1 +1,48 @@
-<p>geekwaytothewest works!</p>
+<br/><br/>
+
+<div *ngIf="geekwayToTheWest | async as g">
+    <mat-card>
+        <mat-card-title>Geekway to the West {{ g.startDate | amTz: 'America/Chicago' | amDateFormat: 'YYYY' }}</mat-card-title>
+        <mat-card-subtitle>{{ g.Theme }}</mat-card-subtitle>
+        <img *ngIf="g.Logo; else gwLogo" class="cardImage" matCardImage src="https://cms.geekwaytothewest.com{{ g.Logo.url }}">
+        <ng-template #gwLogo>
+            <img class="cardImage" matCardImage src="https://cms.geekwaytothewest.com{{ g.conventionType.Logo.url }}">
+        </ng-template>
+        <mat-card-content>
+            <div class="flexbox">
+                <div class="center">
+                    <i class="{{g.conventionType.Icon}}"></i> {{ g.conventionType.Name }} - {{ g.conventionType.Description }}
+                    <br/><br/>
+                    {{ g.startDate | amTz: 'America/Chicago' | amDateFormat: 'MMMM Do YYYY' }} through {{ g.endDate | amTz: 'America/Chicago'  | amDateFormat: 'MMMM Do YYYY' }}
+                </div>
+                <div class="center">
+                    <app-flipclock id="gwCountdown" [date]="g.startDate"></app-flipclock>
+                </div>
+            </div>
+        </mat-card-content>
+    </mat-card>
+
+    <mat-card>
+        <mat-card-title>Registration</mat-card-title>
+        <mat-card-content>            
+            <div *ngFor="let r of g.registrationDates; let i = index" class="registrationBlock">
+                <b>{{ r.type }} registration begins:</b> {{ r.date | amTz: 'America/Chicago' | amDateFormat: 'MMMM Do YYYY, h:mm a' }}
+                <br/><br/>
+                <app-flipclock [id]="'gwMini' + i" [date]="r.date"></app-flipclock>
+            </div>
+        </mat-card-content>
+        <mat-card-actions *ngIf="g.registrationUrl">
+            <button mat-button (click)="redirect(g.registrationUrl)">Register on Tabletop.Events</button>
+        </mat-card-actions>
+    </mat-card>
+
+    <mat-card *ngIf="g.doorPrizes.count > 0">
+        <mat-card-title>Door Prizes</mat-card-title>
+    </mat-card>
+
+    <mat-card *ngIf="g.playAndWins.count > 0">
+        <mat-card-title>Play and Win Games</mat-card-title>
+    </mat-card>
+</div>
+
+<br/><br/>

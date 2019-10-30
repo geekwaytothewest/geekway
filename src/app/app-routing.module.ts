@@ -35,18 +35,6 @@ const routes: Routes = [
     loadChildren: () => import('./policies/policies.module').then(m => m.PoliciesModule)
   },
   {
-    path: 'geekway',
-    loadChildren: () => import('./conventions/geekwaytothewest/geekwaytothewest.module').then(m => m.GeekwaytothewestModule)
-  },
-  {
-    path: 'mini',
-    loadChildren: () => import('./conventions/geekwaymini/geekwaymini.module').then(m => m.GeekwayminiModule)
-  },
-  {
-    path: 'micro',
-    loadChildren: () => import('./conventions/geekwaymicro/geekwaymicro.module').then(m => m.GeekwaymicroModule)
-  },
-  {
     path: 'events',
     loadChildren: () => import('./events/events.module').then(m => m.EventsModule)
   },

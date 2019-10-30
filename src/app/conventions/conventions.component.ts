@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Observable, Subscription } from 'rxjs';
 import { Convention, ConventionsGQL } from 'src/generated/types.graphql-gen';
 import { map } from 'rxjs/operators';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-conventions',
@@ -15,7 +16,10 @@ export class ConventionsComponent implements OnInit {
 
   columnsToDisplay = ['Type', 'Annual', 'Theme', 'Dates', 'Location', 'Size']
 
-  constructor(private conventionsGQL: ConventionsGQL) { }
+  constructor(
+    private conventionsGQL: ConventionsGQL,
+    private router: Router
+  ) { }
 
   ngOnInit() {
     this.conventions = this.conventionsGQL.watch()
@@ -30,6 +34,12 @@ export class ConventionsComponent implements OnInit {
   ngOnDestroy() {
     // Only need to unsubscribe if its a multi event Observable
     this.conventionsSubscription.unsubscribe();
+  }
+
+  redirectConvention(id: number) {
+    this.router.navigate(['conventions/convention/' + id]);
+    
+    event.preventDefault();
   }
 
 }
