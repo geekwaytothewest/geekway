@@ -3,9 +3,9 @@ import { CommonModule } from '@angular/common';
 import { Routes, RouterModule } from '@angular/router';
 import { HomepageComponent } from './homepage.component';
 import { MatCardModule, MatButtonModule } from '@angular/material';
-import { FlipclockComponent } from '../shared/flipclock/flipclock.component';
 import { MomentModule } from 'ngx-moment';
 import { MomentTimezoneModule } from '../shared/moment-timezone/moment-timezone.module'
+import { FlipclockModule } from '../shared/flipclock/flipclock.module';
 
 const homepageRoutes: Routes = [
   { path: '', component: HomepageComponent, pathMatch: 'full' }
@@ -13,8 +13,7 @@ const homepageRoutes: Routes = [
 
 @NgModule({
   declarations: [
-    HomepageComponent,
-    FlipclockComponent
+    HomepageComponent
   ],
   imports: [
     CommonModule,
@@ -22,6 +21,7 @@ const homepageRoutes: Routes = [
     MatButtonModule,
     MomentModule,
     MomentTimezoneModule,
+    FlipclockModule,
     RouterModule.forChild(homepageRoutes)
   ]
 })
