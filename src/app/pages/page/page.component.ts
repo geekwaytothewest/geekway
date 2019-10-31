@@ -3,6 +3,7 @@ import { ActivatedRoute, ParamMap } from '@angular/router';
 import { Observable } from 'rxjs';
 import { Page, SinglePageGQL } from 'src/generated/types.graphql-gen';
 import { switchMap, map } from 'rxjs/operators';
+import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-page',
@@ -12,10 +13,12 @@ import { switchMap, map } from 'rxjs/operators';
 export class PageComponent implements OnInit {
 
   page: Observable<Page>;
+  pageContent: SafeHtml;
   
   constructor(
     private route: ActivatedRoute,
-    private singlepageGQL: SinglePageGQL
+    private singlepageGQL: SinglePageGQL,
+    private sanitizer: DomSanitizer
   ) { }
 
   ngOnInit() {
@@ -32,6 +35,10 @@ export class PageComponent implements OnInit {
           );
       })
     );
+
+    this.page.subscribe(result => {
+      this.pageContent = this.sanitizer.bypassSecurityTrustHtml(result.Content);
+    })
   }
 
 }

@@ -3,7 +3,6 @@
 <div *ngIf="event | async as e">
     <h1>{{ e.Name }}</h1>
     
-    <div>
-        <markdown ngPreserveWhitespaces>{{ e.Content }}</markdown>
+    <div [innerHTML]="e.Content">
     </div>
 </div>

@@ -3,6 +3,7 @@ import { Observable } from 'rxjs';
 import { Policy, SinglePolicyGQL } from 'src/generated/types.graphql-gen';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { switchMap, map } from 'rxjs/operators';
+import { SafeHtml, DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-policy',
@@ -12,10 +13,12 @@ import { switchMap, map } from 'rxjs/operators';
 export class PolicyComponent implements OnInit {
 
   policy: Observable<Policy>;
+  policyContent: SafeHtml;
 
   constructor(
     private route: ActivatedRoute,
-    private singlePolicyGQL: SinglePolicyGQL
+    private singlePolicyGQL: SinglePolicyGQL,
+    private sanitizer: DomSanitizer
   ) { }
 
   ngOnInit() {
@@ -34,6 +37,10 @@ export class PolicyComponent implements OnInit {
           );
       })
     );
+
+    this.policy.subscribe(result => {
+      this.policyContent = this.sanitizer.bypassSecurityTrustHtml(result.Content);
+    })
   }
 
 }

@@ -3,6 +3,7 @@ import { Observable } from 'rxjs';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { SingleEventGQL, Premiereevent } from 'src/generated/types.graphql-gen';
 import { switchMap, map } from 'rxjs/operators';
+import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-event',
@@ -12,10 +13,12 @@ import { switchMap, map } from 'rxjs/operators';
 export class EventComponent implements OnInit {
 
   event: Observable<Premiereevent>;
+  eventContent: SafeHtml;
 
   constructor(
     private route: ActivatedRoute,
-    private singleEventGQL: SingleEventGQL
+    private singleEventGQL: SingleEventGQL,
+    private sanitizer: DomSanitizer
   ) { }
 
   ngOnInit() {
@@ -34,6 +37,10 @@ export class EventComponent implements OnInit {
           );
       })
     );
+
+    this.event.subscribe(result => {
+      this.eventContent = this.sanitizer.bypassSecurityTrustHtml(result.Content);
+    })
   }
 
 }

@@ -3,7 +3,6 @@
 <div *ngIf="policy | async as p">
     <h1>{{ p.Name }}</h1>
     
-    <div>
-        <markdown ngPreserveWhitespaces>{{ p.Content }}</markdown>
+    <div [innerHTML]="policyContent">
     </div>
 </div>
