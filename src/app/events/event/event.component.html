@@ -3,6 +3,6 @@
 <div *ngIf="event | async as e">
     <h1>{{ e.Name }}</h1>
     
-    <div [innerHTML]="e.Content">
+    <div [innerHTML]="eventContent">
     </div>
 </div>
