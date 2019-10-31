@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { Page, SinglePageGQL } from 'src/generated/types.graphql-gen';
 import { switchMap, map } from 'rxjs/operators';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
+import iframely from '@iframely/embed.js';
 
 @Component({
   selector: 'app-page',
@@ -39,6 +40,11 @@ export class PageComponent implements OnInit {
     this.page.subscribe(result => {
       this.pageContent = this.sanitizer.bypassSecurityTrustHtml(result.Content);
     })
+  }
+
+  ngOnChanges() {
+    iframely.extendOptions({api_key: '24efd7ca731658c92b362e'});
+    iframely.load();
   }
 
 }

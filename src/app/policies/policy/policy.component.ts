@@ -4,6 +4,7 @@ import { Policy, SinglePolicyGQL } from 'src/generated/types.graphql-gen';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { switchMap, map } from 'rxjs/operators';
 import { SafeHtml, DomSanitizer } from '@angular/platform-browser';
+import iframely from '@iframely/embed.js';
 
 @Component({
   selector: 'app-policy',
@@ -41,6 +42,10 @@ export class PolicyComponent implements OnInit {
     this.policy.subscribe(result => {
       this.policyContent = this.sanitizer.bypassSecurityTrustHtml(result.Content);
     })
+  }
+
+  ngOnChanges() {
+    iframely.load();
   }
 
 }
