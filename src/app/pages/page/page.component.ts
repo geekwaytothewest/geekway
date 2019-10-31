@@ -42,7 +42,7 @@ export class PageComponent implements OnInit {
     })
   }
 
-  ngAfterContentInit() {
+  ngOnChanges() {
     iframely.iframely.extendOptions({api_key: '24efd7ca731658c92b362e'});
     iframely.iframely.load();
   }
