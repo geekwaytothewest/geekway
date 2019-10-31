@@ -40,12 +40,11 @@ export class PolicyComponent implements OnInit {
     );
 
     this.policy.subscribe(result => {
-      this.policyContent = this.sanitizer.bypassSecurityTrustHtml(result.Content);
+      this.policyContent = this.sanitizer.bypassSecurityTrustHtml(result.Content.replace('<oembed url=', ' <div class="iframely-embed"><div class="iframely-responsive"><a data-iframely-url href=') + '</div></div>');
     })
   }
 
-  ngOnChanges() {
-    iframely.iframely.extendOptions({api_key: '24efd7ca731658c92b362e'});
+  ngAfterViewChecked() {
     iframely.iframely.load();
   }
 

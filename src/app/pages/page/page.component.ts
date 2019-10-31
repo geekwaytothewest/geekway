@@ -5,6 +5,7 @@ import { Page, SinglePageGQL } from 'src/generated/types.graphql-gen';
 import { switchMap, map } from 'rxjs/operators';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import iframely from '@iframely/embed.js';
+import { SelectPipe } from 'apollo-angular';
 
 @Component({
   selector: 'app-page',
@@ -23,6 +24,8 @@ export class PageComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    iframely.iframely.extendOptions({api_key: '24efd7ca731658c92b362e'});
+
     this.page = this.route.paramMap.pipe(
       switchMap((params: ParamMap) => {        
         let whereClauseGW = {
@@ -38,12 +41,11 @@ export class PageComponent implements OnInit {
     );
 
     this.page.subscribe(result => {
-      this.pageContent = this.sanitizer.bypassSecurityTrustHtml(result.Content);
+      this.pageContent = this.sanitizer.bypassSecurityTrustHtml(result.Content.replace('<oembed url=', ' <div class="iframely-embed"><div class="iframely-responsive"><a data-iframely-url href=') + '</div></div>');
     })
   }
 
-  ngOnChanges() {
-    iframely.iframely.extendOptions({api_key: '24efd7ca731658c92b362e'});
+  ngAfterViewChecked() {
     iframely.iframely.load();
   }
 
