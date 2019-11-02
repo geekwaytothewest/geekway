@@ -1,11 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, ParamMap } from '@angular/router';
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { Page, SinglePageGQL } from 'src/generated/types.graphql-gen';
 import { switchMap, map } from 'rxjs/operators';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import iframely from '@iframely/embed.js';
-import { SelectPipe } from 'apollo-angular';
 
 @Component({
   selector: 'app-page',
@@ -15,6 +14,7 @@ import { SelectPipe } from 'apollo-angular';
 export class PageComponent implements OnInit {
 
   page: Observable<Page>;
+  pageSubscription: Subscription;
   pageContent: SafeHtml;
   
   constructor(
@@ -40,9 +40,13 @@ export class PageComponent implements OnInit {
       })
     );
 
-    this.page.subscribe(result => {
+    this.pageSubscription = this.page.subscribe(result => {
       this.pageContent = this.sanitizer.bypassSecurityTrustHtml(result.Content.replace('<oembed url=', ' <div class="iframely-embed"><div class="iframely-responsive"><a data-iframely-url href=') + '</div></div>');
     })
+  }
+
+  ngOnDestroy() {
+    this.pageSubscription.unsubscribe();
   }
 
   ngAfterViewChecked() {

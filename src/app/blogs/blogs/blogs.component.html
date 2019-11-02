@@ -1,0 +1,11 @@
+<h1>Blog Posts</h1>
+
+<div class="blogLink" *ngFor="let b of blogs | async">
+    <div *ngIf="b.postDate < todaysDate">
+        {{ b.postDate | amTz: 'America/Chicago' | amDateFormat: 'MMMM Do YYYY, h:mm a' }} by {{ b.author.Name }}
+        <br/>
+        <a href="blog/post/{{ b.slug }}">{{ b.Title }}</a>
+    </div>
+</div>
+
+<br/><br/>

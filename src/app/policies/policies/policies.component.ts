@@ -25,4 +25,8 @@ export class PoliciesComponent implements OnInit {
     this.policiesSubscription = this.policies.subscribe();
   }
 
+  ngOnDestroy() {
+    this.policiesSubscription.unsubscribe();
+  }
+
 }

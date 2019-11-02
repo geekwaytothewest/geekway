@@ -32,7 +32,6 @@ export class ConventionsComponent implements OnInit {
   }
 
   ngOnDestroy() {
-    // Only need to unsubscribe if its a multi event Observable
     this.conventionsSubscription.unsubscribe();
   }
 

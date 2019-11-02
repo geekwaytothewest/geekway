@@ -1,0 +1,19 @@
+query news {
+  newsposts (
+    sort: "postDate:desc"
+  ) {
+    id
+    _id
+    createdAt
+    updatedAt
+    Title
+    slug
+    postDate
+    featured
+    content
+    author {
+      Name
+      Job
+    }
+  }
+}

@@ -1,5 +1,5 @@
 import { NgModule, InjectionToken } from '@angular/core';
-import { Routes, RouterModule, Router, ActivatedRouteSnapshot } from '@angular/router';
+import { Routes, RouterModule, ActivatedRouteSnapshot } from '@angular/router';
 import { RedirectionMessageComponent } from './shared/redirection-message/redirection-message.component';
 import { NotfoundComponent } from './notfound/notfound.component';
 
@@ -41,10 +41,6 @@ const routes: Routes = [
   {
     path: 'library',
     loadChildren: () => import('./library/library.module').then(m => m.LibraryModule)
-  },
-  {
-    path: 'venues',
-    loadChildren: () => import('./venues/venues.module').then(m => m.VenuesModule)
   },
   {
     path: 'news',

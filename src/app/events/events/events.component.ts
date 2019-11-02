@@ -25,4 +25,8 @@ export class EventsComponent implements OnInit {
     this.eventsSubscription = this.events.subscribe();
   }
 
+  ngOnDestroy() {
+    this.eventsSubscription.unsubscribe();
+  }
+
 }

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { SingleEventGQL, Premiereevent } from 'src/generated/types.graphql-gen';
 import { switchMap, map } from 'rxjs/operators';
@@ -14,6 +14,7 @@ import iframely from '@iframely/embed.js';
 export class EventComponent implements OnInit {
 
   event: Observable<Premiereevent>;
+  eventSubscription: Subscription;
   eventContent: SafeHtml;
 
   constructor(
@@ -39,9 +40,13 @@ export class EventComponent implements OnInit {
       })
     );
 
-    this.event.subscribe(result => {
+    this.eventSubscription = this.event.subscribe(result => {
       this.eventContent = this.sanitizer.bypassSecurityTrustHtml(result.Content.replace('<oembed url=', ' <div class="iframely-embed"><div class="iframely-responsive"><a data-iframely-url href=') + '</div></div>');
     })
+  }
+
+  ngOnDestroy() {
+    this.eventSubscription.unsubscribe();
   }
 
   ngAfterViewChecked() {

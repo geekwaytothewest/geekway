@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { Policy, SinglePolicyGQL } from 'src/generated/types.graphql-gen';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { switchMap, map } from 'rxjs/operators';
@@ -14,6 +14,7 @@ import iframely from '@iframely/embed.js';
 export class PolicyComponent implements OnInit {
 
   policy: Observable<Policy>;
+  policySubscription: Subscription;
   policyContent: SafeHtml;
 
   constructor(
@@ -39,9 +40,13 @@ export class PolicyComponent implements OnInit {
       })
     );
 
-    this.policy.subscribe(result => {
+    this.policySubscription = this.policy.subscribe(result => {
       this.policyContent = this.sanitizer.bypassSecurityTrustHtml(result.Content.replace('<oembed url=', ' <div class="iframely-embed"><div class="iframely-responsive"><a data-iframely-url href=') + '</div></div>');
     })
+  }
+
+  ngOnDestroy() {
+    this.policySubscription.unsubscribe();
   }
 
   ngAfterViewChecked() {

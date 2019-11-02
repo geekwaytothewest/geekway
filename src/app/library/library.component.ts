@@ -22,6 +22,7 @@ export class LibraryComponent implements OnInit {
   libraryJson: String;
   libraryData: any;
   libraryDataObservable: Observable<any>;  
+  libraryDataSubscription: Subscription;
   dataSource: any;
   columnsToDisplay = ['Image', 'Name', 'Year', 'Players', 'Playtime', 'Rating'];
 
@@ -66,7 +67,7 @@ export class LibraryComponent implements OnInit {
         });
       });
 
-      this.libraryDataObservable.subscribe(data => {
+      this.libraryDataSubscription = this.libraryDataObservable.subscribe(data => {
         this.dataSource = new MatTableDataSource();
         this.dataSource.data = data;
         this.dataSource.paginator = this.paginator;
@@ -132,6 +133,11 @@ export class LibraryComponent implements OnInit {
     }
     return filterFunction;
   } 
+
+  ngOnDestroy() {
+    this.librarySubscription.unsubscribe();
+    this.libraryDataSubscription.unsubscribe();
+  }
 
   bggRedirect(bggId: String) {
     window.open("https://boardgamegeek.com/boardgame/" + bggId, '_blank');

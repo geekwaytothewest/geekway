@@ -35,6 +35,10 @@ export class GeekwaymicroComponent implements OnInit {
     this.geekwayMicroSubscription = this.geekwayMicro.subscribe();
   }
 
+  ngOnDestroy() {
+    this.geekwayMicroSubscription.unsubscribe();
+  }
+
   redirect(url: string) {
     console.log(url);
     if (url.startsWith("http")) {

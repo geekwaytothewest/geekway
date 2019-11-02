@@ -1,0 +1,5 @@
+<div *ngIf="blogPost | async as b" class="newsPostDiv">
+    <h1>{{ b.Title }}</h1>
+    <p><b>Posted: {{ b.postDate | amTz: 'America/Chicago' | amTimeAgo }} - {{ b.postDate | amTz: 'America/Chicago' | amDateFormat: 'MMMM Do YYYY, h:mm a' }}</b> by {{ b.author.Name }}</p>
+    <div [innerHTML]="blogContent" id="newsContent"></div>
+</div>
