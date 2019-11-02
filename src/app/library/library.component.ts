@@ -1,5 +1,4 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 import xml2js from 'xml2js';
 import { Observable, Subscription } from 'rxjs';
 import { MatTableDataSource, MatPaginator, MatSort } from '@angular/material';
@@ -136,6 +135,10 @@ export class LibraryComponent implements OnInit {
 
   bggRedirect(bggId: String) {
     window.open("https://boardgamegeek.com/boardgame/" + bggId, '_blank');
+  }
+
+  paginateChange(event: any) {
+    document.getElementById('libraryDiv').scrollIntoView();
   }
 
 }

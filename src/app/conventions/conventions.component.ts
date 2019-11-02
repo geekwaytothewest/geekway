@@ -36,7 +36,7 @@ export class ConventionsComponent implements OnInit {
     this.conventionsSubscription.unsubscribe();
   }
 
-  redirectConvention(id: number) {
+  redirectConvention(id: string) {
     this.router.navigate(['conventions/convention/' + id]);
     
     event.preventDefault();
