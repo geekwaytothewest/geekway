@@ -34,4 +34,17 @@ export class GeekwayminiComponent implements OnInit {
     this.geekwayMiniSubscription = this.geekwayMini.subscribe();
   }
 
+  redirect(url: string) {
+    console.log(url);
+    if (url.startsWith("http")) {
+      this.router.navigate(['/externalRedirect', { externalUrl: url }], {
+        skipLocationChange: true,
+      });
+    } else {
+      this.router.navigate([url]);
+    }
+    
+    event.preventDefault();
+  }
+
 }
