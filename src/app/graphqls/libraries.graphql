@@ -1,0 +1,18 @@
+query libraries {
+    libraries {
+        id
+        _id
+        createdAt
+        updatedAt
+        Name
+        games {
+            Name
+            Boxart {
+                name
+                url
+            }
+            BGGID 
+        }
+        BggLibraryXml
+    }
+}

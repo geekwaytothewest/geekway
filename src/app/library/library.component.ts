@@ -1,9 +1,11 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import xml2js from 'xml2js';
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { MatTableDataSource, MatPaginator, MatSort } from '@angular/material';
 import { FormControl } from '@angular/forms';
+import { LibrariesGQL, Library } from 'src/generated/types.graphql-gen';
+import { map } from 'rxjs/operators';
 
 const libraryUrl: string = "/assets/xml/geekwaycollection.xml";
 const requestOptions: Object = { responseType: 'text' };
@@ -15,6 +17,8 @@ const requestOptions: Object = { responseType: 'text' };
 })
 export class LibraryComponent implements OnInit {
 
+  library: Observable<Library>;
+  librarySubscription: Subscription;
   libraryXml: String;
   libraryJson: String;
   libraryData: any;
@@ -40,34 +44,37 @@ export class LibraryComponent implements OnInit {
   };
 
   constructor(
-    private http: HttpClient
+    private librariesGQL: LibrariesGQL
   ) { }
 
   ngOnInit() {
-    this.http.get<String>(libraryUrl, requestOptions).subscribe(
-      xml => {
-        this.libraryXml = xml;
+    this.library = this.librariesGQL.watch()
+      .valueChanges
+      .pipe(        
+        map(result => result.data.libraries[0])
+      );
 
-        this.libraryDataObservable = new Observable<object>(observer => {
-      
-          let parser = new xml2js.Parser();
+    this.librarySubscription = this.library.subscribe(library => {
+      this.libraryXml = library.BggLibraryXml;
+
+      this.libraryDataObservable = new Observable<object>(observer => {    
+        let parser = new xml2js.Parser();
   
-          parser.parseStringPromise(this.libraryXml).then((result) => {
-            observer.next(result.items.item);                        
-            this.libraryData = result.items.item;
-            observer.complete();
-          });
+        parser.parseStringPromise(this.libraryXml).then((result) => {
+          observer.next(result.items.item);                        
+          this.libraryData = result.items.item;
+          observer.complete();
         });
+      });
 
-        this.libraryDataObservable.subscribe(data => {
-          this.dataSource = new MatTableDataSource();
-          this.dataSource.data = data;
-          this.dataSource.paginator = this.paginator;
-          this.dataSource.sort = this.sort;
-          this.dataSource.filterPredicate = this.tableFilter();
-        })
-      }
-    );
+      this.libraryDataObservable.subscribe(data => {
+        this.dataSource = new MatTableDataSource();
+        this.dataSource.data = data;
+        this.dataSource.paginator = this.paginator;
+        this.dataSource.sort = this.sort;
+        this.dataSource.filterPredicate = this.tableFilter();
+      })
+    })
 
     this.nameFilter.valueChanges.subscribe(name => {
       this.filterValues.name = name;
