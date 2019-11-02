@@ -58,6 +58,8 @@ query conventions {
       	name
       	url
       }
+      Lat
+      Long
       Name
     }
     PrimaryVenue {
@@ -70,6 +72,8 @@ query conventions {
       	name
       	url
       }
+      Lat
+      Long
       Name
     }
     registrationUrl

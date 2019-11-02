@@ -33,3 +33,19 @@ mat-card {
     text-align: center;
     margin-bottom: 20px;
 }
+
+igx-carousel {
+    width: 400px;
+    margin: auto;
+
+    igx-slide {
+        img {
+            height: 200px;
+            width: auto;
+        }
+    }
+}
+
+agm-map {
+    height: 400px;
+}  

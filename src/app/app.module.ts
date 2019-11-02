@@ -41,4 +41,5 @@ import { NotfoundComponent } from './notfound/notfound.component';
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}
