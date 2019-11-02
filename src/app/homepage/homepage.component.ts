@@ -11,13 +11,13 @@ import { Router } from '@angular/router';
 })
 export class HomepageComponent implements OnInit {
 
-  geekwayToTheWest: Observable<Convention[]>;
+  geekwayToTheWest: Observable<Convention>;
   geekwayToTheWestSubscription: Subscription;
 
-  geekwayMini: Observable<Convention[]>;
+  geekwayMini: Observable<Convention>;
   geekwayMiniSubscription: Subscription;
 
-  geekwayMicro: Observable<Convention[]>;
+  geekwayMicro: Observable<Convention>;
   geekwayMicroSubscription: Subscription
   
   constructor(
@@ -36,7 +36,7 @@ export class HomepageComponent implements OnInit {
     this.geekwayToTheWest = this.nextGWConventionWhere.watch({whereClause: whereClauseGW})
       .valueChanges
       .pipe(        
-        map(result => result.data.conventions)
+        map(result => result.data.conventions[0])
       );
 
     this.geekwayToTheWestSubscription = this.geekwayToTheWest.subscribe();
@@ -49,7 +49,7 @@ export class HomepageComponent implements OnInit {
     this.geekwayMini = this.nextGWMiniConventionWhere.watch({whereClause: whereClauseGWMini})
       .valueChanges
       .pipe(
-        map(result => result.data.conventions)
+        map(result => result.data.conventions[0])
       );
       
     this.geekwayMiniSubscription = this.geekwayMini.subscribe();
@@ -62,7 +62,7 @@ export class HomepageComponent implements OnInit {
     this.geekwayMicro = this.nextGWMicroConventionWhere.watch({whereClause: whereClauseGWMicro})
       .valueChanges
       .pipe(
-        map(result => result.data.conventions)
+        map(result => result.data.conventions[0])
       );
       
     this.geekwayMicroSubscription = this.geekwayMicro.subscribe();
