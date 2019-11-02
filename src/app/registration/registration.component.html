@@ -4,7 +4,7 @@
     <mat-card *ngFor="let g of geekwayToTheWest | async">
         <mat-card-title>{{ g.conventionType.Name }} {{ g.startDate | amTz: 'America/Chicago' | amDateFormat: 'YYYY'}}</mat-card-title>
         <mat-card-subtitle>{{ g.Theme }}</mat-card-subtitle>
-        <img *ngIf="g.Logo; else gwLogo" class="cardImage" matCardImage src="https://cms.geekwaytothewest.com{{ g.Logo.url }}">
+        <img *ngIf="g.Logo; else gwLogo" class="cardImage" matCardImage src="https://cms.geekwaytothewest.com{{ g.LogoSquare.url }}">
         <ng-template #gwLogo>
             <img class="cardImage" matCardImage src="https://cms.geekwaytothewest.com{{ g.conventionType.LogoSquare.url }}">
         </ng-template>

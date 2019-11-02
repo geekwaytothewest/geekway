@@ -1,14 +1,17 @@
 .flexbox {
     display: flex;
     width: 100%;
+    flex-flow: row wrap;
 }
 
 mat-card {
     flex: 1;
     text-align: center;
+    margin-bottom: 10px;
+
     &:not(:last-of-type) {
         margin-right: 10px;
-    }
+    }    
 }
 
 .registrationBlock:not(:last-of-type) {
