@@ -3,6 +3,7 @@ import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Observable, Subscription } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
 import { Policy, PoliciesGQL, EventsGQL, Premiereevent } from 'src/generated/types.graphql-gen';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-navigation',
@@ -38,7 +39,8 @@ export class NavigationComponent {
   constructor(
     private breakpointObserver: BreakpointObserver,
     private policiesGQL: PoliciesGQL,
-    private eventsGQL: EventsGQL
+    private eventsGQL: EventsGQL,
+    public router: Router
   ) {}
 
   ngOnInit() {

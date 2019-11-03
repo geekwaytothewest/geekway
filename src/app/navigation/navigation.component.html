@@ -13,15 +13,15 @@
         <a href="/"><img src="/assets/images/geekwaylogo.png"></a>
     </div>
     <div class="header-nav" *ngIf="!(isHandset$ | async) && !(isTablet$ | async)">
-        <a href="page/about" class="nav-link nav-text" (mouseover)="showSubnav('about')">About</a>
-        <a href="registration" class="nav-link nav-text" (mouseover)="showSubnav('registration')">Registration</a>
-        <a href="policies" class="nav-link nav-text" (mouseover)="showSubnav('policies')">Policies</a>
-        <a href="events" class="nav-link nav-text" (mouseover)="showSubnav('events')">Events</a>
-        <a href="page/vendors" class="nav-link nav-text" (mouseover)="showSubnav('vendors')">Vendors</a>
-        <a href="library" class="nav-link nav-text" (mouseover)="showSubnav('library')">Library</a>
-        <a href="page/geekguides" class="nav-link nav-text" (mouseover)="showSubnav('geekguides')">Geek Guides</a>
-        <a href="news" class="nav-link nav-text" (mouseover)="showSubnav('news')">News</a>
-        <a href="blog" class="nav-link nav-text" (mouseover)="showSubnav('blog')">Blog</a>
+        <a href="page/about" [ngClass]="{'nav-link' : true, 'nav-text' : true, 'active' : this.router.url.startsWith('/page/about')}" (mouseover)="showSubnav('about')">About</a>
+        <a href="registration" [ngClass]="{'nav-link' : true, 'nav-text' : true, 'active' : this.router.url.startsWith('/registration')}" (mouseover)="showSubnav('registration')">Registration</a>
+        <a href="policies" [ngClass]="{'nav-link' : true, 'nav-text' : true, 'active' : this.router.url.startsWith('/policies')}" (mouseover)="showSubnav('policies')">Policies</a>
+        <a href="events" [ngClass]="{'nav-link' : true, 'nav-text' : true, 'active' : this.router.url.startsWith('/events')}" (mouseover)="showSubnav('events')">Events</a>
+        <a href="page/vendors" [ngClass]="{'nav-link' : true, 'nav-text' : true, 'active' : this.router.url.startsWith('/page/vendors')}" (mouseover)="showSubnav('vendors')">Vendors</a>
+        <a href="library" [ngClass]="{'nav-link' : true, 'nav-text' : true, 'active' : this.router.url.startsWith('/library')}" (mouseover)="showSubnav('library')">Library</a>
+        <a href="page/geekguides" [ngClass]="{'nav-link' : true, 'nav-text' : true, 'active' : this.router.url.startsWith('/page/geekguides')}" (mouseover)="showSubnav('geekguides')">Geek Guides</a>
+        <a href="news" [ngClass]="{'nav-link' : true, 'nav-text' : true, 'active' : this.router.url.startsWith('/news')}" (mouseover)="showSubnav('news')">News</a>
+        <a href="blog" [ngClass]="{'nav-link' : true, 'nav-text' : true, 'active' : this.router.url.startsWith('/blog')}" (mouseover)="showSubnav('blog')">Blog</a>
     </div>
   </header>
   <nav class="subnav" *ngIf="!(isHandset$ | async) && !(isTablet$ | async)">
@@ -46,15 +46,15 @@
   <div class="content-container">
       <nav class="sidenav" *ngIf="showSidenav">
           <section class="sidenav-content">
-              <a href="/" class="nav-link active">
+              <a href="/" [ngClass]="{'nav-link' : true, 'active' : this.router.url == '/'}">
                 Home
               </a>
               
               <section class="nav-group collapsible">
-                  <input id="tabAbout" type="checkbox" checked>
+                  <input id="tabAbout" type="checkbox" [checked]="!this.router.url.startsWith('/page/about')">
                   <label for="tabAbout">About</label>
                   <ul class="nav-list">
-                      <li><a class="nav-link" href="page/about" target="_blank">About Us</a></li>
+                      <li><a [ngClass]="{'nav-link' : true, 'active' : this.router.url.startsWith('/page/about')}" href="page/about" target="_blank">About Us</a></li>
                       <li><a class="nav-link" href="https://twitter.com/geekway" target="_blank">Twitter</a></li>
                       <li><a class="nav-link" href="https://www.facebook.com/GeekwaytotheWest/" target="_blank">Facebook</a></li>
                       <li><a class="nav-link" href="https://www.instagram.com/geekwaytothewest/" target="_blank">Instagram</a></li>
@@ -63,43 +63,43 @@
                   </ul>
               </section>
 
-              <a href="registration" class="nav-link">
+              <a href="registration" [ngClass]="{'nav-link' : true, 'active' : this.router.url.startsWith('/registration')}">
                 Registration
               </a>
               
               <section class="nav-group collapsible">
-                  <input id="tabPolicies" type="checkbox" checked>
+                  <input id="tabPolicies" type="checkbox" [checked]="!this.router.url.startsWith('/policies')">
                   <label for="tabPolicies">Policies</label>
                   <ul class="nav-list">
-                      <li *ngFor="let p of policies | async"><a class="nav-link" href="/policies/policy/{{ p.Slug }}">{{ p.Name }}</a></li>
+                      <li *ngFor="let p of policies | async"><a [ngClass]="{'nav-link' : true, 'active' : this.router.url.startsWith('/policies/policy/' + p.Slug )}" href="/policies/policy/{{ p.Slug }}">{{ p.Name }}</a></li>
                   </ul>
               </section>  
               
               <section class="nav-group collapsible">
-                  <input id="tabEvents" type="checkbox" checked>
+                  <input id="tabEvents" type="checkbox" [checked]="!this.router.url.startsWith('/events')">
                   <label for="tabEvents">Events</label>
                   <ul class="nav-list">
-                      <li *ngFor="let e of events | async"><a class="nav-link" href="/events/event/{{ e.Slug }}">{{ e.Name }}</a></li>
+                      <li *ngFor="let e of events | async"><a [ngClass]="{'nav-link' : true, 'active' : this.router.url.startsWith('/events/event/' + e.Slug )}" href="/events/event/{{ e.Slug }}">{{ e.Name }}</a></li>
                   </ul>
               </section>   
 
-              <a href="vendors" class="nav-link">
+              <a href="vendors" [ngClass]="{'nav-link' : true, 'active' : this.router.url.startsWith('/vendors')}">
                 Vendors
               </a>     
 
-              <a href="library" class="nav-link">
+              <a href="library" [ngClass]="{'nav-link' : true, 'active' : this.router.url.startsWith('/library')}">
                 Library
               </a>                
 
-              <a href="page/geekguides" class="nav-link">
+              <a href="page/geekguides" [ngClass]="{'nav-link' : true, 'active' : this.router.url.startsWith('/page/geekguides')}">
                 Geek Guides
               </a>
 
-              <a href="news" class="nav-link">
+              <a href="news" [ngClass]="{'nav-link' : true, 'active' : this.router.url.startsWith('/news')}">
                 News
               </a>
 
-              <a href="blog" class="nav-link">
+              <a href="blog" [ngClass]="{'nav-link' : true, 'active' : this.router.url.startsWith('/blog')}">
                 Blog
               </a>
           </section>
