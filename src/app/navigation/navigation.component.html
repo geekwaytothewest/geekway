@@ -20,7 +20,7 @@
         <a href="/"><img src="/assets/images/geekwaylogo.png"></a>
     </div>
     <div class="header-nav" *ngIf="!(isHandset$ | async) && !(isTablet$ | async)">
-        <a href="page/about" [ngClass]="{'nav-link' : true, 'nav-text' : true, 'active' : this.router.url.startsWith('/page/about')}" (mouseover)="showSubnav('about')">About</a>
+        <a href="page/about" [ngClass]="{'nav-link' : true, 'nav-text' : true, 'active' : this.router.url.startsWith('/page/about') || this.router.url.startsWith('/boardmembers')}" (mouseover)="showSubnav('about')">About</a>
         <a href="conventions" [ngClass]="{'nav-link' : true, 'nav-text' : true, 'active' : this.router.url.startsWith('/conventions')}" (mouseover)="showSubnav('conventions')">Conventions</a>
         <a href="registration" [ngClass]="{'nav-link' : true, 'nav-text' : true, 'active' : this.router.url.startsWith('/registration')}" (mouseover)="showSubnav('registration')">Registration</a>
         <a href="policies" [ngClass]="{'nav-link' : true, 'nav-text' : true, 'active' : this.router.url.startsWith('/policies')}" (mouseover)="showSubnav('policies')">Policies</a>
@@ -38,11 +38,11 @@
       </ul>
       <ul class="nav" *ngIf="showAboutSubnav">
           <li class="nav-item"><a class="nav-link" href="/boardmembers">Board Members</a></li>
-          <li class="nav-item"><a class="nav-link" href="https://twitter.com/geekway">Twitter</a></li>
-          <li class="nav-item"><a class="nav-link" href="https://www.facebook.com/GeekwaytotheWest/">Facebook</a></li>
-          <li class="nav-item"><a class="nav-link" href="https://www.instagram.com/geekwaytothewest/">Instagram</a></li>
+          <li class="nav-item"><a class="nav-link" href="https://twitter.com/geekway" target="_blank">Twitter</a></li>
+          <li class="nav-item"><a class="nav-link" href="https://www.facebook.com/GeekwaytotheWest/" target="_blank">Facebook</a></li>
+          <li class="nav-item"><a class="nav-link" href="https://www.instagram.com/geekwaytothewest/" target="_blank">Instagram</a></li>
           <li class="nav-item"><a class="nav-link" href="mailto:geekway@geekwaytothewest.com">Email</a></li>
-          <li class="nav-item"><a class="nav-link" href="https://geekway.threadless.com/">Pride Store</a></li>
+          <li class="nav-item"><a class="nav-link" href="https://geekway.threadless.com/" target="_blank">Pride Store</a></li>
       </ul>
       <ul class="nav" *ngIf="showPoliciesSubnav">
           <li *ngFor="let p of policies | async" class="nav-item"><a class="nav-link" href="/policies/policy/{{ p.Slug }}">{{ p.Name }}</a></li>
