@@ -23,6 +23,7 @@ export class NavigationComponent {
   showAboutSubnav: boolean = false;
   showPoliciesSubnav: boolean = false;
   showEventsSubnav: boolean = false;
+  showConventionsSubnav: boolean = false;
 
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
     .pipe(
@@ -77,18 +78,28 @@ export class NavigationComponent {
         this.showAboutSubnav = true;
         this.showPoliciesSubnav = false;
         this.showEventsSubnav = false;
+        this.showConventionsSubnav = false;
         break;
       case "policies":
         this.showSlogan = false;
         this.showAboutSubnav = false;
         this.showPoliciesSubnav = true;
         this.showEventsSubnav = false;
+        this.showConventionsSubnav = false;
         break;
       case "events":
         this.showSlogan = false;
         this.showAboutSubnav = false;
         this.showPoliciesSubnav = false;
         this.showEventsSubnav = true;
+        this.showConventionsSubnav = false;
+        break;
+      case "conventions":
+        this.showSlogan = false;
+        this.showAboutSubnav = false;
+        this.showPoliciesSubnav = false;
+        this.showEventsSubnav = false;
+        this.showConventionsSubnav = true;
         break;
       default:
         this.showSlogan = true;

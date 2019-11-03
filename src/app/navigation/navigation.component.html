@@ -49,6 +49,11 @@
       <ul class="nav" *ngIf="showEventsSubnav">
           <li *ngFor="let e of events | async" class="nav-item"><a class="nav-link" href="/events/event/{{ e.Slug }}">{{ e.Name }}</a></li>
       </ul>
+      <ul class="nav" *ngIf="showConventionsSubnav">            
+        <li class="nav-item"><a class="nav-link" href="/conventions/geekway">Geekway to the West</a></li>
+        <li class="nav-item"><a class="nav-link" href="/conventions/mini">Geekway Mini</a></li>
+        <li class="nav-item"><a class="nav-link" href="/conventions/micro">Geekway Micro</a></li>
+      </ul>
   </nav>
 
   <div class="content-container">
