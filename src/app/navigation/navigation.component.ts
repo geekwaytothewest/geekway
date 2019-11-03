@@ -18,6 +18,7 @@ export class NavigationComponent {
   eventsSubscription: Subscription;
 
   showSidenav: boolean = false;
+  showSlogan: boolean = true;
   showAboutSubnav: boolean = false;
   showPoliciesSubnav: boolean = false;
   showEventsSubnav: boolean = false;
@@ -70,21 +71,25 @@ export class NavigationComponent {
   showSubnav(subnav: string) {
     switch (subnav) {
       case "about":
+        this.showSlogan = false;
         this.showAboutSubnav = true;
         this.showPoliciesSubnav = false;
         this.showEventsSubnav = false;
         break;
       case "policies":
+        this.showSlogan = false;
         this.showAboutSubnav = false;
         this.showPoliciesSubnav = true;
         this.showEventsSubnav = false;
         break;
       case "events":
+        this.showSlogan = false;
         this.showAboutSubnav = false;
         this.showPoliciesSubnav = false;
         this.showEventsSubnav = true;
         break;
       default:
+        this.showSlogan = true;
         this.showAboutSubnav = false;
         this.showPoliciesSubnav = false;
         this.showEventsSubnav = false;
