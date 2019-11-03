@@ -25,7 +25,7 @@
     </div>
   </header>
   <nav class="subnav" *ngIf="!(isHandset$ | async) && !(isTablet$ | async)">
-      <ul class="nav" *ngIf="showSlogan" class="sloganSubnav">
+      <ul class="nav" *ngIf="showSlogan">
         <li class="nav-item">Four Days of Peace, Love, and Board Games</li>
       </ul>
       <ul class="nav" *ngIf="showAboutSubnav">
@@ -105,7 +105,11 @@
           </section>
       </nav>
       <div class="content-area">
-        <router-outlet></router-outlet>
+        <mat-card class="mat-elevation-z8 backgroundCard">
+          <mat-card-content>
+              <router-outlet></router-outlet>
+          </mat-card-content>
+        </mat-card>
       </div>
   </div>
 </div>
