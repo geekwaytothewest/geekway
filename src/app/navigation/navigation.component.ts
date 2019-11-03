@@ -106,6 +106,7 @@ export class NavigationComponent {
         this.showAboutSubnav = false;
         this.showPoliciesSubnav = false;
         this.showEventsSubnav = false;
+        this.showConventionsSubnav = false;
         break;
     }
   }

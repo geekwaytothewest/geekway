@@ -42,6 +42,31 @@ h1, h2, h3, h4, h5, h6, mat-card-title {
     font-family: 'Abilib Regular';
 }
 
+@-webkit-keyframes glass-tip {
+  0%   { opacity: 0; }
+  100% { opacity: 1; }
+}
+@-moz-keyframes glass-tip {
+  0%   { opacity: 0; }
+  100% { opacity: 1; }
+}
+@-o-keyframes glass-tip {
+  0%   { opacity: 0; }
+  100% { opacity: 1; }
+}
+@keyframes glass-tip {
+  0%   { transform: rotate(0deg); }
+  25% { transform: rotate(30deg); }
+  50% { transform: rotate(-30deg); }
+  100% { transform: rotate(0deg); }
+}
+.glass-tip {
+	-webkit-animation: glass-tip 5s infinite;
+	-moz-animation: glass-tip 5s infinite;
+	-o-animation: glass-tip 5s infinite;
+	animation: glass-tip 5s infinite;
+}
+
 @import "~igniteui-angular/lib/core/styles/themes/index";
 // Uncomment the following lines if you want to add a custom palette:
 // $primary: #731963 !default;

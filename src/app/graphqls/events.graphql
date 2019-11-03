@@ -6,6 +6,7 @@ query events {
         updatedAt
         Name
         Slug
+        Icon
         HeaderPhoto {
             name
             url

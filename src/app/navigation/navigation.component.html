@@ -34,26 +34,26 @@
   </header>
   <nav class="subnav" *ngIf="!(isHandset$ | async) && !(isTablet$ | async)">
       <ul class="nav" *ngIf="showSlogan">
-        <li class="nav-item">Four Days of Peace, Love, and Board Games</li>
+        <li class="nav-item">Four Days of Peace, Love, and Board Games - St. Louis, MO</li>
       </ul>
       <ul class="nav" *ngIf="showAboutSubnav">
-          <li class="nav-item"><a class="nav-link" href="/boardmembers">Board Members</a></li>
-          <li class="nav-item"><a class="nav-link" href="https://twitter.com/geekway" target="_blank">Twitter</a></li>
-          <li class="nav-item"><a class="nav-link" href="https://www.facebook.com/GeekwaytotheWest/" target="_blank">Facebook</a></li>
-          <li class="nav-item"><a class="nav-link" href="https://www.instagram.com/geekwaytothewest/" target="_blank">Instagram</a></li>
-          <li class="nav-item"><a class="nav-link" href="mailto:geekway@geekwaytothewest.com">Email</a></li>
-          <li class="nav-item"><a class="nav-link" href="https://geekway.threadless.com/" target="_blank">Pride Store</a></li>
+          <li class="nav-item"><a class="nav-link" href="/boardmembers"><i class="fa fa-users"></i> Board Members</a></li>
+          <li class="nav-item"><a class="nav-link" href="https://twitter.com/geekway" target="_blank"><i class="fab fa-twitter"></i> Twitter</a></li>
+          <li class="nav-item"><a class="nav-link" href="https://www.facebook.com/GeekwaytotheWest/" target="_blank"><i class="fab fa-facebook"></i> Facebook</a></li>
+          <li class="nav-item"><a class="nav-link" href="https://www.instagram.com/geekwaytothewest/" target="_blank"><i class="fab fa-instagram"></i> Instagram</a></li>
+          <li class="nav-item"><a class="nav-link" href="mailto:geekway@geekwaytothewest.com"><i class="fa fa-envelope"></i> Email</a></li>
+          <li class="nav-item"><a class="nav-link" href="https://geekway.threadless.com/" target="_blank"><img src="/assets/images/geekgay.png"> Pride Store</a></li>
       </ul>
       <ul class="nav" *ngIf="showPoliciesSubnav">
           <li *ngFor="let p of policies | async" class="nav-item"><a class="nav-link" href="/policies/policy/{{ p.Slug }}">{{ p.Name }}</a></li>
       </ul>
-      <ul class="nav" *ngIf="showEventsSubnav">
-          <li *ngFor="let e of events | async" class="nav-item"><a class="nav-link" href="/events/event/{{ e.Slug }}">{{ e.Name }}</a></li>
+      <ul class="nav" *ngIf="showEventsSubnav">        
+          <li *ngFor="let e of events | async" class="nav-item"><a class="nav-link" href="/events/event/{{ e.Slug }}"><i *ngIf="e.Icon" class="{{ e.Icon }}"></i> {{ e.Name }}</a></li>
       </ul>
       <ul class="nav" *ngIf="showConventionsSubnav">            
-        <li class="nav-item"><a class="nav-link" href="/conventions/geekway">Geekway to the West</a></li>
-        <li class="nav-item"><a class="nav-link" href="/conventions/mini">Geekway Mini</a></li>
-        <li class="nav-item"><a class="nav-link" href="/conventions/micro">Geekway Micro</a></li>
+        <li class="nav-item"><a class="nav-link" href="/conventions/geekway"><i class="fas fa-dice-one fa-spin"></i> Geekway to the West</a></li>
+        <li class="nav-item"><a class="nav-link" href="/conventions/mini"><i class="fas fa-dice-two fa-spin"></i> Geekway Mini</a></li>
+        <li class="nav-item"><a class="nav-link" href="/conventions/micro"><i class="fas fa-dice-three fa-spin"></i> Geekway Micro</a></li>
       </ul>
   </nav>
 
@@ -65,15 +65,16 @@
               </a>
               
               <section class="nav-group collapsible">
-                  <input id="tabAbout" type="checkbox" [checked]="!this.router.url.startsWith('/page/about')">
+                  <input id="tabAbout" type="checkbox" [checked]="!(this.router.url.startsWith('/page/about') || this.router.url.startsWith('/boardmembers'))">
                   <label for="tabAbout">About</label>
                   <ul class="nav-list">
                       <li><a [ngClass]="{'nav-link' : true, 'active' : this.router.url.startsWith('/page/about')}" href="page/about" target="_blank">About Us</a></li>
-                      <li><a class="nav-link" href="https://twitter.com/geekway" target="_blank">Twitter</a></li>
-                      <li><a class="nav-link" href="https://www.facebook.com/GeekwaytotheWest/" target="_blank">Facebook</a></li>
-                      <li><a class="nav-link" href="https://www.instagram.com/geekwaytothewest/" target="_blank">Instagram</a></li>
-                      <li><a class="nav-link" href="mailto:geekway@geekwaytothewest.com">Email</a></li>
-                      <li><a class="nav-link" href="https://geekway.threadless.com/" target="_blank">Pride Store</a></li>
+                      <li><a [ngClass]="{'nav-link' : true, 'active' : this.router.url.startsWith('/boardmembers')}"  href="boardmembers"><i class="fa fa-users"></i> Board Members</a></li>
+                      <li><a class="nav-link" href="https://twitter.com/geekway" target="_blank"><i class="fab fa-twitter"></i> Twitter</a></li>
+                      <li><a class="nav-link" href="https://www.facebook.com/GeekwaytotheWest/" target="_blank"><i class="fab fa-facebook"></i> Facebook</a></li>
+                      <li><a class="nav-link" href="https://www.instagram.com/geekwaytothewest/" target="_blank"><i class="fab fa-instagram"></i> Instagram</a></li>
+                      <li><a class="nav-link" href="mailto:geekway@geekwaytothewest.com"><i class="fa fa-envelope"></i> Email</a></li>
+                      <li><a class="nav-link" href="https://geekway.threadless.com/" target="_blank"><img src="/assets/images/geekgay.png"> Pride Store</a></li>
                   </ul>
               </section>
 
@@ -93,7 +94,7 @@
                   <input id="tabEvents" type="checkbox" [checked]="!this.router.url.startsWith('/events')">
                   <label for="tabEvents">Events</label>
                   <ul class="nav-list">
-                      <li *ngFor="let e of events | async"><a [ngClass]="{'nav-link' : true, 'active' : this.router.url.startsWith('/events/event/' + e.Slug )}" href="/events/event/{{ e.Slug }}">{{ e.Name }}</a></li>
+                      <li *ngFor="let e of events | async"><a [ngClass]="{'nav-link' : true, 'active' : this.router.url.startsWith('/events/event/' + e.Slug )}" href="/events/event/{{ e.Slug }}"><i *ngIf="e.Icon" class="{{ e.Icon }}"></i> {{ e.Name }}</a></li>
                   </ul>
               </section>   
 
