@@ -44,3 +44,34 @@ header {
     margin-right: auto;
   }
 }
+
+.miniHeader {
+  background-color: #00B259;
+
+  ul {
+    list-style: none;
+    float: right;
+     
+    li {
+      display: inline-block;
+      padding: 5px;
+      padding-right: 10px;
+
+      a {
+        color: white;
+      }
+
+      a:hover {
+        text-decoration: none;
+      }
+    }
+
+    li:hover {
+      background-color: #0093D2;
+      
+      a {
+        color: black;
+      }
+    }
+  }
+}
