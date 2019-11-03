@@ -105,7 +105,7 @@
           </section>
       </nav>
       <div class="content-area">
-        <mat-card class="mat-elevation-z8 backgroundCard">
+        <mat-card [ngClass]="{'mat-elevation-z8': true, 'desktop': !(isHandset$ | async)}">
           <mat-card-content>
               <router-outlet></router-outlet>
           </mat-card-content>
