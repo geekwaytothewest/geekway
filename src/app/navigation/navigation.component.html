@@ -1,39 +1,108 @@
-<mat-sidenav-container class="sidenav-container">
-  <mat-sidenav #drawer class="sidenav" fixedInViewport
-      [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
-      [mode]="(isHandset$ | async) ? 'over' : 'side'"
-      [opened]="(isHandset$ | async) === false">
-    <mat-toolbar>Menu</mat-toolbar> 
-    <mat-nav-list>
-      <a mat-list-item href="#">Home</a>
-      <a mat-list-item href="page/about">About</a>
-      <a mat-list-item href="conventions">Conventions</a>
-      <a mat-list-item href="registration">Registration</a>
-      <a mat-list-item href="policies">Policies</a>
-      <a mat-list-item href="events">Events</a>
-      <a mat-list-item href="page/vendors">Vendors</a>
-      <a mat-list-item href="library">Library</a>
-      <a mat-list-item href="page/geekguides">Geek Guides</a>
-      <a mat-list-item href="news">News</a>
-      <a mat-list-item href="blog">Blog</a>
-    </mat-nav-list>
-  </mat-sidenav>
-  <mat-sidenav-content>
-    <mat-toolbar color="primary">
-      <button
-        type="button"
-        aria-label="Toggle sidenav"
-        mat-icon-button
-        (click)="drawer.toggle()"
-        *ngIf="isHandset$ | async">
-        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
-      </button>
-      <img *ngIf="!(isHandset$ | async)" class="headerIcon" src="assets/images/geekwaylogo.png">
-      <img *ngIf="(isHandset$ | async)" class="headerIcon" src="assets/images/gw-square.png">
-      <span>Four Days of Peace, Love, <br *ngIf="(isHandset$ | async)"/> and Board Games</span>
-    </mat-toolbar>
-    <div class="padded">
-        <router-outlet></router-outlet>
-    </div>    
-  </mat-sidenav-content>
-</mat-sidenav-container>
+<div class="main-container">
+
+    <header class="header-6">
+      <div class="branding">        
+          <button
+          type="button"
+          aria-label="Toggle sidenav"
+          mat-icon-button
+          (click)="toggleSidenav()"
+          *ngIf="(isHandset$ | async) || (isTablet$ | async)">
+            <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+          </button>
+          <a href="/"><img src="/assets/images/geekwaylogo.png"></a>
+      </div>
+      <div class="header-nav" *ngIf="!(isHandset$ | async) && !(isTablet$ | async)">
+          <a href="page/about" class="nav-link nav-text" (mouseover)="showSubnav('about')">About</a>
+          <a href="registration" class="nav-link nav-text" (mouseover)="showSubnav('registration')">Registration</a>
+          <a href="policies" class="nav-link nav-text" (mouseover)="showSubnav('policies')">Policies</a>
+          <a href="events" class="nav-link nav-text" (mouseover)="showSubnav('events')">Events</a>
+          <a href="page/vendors" class="nav-link nav-text" (mouseover)="showSubnav('vendors')">Vendors</a>
+          <a href="library" class="nav-link nav-text" (mouseover)="showSubnav('library')">Library</a>
+          <a href="page/geekguides" class="nav-link nav-text" (mouseover)="showSubnav('geekguides')">Geek Guides</a>
+          <a href="news" class="nav-link nav-text" (mouseover)="showSubnav('news')">News</a>
+          <a href="blog" class="nav-link nav-text" (mouseover)="showSubnav('blog')">Blog</a>
+      </div>
+    </header>
+    <nav class="subnav" *ngIf="!(isHandset$ | async) && !(isTablet$ | async)">
+        <ul class="nav" *ngIf="showAboutSubnav">
+            <li class="nav-item"><a class="nav-link" href="https://twitter.com/geekway">Twitter</a></li>
+            <li class="nav-item"><a class="nav-link" href="https://www.facebook.com/GeekwaytotheWest/">Facebook</a></li>
+            <li class="nav-item"><a class="nav-link" href="https://www.instagram.com/geekwaytothewest/">Instagram</a></li>
+            <li class="nav-item"><a class="nav-link" href="mailto:geekway@geekwaytothewest.com">Email</a></li>
+            <li class="nav-item"><a class="nav-link" href="https://geekway.threadless.com/">Pride Store</a></li>
+        </ul>
+        <ul class="nav" *ngIf="showPoliciesSubnav">
+            <li *ngFor="let p of policies | async" class="nav-item"><a class="nav-link" href="/policies/policy/{{ p.Slug }}">{{ p.Name }}</a></li>
+        </ul>
+        <ul class="nav" *ngIf="showEventsSubnav">
+            <li *ngFor="let e of events | async" class="nav-item"><a class="nav-link" href="/events/event/{{ e.Slug }}">{{ e.Name }}</a></li>
+        </ul>
+    </nav>
+
+    <div class="content-container">
+        <nav class="sidenav" *ngIf="showSidenav">
+            <section class="sidenav-content">
+                <a href="/" class="nav-link active">
+                  Home
+                </a>
+                
+                <section class="nav-group collapsible">
+                    <input id="tabAbout" type="checkbox" checked>
+                    <label for="tabAbout">About</label>
+                    <ul class="nav-list">
+                        <li><a class="nav-link" href="page/about">About Us</a></li>
+                        <li><a class="nav-link" href="https://twitter.com/geekway">Twitter</a></li>
+                        <li><a class="nav-link" href="https://www.facebook.com/GeekwaytotheWest/">Facebook</a></li>
+                        <li><a class="nav-link" href="https://www.instagram.com/geekwaytothewest/">Instagram</a></li>
+                        <li><a class="nav-link" href="mailto:geekway@geekwaytothewest.com">Email</a></li>
+                        <li><a class="nav-link" href="https://geekway.threadless.com/">Pride Store</a></li>
+                    </ul>
+                </section>
+
+                <a href="registration" class="nav-link">
+                  Registration
+                </a>
+                
+                <section class="nav-group collapsible">
+                    <input id="tabPolicies" type="checkbox" checked>
+                    <label for="tabPolicies">Policies</label>
+                    <ul class="nav-list">
+                        <li *ngFor="let p of policies | async"><a class="nav-link" href="/policies/policy/{{ p.Slug }}">{{ p.Name }}</a></li>
+                    </ul>
+                </section>  
+                
+                <section class="nav-group collapsible">
+                    <input id="tabEvents" type="checkbox" checked>
+                    <label for="tabEvents">Events</label>
+                    <ul class="nav-list">
+                        <li *ngFor="let e of events | async"><a class="nav-link" href="/events/event/{{ e.Slug }}">{{ e.Name }}</a></li>
+                    </ul>
+                </section>   
+
+                <a href="vendors" class="nav-link">
+                  Vendors
+                </a>     
+
+                <a href="library" class="nav-link">
+                  Library
+                </a>                
+
+                <a href="page/geekguides" class="nav-link">
+                  Geek Guides
+                </a>
+
+                <a href="news" class="nav-link">
+                  News
+                </a>
+
+                <a href="blog" class="nav-link">
+                  Blog
+                </a>
+            </section>
+        </nav>
+        <div class="content-area">
+          <router-outlet></router-outlet>
+        </div>
+    </div>
+</div>

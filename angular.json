@@ -31,12 +31,16 @@
               "src/styles.scss",
               "node_modules/flipclock/dist/flipclock.css",
               "node_modules/@fortawesome/fontawesome-free/css/all.min.css",
-              "node_modules/snazzy-info-window/dist/snazzy-info-window.css"
+              "node_modules/snazzy-info-window/dist/snazzy-info-window.css",
+              "node_modules/@clr/icons/clr-icons.min.css",
+              "node_modules/@clr/ui/clr-ui.min.css"
             ],
             "scripts": [
               "node_modules/flipclock/dist/flipclock.js",
               "node_modules/marked/lib/marked.js",
-              "node_modules/@fortawesome/fontawesome-free/js/all.min.js"
+              "node_modules/@fortawesome/fontawesome-free/js/all.min.js",
+              "node_modules/@webcomponents/custom-elements/custom-elements.min.js",
+              "node_modules/@clr/icons/clr-icons.min.js"
             ]
           },
           "configurations": {
