@@ -45,7 +45,7 @@
           <li class="nav-item"><a class="nav-link" href="https://geekway.threadless.com/" target="_blank"><img src="/assets/images/geekgay.png"> Pride Store</a></li>
       </ul>
       <ul class="nav" *ngIf="showPoliciesSubnav">
-          <li *ngFor="let p of policies | async" class="nav-item"><a class="nav-link" href="/policies/policy/{{ p.Slug }}">{{ p.Name }}</a></li>
+          <li *ngFor="let p of policies | async" class="nav-item"><a class="nav-link" href="/policies/policy/{{ p.Slug }}"><i *ngIf="p.Icon" class="{{ p.Icon }}"></i> {{ p.Name }}</a></li>
       </ul>
       <ul class="nav" *ngIf="showEventsSubnav">        
           <li *ngFor="let e of events | async" class="nav-item"><a class="nav-link" href="/events/event/{{ e.Slug }}"><i *ngIf="e.Icon" class="{{ e.Icon }}"></i> {{ e.Name }}</a></li>
@@ -54,7 +54,7 @@
         <li class="nav-item"><a class="nav-link" href="/conventions/geekway"><i class="fas fa-dice-one fa-spin"></i> Geekway to the West</a></li>
         <li class="nav-item"><a class="nav-link" href="/conventions/mini"><i class="fas fa-dice-two fa-spin"></i> Geekway Mini</a></li>
         <li class="nav-item"><a class="nav-link" href="/conventions/micro"><i class="fas fa-dice-three fa-spin"></i> Geekway Micro</a></li>
-        <li class="nav-item"><a class="nav-link" href="/conventions">Past, Present, and Future</a></li>
+        <li class="nav-item"><a class="nav-link" href="/conventions"><i class="fas fa-hourglass"></i> Past, Present, and Future</a></li>
       </ul>
   </nav>
 
