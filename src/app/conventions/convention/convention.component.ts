@@ -35,10 +35,6 @@ export class ConventionComponent implements OnInit {
       this.playAndWinDataSource.paginator = this.paginator;
     }
   }
-
-  setDataSourceAttributes() {
-    this.playAndWinDataSource.sort = this.sort;
-  }
   
   columnsToDisplay = ['Image', 'Name'];
 
@@ -70,7 +66,7 @@ export class ConventionComponent implements OnInit {
       })
     );
 
-    this.convention.subscribe(data => {
+    this.conventionSubscription = this.convention.subscribe(data => {
       this.playAndWinDataSource = new MatTableDataSource();
       this.playAndWinDataSource.data = data.playAndWins;
       this.playAndWinDataSource.sort = this.sort

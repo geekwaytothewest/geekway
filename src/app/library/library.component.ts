@@ -23,11 +23,26 @@ export class LibraryComponent implements OnInit {
   libraryData: any;
   libraryDataObservable: Observable<any>;  
   libraryDataSubscription: Subscription;
-  dataSource: any;
+  dataSource: MatTableDataSource<any>;
   columnsToDisplay = ['Image', 'Name', 'Year', 'Players', 'Playtime', 'Rating'];
+  paginator: MatPaginator;
+  sort: MatSort;
 
-  @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
-  @ViewChild(MatSort, {static: true}) sort: MatSort;
+  @ViewChild(MatSort, {static: false}) set matSort(ms: MatSort) {
+    this.sort = ms;
+
+    if (this.dataSource) {
+      this.dataSource.sort = this.sort;
+    }
+  }
+
+  @ViewChild(MatPaginator, {static: false}) set matPaginator(mp: MatPaginator) {
+    this.paginator = mp;
+
+    if (this.dataSource) {
+      this.dataSource.paginator = this.paginator;
+    }
+  }
 
   nameFilter = new FormControl();
   yearFilter = new FormControl();
@@ -70,36 +85,51 @@ export class LibraryComponent implements OnInit {
       this.libraryDataSubscription = this.libraryDataObservable.subscribe(data => {
         this.dataSource = new MatTableDataSource();
         this.dataSource.data = data;
-        this.dataSource.paginator = this.paginator;
+        this.dataSource.sortingDataAccessor  = (data, col) => {
+          if (col == 'Name') {
+            return data.name[0]._;
+          } else if (col == 'Year') {
+            if (data.yearpublished != null) {
+              return data.yearpublished[0];
+            } else {
+              return null;
+            }
+          } else if (col == 'Rating') {
+            return data.stats[0].rating[0].average[0].$.value;
+          } else {
+            return data[col];
+          }
+        };
         this.dataSource.sort = this.sort;
+        this.dataSource.paginator = this.paginator;
         this.dataSource.filterPredicate = this.tableFilter();
-      })
+      });
     })
 
     this.nameFilter.valueChanges.subscribe(name => {
       this.filterValues.name = name;
       this.dataSource.filter = JSON.stringify(this.filterValues);
-    })
+    });
 
     this.yearFilter.valueChanges.subscribe(year => {
       this.filterValues.year = year;
       this.dataSource.filter = JSON.stringify(this.filterValues);
-    })
+    });
 
     this.playersFilter.valueChanges.subscribe(players => {
       this.filterValues.players = players;
       this.dataSource.filter = JSON.stringify(this.filterValues);
-    })
+    });
 
     this.playtimeFilter.valueChanges.subscribe(playtime => {
       this.filterValues.playtime = playtime;
       this.dataSource.filter = JSON.stringify(this.filterValues);
-    })
+    });
 
     this.ratingFilter.valueChanges.subscribe(rating => {
       this.filterValues.rating = rating;
       this.dataSource.filter = JSON.stringify(this.filterValues);
-    })
+    });
   }
 
   tableFilter(): (data: any, filter: string) => boolean {
