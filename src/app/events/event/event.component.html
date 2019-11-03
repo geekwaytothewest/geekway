@@ -2,7 +2,19 @@
 
 <div *ngIf="event | async as e">
     <h1>{{ e.Name }}</h1>
+
+    <mat-card class="photos" *ngIf="e.Photos.length > 0">
+        <mat-card-content>
+            <igx-carousel #carousel>
+                <igx-slide *ngFor="let p of e.Photos">
+                    <img [src]="'https://cms.geekwaytothewest.com/' + p.url">
+                </igx-slide>
+            </igx-carousel>
+        </mat-card-content>
+    </mat-card>
     
     <div [innerHTML]="eventContent">
     </div>
 </div>
+
+<br/><br/>

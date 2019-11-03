@@ -1,0 +1,16 @@
+mat-card {
+    background-color: #3f51b5;
+}
+
+igx-carousel {
+    margin: auto;
+    text-align: center;
+    
+    igx-slide {
+        img {
+            height: 400px;
+            width: auto;
+            margin: auto;
+        }
+    }
+}

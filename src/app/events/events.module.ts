@@ -3,7 +3,8 @@ import { CommonModule } from '@angular/common';
 import { EventComponent } from './event/event.component';
 import { EventsComponent } from './events/events.component';
 import { Routes, RouterModule } from '@angular/router';
-import { MarkdownModule } from 'ngx-markdown';
+import { MatCardModule } from '@angular/material';
+import { IgxCarouselModule } from 'igniteui-angular';
 
 const eventsRoutes: Routes = [  
   { path: '', component: EventsComponent, pathMatch: 'full' },
@@ -14,7 +15,8 @@ const eventsRoutes: Routes = [
   declarations: [EventComponent, EventsComponent],
   imports: [
     CommonModule,
-    MarkdownModule,
+    MatCardModule,
+    IgxCarouselModule,
     RouterModule.forChild(eventsRoutes)
   ]
 })
