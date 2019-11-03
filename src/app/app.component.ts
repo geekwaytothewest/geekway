@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +7,10 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'geekway';
+
+  constructor(
+    private title: Title
+  ) {
+    this.title.setTitle("Geekway to the West - Four Days of Peace, Love, and Board Games");
+ }
 }

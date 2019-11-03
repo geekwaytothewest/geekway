@@ -3,7 +3,7 @@ import { ActivatedRoute, ParamMap } from '@angular/router';
 import { Observable, Subscription } from 'rxjs';
 import { Page, SinglePageGQL } from 'src/generated/types.graphql-gen';
 import { switchMap, map } from 'rxjs/operators';
-import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
+import { DomSanitizer, SafeHtml, Meta, Title } from '@angular/platform-browser';
 import iframely from '@iframely/embed.js';
 
 @Component({
@@ -20,7 +20,9 @@ export class PageComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private singlepageGQL: SinglePageGQL,
-    private sanitizer: DomSanitizer
+    private sanitizer: DomSanitizer,
+    private meta: Meta,
+    private title: Title
   ) { }
 
   ngOnInit() {
