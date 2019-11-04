@@ -1,8 +1,4 @@
-<br/>
-
-<div *ngIf="policy | async as p">
-    <h1>{{ p.Name }}</h1>
-    
+<div *ngIf="policy | async as p">   
     <div [innerHTML]="policyContent">
     </div>
 </div>

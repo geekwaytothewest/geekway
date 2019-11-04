@@ -5,6 +5,7 @@ import { ActivatedRoute, ParamMap } from '@angular/router';
 import { switchMap, map } from 'rxjs/operators';
 import { SafeHtml, DomSanitizer } from '@angular/platform-browser';
 import iframely from '@iframely/embed.js';
+import { HeaderPhotoService } from 'src/app/shared/header-photo/header-photo.service';
 
 @Component({
   selector: 'app-policy',
@@ -20,7 +21,8 @@ export class PolicyComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private singlePolicyGQL: SinglePolicyGQL,
-    private sanitizer: DomSanitizer
+    private sanitizer: DomSanitizer,
+    private headerPhoto: HeaderPhotoService
   ) { }
 
   ngOnInit() {
@@ -29,8 +31,6 @@ export class PolicyComponent implements OnInit {
         let whereClauseGW = {
           "Slug": params.get('slug')
         };
-
-        console.log(whereClauseGW);
 
         return this.singlePolicyGQL.watch({whereClause: whereClauseGW})
           .valueChanges
@@ -42,6 +42,8 @@ export class PolicyComponent implements OnInit {
 
     this.policySubscription = this.policy.subscribe(result => {
       this.policyContent = this.sanitizer.bypassSecurityTrustHtml(result.Content.replace('<oembed url=', ' <div class="iframely-embed"><div class="iframely-responsive"><a data-iframely-url href=') + '</div></div>');
+      this.headerPhoto.announceHeaderPhotoChanged("https://cms.geekwaytothewest.com/" + result.HeaderPhoto.url);
+      this.headerPhoto.announceHeaderLabelChanged(result.Name);
     })
   }
 

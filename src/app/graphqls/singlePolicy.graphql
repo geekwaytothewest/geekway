@@ -10,5 +10,9 @@ query singlePolicy($whereClause: JSON!) {
         Name
         Content
         Slug
+        HeaderPhoto {
+            name
+            url
+        }
     }
 }

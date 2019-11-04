@@ -8,5 +8,9 @@ query policies {
         Content
         Slug
         Icon
+        HeaderPhoto {
+            name
+            url
+        }
     }
 }
