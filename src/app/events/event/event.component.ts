@@ -22,7 +22,7 @@ export class EventComponent implements OnInit {
     private route: ActivatedRoute,
     private singleEventGQL: SingleEventGQL,
     private sanitizer: DomSanitizer,
-    private headerPhoto: HeaderPhotoService
+    public headerPhoto: HeaderPhotoService
   ) { }
 
   ngOnInit() {
