@@ -5,6 +5,7 @@ import { SingleEventGQL, Premiereevent } from 'src/generated/types.graphql-gen';
 import { switchMap, map } from 'rxjs/operators';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import iframely from '@iframely/embed.js';
+import { HeaderPhotoService } from 'src/app/shared/header-photo/header-photo.service';
 
 @Component({
   selector: 'app-event',
@@ -20,7 +21,8 @@ export class EventComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private singleEventGQL: SingleEventGQL,
-    private sanitizer: DomSanitizer
+    private sanitizer: DomSanitizer,
+    private headerPhoto: HeaderPhotoService
   ) { }
 
   ngOnInit() {
@@ -42,6 +44,8 @@ export class EventComponent implements OnInit {
 
     this.eventSubscription = this.event.subscribe(result => {
       this.eventContent = this.sanitizer.bypassSecurityTrustHtml(result.Content.replace('<oembed url=', ' <div class="iframely-embed"><div class="iframely-responsive"><a data-iframely-url href=') + '</div></div>');
+      this.headerPhoto.announceHeaderLabelChanged(result.Name);
+      this.headerPhoto.announceHeaderPhotoChanged("https://cms.geekwaytothewest.com/" + result.HeaderPhoto.url);
     })
   }
 

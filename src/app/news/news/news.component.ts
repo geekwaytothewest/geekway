@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { map } from 'rxjs/operators';
 import { Observable, Subscription } from 'rxjs';
 import { Newspost, NewsGQL } from 'src/generated/types.graphql-gen';
+import { HeaderPhotoService } from 'src/app/shared/header-photo/header-photo.service';
 
 @Component({
   selector: 'app-news',
@@ -17,7 +18,8 @@ export class NewsComponent implements OnInit {
 
   constructor(
     private newsGQL: NewsGQL,
-    private router: Router
+    private router: Router,
+    private headerPhotos: HeaderPhotoService
   ) { }
 
   ngOnInit() {
@@ -28,6 +30,8 @@ export class NewsComponent implements OnInit {
       );
 
     this.newsSubscription = this.news.subscribe();
+    this.headerPhotos.announceHeaderLabelChanged("News Posts");
+    this.headerPhotos.announceHeaderPhotoChanged("/assets/images/newsletter.png");
   }
 
   ngOnDestroy() {

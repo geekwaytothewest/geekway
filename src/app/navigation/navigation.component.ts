@@ -4,11 +4,13 @@ import { Observable, Subscription } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
 import { Policy, PoliciesGQL, EventsGQL, Premiereevent } from 'src/generated/types.graphql-gen';
 import { Router } from '@angular/router';
+import { HeaderPhotoService } from '../shared/header-photo/header-photo.service';
 
 @Component({
   selector: 'app-navigation',
   templateUrl: './navigation.component.html',
-  styleUrls: ['./navigation.component.scss']
+  styleUrls: ['./navigation.component.scss'],
+  providers: [HeaderPhotoService]
 })
 export class NavigationComponent {
 
@@ -24,6 +26,9 @@ export class NavigationComponent {
   showPoliciesSubnav: boolean = false;
   showEventsSubnav: boolean = false;
   showConventionsSubnav: boolean = false;
+
+  headerPhotoSubscription: Subscription;
+  headerLabelSubscription: Subscription;
 
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
     .pipe(
@@ -41,8 +46,12 @@ export class NavigationComponent {
     private breakpointObserver: BreakpointObserver,
     private policiesGQL: PoliciesGQL,
     private eventsGQL: EventsGQL,
+    public headerPhoto: HeaderPhotoService,
     public router: Router
-  ) {}
+  ) {
+    this.headerPhotoSubscription = headerPhoto.headerPhotoChanged.subscribe();
+    this.headerLabelSubscription = headerPhoto.headerLabelChanged.subscribe();
+  }
 
   ngOnInit() {
     this.policies = this.policiesGQL.watch()
@@ -65,6 +74,8 @@ export class NavigationComponent {
   ngOnDestroy() {
     this.policiesSubscription.unsubscribe();
     this.eventsSubscription.unsubscribe();
+    this.headerPhotoSubscription.unsubscribe();
+    this.headerLabelSubscription.unsubscribe();
   }
 
   toggleSidenav() {

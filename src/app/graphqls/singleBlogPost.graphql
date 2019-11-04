@@ -16,5 +16,9 @@ query singleBlogPost($whereClause: JSON!) {
             Name
             Job
         }
+        HeaderPhoto {
+            url
+            name
+        }
   }
 }

@@ -5,6 +5,7 @@ import { Page, SinglePageGQL } from 'src/generated/types.graphql-gen';
 import { switchMap, map } from 'rxjs/operators';
 import { DomSanitizer, SafeHtml, Meta, Title } from '@angular/platform-browser';
 import iframely from '@iframely/embed.js';
+import { HeaderPhotoService } from 'src/app/shared/header-photo/header-photo.service';
 
 @Component({
   selector: 'app-page',
@@ -22,8 +23,10 @@ export class PageComponent implements OnInit {
     private singlepageGQL: SinglePageGQL,
     private sanitizer: DomSanitizer,
     private meta: Meta,
-    private title: Title
-  ) { }
+    private title: Title,
+    public headerPhoto: HeaderPhotoService
+  ) { 
+  }
 
   ngOnInit() {
     iframely.iframely.extendOptions({api_key: '24efd7ca731658c92b362e'});
@@ -44,6 +47,8 @@ export class PageComponent implements OnInit {
 
     this.pageSubscription = this.page.subscribe(result => {
       this.pageContent = this.sanitizer.bypassSecurityTrustHtml(result.Content.replace('<oembed url=', ' <div class="iframely-embed"><div class="iframely-responsive"><a data-iframely-url href=') + '</div></div>');
+      this.headerPhoto.announceHeaderPhotoChanged("https://cms.geekwaytothewest.com/" + result.HeaderImage.url);
+      this.headerPhoto.announceHeaderLabelChanged(result.Name);
     })
   }
 

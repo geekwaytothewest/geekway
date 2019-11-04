@@ -5,6 +5,7 @@ import { MatTableDataSource, MatPaginator, MatSort } from '@angular/material';
 import { FormControl } from '@angular/forms';
 import { LibrariesGQL, Library } from 'src/generated/types.graphql-gen';
 import { map } from 'rxjs/operators';
+import { HeaderPhotoService } from '../shared/header-photo/header-photo.service';
 
 const libraryUrl: string = "/assets/xml/geekwaycollection.xml";
 const requestOptions: Object = { responseType: 'text' };
@@ -59,7 +60,8 @@ export class LibraryComponent implements OnInit {
   };
 
   constructor(
-    private librariesGQL: LibrariesGQL
+    private librariesGQL: LibrariesGQL,
+    private headerPhotos: HeaderPhotoService
   ) { }
 
   ngOnInit() {
@@ -130,6 +132,9 @@ export class LibraryComponent implements OnInit {
       this.filterValues.rating = rating;
       this.dataSource.filter = JSON.stringify(this.filterValues);
     });
+
+    this.headerPhotos.announceHeaderLabelChanged("Library");
+    this.headerPhotos.announceHeaderPhotoChanged("/assets/images/library.jpg");
   }
 
   tableFilter(): (data: any, filter: string) => boolean {

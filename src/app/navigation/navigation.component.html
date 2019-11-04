@@ -132,11 +132,19 @@
           </section>
       </nav>
       <div class="content-area">
-        <mat-card [ngClass]="{'mat-elevation-z8': true, 'desktop': !(isHandset$ | async)}">
-          <mat-card-content>
+        <div *ngIf="{ photo: headerPhoto.headerPhotoChanged | async, label: headerPhoto.headerLabelChanged | async } as photoLabel">
+          <div *ngIf="photoLabel.photo" class="parallax mat-elevation-z8" [ngStyle]="{'background-image': 'linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url(' + photoLabel.photo + ')'}">
+            <h1>
+                {{ photoLabel.label }}
+            </h1>
+          </div>
+        
+          <mat-card [ngClass]="{'mat-elevation-z8': true, 'desktop': !(isHandset$ | async), 'moveUp': photoLabel.photo }">
+            <mat-card-content>
               <router-outlet></router-outlet>
-          </mat-card-content>
-        </mat-card>
+            </mat-card-content>
+          </mat-card>
+        </div>
       </div>
   </div>
 </div>

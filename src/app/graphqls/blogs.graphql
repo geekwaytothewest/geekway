@@ -15,5 +15,9 @@ query blogs {
       Name
       Job
     }
+    HeaderPhoto {
+      url
+      name
+    }
   }
 }

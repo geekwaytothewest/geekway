@@ -3,6 +3,7 @@ import { Observable, Subscription } from 'rxjs';
 import { Blogpost, BlogsGQL } from 'src/generated/types.graphql-gen';
 import { Router } from '@angular/router';
 import { map } from 'rxjs/operators';
+import { HeaderPhotoService } from 'src/app/shared/header-photo/header-photo.service';
 
 @Component({
   selector: 'app-blogs',
@@ -17,7 +18,8 @@ export class BlogsComponent implements OnInit {
 
   constructor(
     private blogsGQL: BlogsGQL,
-    private router: Router
+    private router: Router,
+    private headerPhoto: HeaderPhotoService
   ) { }
 
   ngOnInit() {
@@ -28,6 +30,9 @@ export class BlogsComponent implements OnInit {
       );
 
     this.blogsSubscription = this.blogs.subscribe();
+
+    this.headerPhoto.announceHeaderLabelChanged("Blog Posts");
+    this.headerPhoto.announceHeaderPhotoChanged("/assets/images/blogposts.jpg")
   }
 
   ngOnDestroy() {

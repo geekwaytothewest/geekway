@@ -1,7 +1,5 @@
-<br/>
-
 <div *ngIf="event | async as e">
-    <h1>{{ e.Name }}</h1>
+    <h1 *ngIf="!(headerPhoto.headerPhotoChanged | async)">{{ e.Name }}</h1>
 
     <mat-card class="photos" *ngIf="e.Photos.length > 0">
         <mat-card-content>

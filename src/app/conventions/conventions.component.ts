@@ -3,6 +3,7 @@ import { Observable, Subscription } from 'rxjs';
 import { Convention, ConventionsGQL } from 'src/generated/types.graphql-gen';
 import { map } from 'rxjs/operators';
 import { Router } from '@angular/router';
+import { HeaderPhotoService } from '../shared/header-photo/header-photo.service';
 
 @Component({
   selector: 'app-conventions',
@@ -18,7 +19,8 @@ export class ConventionsComponent implements OnInit {
 
   constructor(
     private conventionsGQL: ConventionsGQL,
-    private router: Router
+    private router: Router,
+    private headerPhoto: HeaderPhotoService
   ) { }
 
   ngOnInit() {
@@ -29,6 +31,9 @@ export class ConventionsComponent implements OnInit {
       );
 
     this.conventionsSubscription = this.conventions.subscribe();
+
+    this.headerPhoto.announceHeaderLabelChanged("Conventions - Past, Present, and Future");
+    this.headerPhoto.announceHeaderPhotoChanged("/assets/images/conventioncenter.png")
   }
 
   ngOnDestroy() {

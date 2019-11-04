@@ -1,8 +1,4 @@
-<br/>
-
-<div *ngIf="page | async as p">
-    <h1>{{ p.Name }}</h1>
-    
+<div *ngIf="page | async as p">    
     <div [innerHTML]="pageContent">
     </div>
-</div>
+</div> 

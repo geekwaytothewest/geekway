@@ -5,6 +5,7 @@ import { Newspost, SingleNewsPostGQL } from 'src/generated/types.graphql-gen';
 import { SafeHtml, DomSanitizer } from '@angular/platform-browser';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { switchMap, map } from 'rxjs/operators';
+import { HeaderPhotoService } from 'src/app/shared/header-photo/header-photo.service';
 
 @Component({
   selector: 'app-newspost',
@@ -20,7 +21,8 @@ export class NewspostComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private singlePostGQL: SingleNewsPostGQL,
-    private sanitizer: DomSanitizer
+    private sanitizer: DomSanitizer,
+    private headerPhotos: HeaderPhotoService
   ) { }
 
   ngOnInit() {
@@ -42,6 +44,8 @@ export class NewspostComponent implements OnInit {
 
     this.newsPostSubscription = this.newsPost.subscribe(result => {
       this.newsContent = this.sanitizer.bypassSecurityTrustHtml(result.content.replace('<oembed url=', ' <div class="iframely-embed"><div class="iframely-responsive"><a data-iframely-url href=') + '</div></div>');
+      this.headerPhotos.announceHeaderLabelChanged(result.Title);
+      this.headerPhotos.announceHeaderPhotoChanged("https://cms.geekwaytothewest.com/" + result.HeaderPhoto.url);
     })
   }
 
