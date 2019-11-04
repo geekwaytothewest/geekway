@@ -79,6 +79,17 @@
                   </ul>
               </section>
 
+              <section class="nav-group collapsible">
+                <input id="tabAbout" type="checkbox" [checked]="!(this.router.url.startsWith('/conventions'))">
+                <label for="tabAbout">Conventions</label>
+                <ul class="nav-list">                  
+                  <li class="nav-item"><a class="nav-link" href="/conventions/geekway"><i class="fas fa-dice-one fa-spin"></i> Geekway to the West</a></li>
+                  <li class="nav-item"><a class="nav-link" href="/conventions/mini"><i class="fas fa-dice-two fa-spin"></i> Geekway Mini</a></li>
+                  <li class="nav-item"><a class="nav-link" href="/conventions/micro"><i class="fas fa-dice-three fa-spin"></i> Geekway Micro</a></li>
+                  <li class="nav-item"><a class="nav-link" href="/conventions"><i class="fas fa-hourglass"></i> Past, Present, and Future</a></li>
+                </ul>
+              </section>
+
               <a href="registration" [ngClass]="{'nav-link' : true, 'active' : this.router.url.startsWith('/registration')}">
                 Registration
               </a>
