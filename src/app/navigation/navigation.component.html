@@ -98,7 +98,7 @@
                   <input id="tabPolicies" type="checkbox" [checked]="!this.router.url.startsWith('/policies')">
                   <label for="tabPolicies">Policies</label>
                   <ul class="nav-list">
-                      <li *ngFor="let p of policies | async"><a [ngClass]="{'nav-link' : true, 'active' : this.router.url.startsWith('/policies/policy/' + p.Slug )}" href="/policies/policy/{{ p.Slug }}">{{ p.Name }}</a></li>
+                      <li *ngFor="let p of policies | async"><a [ngClass]="{'nav-link' : true, 'active' : this.router.url.startsWith('/policies/policy/' + p.Slug )}" href="/policies/policy/{{ p.Slug }}"><i *ngIf="p.Icon" class="{{ p.Icon }}"></i> {{ p.Name }}</a></li>
                   </ul>
               </section>  
               
