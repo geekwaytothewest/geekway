@@ -3,6 +3,7 @@
 
     mat-card {
         flex: 1;
+        min-width: 0;
     }
 
     mat-card:not(:last-of-type) {
@@ -11,6 +12,7 @@
 
     div {
         flex: 1;
+        min-width: 0;
     }
 
     div:not(:last-of-type) {
