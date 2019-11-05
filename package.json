@@ -5,7 +5,7 @@
     "ng": "ng",
     "start": "run-p start:ng gql:codegen:watch",
     "start:ng": "ng serve",
-    "build": "graphql-codegen --config codegen.yml && ng build",
+    "build": "graphql-codegen --config codegen.yml && ng build --prod",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
