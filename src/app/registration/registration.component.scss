@@ -1,25 +1,27 @@
 .flexbox {
     display: flex;
-    width: 100%;
     flex-flow: row wrap;
+
+    mat-card {
+        flex: 1;
+        text-align: center;
+        min-width: 0;
+        min-height: 0;
+        margin-bottom: 10px;
+        overflow: hidden;
+    
+        &:not(:last-of-type) {
+            margin-right: 10px;
+        }
+
+        app-flipclock {
+            transform: scale(0.5) translate(10%, 0);
+            transform-origin: left;
+            display: inline-block;
+        }
+    }
 }
-
-mat-card {
-    flex: 1;
-    text-align: center;
-    margin-bottom: 10px;
-
-    &:not(:last-of-type) {
-        margin-right: 10px;
-    }    
-}
-
+    
 .registrationBlock:not(:last-of-type) {
     margin-bottom: 10px;
-}
-
-app-flipclock {
-    transform: scale(0.7);
-    display: inline-block;
-    width: auto;
 }

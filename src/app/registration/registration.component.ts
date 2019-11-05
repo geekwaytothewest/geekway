@@ -83,19 +83,6 @@ export class RegistrationComponent implements OnInit {
     this.geekwayMicroSubscription.unsubscribe();
   }
 
-  ngAfterViewChecked() {
-    this.meta.updateTag({ property: 'og:title', content: 'Geekway to the West - Four Days of Peace, Love, and Board Games | Registration' },  `property='og:title'`);
-    this.meta.updateTag({ property: 'og:image', content: this.geekwayToTheWestConvention.Logo.url }, `property='og:image'`);
-    this.meta.updateTag({ property: 'og:image:width', content: '982' }, `property='og:image:width'`);
-    this.meta.updateTag({ property: 'og:image:height', content: '492' }, `property='og:image:height'`);
-    this.meta.updateTag({ property: 'og:description', content: 'Registration begins' + moment(this.geekwayToTheWestConvention.registrationDates[0].date).tz('America/Chicago').format('MMMM Do YYYY, h:mm a') },)
-    this.meta.updateTag({ name: 'twitter:description', content: 'Registration' }, `name='twitter:description'`);
-    this.meta.updateTag({ name: 'twitter:image', content: this.geekwayToTheWestConvention.Logo.url }, `name='twitter:image'`);
-    this.meta.updateTag({ name: 'twitter:image:alt', content: 'Geekway to the West - ' + this.geekwayToTheWestConvention.Theme }, `name='twitter:image:alt'`)
-
-    this.title.setTitle("Geekway to the West - Four Days of Peace, Love, and Board Games | Registration");
-  }
-
   redirect(url: string) {
     console.log(url);
     if (url.startsWith("http")) {
