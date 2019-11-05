@@ -26,6 +26,8 @@ export class PolicyComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    iframely.iframely.extendOptions({api_key: '24efd7ca731658c92b362e'});
+    
     this.policy = this.route.paramMap.pipe(
       switchMap((params: ParamMap) => {        
         let whereClauseGW = {
