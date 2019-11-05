@@ -5,6 +5,7 @@ import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { switchMap, map } from 'rxjs/operators';
 import { FormControl } from '@angular/forms';
 import { MatTableDataSource, MatSort, MatPaginator } from '@angular/material';
+import { HeaderPhotoService } from 'src/app/shared/header-photo/header-photo.service';
 
 @Component({
   selector: 'app-convention',
@@ -47,7 +48,8 @@ export class ConventionComponent implements OnInit {
   constructor(
     private nextGWConventionWhere: NextConventionWhereGQL,
     private router: Router,    
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private headerPhotos: HeaderPhotoService
   ) { }
 
   ngOnInit() {
@@ -79,6 +81,8 @@ export class ConventionComponent implements OnInit {
       this.playAndWinDataSource.filter = JSON.stringify(this.filterValues);
     })
 
+    this.headerPhotos.announceHeaderLabelChanged(null);
+    this.headerPhotos.announceHeaderPhotoChanged(null);
   }
 
   ngOnDestroy() {
