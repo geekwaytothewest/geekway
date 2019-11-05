@@ -5,7 +5,7 @@
     mat-card {
         flex: 1;
         text-align: center;
-        min-width: 0;
+        min-width: 200px;
         min-height: 0;
         margin-bottom: 10px;
         overflow: hidden;
@@ -16,7 +16,7 @@
 
         app-flipclock {
             transform: scale(0.5) translate(10%, 0);
-            transform-origin: left;
+            transform-origin: top left;
             display: inline-block;
         }
     }
