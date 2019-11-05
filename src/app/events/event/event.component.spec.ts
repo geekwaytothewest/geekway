@@ -1,6 +1,8 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { IgxCarouselModule } from 'igniteui-angular';
 
 import { EventComponent } from './event.component';
+import { MatCardModule } from '@angular/material';
 
 describe('EventComponent', () => {
   let component: EventComponent;
@@ -8,7 +10,8 @@ describe('EventComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ EventComponent ]
+      declarations: [ EventComponent ],
+      imports: [ IgxCarouselModule, MatCardModule ]
     })
     .compileComponents();
   }));

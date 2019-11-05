@@ -1,6 +1,9 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { NewsComponent } from './news.component';
+import { MatCardModule } from '@angular/material';
+import { MomentTimezoneModule } from 'src/app/shared/moment-timezone/moment-timezone.module';
+import { MomentModule } from 'ngx-moment';
 
 describe('NewsComponent', () => {
   let component: NewsComponent;
@@ -8,7 +11,8 @@ describe('NewsComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ NewsComponent ]
+      declarations: [ NewsComponent ],
+      imports: [ MatCardModule, MomentTimezoneModule, MomentModule ]
     })
     .compileComponents();
   }));

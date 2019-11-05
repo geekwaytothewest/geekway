@@ -1,6 +1,9 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { LibraryComponent } from './library.component';
+import { MomentModule } from 'ngx-moment';
+import { MomentTimezoneModule } from '../shared/moment-timezone/moment-timezone.module';
+import { MatTableModule } from '@angular/material';
 
 describe('LibraryComponent', () => {
   let component: LibraryComponent;
@@ -8,7 +11,8 @@ describe('LibraryComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ LibraryComponent ]
+      declarations: [ LibraryComponent ],
+      imports: [ MomentModule, MomentTimezoneModule, MatTableModule ]
     })
     .compileComponents();
   }));
