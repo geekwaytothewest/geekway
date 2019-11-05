@@ -1,5 +1,6 @@
 import { LayoutModule } from '@angular/cdk/layout';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ApolloTestingController, ApolloTestingModule } from 'apollo-angular/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
@@ -9,10 +10,13 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 
 import { NavigationComponent } from './navigation.component';
 import { MatTreeModule } from '@angular/material/tree';
+import { RouterTestingModule } from '@angular/router/testing';
+import { MatCardModule } from '@angular/material';
 
 describe('NavigationComponent', () => {
   let component: NavigationComponent;
   let fixture: ComponentFixture<NavigationComponent>;
+  let backend: ApolloTestingController;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -25,7 +29,10 @@ describe('NavigationComponent', () => {
         MatListModule,
         MatSidenavModule,
         MatToolbarModule,
-        MatTreeModule
+        MatTreeModule,
+        RouterTestingModule,
+        MatCardModule,
+        ApolloTestingModule
       ]
     }).compileComponents();
   }));
@@ -34,6 +41,7 @@ describe('NavigationComponent', () => {
     fixture = TestBed.createComponent(NavigationComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
+    backend = TestBed.get(ApolloTestingController);
   });
 
   it('should compile', () => {

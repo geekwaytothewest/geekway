@@ -10,8 +10,8 @@ describe('EventsComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ EventsComponent, ApolloTestingModule ],
-      imports: [  ]
+      declarations: [ EventsComponent ],
+      imports: [ ApolloTestingModule ]
     })
     .compileComponents();
   }));
