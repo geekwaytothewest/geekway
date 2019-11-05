@@ -20,14 +20,14 @@
         <a href="/"><img src="/assets/images/geekwaylogo.png"></a>
     </div>
     <div class="header-nav" *ngIf="!(isHandset$ | async) && !(isTablet$ | async)">
-        <a href="page/about" [ngClass]="{'nav-link' : true, 'nav-text' : true, 'active' : this.router.url.startsWith('/page/about') || this.router.url.startsWith('/boardmembers')}" (mouseover)="showSubnav('about')">About</a>
-        <a href="conventions" [ngClass]="{'nav-link' : true, 'nav-text' : true, 'active' : this.router.url.startsWith('/conventions')}" (mouseover)="showSubnav('conventions')">Conventions</a>
-        <a href="registration" [ngClass]="{'nav-link' : true, 'nav-text' : true, 'active' : this.router.url.startsWith('/registration')}" (mouseover)="showSubnav('registration')">Registration</a>
-        <a href="policies" [ngClass]="{'nav-link' : true, 'nav-text' : true, 'active' : this.router.url.startsWith('/policies')}" (mouseover)="showSubnav('policies')">Policies</a>
-        <a href="events" [ngClass]="{'nav-link' : true, 'nav-text' : true, 'active' : this.router.url.startsWith('/events')}" (mouseover)="showSubnav('events')">Events</a>
-        <a href="page/vendors" [ngClass]="{'nav-link' : true, 'nav-text' : true, 'active' : this.router.url.startsWith('/page/vendors')}" (mouseover)="showSubnav('vendors')">Vendors</a>
-        <a href="library" [ngClass]="{'nav-link' : true, 'nav-text' : true, 'active' : this.router.url.startsWith('/library')}" (mouseover)="showSubnav('library')">Library</a>
-        <a href="page/geekguides" [ngClass]="{'nav-link' : true, 'nav-text' : true, 'active' : this.router.url.startsWith('/page/geekguides')}" (mouseover)="showSubnav('geekguides')">Geek Guides</a>
+        <a href="page/about" [ngClass]="{'nav-link' : true, 'nav-text' : true, 'active' : this.router.url.startsWith('/page/about') || this.router.url.startsWith('/boardmembers')}" (mouseover)="showSubnav('about')" (mouseout)="cancelSubnav()">About</a>
+        <a href="conventions" [ngClass]="{'nav-link' : true, 'nav-text' : true, 'active' : this.router.url.startsWith('/conventions')}" (mouseover)="showSubnav('conventions')" (mouseout)="cancelSubnav()">Conventions</a>
+        <a href="registration" [ngClass]="{'nav-link' : true, 'nav-text' : true, 'active' : this.router.url.startsWith('/registration')}" (mouseover)="showSubnav('registration')" (mouseout)="cancelSubnav()">Registration</a>
+        <a href="policies" [ngClass]="{'nav-link' : true, 'nav-text' : true, 'active' : this.router.url.startsWith('/policies')}" (mouseover)="showSubnav('policies')" (mouseout)="cancelSubnav()">Policies</a>
+        <a href="events" [ngClass]="{'nav-link' : true, 'nav-text' : true, 'active' : this.router.url.startsWith('/events')}" (mouseover)="showSubnav('events')" (mouseout)="cancelSubnav()">Events</a>
+        <a href="page/vendors" [ngClass]="{'nav-link' : true, 'nav-text' : true, 'active' : this.router.url.startsWith('/page/vendors')}" (mouseover)="showSubnav('vendors')" (mouseout)="cancelSubnav()">Vendors</a>
+        <a href="library" [ngClass]="{'nav-link' : true, 'nav-text' : true, 'active' : this.router.url.startsWith('/library')}" (mouseover)="showSubnav('library')" (mouseout)="cancelSubnav()">Library</a>
+        <a href="page/geekguides" [ngClass]="{'nav-link' : true, 'nav-text' : true, 'active' : this.router.url.startsWith('/page/geekguides')}" (mouseover)="showSubnav('geekguides')" (mouseout)="cancelSubnav()">Geek Guides</a>
         <a href="news" [ngClass]="{'nav-link' : true, 'nav-text' : true, 'active' : this.router.url.startsWith('/news')}" (mouseover)="showSubnav('news')">News</a>
         <a href="blog" [ngClass]="{'nav-link' : true, 'nav-text' : true, 'active' : this.router.url.startsWith('/blog')}" (mouseover)="showSubnav('blog')">Blog</a>
     </div>

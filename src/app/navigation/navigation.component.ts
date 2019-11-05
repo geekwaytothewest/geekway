@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
-import { Observable, Subscription } from 'rxjs';
+import { Observable, Subscription, timer } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
 import { Policy, PoliciesGQL, EventsGQL, Premiereevent } from 'src/generated/types.graphql-gen';
 import { Router } from '@angular/router';
@@ -29,6 +29,9 @@ export class NavigationComponent {
 
   headerPhotoSubscription: Subscription;
   headerLabelSubscription: Subscription;
+
+  hoverTimer: Observable<number> = timer(250);
+  hoverTimerSubscription: Subscription;
 
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
     .pipe(
@@ -83,43 +86,49 @@ export class NavigationComponent {
   }
 
   showSubnav(subnav: string) {
-    switch (subnav) {
-      case "about":
-        this.showSlogan = false;
-        this.showAboutSubnav = true;
-        this.showPoliciesSubnav = false;
-        this.showEventsSubnav = false;
-        this.showConventionsSubnav = false;
-        break;
-      case "policies":
-        this.showSlogan = false;
-        this.showAboutSubnav = false;
-        this.showPoliciesSubnav = true;
-        this.showEventsSubnav = false;
-        this.showConventionsSubnav = false;
-        break;
-      case "events":
-        this.showSlogan = false;
-        this.showAboutSubnav = false;
-        this.showPoliciesSubnav = false;
-        this.showEventsSubnav = true;
-        this.showConventionsSubnav = false;
-        break;
-      case "conventions":
-        this.showSlogan = false;
-        this.showAboutSubnav = false;
-        this.showPoliciesSubnav = false;
-        this.showEventsSubnav = false;
-        this.showConventionsSubnav = true;
-        break;
-      default:
-        this.showSlogan = true;
-        this.showAboutSubnav = false;
-        this.showPoliciesSubnav = false;
-        this.showEventsSubnav = false;
-        this.showConventionsSubnav = false;
-        break;
-    }
+    this.hoverTimerSubscription = this.hoverTimer.subscribe(() => {
+      switch (subnav) {
+        case "about":
+          this.showSlogan = false;
+          this.showAboutSubnav = true;
+          this.showPoliciesSubnav = false;
+          this.showEventsSubnav = false;
+          this.showConventionsSubnav = false;
+          break;
+        case "policies":
+          this.showSlogan = false;
+          this.showAboutSubnav = false;
+          this.showPoliciesSubnav = true;
+          this.showEventsSubnav = false;
+          this.showConventionsSubnav = false;
+          break;
+        case "events":
+          this.showSlogan = false;
+          this.showAboutSubnav = false;
+          this.showPoliciesSubnav = false;
+          this.showEventsSubnav = true;
+          this.showConventionsSubnav = false;
+          break;
+        case "conventions":
+          this.showSlogan = false;
+          this.showAboutSubnav = false;
+          this.showPoliciesSubnav = false;
+          this.showEventsSubnav = false;
+          this.showConventionsSubnav = true;
+          break;
+        default:
+          this.showSlogan = true;
+          this.showAboutSubnav = false;
+          this.showPoliciesSubnav = false;
+          this.showEventsSubnav = false;
+          this.showConventionsSubnav = false;
+          break;
+      }
+    })
+  }
+
+  cancelSubnav() {
+    this.hoverTimerSubscription.unsubscribe();
   }
 
 }
