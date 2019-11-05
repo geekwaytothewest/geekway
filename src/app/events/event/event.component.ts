@@ -32,8 +32,6 @@ export class EventComponent implements OnInit {
           "Slug": params.get('slug')
         };
 
-        console.log(whereClauseGW);
-
         return this.singleEventGQL.watch({whereClause: whereClauseGW})
           .valueChanges
           .pipe(        
