@@ -47,6 +47,7 @@ query conventions {
         name
         url
       }
+      Content
     }
     venues {
       Type

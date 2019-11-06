@@ -3,6 +3,7 @@ import { Observable, Subscription } from 'rxjs';
 import { Convention, NextConventionWhereGQL } from 'src/generated/types.graphql-gen';
 import { map } from 'rxjs/operators';
 import { Router } from '@angular/router';
+import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-geekwaytothewest',
@@ -13,10 +14,12 @@ export class GeekwaytothewestComponent implements OnInit {
 
   geekwayToTheWest: Observable<Convention>;
   geekwayToTheWestSubscription: Subscription;
+  content: SafeHtml;
 
   constructor(
     private nextGWConventionWhere: NextConventionWhereGQL,
-    private router: Router    
+    private sanitizer: DomSanitizer,
+    private router: Router
   ) { }
 
   ngOnInit() {
@@ -31,7 +34,9 @@ export class GeekwaytothewestComponent implements OnInit {
         map(result => result.data.conventions[0])
       );
 
-    this.geekwayToTheWestSubscription = this.geekwayToTheWest.subscribe();
+    this.geekwayToTheWestSubscription = this.geekwayToTheWest.subscribe(result => {      
+      this.content = this.sanitizer.bypassSecurityTrustHtml(result.conventionType.Content.replace('<oembed url=', ' <div class="iframely-embed"><div class="iframely-responsive"><a data-iframely-url href=') + '</div></div>');
+    });
   }
 
   ngOnDestroy() {

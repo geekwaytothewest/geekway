@@ -1,4 +1,11 @@
-<br/><br/>
+<mat-card>
+    <mat-card-title>Geekway Mini</mat-card-title>
+    <mat-card-content class="center">
+        <div [innerHTML]="content" id="content"></div>
+    </mat-card-content>
+</mat-card>
+    
+<br/>
 
 <div *ngIf="geekwayMini | async as g">
     <mat-card>

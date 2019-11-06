@@ -49,6 +49,7 @@ query nextConventionWhere($whereClause: JSON!) {
                 name
                 url
             }
+            Content
         }
         venues {
             Type

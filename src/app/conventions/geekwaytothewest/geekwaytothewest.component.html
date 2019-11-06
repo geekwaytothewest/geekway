@@ -1,5 +1,12 @@
-<br/><br/>
-
+<mat-card>
+    <mat-card-title>Geekway to the West</mat-card-title>
+    <mat-card-content class="center">
+        <div [innerHTML]="content" id="content"></div>
+    </mat-card-content>
+</mat-card>
+    
+<br/>
+    
 <div *ngIf="geekwayToTheWest | async as g">
     <mat-card>
         <mat-card-title>Geekway to the West {{ g.startDate | amTz: 'America/Chicago' | amDateFormat: 'YYYY' }}</mat-card-title>
