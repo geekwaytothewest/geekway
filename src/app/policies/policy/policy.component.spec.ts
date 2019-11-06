@@ -1,6 +1,5 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { ApolloTestingController, ApolloTestingModule } from 'apollo-angular/testing';
-import { MatCardModule } from '@angular/material';
 import { PolicyComponent } from './policy.component';
 import { RouterModule } from '@angular/router';
 
@@ -12,7 +11,7 @@ describe('PolicyComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ PolicyComponent ],
-      imports: [ RouterModule.forRoot([]), ApolloTestingModule, MatCardModule ]
+      imports: [ RouterModule.forRoot([]), ApolloTestingModule ]
     })
     .compileComponents();
   }));

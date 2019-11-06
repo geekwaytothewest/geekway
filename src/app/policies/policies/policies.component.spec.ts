@@ -1,5 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { ApolloTestingController, ApolloTestingModule } from 'apollo-angular/testing';
+import { MatCardModule } from '@angular/material';
 
 import { PoliciesComponent } from './policies.component';
 
@@ -11,7 +12,7 @@ describe('PoliciesComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ PoliciesComponent ],
-      imports: [ ApolloTestingModule ]
+      imports: [ ApolloTestingModule, MatCardModule ]
     })
     .compileComponents();
   }));

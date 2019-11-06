@@ -53,7 +53,6 @@
     "jszip": "^3.1.5",
     "moment": "^2.24.0",
     "moment-timezone": "^0.5.27",
-    "ngx-markdown": "^8.2.1",
     "ngx-moment": "^3.4.0",
     "resize-observer-polyfill": "^1.5.1",
     "rxjs": "~6.4.0",

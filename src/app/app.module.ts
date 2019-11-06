@@ -12,7 +12,6 @@ import { MatListModule } from '@angular/material/list';
 import { RedirectionMessageComponent } from './shared/redirection-message/redirection-message.component';
 import { GraphQLModule } from './graphql.module';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { MarkdownModule } from 'ngx-markdown';
 import { NotfoundComponent } from './notfound/notfound.component';
 import { ClarityModule } from "@clr/angular";
 import { MatCardModule } from '@angular/material';
@@ -35,8 +34,7 @@ import { MatCardModule } from '@angular/material';
     MatCardModule,
     GraphQLModule,
     FontAwesomeModule,
-    ClarityModule,
-    MarkdownModule.forRoot()
+    ClarityModule
   ],
   providers: [],
   bootstrap: [AppComponent]
