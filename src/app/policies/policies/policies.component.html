@@ -1,3 +1,13 @@
-<div *ngFor="let p of policies | async" class="policy">
-    <a href="policies/policy/{{ p.Slug }}">{{ p.Name }}</a>
-</div>
+<mat-card>
+    <mat-card-content class="center">Geekway has a number of policies to make sure the event runs smoothly and all of our attendees have a chance to enjoy a safe, welcoming, and inclusive experience.</mat-card-content>
+</mat-card>
+
+<br/>
+
+<mat-card>
+    <mat-card-content class="policiesContainer">    
+        <div *ngFor="let p of policies | async" class="policy">            
+            <i class="{{ p.Icon }}"></i> <a href="policies/policy/{{ p.Slug }}">{{ p.Name }}</a>
+        </div>
+    </mat-card-content>
+</mat-card>

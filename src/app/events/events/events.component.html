@@ -1,3 +1,23 @@
-<div *ngFor="let e of events | async" class="event">
-    <a href="events/event/{{ e.Slug }}">{{ e.Name }}</a>
-</div>
+<mat-card>
+    <mat-card-content class="center">
+        Geekway hosts several premeire events at every Geewkay to the West.
+    </mat-card-content>
+</mat-card>
+
+<br/>
+
+<mat-card>
+    <mat-card-content class="eventsContainer">    
+        <div *ngFor="let e of events | async" class="event">
+            <i class="{{ e.Icon }}"></i> <a href="events/event/{{ e.Slug }}">{{ e.Name }}</a>
+        </div>
+    </mat-card-content>
+</mat-card>
+
+<br/>
+
+<mat-card>
+    <mat-card-content class="center">
+        Attendeeds can host their own events. Here's some information on what that means and how it works and a whole lot of words someone else will write for me.
+    </mat-card-content>
+</mat-card>

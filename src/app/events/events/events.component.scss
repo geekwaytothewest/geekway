@@ -1,3 +1,20 @@
+.eventsContainer {
+    display: flex;
+    justify-content: space-evenly;
+    flex-flow: row wrap;
+    text-align: center;
+}
+
 .event {
+    flex: 1;
     padding: 10px;
+    min-width: 200px;
+
+    a {
+        padding-left: 5px;
+    }
+}
+
+.center {
+    text-align: center;
 }

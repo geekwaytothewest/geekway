@@ -4,6 +4,7 @@ import { PoliciesComponent } from './policies/policies.component';
 import { PolicyComponent } from './policy/policy.component';
 import { Routes, RouterModule } from '@angular/router';
 import { MarkdownModule } from 'ngx-markdown';
+import { MatCardModule } from '@angular/material';
 
 const policiesRoutes: Routes = [  
   { path: '', component: PoliciesComponent, pathMatch: 'full' },
@@ -15,6 +16,7 @@ const policiesRoutes: Routes = [
   imports: [
     CommonModule,
     MarkdownModule,
+    MatCardModule,
     RouterModule.forChild(policiesRoutes)
   ]
 })
