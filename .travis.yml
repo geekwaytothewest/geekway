@@ -10,8 +10,8 @@ addons:
     packages:
     - google-chrome-stable
   ssh_known_hosts:
-  - geekwaytothewest.com
-  - 35.208.234.160
+    - geekwaytothewest.com
+    - 35.208.234.160
 cache:
   directories:
   - "./node_modules"
