@@ -18,9 +18,10 @@ cache:
 install:
 - npm install
 script:
+- npm run gql:codegen
 - npm run test -- --watch=false --no-progress --browsers=ChromeHeadlessNoSandbox ||
   travis_terminate 1;
-- npm run build
+- ng build --prod
 before_install:
 - openssl aes-256-cbc -K $encrypted_41efe38679f5_key -iv $encrypted_41efe38679f5_iv
   -in deploy_rsa.enc -out /tmp/deploy_rsa -d
