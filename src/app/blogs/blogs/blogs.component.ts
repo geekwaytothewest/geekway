@@ -36,7 +36,9 @@ export class BlogsComponent implements OnInit {
   }
 
   ngOnDestroy() {
-    this.blogsSubscription.unsubscribe();
+    if (this.blogsSubscription) {
+      this.blogsSubscription.unsubscribe();
+    }
   }
 
   redirect(url: string) {

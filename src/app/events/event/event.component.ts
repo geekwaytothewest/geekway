@@ -50,7 +50,9 @@ export class EventComponent implements OnInit {
   }
 
   ngOnDestroy() {
-    this.eventSubscription.unsubscribe();
+    if (this.eventSubscription) {
+      this.eventSubscription.unsubscribe();
+    }
   }
 
   ngAfterViewChecked() {

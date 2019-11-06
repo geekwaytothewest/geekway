@@ -69,10 +69,17 @@ export class HomepageComponent implements OnInit {
   }
 
   ngOnDestroy() {
-    // Only need to unsubscribe if its a multi event Observable
-    this.geekwayToTheWestSubscription.unsubscribe();
-    this.geekwayMiniSubscription.unsubscribe();
-    this.geekwayMicroSubscription.unsubscribe();
+    if (this.geekwayToTheWestSubscription) {
+      this.geekwayToTheWestSubscription.unsubscribe();
+    }
+
+    if (this.geekwayMiniSubscription) {
+      this.geekwayMiniSubscription.unsubscribe();
+    }
+
+    if (this.geekwayMicroSubscription) {
+      this.geekwayMicroSubscription.unsubscribe();
+    }
   }
 
   redirect(url: string) {

@@ -37,7 +37,9 @@ export class ConventionsComponent implements OnInit {
   }
 
   ngOnDestroy() {
-    this.conventionsSubscription.unsubscribe();
+    if (this.conventionsSubscription) {
+      this.conventionsSubscription.unsubscribe();
+    }
   }
 
   redirectConvention(id: string) {

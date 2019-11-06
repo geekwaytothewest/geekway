@@ -53,7 +53,9 @@ export class PageComponent implements OnInit {
   }
 
   ngOnDestroy() {
-    this.pageSubscription.unsubscribe();
+    if (this.pageSubscription) {
+      this.pageSubscription.unsubscribe();
+    }
   }
 
   ngAfterViewChecked() {

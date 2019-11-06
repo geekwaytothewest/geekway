@@ -35,7 +35,9 @@ export class GeekwayminiComponent implements OnInit {
   }
 
   ngOnDestroy() {
-    this.geekwayMiniSubscription.unsubscribe();
+    if (this.geekwayMiniSubscription) {
+      this.geekwayMiniSubscription.unsubscribe();
+    }
   }
 
   redirect(url: string) {

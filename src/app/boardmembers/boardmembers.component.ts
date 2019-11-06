@@ -33,8 +33,9 @@ export class BoardmembersComponent implements OnInit {
   }
 
   ngOnDestroy() {
-    // Only need to unsubscribe if its a multi event Observable
-    this.boardMembersSubscription.unsubscribe();
+    if (this.boardMembersSubscription) {
+      this.boardMembersSubscription.unsubscribe();
+    }
   }
 
 }

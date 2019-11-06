@@ -35,7 +35,9 @@ export class NewsComponent implements OnInit {
   }
 
   ngOnDestroy() {
-    this.newsSubscription.unsubscribe();
+    if (this.newsSubscription) {
+      this.newsSubscription.unsubscribe();
+    }
   }
 
   redirect(url: string) {

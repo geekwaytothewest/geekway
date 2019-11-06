@@ -86,7 +86,9 @@ export class ConventionComponent implements OnInit {
   }
 
   ngOnDestroy() {
-    this.conventionSubscription.unsubscribe();
+    if (this.conventionSubscription) {
+      this.conventionSubscription.unsubscribe();
+    }
   }
 
   redirect(url: string) {

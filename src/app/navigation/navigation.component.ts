@@ -75,10 +75,21 @@ export class NavigationComponent {
   }
 
   ngOnDestroy() {
-    this.policiesSubscription.unsubscribe();
-    this.eventsSubscription.unsubscribe();
-    this.headerPhotoSubscription.unsubscribe();
-    this.headerLabelSubscription.unsubscribe();
+    if (this.policiesSubscription) {
+      this.policiesSubscription.unsubscribe();
+    }
+
+    if (this.eventsSubscription) {
+      this.eventsSubscription.unsubscribe();
+    }
+
+    if (this.headerPhotoSubscription) {
+      this.headerPhotoSubscription.unsubscribe();
+    }
+
+    if (this.headerLabelSubscription) {
+      this.headerLabelSubscription.unsubscribe();
+    }
   }
 
   toggleSidenav() {
@@ -128,7 +139,9 @@ export class NavigationComponent {
   }
 
   cancelSubnav() {
-    this.hoverTimerSubscription.unsubscribe();
+    if (this.hoverTimerSubscription) {
+      this.hoverTimerSubscription.unsubscribe();
+    }
   }
 
 }

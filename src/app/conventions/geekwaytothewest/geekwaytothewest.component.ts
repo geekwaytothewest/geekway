@@ -35,7 +35,9 @@ export class GeekwaytothewestComponent implements OnInit {
   }
 
   ngOnDestroy() {
-    this.geekwayToTheWestSubscription.unsubscribe();
+    if (this.geekwayToTheWestSubscription) {
+      this.geekwayToTheWestSubscription.unsubscribe();
+    }
   }
 
   redirect(url: string) {

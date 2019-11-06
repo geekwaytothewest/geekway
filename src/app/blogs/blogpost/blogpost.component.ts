@@ -50,7 +50,9 @@ export class BlogpostComponent implements OnInit {
   }
 
   ngOnDestroy() {
-    this.blogPostSubscription.unsubscribe();
+    if (this.blogPostSubscription) {
+      this.blogPostSubscription.unsubscribe();
+    }
   }
 
   ngAfterViewChecked() {

@@ -50,7 +50,9 @@ export class NewspostComponent implements OnInit {
   }
 
   ngOnDestroy() {
-    this.newsPostSubscription.unsubscribe();
+    if (this.newsPostSubscription) {
+      this.newsPostSubscription.unsubscribe();
+    }
   }
 
   ngAfterViewChecked() {

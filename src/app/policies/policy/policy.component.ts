@@ -50,7 +50,9 @@ export class PolicyComponent implements OnInit {
   }
 
   ngOnDestroy() {
-    this.policySubscription.unsubscribe();
+    if (this.policySubscription) {
+      this.policySubscription.unsubscribe();
+    }
   }
 
   ngAfterViewChecked() {

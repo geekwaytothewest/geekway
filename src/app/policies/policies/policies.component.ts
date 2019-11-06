@@ -32,7 +32,9 @@ export class PoliciesComponent implements OnInit {
   }
 
   ngOnDestroy() {
-    this.policiesSubscription.unsubscribe();
+    if (this.policiesSubscription) {
+      this.policiesSubscription.unsubscribe();
+    }
   }
 
 }

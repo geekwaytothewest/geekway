@@ -170,8 +170,13 @@ export class LibraryComponent implements OnInit {
   } 
 
   ngOnDestroy() {
-    this.librarySubscription.unsubscribe();
-    this.libraryDataSubscription.unsubscribe();
+    if (this.librarySubscription) {
+      this.librarySubscription.unsubscribe();
+    }
+
+    if (this.libraryDataSubscription) {
+      this.libraryDataSubscription.unsubscribe();
+    }
   }
 
   bggRedirect(bggId: String) {
