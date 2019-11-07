@@ -21,10 +21,14 @@
 }
 
 app-flipclock {
-    transform: scale(0.7) translate(15%, 0);
+    transform: scale(0.5) translate(15%, 0);
     transform-origin: top left;
     display: inline-block;
     width: auto;
+}
+
+.biggerClock {
+    transform: scale(0.7) translate(20%, 0);
 }
 
 .center {
@@ -35,5 +39,39 @@ app-flipclock {
 mat-card {
     img {
         cursor: pointer;        
+    }
+}
+
+.homepageContainer {
+    display: flex;
+    flex-flow: row wrap;    
+    align-items: stretch;
+
+    div.conventionContainer {
+        flex: 2;
+        width: 70%;
+    }
+
+    div.sponsorContainer {
+        flex: 1;
+        width: 30%;
+        text-align: center;
+        margin-left: 10px;
+
+        mat-card {
+            height: 100%;
+        }
+    }
+}
+
+@media(max-width: 800px) {
+    .homepageContainer {
+        div.conventionContainer {
+            width: 100%;
+        }
+
+        div.sponsorContainer {
+            margin-left: 0;
+        }
     }
 }

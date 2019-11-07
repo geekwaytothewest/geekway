@@ -1,0 +1,13 @@
+query sponsors {
+    sponsors {
+        id
+        _id
+        createdAt
+        updatedAt
+        Name
+        Logo {
+            name
+            url
+        }
+    }
+}

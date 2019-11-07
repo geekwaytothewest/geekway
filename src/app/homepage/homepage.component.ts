@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Subscription, Observable } from 'rxjs';
 import { map } from 'rxjs/operators'
-import { NextConventionWhereGQL, Convention } from 'src/generated/types.graphql-gen';
+import { NextConventionWhereGQL, Convention, SponsorsGQL, Sponsors } from 'src/generated/types.graphql-gen';
 import { Router } from '@angular/router';
 
 @Component({
@@ -19,11 +19,15 @@ export class HomepageComponent implements OnInit {
 
   geekwayMicro: Observable<Convention>;
   geekwayMicroSubscription: Subscription
+
+  sponsors: Observable<Sponsors[]>;
+  sponsorsSubscription: Subscription;
   
   constructor(
     private nextGWConventionWhere: NextConventionWhereGQL, 
     private nextGWMiniConventionWhere: NextConventionWhereGQL, 
     private nextGWMicroConventionWhere: NextConventionWhereGQL,
+    private sponsorsGQL: SponsorsGQL,
     private router: Router) { 
   }
 
@@ -66,7 +70,15 @@ export class HomepageComponent implements OnInit {
       );
       
     this.geekwayMicroSubscription = this.geekwayMicro.subscribe();
-  }
+
+    this.sponsors = this.sponsorsGQL.watch()
+      .valueChanges
+      .pipe(
+        map(result => result.data.sponsors)
+      );
+      
+    this.sponsorsSubscription = this.sponsors.subscribe();
+  };
 
   ngOnDestroy() {
     if (this.geekwayToTheWestSubscription) {
