@@ -50,6 +50,7 @@ mat-card {
     div.conventionContainer {
         flex: 2;
         width: 70%;
+        margin-bottom: 10px;
     }
 
     div.sponsorContainer {
@@ -57,6 +58,7 @@ mat-card {
         width: 30%;
         text-align: center;
         margin-left: 10px;
+        margin-bottom: 10px;
 
         mat-card {
             height: 100%;
@@ -64,14 +66,3 @@ mat-card {
     }
 }
 
-@media(max-width: 800px) {
-    .homepageContainer {
-        div.conventionContainer {
-            width: 100%;
-        }
-
-        div.sponsorContainer {
-            margin-left: 0;
-        }
-    }
-}
