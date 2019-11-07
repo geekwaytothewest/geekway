@@ -20,16 +20,16 @@
         <a href="/"><img src="/assets/images/geekwaylogo.png"></a>
     </div>
     <div class="header-nav" *ngIf="!(isHandset$ | async) && !(isTablet$ | async)">
-        <a href="page/about" [ngClass]="{'nav-link' : true, 'nav-text' : true, 'active' : this.router.url.startsWith('/page/about') || this.router.url.startsWith('/boardmembers')}" (mouseover)="showSubnav('about')" (mouseout)="cancelSubnav()">About</a>
-        <a href="conventions" [ngClass]="{'nav-link' : true, 'nav-text' : true, 'active' : this.router.url.startsWith('/conventions')}" (mouseover)="showSubnav('conventions')" (mouseout)="cancelSubnav()">Conventions</a>
-        <a href="registration" [ngClass]="{'nav-link' : true, 'nav-text' : true, 'active' : this.router.url.startsWith('/registration')}" (mouseover)="showSubnav('registration')" (mouseout)="cancelSubnav()">Registration</a>
-        <a href="policies" [ngClass]="{'nav-link' : true, 'nav-text' : true, 'active' : this.router.url.startsWith('/policies')}" (mouseover)="showSubnav('policies')" (mouseout)="cancelSubnav()">Policies</a>
-        <a href="events" [ngClass]="{'nav-link' : true, 'nav-text' : true, 'active' : this.router.url.startsWith('/events')}" (mouseover)="showSubnav('events')" (mouseout)="cancelSubnav()">Events</a>
-        <a href="page/vendors" [ngClass]="{'nav-link' : true, 'nav-text' : true, 'active' : this.router.url.startsWith('/page/vendors')}" (mouseover)="showSubnav('vendors')" (mouseout)="cancelSubnav()">Vendors</a>
-        <a href="library" [ngClass]="{'nav-link' : true, 'nav-text' : true, 'active' : this.router.url.startsWith('/library')}" (mouseover)="showSubnav('library')" (mouseout)="cancelSubnav()">Library</a>
-        <a href="page/geekguides" [ngClass]="{'nav-link' : true, 'nav-text' : true, 'active' : this.router.url.startsWith('/page/geekguides')}" (mouseover)="showSubnav('geekguides')" (mouseout)="cancelSubnav()">Geek Guides</a>
-        <a href="news" [ngClass]="{'nav-link' : true, 'nav-text' : true, 'active' : this.router.url.startsWith('/news')}" (mouseover)="showSubnav('news')">News</a>
-        <a href="blog" [ngClass]="{'nav-link' : true, 'nav-text' : true, 'active' : this.router.url.startsWith('/blog')}" (mouseover)="showSubnav('blog')">Blog</a>
+        <a href="page/about" matRipple [ngClass]="{'nav-link' : true, 'nav-text' : true, 'active' : this.router.url.startsWith('/page/about') || this.router.url.startsWith('/boardmembers')}" (mouseover)="showSubnav('about')" (mouseout)="cancelSubnav()">About</a>
+        <a href="conventions" matRipple [ngClass]="{'nav-link' : true, 'nav-text' : true, 'active' : this.router.url.startsWith('/conventions')}" (mouseover)="showSubnav('conventions')" (mouseout)="cancelSubnav()">Conventions</a>
+        <a href="registration" matRipple [ngClass]="{'nav-link' : true, 'nav-text' : true, 'active' : this.router.url.startsWith('/registration')}" (mouseover)="showSubnav('registration')" (mouseout)="cancelSubnav()">Registration</a>
+        <a href="policies" matRipple [ngClass]="{'nav-link' : true, 'nav-text' : true, 'active' : this.router.url.startsWith('/policies')}" (mouseover)="showSubnav('policies')" (mouseout)="cancelSubnav()">Policies</a>
+        <a href="events" matRipple [ngClass]="{'nav-link' : true, 'nav-text' : true, 'active' : this.router.url.startsWith('/events')}" (mouseover)="showSubnav('events')" (mouseout)="cancelSubnav()">Events</a>
+        <a href="page/vendors" matRipple [ngClass]="{'nav-link' : true, 'nav-text' : true, 'active' : this.router.url.startsWith('/page/vendors')}" (mouseover)="showSubnav('vendors')" (mouseout)="cancelSubnav()">Vendors</a>
+        <a href="library" matRipple [ngClass]="{'nav-link' : true, 'nav-text' : true, 'active' : this.router.url.startsWith('/library')}" (mouseover)="showSubnav('library')" (mouseout)="cancelSubnav()">Library</a>
+        <a href="page/geekguides" matRipple [ngClass]="{'nav-link' : true, 'nav-text' : true, 'active' : this.router.url.startsWith('/page/geekguides')}" (mouseover)="showSubnav('geekguides')" (mouseout)="cancelSubnav()">Geek Guides</a>
+        <a href="news" matRipple [ngClass]="{'nav-link' : true, 'nav-text' : true, 'active' : this.router.url.startsWith('/news')}" (mouseover)="showSubnav('news')">News</a>
+        <a href="blog" matRipple [ngClass]="{'nav-link' : true, 'nav-text' : true, 'active' : this.router.url.startsWith('/blog')}" (mouseover)="showSubnav('blog')">Blog</a>
     </div>
   </header>
   <nav class="subnav" *ngIf="!(isHandset$ | async) && !(isTablet$ | async)">
@@ -37,24 +37,24 @@
         <li class="nav-item">Four Days of Peace, Love, and Board Games</li>
       </ul>
       <ul class="nav" *ngIf="showAboutSubnav">
-          <li class="nav-item"><a class="nav-link" href="/boardmembers"><i class="fa fa-users"></i> Board Members</a></li>
-          <li class="nav-item"><a class="nav-link" href="https://twitter.com/geekway" target="_blank"><i class="fab fa-twitter"></i> Twitter</a></li>
-          <li class="nav-item"><a class="nav-link" href="https://www.facebook.com/GeekwaytotheWest/" target="_blank"><i class="fab fa-facebook"></i> Facebook</a></li>
-          <li class="nav-item"><a class="nav-link" href="https://www.instagram.com/geekwaytothewest/" target="_blank"><i class="fab fa-instagram"></i> Instagram</a></li>
-          <li class="nav-item"><a class="nav-link" href="mailto:geekway@geekwaytothewest.com"><i class="fa fa-envelope"></i> Email</a></li>
-          <li class="nav-item"><a class="nav-link" href="https://geekway.threadless.com/" target="_blank"><img src="/assets/images/geekgay.png"> Pride Store</a></li>
+          <li class="nav-item" matRipple><a class="nav-link" href="/boardmembers"><i class="fa fa-users"></i> Board Members</a></li>
+          <li class="nav-item" matRipple><a class="nav-link" href="https://twitter.com/geekway" target="_blank"><i class="fab fa-twitter"></i> Twitter</a></li>
+          <li class="nav-item" matRipple><a class="nav-link" href="https://www.facebook.com/GeekwaytotheWest/" target="_blank"><i class="fab fa-facebook"></i> Facebook</a></li>
+          <li class="nav-item" matRipple><a class="nav-link" href="https://www.instagram.com/geekwaytothewest/" target="_blank"><i class="fab fa-instagram"></i> Instagram</a></li>
+          <li class="nav-item" matRipple><a class="nav-link" href="mailto:geekway@geekwaytothewest.com"><i class="fa fa-envelope"></i> Email</a></li>
+          <li class="nav-item" matRipple><a class="nav-link" href="https://geekway.threadless.com/" target="_blank"><img src="/assets/images/geekgay.png"> Pride Store</a></li>
       </ul>
       <ul class="nav" *ngIf="showPoliciesSubnav">
-          <li *ngFor="let p of policies | async" class="nav-item"><a class="nav-link" href="/policies/policy/{{ p.Slug }}"><i *ngIf="p.Icon" class="{{ p.Icon }}"></i> {{ p.Name }}</a></li>
+          <li *ngFor="let p of policies | async" class="nav-item" matRipple><a class="nav-link" href="/policies/policy/{{ p.Slug }}"><i *ngIf="p.Icon" class="{{ p.Icon }}"></i> {{ p.Name }}</a></li>
       </ul>
       <ul class="nav" *ngIf="showEventsSubnav">        
-          <li *ngFor="let e of events | async" class="nav-item"><a class="nav-link" href="/events/event/{{ e.Slug }}"><i *ngIf="e.Icon" class="{{ e.Icon }}"></i> {{ e.Name }}</a></li>
+          <li *ngFor="let e of events | async" class="nav-item" matRipple><a class="nav-link" href="/events/event/{{ e.Slug }}"><i *ngIf="e.Icon" class="{{ e.Icon }}"></i> {{ e.Name }}</a></li>
       </ul>
       <ul class="nav" *ngIf="showConventionsSubnav">            
-        <li class="nav-item"><a class="nav-link" href="/conventions/geekway"><i class="fas fa-dice-one fa-spin"></i> Geekway to the West</a></li>
-        <li class="nav-item"><a class="nav-link" href="/conventions/mini"><i class="fas fa-dice-two fa-spin"></i> Geekway Mini</a></li>
-        <li class="nav-item"><a class="nav-link" href="/conventions/micro"><i class="fas fa-dice-three fa-spin"></i> Geekway Micro</a></li>
-        <li class="nav-item"><a class="nav-link" href="/conventions"><i class="fas fa-hourglass"></i> Past, Present, and Future</a></li>
+        <li class="nav-item" matRipple><a class="nav-link" href="/conventions/geekway"><i class="fas fa-dice-one fa-spin"></i> Geekway to the West</a></li>
+        <li class="nav-item" matRipple><a class="nav-link" href="/conventions/mini"><i class="fas fa-dice-two fa-spin"></i> Geekway Mini</a></li>
+        <li class="nav-item" matRipple><a class="nav-link" href="/conventions/micro"><i class="fas fa-dice-three fa-spin"></i> Geekway Micro</a></li>
+        <li class="nav-item" matRipple><a class="nav-link" href="/conventions"><i class="fas fa-hourglass"></i> Past, Present, and Future</a></li>
       </ul>
   </nav>
 
