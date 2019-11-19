@@ -1,4 +1,4 @@
 <div *ngIf="newsPost | async as n" class="newsPostDiv">
-    <p><b>Posted: {{ n.postDate | amTz: 'America/Chicago' | amTimeAgo }} - {{ n.postDate | amTz: 'America/Chicago' | amDateFormat: 'MMMM Do YYYY, h:mm a' }}</b> by {{ n.author.Name }}</p>
+    <p><b>Posted: {{ n.postDate | amTz: 'America/Chicago' | amTimeAgo }} - {{ n.postDate | amTz: 'America/Chicago' | amDateFormat: 'MMMM Do YYYY, h:mm a' }}</b><ng-container *ngIf="n.author"> by {{ n.author.Name }}</ng-container></p>
     <div [innerHTML]="newsContent" id="newsContent"></div>
 </div>

@@ -11,7 +11,7 @@
 
 <div class="newsLink" *ngFor="let n of news | async">
     <div *ngIf="n.postDate < todaysDate">
-        {{ n.postDate | amTz: 'America/Chicago' | amDateFormat: 'MMMM Do YYYY, h:mm a' }} by {{ n.author.Name }}
+        {{ n.postDate | amTz: 'America/Chicago' | amDateFormat: 'MMMM Do YYYY, h:mm a' }} <ng-container *ngIf="n.author"> by {{ n.author.Name }}</ng-container>
         <br/>
         <a href="news/post/{{ n.slug }}">{{ n.Title }}</a>
     </div>
