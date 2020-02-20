@@ -10,7 +10,7 @@ query nextConventionWhere($whereClause: JSON!) {
         updatedAt
         startDate
         endDate
-        registrationDates {
+        regDates {
             type
             date
         }

@@ -8,7 +8,7 @@ query conventions {
     updatedAt
     startDate
     endDate
-    registrationDates {
+    regDates {
       type
       date
     }
