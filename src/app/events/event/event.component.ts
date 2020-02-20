@@ -45,7 +45,7 @@ export class EventComponent implements OnInit {
     this.eventSubscription = this.event.subscribe(result => {
       this.eventContent = this.sanitizer.bypassSecurityTrustHtml(result.Content.replace('<oembed url=', ' <div class="iframely-embed"><div class="iframely-responsive"><a data-iframely-url href=') + '</div></div>');
       this.headerPhoto.announceHeaderLabelChanged(result.Name);
-      this.headerPhoto.announceHeaderPhotoChanged("https://cms.geekwaytothewest.com/" + result.HeaderPhoto.url);
+      this.headerPhoto.announceHeaderPhotoChanged("https://cms.geekway.com/" + result.HeaderPhoto.url);
     })
   }
 

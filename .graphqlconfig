@@ -2,7 +2,7 @@
   "schemaPath": "schema.graphql",
   "extensions": {
     "endpoints": {
-      "default": "https://cms.geekwaytothewest.com/graphql"
+      "default": "https://cms.geekway.com/graphql"
     }
   }
 }

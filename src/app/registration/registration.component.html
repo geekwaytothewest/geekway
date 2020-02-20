@@ -4,9 +4,9 @@
     <mat-card *ngIf="geekwayToTheWest | async as g">
         <mat-card-title>{{ g.conventionType.Name }} {{ g.startDate | amTz: 'America/Chicago' | amDateFormat: 'YYYY'}}</mat-card-title>
         <mat-card-subtitle>{{ g.Theme }}</mat-card-subtitle>
-        <img *ngIf="g.Logo; else gwLogo" class="cardImage" matCardImage src="https://cms.geekwaytothewest.com{{ g.LogoSquare.url }}">
+        <img *ngIf="g.Logo; else gwLogo" class="cardImage" matCardImage src="https://cms.geekway.com{{ g.LogoSquare.url }}">
         <ng-template #gwLogo>
-            <img class="cardImage" matCardImage src="https://cms.geekwaytothewest.com{{ g.conventionType.LogoSquare.url }}">
+            <img class="cardImage" matCardImage src="https://cms.geekway.com{{ g.conventionType.LogoSquare.url }}">
         </ng-template>
         <mat-card-content>
             <div *ngFor="let r of g.registrationDates; let i = index" class="registrationBlock">
@@ -23,9 +23,9 @@
     <mat-card *ngIf="geekwayMini | async as g">
         <mat-card-title>{{ g.conventionType.Name }} {{ g.startDate | amTz: 'America/Chicago' | amDateFormat: 'YYYY'}}</mat-card-title>
         <mat-card-subtitle>{{ g.Theme }}</mat-card-subtitle>
-        <img *ngIf="g.Logo; else gwLogo" class="cardImage" matCardImage src="https://cms.geekwaytothewest.com{{ g.LogoSquare.url }}">
+        <img *ngIf="g.Logo; else gwLogo" class="cardImage" matCardImage src="https://cms.geekway.com{{ g.LogoSquare.url }}">
         <ng-template #gwLogo>
-            <img class="cardImage" matCardImage src="https://cms.geekwaytothewest.com{{ g.conventionType.LogoSquare.url }}">
+            <img class="cardImage" matCardImage src="https://cms.geekway.com{{ g.conventionType.LogoSquare.url }}">
         </ng-template>
         <mat-card-content>
             <div *ngFor="let r of g.registrationDates; let i = index" class="registrationBlock">
@@ -42,9 +42,9 @@
     <mat-card *ngIf="geekwayMicro | async as g">
         <mat-card-title>{{ g.conventionType.Name }}</mat-card-title>
         <mat-card-subtitle>{{ g.Theme }}</mat-card-subtitle>
-        <img *ngIf="g.Logo; else gwLogo" class="cardImage" matCardImage src="https://cms.geekwaytothewest.com{{ g.LogoSquare.url }}">
+        <img *ngIf="g.Logo; else gwLogo" class="cardImage" matCardImage src="https://cms.geekway.com{{ g.LogoSquare.url }}">
         <ng-template #gwLogo>
-            <img class="cardImage" matCardImage src="https://cms.geekwaytothewest.com{{ g.conventionType.LogoSquare.url }}">
+            <img class="cardImage" matCardImage src="https://cms.geekway.com{{ g.conventionType.LogoSquare.url }}">
         </ng-template>
         <mat-card-content>
             <div *ngFor="let r of g.registrationDates; let i = index" class="registrationBlock">

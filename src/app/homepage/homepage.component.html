@@ -9,9 +9,9 @@
 <div class="homepageContainer">
     <div class="conventionContainer">
         <mat-card *ngIf="geekwayToTheWest | async as gw" (click)="redirect('conventions/geekway')">
-            <img *ngIf="gw.Logo; else gwLogo" class="cardImage" matCardImage src="https://cms.geekwaytothewest.com{{ gw.Logo.url }}">
+            <img *ngIf="gw.Logo; else gwLogo" class="cardImage" matCardImage src="https://cms.geekway.com{{ gw.Logo.url }}">
             <ng-template #gwLogo>
-                <img class="cardImage" matCardImage src="https://cms.geekwaytothewest.com{{ gw.conventionType.Logo.url }}">
+                <img class="cardImage" matCardImage src="https://cms.geekway.com{{ gw.conventionType.Logo.url }}">
             </ng-template>
             <mat-card-content class="center">
                 <i class="{{gw.conventionType.Icon}}"></i> {{ gw.conventionType.Name }} - {{ gw.conventionType.Description }}
@@ -26,9 +26,9 @@
 
         <div class="flexbox">    
             <mat-card *ngIf="geekwayMini | async as gwMini" (click)="redirect('conventions/mini')">
-                <img *ngIf="gwMini.Logo; else gwMiniLogo" class="cardImage" matCardImage src="https://cms.geekwaytothewest.com{{ gwMini.LogoSquare.url }}">
+                <img *ngIf="gwMini.Logo; else gwMiniLogo" class="cardImage" matCardImage src="https://cms.geekway.com{{ gwMini.LogoSquare.url }}">
                 <ng-template #gwMiniLogo>
-                    <img class="cardImage" matCardImage src="https://cms.geekwaytothewest.com{{ gwMini.conventionType.LogoSquare.url }}">
+                    <img class="cardImage" matCardImage src="https://cms.geekway.com{{ gwMini.conventionType.LogoSquare.url }}">
                 </ng-template>
                 <mat-card-content class="center">
                     <i class="{{gwMini.conventionType.Icon}}"></i> {{ gwMini.conventionType.Name }} - {{ gwMini.conventionType.Description }}
@@ -40,9 +40,9 @@
             </mat-card>
 
             <mat-card *ngIf="geekwayMicro | async as gwMicro" (click)="redirect('conventions/micro')">
-                <img *ngIf="gwMicro.Logo; else gwMicroLogo" class="cardImage" matCardImage src="https://cms.geekwaytothewest.com{{ gwMicro.LogoSquare.url }">
+                <img *ngIf="gwMicro.Logo; else gwMicroLogo" class="cardImage" matCardImage src="https://cms.geekway.com{{ gwMicro.LogoSquare.url }">
                 <ng-template #gwMicroLogo>
-                    <img class="cardImage" matCardImage src="https://cms.geekwaytothewest.com{{ gwMicro.conventionType.LogoSquare.url }}">
+                    <img class="cardImage" matCardImage src="https://cms.geekway.com{{ gwMicro.conventionType.LogoSquare.url }}">
                 </ng-template>
                 <mat-card-content class="center">
                     <i class="{{gwMicro.conventionType.Icon}}"></i> {{ gwMicro.conventionType.Name }} - {{ gwMicro.conventionType.Description }}
@@ -60,7 +60,7 @@
             <mat-card-title>Sponsors</mat-card-title>
             <mat-card-content>
                 <div *ngFor="let s of sponsors | async">
-                    <img src="https://cms.geekwaytothewest.com/{{ s.Logo.url }}" alt="{{ s.Name }}">
+                    <img src="https://cms.geekway.com/{{ s.Logo.url }}" alt="{{ s.Name }}">
                 </div>
             </mat-card-content>
         </mat-card>

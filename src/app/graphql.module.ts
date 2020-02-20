@@ -4,7 +4,7 @@ import {HttpLinkModule, HttpLink} from 'apollo-angular-link-http';
 import {InMemoryCache} from 'apollo-cache-inmemory';
 import { HttpClientModule } from '@angular/common/http';
 
-const uri = 'https://cms.geekwaytothewest.com/graphql';
+const uri = 'https://cms.geekway.com/graphql';
 
 export function createApollo(httpLink: HttpLink) {
   return {

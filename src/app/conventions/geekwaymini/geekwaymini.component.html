@@ -11,9 +11,9 @@
     <mat-card>
         <mat-card-title>Geekway to the West {{ g.startDate | amTz: 'America/Chicago' | amDateFormat: 'YYYY' }}</mat-card-title>
         <mat-card-subtitle>{{ g.Theme }}</mat-card-subtitle>
-        <img *ngIf="g.Logo; else gwLogo" class="cardImage" matCardImage src="https://cms.geekwaytothewest.com{{ g.Logo.url }}">
+        <img *ngIf="g.Logo; else gwLogo" class="cardImage" matCardImage src="https://cms.geekway.com{{ g.Logo.url }}">
         <ng-template #gwLogo>
-            <img class="cardImage" matCardImage src="https://cms.geekwaytothewest.com{{ g.conventionType.Logo.url }}">
+            <img class="cardImage" matCardImage src="https://cms.geekway.com{{ g.conventionType.Logo.url }}">
         </ng-template>
         <mat-card-content>
             <div class="flexbox">
@@ -49,7 +49,7 @@
             <igx-carousel #carousel>
                 <igx-slide *ngFor="let p of g.doorPrizes">
                     <p>{{ p.Name }}</p>
-                    <img [src]="'https://cms.geekwaytothewest.com/' + p.Boxart.url" (click)="redirect('https://boardgamegeek.com/boardgame/' + p.BGGID)">
+                    <img [src]="'https://cms.geekway.com/' + p.Boxart.url" (click)="redirect('https://boardgamegeek.com/boardgame/' + p.BGGID)">
                 </igx-slide>
             </igx-carousel>
         </mat-card-content>
@@ -61,7 +61,7 @@
             <igx-carousel #carousel>
                 <igx-slide *ngFor="let p of g.playAndWins">
                     <p>{{ p.Name }}</p>
-                    <img [src]="'https://cms.geekwaytothewest.com/' + p.Boxart.url" (click)="redirect('https://boardgamegeek.com/boardgame/' + p.BGGID)">
+                    <img [src]="'https://cms.geekway.com/' + p.Boxart.url" (click)="redirect('https://boardgamegeek.com/boardgame/' + p.BGGID)">
                 </igx-slide>
             </igx-carousel>
         </mat-card-content>

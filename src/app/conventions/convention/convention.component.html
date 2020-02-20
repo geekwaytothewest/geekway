@@ -2,9 +2,9 @@
     <mat-card>
         <mat-card-title>{{ g.conventionType.Name }} {{ g.startDate | amTz: 'America/Chicago' | amDateFormat: 'YYYY' }}</mat-card-title>
         <mat-card-subtitle>{{ g.Theme }}</mat-card-subtitle>
-        <img *ngIf="g.Logo; else gwLogo" class="cardImage" matCardImage src="https://cms.geekwaytothewest.com{{ g.Logo.url }}">
+        <img *ngIf="g.Logo; else gwLogo" class="cardImage" matCardImage src="https://cms.geekway.com{{ g.Logo.url }}">
         <ng-template #gwLogo>
-            <img class="cardImage" matCardImage src="https://cms.geekwaytothewest.com{{ g.conventionType.Logo.url }}">
+            <img class="cardImage" matCardImage src="https://cms.geekway.com{{ g.conventionType.Logo.url }}">
         </ng-template>
         <mat-card-content>
             <div class="flexbox">
@@ -40,7 +40,7 @@
             <igx-carousel #carousel>
                 <igx-slide *ngFor="let p of g.doorPrizes">
                     <p>{{ p.Name }}</p>
-                    <img [src]="'https://cms.geekwaytothewest.com/' + p.Boxart.url" (click)="redirect('https://boardgamegeek.com/boardgame/' + p.BGGID)">
+                    <img [src]="'https://cms.geekway.com/' + p.Boxart.url" (click)="redirect('https://boardgamegeek.com/boardgame/' + p.BGGID)">
                 </igx-slide>
             </igx-carousel>
         </mat-card-content>
@@ -52,14 +52,14 @@
             <igx-carousel #carousel *ngIf="g.playAndWins.length <= 10">
                 <igx-slide *ngFor="let p of g.playAndWins">
                     <p>{{ p.Name }}</p>
-                    <img [src]="'https://cms.geekwaytothewest.com/' + p.Boxart.url" (click)="redirect('https://boardgamegeek.com/boardgame/' + p.BGGID)">
+                    <img [src]="'https://cms.geekway.com/' + p.Boxart.url" (click)="redirect('https://boardgamegeek.com/boardgame/' + p.BGGID)">
                 </igx-slide>
             </igx-carousel>
 
             <table *ngIf="g.playAndWins.length > 10" mat-table matSort [dataSource]="playAndWinDataSource">                
                 <ng-container matColumnDef="Image">
                     <th mat-header-cell *matHeaderCellDef> Image </th>
-                    <td mat-cell *matCellDef="let g"><img src="https://cms.geekwaytothewest.com/{{ g.Boxart.url }}" class="boardGameBox"></td>
+                    <td mat-cell *matCellDef="let g"><img src="https://cms.geekway.com/{{ g.Boxart.url }}" class="boardGameBox"></td>
                 </ng-container>
                 <ng-container matColumnDef="Name">
                     <th mat-header-cell *matHeaderCellDef mat-sort-header>

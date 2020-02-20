@@ -45,7 +45,7 @@ export class BlogpostComponent implements OnInit {
     this.blogPostSubscription = this.blogPost.subscribe(result => {
       this.blogContent = this.sanitizer.bypassSecurityTrustHtml(result.content.replace('<oembed url=', ' <div class="iframely-embed"><div class="iframely-responsive"><a data-iframely-url href=') + '</div></div>');
       this.headerPhotos.announceHeaderLabelChanged(result.Title);
-      this.headerPhotos.announceHeaderPhotoChanged("https://cms.geekwaytothewest.com/" + result.HeaderPhoto.url);
+      this.headerPhotos.announceHeaderPhotoChanged("https://cms.geekway.com/" + result.HeaderPhoto.url);
     })
   }
 

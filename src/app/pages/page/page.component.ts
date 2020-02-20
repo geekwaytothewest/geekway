@@ -47,7 +47,7 @@ export class PageComponent implements OnInit {
 
     this.pageSubscription = this.page.subscribe(result => {
       this.pageContent = this.sanitizer.bypassSecurityTrustHtml(result.Content.replace('<oembed url=', ' <div class="iframely-embed"><div class="iframely-responsive"><a data-iframely-url href=') + '</div></div>');
-      this.headerPhoto.announceHeaderPhotoChanged("https://cms.geekwaytothewest.com/" + result.HeaderImage.url);
+      this.headerPhoto.announceHeaderPhotoChanged("https://cms.geekway.com/" + result.HeaderImage.url);
       this.headerPhoto.announceHeaderLabelChanged(result.Name);
     })
   }
