@@ -9,8 +9,8 @@
             <img class="cardImage" matCardImage src="https://cms.geekway.com{{ g.conventionType.LogoSquare.url }}">
         </ng-template>
         <mat-card-content>
-            <div *ngFor="let r of g.registrationDates; let i = index" class="registrationBlock">
-                <b>{{ r.type }} registration begins:</b> {{ r.date | amTz: 'America/Chicago' | amDateFormat: 'MMMM Do YYYY, h:mm a' }}
+            <div *ngFor="let r of g.regDates; let i = index" class="registrationBlock">
+                <b>{{ r.name }} registration begins:</b> {{ r.date | amTz: 'America/Chicago' | amDateFormat: 'MMMM Do YYYY, h:mm a' }}
                 <br/><br/>
                 <app-flipclock [id]="'gw' + i" [date]="r.date"></app-flipclock>
             </div>
@@ -28,8 +28,8 @@
             <img class="cardImage" matCardImage src="https://cms.geekway.com{{ g.conventionType.LogoSquare.url }}">
         </ng-template>
         <mat-card-content>
-            <div *ngFor="let r of g.registrationDates; let i = index" class="registrationBlock">
-                <b>{{ r.type }} registration begins:</b> {{ r.date | amTz: 'America/Chicago' | amDateFormat: 'MMMM Do YYYY, h:mm a' }}
+            <div *ngFor="let r of g.regDates; let i = index" class="registrationBlock">
+                <b>{{ r.name }} registration begins:</b> {{ r.date | amTz: 'America/Chicago' | amDateFormat: 'MMMM Do YYYY, h:mm a' }}
                 <br/><br/>
                 <app-flipclock [id]="'gwMini' + i" [date]="r.date"></app-flipclock>
             </div>            
@@ -47,8 +47,8 @@
             <img class="cardImage" matCardImage src="https://cms.geekway.com{{ g.conventionType.LogoSquare.url }}">
         </ng-template>
         <mat-card-content>
-            <div *ngFor="let r of g.registrationDates; let i = index" class="registrationBlock">
-                <b>{{ r.type }}</b>
+            <div *ngFor="let r of g.regDates; let i = index" class="registrationBlock">
+                <b>{{ r.name }}</b>
                 <br/>
                 {{ r.date | amTz: 'America/Chicago' | amDateFormat: 'MMMM Do YYYY, h:mm a' }}
                 <br/><br/>

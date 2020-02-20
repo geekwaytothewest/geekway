@@ -9,7 +9,7 @@ query conventions {
     startDate
     endDate
     regDates {
-      type
+      name
       date
     }
     Icon

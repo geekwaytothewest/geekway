@@ -32,8 +32,8 @@
     <mat-card>
         <mat-card-title>Registration</mat-card-title>
         <mat-card-content>            
-            <div *ngFor="let r of g.registrationDates; let i = index" class="registrationBlock">
-                {{ r.type }}
+            <div *ngFor="let r of g.regDates; let i = index" class="registrationBlock">
+                {{ r.name }}
             </div>
         </mat-card-content>
         <mat-card-actions *ngIf="g.registrationUrl">
