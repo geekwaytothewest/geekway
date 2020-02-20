@@ -5,6 +5,7 @@ node_js:
 - '10'
 addons:
   apt:
+    update: true
     sources:
     - google-chrome
     packages:
