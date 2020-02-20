@@ -1,5 +1,5 @@
 import { NgModule, InjectionToken } from '@angular/core';
-import { Routes, RouterModule, ActivatedRouteSnapshot } from '@angular/router';
+import { Routes, RouterModule, ActivatedRouteSnapshot, PreloadAllModules } from '@angular/router';
 import { RedirectionMessageComponent } from './shared/redirection-message/redirection-message.component';
 import { NotfoundComponent } from './notfound/notfound.component';
 
@@ -68,7 +68,7 @@ const routes: Routes = [
         },
     },
   ],
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, {preloadingStrategy: PreloadAllModules})],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
