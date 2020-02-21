@@ -4,7 +4,10 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 module.exports = {
     plugins: [
         new HtmlWebpackPlugin(),
-        new PreloadWebpackPlugin()
+        new PreloadWebpackPlugin({
+            rel: 'preload',
+            include: 'allChunks'        
+        })
     ]
   };
   
