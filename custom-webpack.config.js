@@ -6,7 +6,7 @@ module.exports = {
         new HtmlWebpackPlugin(),
         new PreloadWebpackPlugin({
             rel: 'preload',
-            include: 'allChunks'        
+            include: 'allAssets'        
         })
     ]
   };
