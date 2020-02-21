@@ -9,9 +9,6 @@ import { LibrariesGQL, Library } from 'src/generated/types.graphql-gen';
 import { map } from 'rxjs/operators';
 import { HeaderPhotoService } from '../shared/header-photo/header-photo.service';
 
-const libraryUrl: string = "/assets/xml/geekwaycollection.xml";
-const requestOptions: Object = { responseType: 'text' };
-
 @Component({
   selector: 'app-library',
   templateUrl: './library.component.html',
