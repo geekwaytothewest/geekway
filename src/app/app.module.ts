@@ -1,4 +1,4 @@
-import { BrowserModule } from '@angular/platform-browser';
+import { BrowserModule, HammerModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -36,7 +36,8 @@ import { MatRippleModule } from '@angular/material/core';
     GraphQLModule,
     FontAwesomeModule,
     ClarityModule,
-    MatRippleModule
+    MatRippleModule,
+    HammerModule
   ],
   providers: [],
   bootstrap: [AppComponent]
