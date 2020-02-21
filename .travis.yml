@@ -7,6 +7,7 @@ addons:
   chrome: stable
   ssh_known_hosts:
     - geekwaytothewest.com
+    - geekway.com
     - 35.208.234.160
 cache:
   directories:
@@ -27,7 +28,7 @@ before_install:
 deploy:
   provider: script
   skip_cleanup: true
-  script: rsync -r --delete-after --quiet $TRAVIS_BUILD_DIR/dist/geekway/ geekwaytothewest@geekwaytothewest.com:~/wwwhome/angular.geekwaytothewest.com
+  script: rsync -r --delete-after --quiet $TRAVIS_BUILD_DIR/dist/geekway/ geekwaytothewest@geekway.com:~/wwwhome/angular.geekwaytothewest.com
   on:
     branch: master
     tags: true
