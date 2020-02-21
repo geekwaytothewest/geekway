@@ -15,7 +15,7 @@
       "prefix": "app",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-angular:browser",
+          "builder": "@angular-builders/custom-webpack:browser",
           "options": {
             "outputPath": "dist/geekway",
             "index": "src/index.html",
@@ -41,7 +41,10 @@
               "node_modules/@fortawesome/fontawesome-free/js/all.min.js",
               "node_modules/@webcomponents/custom-elements/custom-elements.min.js",
               "node_modules/@clr/icons/clr-icons.min.js"
-            ]
+            ],
+            "customWebpackConfig": {
+              "path": "custom-webpack.config.js"
+            }
           },
           "configurations": {
             "production": {
@@ -76,9 +79,12 @@
           }
         },
         "serve": {
-          "builder": "@angular-devkit/build-angular:dev-server",
+          "builder": "@angular-builders/custom-webpack:dev-server",
           "options": {
-            "browserTarget": "geekway:build"
+            "browserTarget": "geekway:build",
+            "customWebpackConfig": {
+              "path": "custom-webpack.config.js"
+            }
           },
           "configurations": {
             "production": {
