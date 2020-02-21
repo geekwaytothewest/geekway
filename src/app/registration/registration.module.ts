@@ -4,7 +4,8 @@ import { Routes, RouterModule } from '@angular/router';
 import { RegistrationComponent } from './registration.component';
 import { MomentTimezoneModule } from '../shared/moment-timezone/moment-timezone.module';
 import { MomentModule } from 'ngx-moment';
-import { MatCardModule, MatButtonModule } from '@angular/material';
+import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
 import { FlipclockModule } from '../shared/flipclock/flipclock.module';
 
 const registrationRoutes: Routes = [

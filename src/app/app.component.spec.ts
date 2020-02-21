@@ -4,7 +4,8 @@ import { ApolloTestingController, ApolloTestingModule } from 'apollo-angular/tes
 
 import { AppComponent } from './app.component';
 import { NavigationComponent } from './navigation/navigation.component';
-import { MatIconModule, MatCardModule } from '@angular/material';
+import { MatCardModule } from '@angular/material/card';
+import { MatIconModule } from '@angular/material/icon';
 
 describe('AppComponent', () => {
   let component: AppComponent;

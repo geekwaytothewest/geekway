@@ -4,7 +4,7 @@ import { HomepageComponent } from './homepage.component';
 import { MomentModule } from 'ngx-moment';
 import { MomentTimezoneModule } from '../shared/moment-timezone/moment-timezone.module';
 import { FlipclockModule } from '../shared/flipclock/flipclock.module';
-import { MatCardModule } from '@angular/material';
+import { MatCardModule } from '@angular/material/card';
 import { ApolloTestingController, ApolloTestingModule } from 'apollo-angular/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 

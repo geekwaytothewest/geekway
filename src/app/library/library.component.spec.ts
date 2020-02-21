@@ -4,7 +4,10 @@ import { ApolloTestingController, ApolloTestingModule } from 'apollo-angular/tes
 import { LibraryComponent } from './library.component';
 import { MomentModule } from 'ngx-moment';
 import { MomentTimezoneModule } from '../shared/moment-timezone/moment-timezone.module';
-import { MatTableModule, MatFormFieldModule, MatInputModule, MatPaginatorModule } from '@angular/material';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatTableModule } from '@angular/material/table';
 import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 

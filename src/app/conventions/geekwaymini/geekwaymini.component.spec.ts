@@ -4,7 +4,7 @@ import { ApolloTestingController, ApolloTestingModule } from 'apollo-angular/tes
 import { GeekwayminiComponent } from './geekwaymini.component';
 import { MomentModule } from 'ngx-moment';
 import { MomentTimezoneModule } from 'src/app/shared/moment-timezone/moment-timezone.module';
-import { MatCardModule } from '@angular/material';
+import { MatCardModule } from '@angular/material/card';
 import { FlipclockModule } from 'src/app/shared/flipclock/flipclock.module';
 import { IgxCarouselModule } from 'igniteui-angular';
 import { AgmCoreModule } from '@agm/core';

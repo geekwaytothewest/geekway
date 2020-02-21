@@ -3,7 +3,7 @@ import { IgxCarouselModule } from 'igniteui-angular';
 import { ApolloTestingController, ApolloTestingModule } from 'apollo-angular/testing';
 
 import { EventComponent } from './event.component';
-import { MatCardModule } from '@angular/material';
+import { MatCardModule } from '@angular/material/card';
 import { RouterModule } from '@angular/router';
 
 describe('EventComponent', () => {

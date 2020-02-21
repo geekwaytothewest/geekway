@@ -14,7 +14,8 @@ import { GraphQLModule } from './graphql.module';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { NotfoundComponent } from './notfound/notfound.component';
 import { ClarityModule } from "@clr/angular";
-import { MatCardModule, MatRippleModule } from '@angular/material';
+import { MatCardModule } from '@angular/material/card';
+import { MatRippleModule } from '@angular/material/core';
 
 @NgModule({
   declarations: [

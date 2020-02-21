@@ -1,7 +1,9 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import xml2js from 'xml2js';
 import { Observable, Subscription } from 'rxjs';
-import { MatTableDataSource, MatPaginator, MatSort } from '@angular/material';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
+import { MatTableDataSource } from '@angular/material/table';
 import { FormControl } from '@angular/forms';
 import { LibrariesGQL, Library } from 'src/generated/types.graphql-gen';
 import { map } from 'rxjs/operators';

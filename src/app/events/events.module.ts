@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { EventComponent } from './event/event.component';
 import { EventsComponent } from './events/events.component';
 import { Routes, RouterModule } from '@angular/router';
-import { MatCardModule } from '@angular/material';
+import { MatCardModule } from '@angular/material/card';
 import { IgxCarouselModule } from 'igniteui-angular';
 
 const eventsRoutes: Routes = [  

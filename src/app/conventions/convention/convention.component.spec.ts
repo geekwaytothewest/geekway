@@ -4,7 +4,11 @@ import { ApolloTestingController, ApolloTestingModule } from 'apollo-angular/tes
 import { ConventionComponent } from './convention.component';
 import { MomentModule } from 'ngx-moment';
 import { MomentTimezoneModule } from 'src/app/shared/moment-timezone/moment-timezone.module';
-import { MatCardModule, MatTableModule, MatInputModule, MatPaginatorModule, MatFormFieldModule } from '@angular/material';
+import { MatCardModule } from '@angular/material/card';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatTableModule } from '@angular/material/table';
 import { FlipclockModule } from 'src/app/shared/flipclock/flipclock.module';
 import { IgxCarouselModule, IgxSliderModule, IgxProgressBarModule } from 'igniteui-angular';
 import { ReactiveFormsModule } from '@angular/forms';

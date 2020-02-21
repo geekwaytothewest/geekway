@@ -1,7 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ConventionsComponent } from './conventions.component';
-import { MatTableModule } from '@angular/material';
+import { MatTableModule } from '@angular/material/table';
 import { MomentModule } from 'ngx-moment';
 import { MomentTimezoneModule } from '../shared/moment-timezone/moment-timezone.module';
 import { ApolloTestingModule, ApolloTestingController } from 'apollo-angular/testing';

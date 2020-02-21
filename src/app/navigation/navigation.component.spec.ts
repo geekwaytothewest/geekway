@@ -11,7 +11,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { NavigationComponent } from './navigation.component';
 import { MatTreeModule } from '@angular/material/tree';
 import { RouterTestingModule } from '@angular/router/testing';
-import { MatCardModule } from '@angular/material';
+import { MatCardModule } from '@angular/material/card';
 
 describe('NavigationComponent', () => {
   let component: NavigationComponent;

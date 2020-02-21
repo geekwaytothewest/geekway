@@ -3,7 +3,8 @@ import { CommonModule } from '@angular/common';
 import { NewsComponent } from './news/news.component';
 import { NewspostComponent } from './newspost/newspost.component';
 import { Routes, RouterModule } from '@angular/router';
-import { MatButtonModule, MatCardModule } from '@angular/material';
+import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
 import { MomentModule } from 'ngx-moment';
 import { MomentTimezoneModule } from '../shared/moment-timezone/moment-timezone.module';
 

@@ -4,7 +4,7 @@ import { ApolloTestingController, ApolloTestingModule } from 'apollo-angular/tes
 import { RegistrationComponent } from './registration.component';
 import { MomentTimezoneModule } from '../shared/moment-timezone/moment-timezone.module';
 import { MomentModule } from 'ngx-moment';
-import { MatCardModule } from '@angular/material';
+import { MatCardModule } from '@angular/material/card';
 import { FlipclockModule } from '../shared/flipclock/flipclock.module';
 import { RouterTestingModule } from '@angular/router/testing';
 
