@@ -29,7 +29,7 @@ export class LibraryComponent implements OnInit {
   paginator: MatPaginator;
   sort: MatSort;
 
-  @ViewChild(MatSort, {static: false}) set matSort(ms: MatSort) {
+  @ViewChild(MatSort) set matSort(ms: MatSort) {
     this.sort = ms;
 
     if (this.dataSource) {
@@ -37,7 +37,7 @@ export class LibraryComponent implements OnInit {
     }
   }
 
-  @ViewChild(MatPaginator, {static: false}) set matPaginator(mp: MatPaginator) {
+  @ViewChild(MatPaginator) set matPaginator(mp: MatPaginator) {
     this.paginator = mp;
 
     if (this.dataSource) {

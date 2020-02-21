@@ -21,7 +21,7 @@ export class ConventionComponent implements OnInit {
   paginator: MatPaginator;
   sort: MatSort;
 
-  @ViewChild(MatSort, {static: false}) set matSort(ms: MatSort) {
+  @ViewChild(MatSort) set matSort(ms: MatSort) {
     this.sort = ms;
 
     if (this.playAndWinDataSource) {
@@ -29,7 +29,7 @@ export class ConventionComponent implements OnInit {
     }
   }
 
-  @ViewChild(MatPaginator, {static: false}) set matPaginator(mp: MatPaginator) {
+  @ViewChild(MatPaginator) set matPaginator(mp: MatPaginator) {
     this.paginator = mp;
 
     if (this.playAndWinDataSource) {
