@@ -9,5 +9,6 @@ query sponsors {
             name
             url
         }
+        link
     }
 }

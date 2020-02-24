@@ -110,7 +110,7 @@
             "styles": [
               "src/styles.scss"
             ],
-            "scripts": [              
+            "scripts": [
               "node_modules/flipclock/dist/flipclock.js"
             ]
           }
@@ -141,6 +141,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "geekway"
+    }
+  },
+  "defaultProject": "geekway",
+  "cli": {
+    "analytics": false
+  }
 }

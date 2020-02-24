@@ -60,7 +60,7 @@
             <mat-card-title>Sponsors</mat-card-title>
             <mat-card-content>
                 <div *ngFor="let s of sponsors | async">
-                    <img src="https://cms.geekway.com/{{ s.Logo.url }}" alt="{{ s.Name }}">
+                    <a href="{{s.link}}" target="_blank"><img src="https://cms.geekway.com/{{ s.Logo.url }}" alt="{{ s.Name }}"></a>
                 </div>
             </mat-card-content>
         </mat-card>
