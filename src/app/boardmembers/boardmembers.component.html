@@ -1,6 +1,6 @@
 <div class="flexbox">
     <div *ngFor="let b of boardMembers | async" class="boardmember">    
-        <img *ngIf="b.Photo" src="https://cms.geekway.com/{{ b.Photo?.url }}">
+        <img *ngIf="b.Photo" src="https://cms.geekway.com{{ b.Photo?.url }}">
         <b>{{ b.Name }}</b>
         <br/>
         {{ b.Job }}
