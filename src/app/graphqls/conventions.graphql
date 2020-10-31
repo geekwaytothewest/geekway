@@ -8,48 +8,105 @@ query conventions {
     updatedAt
     startDate
     endDate
+    Cancelled
     regDates {
+      id
+      _id
+      createdAt
+      updatedAt
       name
       date
     }
     Icon
     Theme
     Logo {
+      id
+      _id
+      createdAt
+      updatedAt
+      mime
+      size
+      hash
+      provider
       name
       url
     }
     playAndWins {
+      id
+      _id
+      createdAt
+      updatedAt
       Name
       Boxart {
+        id
+        _id
+        createdAt
+        updatedAt
         name
         url
       }
       BGGID
     }
     doorPrizes {
+      id
+      _id
+      createdAt
+      updatedAt
       Name
       Boxart {
+        id
+        _id
+        createdAt
+        updatedAt
         name
         url
+        hash
+        size
+        mime
+        provider
       }
       BGGID      
     }
     Type
     conventionType {
+      id
+      _id
+      createdAt
+      updatedAt
       Name
       Description
       Logo  {                
         name
         url
+        id
+        _id
+        createdAt
+        updatedAt
+        hash
+        size
+        mime
+        provider
       }
       Icon
       LogoSquare {
         name
         url
+        id
+        _id
+        createdAt
+        updatedAt
+        hash
+        size
+        mime
+        provider
       }
       Content
     }
     venues {
+      id
+      _id
+      createdAt
+      updatedAt
       Type
       Address
       phoneNumber
@@ -64,6 +121,10 @@ query conventions {
       Name
     }
     PrimaryVenue {
+      id
+      _id
+      createdAt
+      updatedAt
       Type
       Address
       phoneNumber
@@ -83,6 +144,14 @@ query conventions {
     LogoSquare {
       name
       url
+      id
+      _id
+      createdAt
+      updatedAt
+      hash
+      size
+      mime
+      provider
     }    
   }
 }
