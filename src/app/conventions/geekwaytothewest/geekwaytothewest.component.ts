@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Observable, Subscription } from 'rxjs';
 import { Convention, NextConventionWhereGQL } from 'src/generated/types.graphql-gen';
 import { map } from 'rxjs/operators';
@@ -8,8 +8,7 @@ import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 @Component({
   selector: 'app-geekwaytothewest',
   templateUrl: './geekwaytothewest.component.html',
-  styleUrls: ['./geekwaytothewest.component.scss'],
-  encapsulation: ViewEncapsulation.ShadowDom
+  styleUrls: ['./geekwaytothewest.component.scss']
 })
 export class GeekwaytothewestComponent implements OnInit {
 
@@ -36,7 +35,7 @@ export class GeekwaytothewestComponent implements OnInit {
       );
 
     this.geekwayToTheWestSubscription = this.geekwayToTheWest.subscribe(result => {      
-      this.content = this.sanitizer.bypassSecurityTrustHtml(result.conventionType.Content.replace('<oembed url=', ' <div class="iframely-embed"><div class="iframely-responsive"><a data-iframely-url href=').replace('src="/uploads/', 'src="https://cms.geekway.com/uploads/') + '</div></div>');
+      this.content = this.sanitizer.bypassSecurityTrustHtml(result.conventionType.Content.replace('<oembed url=', ' <div class="iframely-embed"><div class="iframely-responsive"><a data-iframely-url href=') + '</div></div>');
     });
   }
 

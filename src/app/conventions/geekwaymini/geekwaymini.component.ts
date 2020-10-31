@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { NextConventionWhereGQL, Convention } from 'src/generated/types.graphql-gen';
 import { Observable, Subscription } from 'rxjs';
@@ -8,8 +8,7 @@ import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 @Component({
   selector: 'app-geekwaymini',
   templateUrl: './geekwaymini.component.html',
-  styleUrls: ['./geekwaymini.component.scss'],
-  encapsulation: ViewEncapsulation.ShadowDom
+  styleUrls: ['./geekwaymini.component.scss']
 })
 export class GeekwayminiComponent implements OnInit {
 
@@ -36,7 +35,7 @@ export class GeekwayminiComponent implements OnInit {
       );
 
     this.geekwayMiniSubscription = this.geekwayMini.subscribe(result => {
-      this.content = this.sanitizer.bypassSecurityTrustHtml(result.conventionType.Content.replace('<oembed url=', ' <div class="iframely-embed"><div class="iframely-responsive"><a data-iframely-url href=').replace('src="/uploads/', 'src="https://cms.geekway.com/uploads/') + '</div></div>');
+      this.content = this.sanitizer.bypassSecurityTrustHtml(result.conventionType.Content.replace('<oembed url=', ' <div class="iframely-embed"><div class="iframely-responsive"><a data-iframely-url href=') + '</div></div>');
     });
   }
 
