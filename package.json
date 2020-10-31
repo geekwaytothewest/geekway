@@ -56,7 +56,7 @@
     "moment-timezone": "^0.5.27",
     "ngx-moment": "^3.5.0",
     "resize-observer-polyfill": "^1.5.1",
-    "rxjs": "~6.5.4",
+    "rxjs": "~6.6.3",
     "snazzy-info-window": "^1.1.1",
     "stream": "0.0.2",
     "timers": "^0.1.1",
