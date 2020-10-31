@@ -75,7 +75,7 @@
     "@graphql-codegen/cli": "^1.19.0",
     "@graphql-codegen/fragment-matcher": "2.0.0",
     "@graphql-codegen/typescript": "^1.17.11",
-    "@graphql-codegen/typescript-apollo-angular": "^1.12.2",
+    "@graphql-codegen/typescript-apollo-angular": "^2.0.1",
     "@graphql-codegen/typescript-operations": "^1.12.2",
     "@types/jasmine": "~3.3.8",
     "@types/jasminewd2": "~2.0.3",
