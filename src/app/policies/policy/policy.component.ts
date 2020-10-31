@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { Observable, Subscription } from 'rxjs';
 import { Policy, SinglePolicyGQL } from 'src/generated/types.graphql-gen';
 import { ActivatedRoute, ParamMap } from '@angular/router';
@@ -10,7 +10,8 @@ import { HeaderPhotoService } from 'src/app/shared/header-photo/header-photo.ser
 @Component({
   selector: 'app-policy',
   templateUrl: './policy.component.html',
-  styleUrls: ['./policy.component.scss']
+  styleUrls: ['./policy.component.scss'],
+  encapsulation: ViewEncapsulation.ShadowDom
 })
 export class PolicyComponent implements OnInit {
 

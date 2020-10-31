@@ -6,12 +6,24 @@ query pages {
         updatedAt
         Name
         slug
-        HeaderImage {            
+        HeaderImage { 
+            id
+            _id
+            createdAt
+            updatedAt           
             name
             url
+            hash
+            size
+            mime
+            provider
         }
         Content
         Author {
+            id
+            _id
+            createdAt
+            updatedAt
             Name
             Job
         }

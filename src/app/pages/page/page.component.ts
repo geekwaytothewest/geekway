@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { Observable, Subscription } from 'rxjs';
 import { Page, SinglePageGQL } from 'src/generated/types.graphql-gen';
@@ -10,7 +10,8 @@ import { HeaderPhotoService } from 'src/app/shared/header-photo/header-photo.ser
 @Component({
   selector: 'app-page',
   templateUrl: './page.component.html',
-  styleUrls: ['./page.component.scss']
+  styleUrls: ['./page.component.scss'],
+  encapsulation: ViewEncapsulation.ShadowDom
 })
 export class PageComponent implements OnInit {
 

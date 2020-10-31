@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { Observable, Subscription } from 'rxjs';
 import { Convention, NextConventionWhereGQL } from 'src/generated/types.graphql-gen';
 import { map } from 'rxjs/operators';
@@ -8,7 +8,8 @@ import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 @Component({
   selector: 'app-geekwaytothewest',
   templateUrl: './geekwaytothewest.component.html',
-  styleUrls: ['./geekwaytothewest.component.scss']
+  styleUrls: ['./geekwaytothewest.component.scss'],
+  encapsulation: ViewEncapsulation.ShadowDom
 })
 export class GeekwaytothewestComponent implements OnInit {
 

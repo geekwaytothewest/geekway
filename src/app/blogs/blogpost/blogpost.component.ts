@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { Observable, Subscription } from 'rxjs';
 import { Blogpost, SingleBlogPostGQL } from 'src/generated/types.graphql-gen';
 import { SafeHtml, DomSanitizer } from '@angular/platform-browser';
@@ -10,7 +10,8 @@ import { HeaderPhotoService } from 'src/app/shared/header-photo/header-photo.ser
 @Component({
   selector: 'app-blogpost',
   templateUrl: './blogpost.component.html',
-  styleUrls: ['./blogpost.component.scss']
+  styleUrls: ['./blogpost.component.scss'],
+  encapsulation: ViewEncapsulation.ShadowDom
 })
 export class BlogpostComponent implements OnInit {
 

@@ -12,11 +12,23 @@ query singlePage($whereClause: JSON!) {
         HeaderImage {            
             name
             url
+            id
+            _id
+            createdAt
+            updatedAt
+            hash
+            mime
+            size
+            provider
         }
         Content
         Author {
             Name
             Job
+            id
+            _id
+            createdAt
+            updatedAt
         }
     }
 }

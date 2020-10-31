@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { Observable, Subscription } from 'rxjs';
 import { Convention, NextConventionWhereGQL } from 'src/generated/types.graphql-gen';
 import { Router } from '@angular/router';
@@ -8,7 +8,8 @@ import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 @Component({
   selector: 'app-geekwaymicro',
   templateUrl: './geekwaymicro.component.html',
-  styleUrls: ['./geekwaymicro.component.scss']
+  styleUrls: ['./geekwaymicro.component.scss'],
+  encapsulation: ViewEncapsulation.ShadowDom
 })
 export class GeekwaymicroComponent implements OnInit {
 

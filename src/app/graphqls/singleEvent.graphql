@@ -12,10 +12,26 @@ query singleEvent($whereClause: JSON!) {
         HeaderPhoto {
             name
             url
+            id
+            _id
+            createdAt
+            updatedAt
+            mime
+            hash
+            size
+            provider
         }
         Photos {
             name
             url
+            id
+            _id
+            createdAt
+            updatedAt
+            mime
+            hash
+            size
+            provider
         }
         Content
     }

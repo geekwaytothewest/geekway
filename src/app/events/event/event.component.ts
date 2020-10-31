@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { Observable, Subscription } from 'rxjs';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { SingleEventGQL, Premiereevent } from 'src/generated/types.graphql-gen';
@@ -10,7 +10,8 @@ import { HeaderPhotoService } from 'src/app/shared/header-photo/header-photo.ser
 @Component({
   selector: 'app-event',
   templateUrl: './event.component.html',
-  styleUrls: ['./event.component.scss']
+  styleUrls: ['./event.component.scss'],
+  encapsulation: ViewEncapsulation.ShadowDom
 })
 export class EventComponent implements OnInit {
 
