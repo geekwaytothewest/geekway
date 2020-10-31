@@ -1,7 +1,7 @@
-query boardmembers {
+query boardmembersInactive {
   boardmembers (
     sort: "Rank:desc,Name:asc"
-    where: { Active: true }
+    where: { Active: false }
   ) {
     id
     _id

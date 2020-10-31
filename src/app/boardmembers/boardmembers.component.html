@@ -1,5 +1,18 @@
+<h2>Active Board Members:</h2>
+
 <div class="flexbox">
     <div *ngFor="let b of boardMembers | async" class="boardmember">    
+        <img *ngIf="b.Photo" src="https://cms.geekway.com{{ b.Photo?.url }}">
+        <b>{{ b.Name }}</b>
+        <br/>
+        {{ b.Job }}
+    </div>
+</div>
+
+<h2>Retired Board Members:</h2>
+
+<div class="flexbox">
+    <div *ngFor="let b of boardMembersInactive | async" class="boardmember">
         <img *ngIf="b.Photo" src="https://cms.geekway.com{{ b.Photo?.url }}">
         <b>{{ b.Name }}</b>
         <br/>
