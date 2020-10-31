@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import iframely from '@iframely/embed.js';
 import { Observable, Subscription } from 'rxjs';
 import { Newspost, SingleNewsPostGQL } from 'src/generated/types.graphql-gen';
@@ -10,7 +10,8 @@ import { HeaderPhotoService } from 'src/app/shared/header-photo/header-photo.ser
 @Component({
   selector: 'app-newspost',
   templateUrl: './newspost.component.html',
-  styleUrls: ['./newspost.component.scss']
+  styleUrls: ['./newspost.component.scss'],
+  encapsulation: ViewEncapsulation.ShadowDom
 })
 export class NewspostComponent implements OnInit {
 
@@ -42,8 +43,8 @@ export class NewspostComponent implements OnInit {
       })
     );
 
-    this.newsPostSubscription = this.newsPost.subscribe(result => {
-      this.newsContent = this.sanitizer.bypassSecurityTrustHtml(result.content.replace('<oembed url=', ' <div class="iframely-embed"><div class="iframely-responsive"><a data-iframely-url href=') + '</div></div>');      
+    this.newsPostSubscription = this.newsPost.subscribe(result => {      
+      this.newsContent = this.sanitizer.bypassSecurityTrustHtml(result.content.replace('<oembed url=', ' <div class="iframely-embed"><div class="iframely-responsive"><a data-iframely-url href=').replace('/uploads/', 'https://cms.geekway.com/uploads/') + '</div></div>');
       this.headerPhotos.announceHeaderLabelChanged(result.Title);
       if (result.HeaderPhoto?.url) {
         this.headerPhotos.announceHeaderPhotoChanged("https://cms.geekway.com" + result.HeaderPhoto.url);
