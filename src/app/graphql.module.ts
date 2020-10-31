@@ -1,7 +1,10 @@
-import {NgModule} from '@angular/core';
 import {ApolloModule, APOLLO_OPTIONS} from 'apollo-angular';
-import {HttpLinkModule, HttpLink} from 'apollo-angular-link-http';
-import {InMemoryCache} from 'apollo-cache-inmemory';
+import {HttpLinkModule, HttpLink} from 'apollo-angular/http';
+import {InMemoryCache} from '@apollo/client/core';
+import {NgModule} from '@angular/core';
+
+
+
 import { HttpClientModule } from '@angular/common/http';
 
 const uri = 'https://cms.geekway.com/graphql';
