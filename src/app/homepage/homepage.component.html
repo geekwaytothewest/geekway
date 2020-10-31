@@ -4,6 +4,15 @@
     </mat-card-content>
 </mat-card>
 
+<br *ngIf="(featuredNews | async)?.length > 0"/>
+
+<mat-card *ngIf="(featuredNews | async)?.length > 0" class="featured">
+    <mat-card-title class="center">Featured News</mat-card-title>
+    <mat-card-content class="center">
+        <div *ngFor="let f of featuredNews | async"><a href="/news/post/{{ f.slug }}">{{ f.Title }} - {{ f.postDate | amTz: 'America/Chicago' | amDateFormat: 'MMMM Do YYYY' }}</a></div>
+    </mat-card-content>
+</mat-card>
+
 <br/>
 
 <div class="homepageContainer">

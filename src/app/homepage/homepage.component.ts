@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Subscription, Observable } from 'rxjs';
 import { map } from 'rxjs/operators'
-import { NextConventionWhereGQL, Convention, SponsorsGQL, Sponsors } from 'src/generated/types.graphql-gen';
+import { NextConventionWhereGQL, Convention, SponsorsGQL, Sponsors, Newspost, FeaturedNewsGQL } from 'src/generated/types.graphql-gen';
 import { Router } from '@angular/router';
 
 @Component({
@@ -22,12 +22,16 @@ export class HomepageComponent implements OnInit {
 
   sponsors: Observable<Sponsors[]>;
   sponsorsSubscription: Subscription;
+
+  featuredNews: Observable<Newspost[]>;
+  featuredNewsSubscription: Subscription;
   
   constructor(
     private nextGWConventionWhere: NextConventionWhereGQL, 
     private nextGWMiniConventionWhere: NextConventionWhereGQL, 
-    private nextGWMicroConventionWhere: NextConventionWhereGQL,
+    private nextGWMicroConventionWhere: NextConventionWhereGQL,    
     private sponsorsGQL: SponsorsGQL,
+    private featuredNewsGQL: FeaturedNewsGQL,
     private router: Router) { 
   }
 
@@ -78,6 +82,14 @@ export class HomepageComponent implements OnInit {
       );
       
     this.sponsorsSubscription = this.sponsors.subscribe();
+
+    this.featuredNews = this.featuredNewsGQL.watch()
+      .valueChanges
+      .pipe(
+        map(result => result.data.newsposts)
+      );
+
+    this.featuredNewsSubscription = this.featuredNews.subscribe();
   };
 
   ngOnDestroy() {
@@ -91,6 +103,10 @@ export class HomepageComponent implements OnInit {
 
     if (this.geekwayMicroSubscription) {
       this.geekwayMicroSubscription.unsubscribe();
+    }
+
+    if (this.featuredNewsSubscription) {
+      this.featuredNewsSubscription.unsubscribe();
     }
   }
 

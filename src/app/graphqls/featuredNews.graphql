@@ -1,0 +1,24 @@
+query featuredNews {
+  newsposts (
+    sort: "postDate:desc"
+    where: { featured: true }
+  ) {
+    id
+    _id
+    createdAt
+    updatedAt
+    Title
+    slug
+    postDate
+    featured
+    content
+    author {
+      Name
+      Job
+    }
+    HeaderPhoto {
+      url
+      name
+    }
+  }
+}
