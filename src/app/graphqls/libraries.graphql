@@ -6,8 +6,20 @@ query libraries {
         updatedAt
         Name
         games {
+            id
+            _id
+            createdAt
+            updatedAt
             Name
             Boxart {
+                id
+                _id
+                createdAt
+                updatedAt
+                mime
+                hash
+                size
+                provider
                 name
                 url
             }
