@@ -12,10 +12,22 @@ query blogs {
     featured
     content
     author {
+      id
+      _id
+      createdAt
+      updatedAt
       Name
       Job
     }
     HeaderPhoto {
+      id
+      _id
+      createdAt
+      updatedAt
+      mime
+      size
+      provider
+      hash
       url
       name
     }

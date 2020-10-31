@@ -15,8 +15,20 @@ query singleBlogPost($whereClause: JSON!) {
         author {
             Name
             Job
+            id
+            _id
+            createdAt
+            updatedAt
         }
         HeaderPhoto {
+            id
+            _id
+            createdAt
+            updatedAt
+            hash
+            mime
+            size
+            provider
             url
             name
         }
