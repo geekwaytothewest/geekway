@@ -15,7 +15,7 @@ export class ConventionsComponent implements OnInit {
   conventions: Observable<Convention[]>;
   conventionsSubscription: Subscription;
 
-  columnsToDisplay = ['Type', 'Annual', 'Theme', 'Dates', 'Location', 'Size']
+  columnsToDisplay = ['Type', 'Annual', 'Theme', 'Dates', 'Location', 'Size', 'Status']
 
   constructor(
     private conventionsGQL: ConventionsGQL,
