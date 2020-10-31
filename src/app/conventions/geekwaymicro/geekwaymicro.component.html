@@ -7,7 +7,7 @@
     
 <br/>
 
-<div *ngIf="geekwayMicro | async as g">
+<div *ngIf="geekwayMicro | async as g; else cancelledUntilFurtherNotice">
     <mat-card>
         <mat-card-title>Geekway Micro - {{ g.startDate | amTz: 'America/Chicago' | amDateFormat: 'MMMM Do YYYY' }}</mat-card-title>
         <mat-card-subtitle>{{ g.Theme }}</mat-card-subtitle>
@@ -29,7 +29,7 @@
         </mat-card-content>
     </mat-card>
 
-    <mat-card>
+    <mat-card *ngIf="g.regDates.length > 0">
         <mat-card-title>Registration</mat-card-title>
         <mat-card-content>            
             <div *ngFor="let r of g.regDates; let i = index" class="registrationBlock">
@@ -95,3 +95,5 @@
         </mat-card-content>
     </mat-card>
 </div>
+
+<ng-template #cancelledUntilFurtherNotice><div class="center">Cancelled until futher notice</div></ng-template>
