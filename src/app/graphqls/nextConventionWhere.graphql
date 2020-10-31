@@ -11,47 +11,99 @@ query nextConventionWhere($whereClause: JSON!) {
         startDate
         endDate
         regDates {
+            id
+            _id
+            createdAt
+            updatedAt
             name
             date
         }
         Icon
         Theme
         Logo {
+            id
+            _id
+            createdAt
+            updatedAt
+            hash
+            mime
+            size
+            provider
             name
             url
         }
         playAndWins {
-        Name
-        Boxart {
-            name
-            url
-        }
-        BGGID
+            id
+            _id
+            createdAt
+            updatedAt
+            Name
+            Boxart {
+                id
+                _id
+                createdAt
+                updatedAt
+                name
+                url
+            }
+            BGGID
         }
         doorPrizes {
-        Name
-        Boxart {
-            name
-            url
-        }
-        BGGID      
+            id
+            _id
+            createdAt
+            updatedAt
+            Name
+            Boxart {
+                id
+                _id
+                createdAt
+                updatedAt
+                name
+                url
+            }
+            BGGID      
         }
         Type
         conventionType {
+            id
+            _id
+            createdAt
+            updatedAt
             Name
             Description
-            Logo {                
+            Logo {     
+                id
+                _id
+                createdAt
+                updatedAt  
+                hash
+                mime
+                size
+                provider         
                 name
                 url
             }
             Icon 
             LogoSquare {
+                id
+                _id
+                createdAt
+                updatedAt
+                hash
+                mime
+                size
+                provider
                 name
                 url
             }
             Content
         }
         venues {
+            id
+            _id
+            createdAt
+            updatedAt
             Type
             Address
             phoneNumber
@@ -66,6 +118,10 @@ query nextConventionWhere($whereClause: JSON!) {
             Name
         }
         PrimaryVenue {
+            id
+            _id
+            createdAt
+            updatedAt
             Type
             Address
             phoneNumber
@@ -83,6 +139,14 @@ query nextConventionWhere($whereClause: JSON!) {
         Annual
         Size
         LogoSquare {
+            id
+            _id
+            createdAt
+            updatedAt
+            hash
+            mime
+            size
+            provider
             name
             url
         }  

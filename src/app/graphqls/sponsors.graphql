@@ -6,8 +6,16 @@ query sponsors {
         updatedAt
         Name
         Logo {
+            id
+            _id
+            createdAt
+            updatedAt
             name
             url
+            hash
+            mime
+            size
+            provider
         }
         link
     }

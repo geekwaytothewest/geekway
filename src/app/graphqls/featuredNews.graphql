@@ -13,12 +13,24 @@ query featuredNews {
     featured
     content
     author {
+      id
+      _id
+      createdAt
+      updatedAt
       Name
       Job
     }
     HeaderPhoto {
+      id
+      _id
+      createdAt
+      updatedAt
       url
       name
+      hash
+      mime
+      size
+      provider
     }
   }
 }
