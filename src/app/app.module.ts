@@ -16,6 +16,7 @@ import { NotfoundComponent } from './notfound/notfound.component';
 import { ClarityModule } from "@clr/angular";
 import { MatCardModule } from '@angular/material/card';
 import { MatRippleModule } from '@angular/material/core';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -37,6 +38,7 @@ import { MatRippleModule } from '@angular/material/core';
     FontAwesomeModule,
     ClarityModule,
     MatRippleModule,
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
