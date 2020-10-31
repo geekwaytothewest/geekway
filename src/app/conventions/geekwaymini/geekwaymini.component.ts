@@ -35,7 +35,7 @@ export class GeekwayminiComponent implements OnInit {
       );
 
     this.geekwayMiniSubscription = this.geekwayMini.subscribe(result => {
-      this.content = this.sanitizer.bypassSecurityTrustHtml(result.conventionType.Content.replace('<oembed url=', ' <div class="iframely-embed"><div class="iframely-responsive"><a data-iframely-url href=') + '</div></div>');
+      this.content = this.sanitizer.bypassSecurityTrustHtml(result.conventionType.Content.replace('<oembed url=', ' <div class="iframely-embed"><div class="iframely-responsive"><a data-iframely-url href=').replace('src="/uploads/', 'src="https://cms.geekway.com/uploads/') + '</div></div>');
     });
   }
 

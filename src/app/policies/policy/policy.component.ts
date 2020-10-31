@@ -43,7 +43,7 @@ export class PolicyComponent implements OnInit {
     );
 
     this.policySubscription = this.policy.subscribe(result => {
-      this.policyContent = this.sanitizer.bypassSecurityTrustHtml(result.Content.replace('<oembed url=', ' <div class="iframely-embed"><div class="iframely-responsive"><a data-iframely-url href=') + '</div></div>');
+      this.policyContent = this.sanitizer.bypassSecurityTrustHtml(result.Content.replace('<oembed url=', ' <div class="iframely-embed"><div class="iframely-responsive"><a data-iframely-url href=').replace('src="/uploads/', 'src="https://cms.geekway.com/uploads/') + '</div></div>');
       this.headerPhoto.announceHeaderPhotoChanged("https://cms.geekway.com/" + result.HeaderPhoto.url);
       this.headerPhoto.announceHeaderLabelChanged(result.Name);
     })
