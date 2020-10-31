@@ -44,7 +44,7 @@ export class NewspostComponent implements OnInit {
     );
 
     this.newsPostSubscription = this.newsPost.subscribe(result => {      
-      this.newsContent = this.sanitizer.bypassSecurityTrustHtml(result.content.replace('<oembed url=', ' <div class="iframely-embed"><div class="iframely-responsive"><a data-iframely-url href=').replace('/uploads/', 'https://cms.geekway.com/uploads/') + '</div></div>');
+      this.newsContent = this.sanitizer.bypassSecurityTrustHtml(result.content.replace('<oembed url=', ' <div class="iframely-embed"><div class="iframely-responsive"><a data-iframely-url href=').replace('src="/uploads/', 'src="https://cms.geekway.com/uploads/') + '</div></div>');
       this.headerPhotos.announceHeaderLabelChanged(result.Title);
       if (result.HeaderPhoto?.url) {
         this.headerPhotos.announceHeaderPhotoChanged("https://cms.geekway.com" + result.HeaderPhoto.url);
