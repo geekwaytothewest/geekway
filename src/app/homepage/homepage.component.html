@@ -44,7 +44,7 @@
                     <br/><br/>
                     {{ gwMini.startDate | amTz: 'America/Chicago'  | amDateFormat: 'MMMM Do YYYY' }} through {{ gwMini.endDate | amTz: 'America/Chicago'  | amDateFormat: 'MMMM Do YYYY' }}
                     <br/><br/>
-                    <app-flipclock id="gwMiniCountdown" [date]="gwMini.startDate"></app-flipclock>
+                    <app-flipclock class="biggerClock" id="gwMiniCountdown" [date]="gwMini.startDate"></app-flipclock>
                 </mat-card-content>
             </mat-card>
 
@@ -58,7 +58,7 @@
                     <br/><br/>
                     {{ gwMicro.startDate | amTz: 'America/Chicago'  | amDateFormat: 'MMMM Do YYYY, h a' }} through {{ gwMicro.endDate | amTz: 'America/Chicago'  | amDateFormat: 'h a' }}
                     <br/><br/>
-                    <div class="center"><app-flipclock id="gwMicroCountdown" [date]="gwMicro.startDate"></app-flipclock></div>
+                    <app-flipclock class="biggerClock" id="gwMicroCountdown" [date]="gwMicro.startDate"></app-flipclock>
                 </mat-card-content>
             </mat-card>
         </div>
