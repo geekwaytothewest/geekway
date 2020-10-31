@@ -57,14 +57,14 @@ mat-card {
         width: 30%;
         text-align: center;
         margin: 10px;
-        min-width: 400px;
+        width: 100%;
 
         mat-card {
             height: 100%;
         }
 
         .sponsorLogo {
-            max-width: 100%;
+            width: 100%;
         }
     }
 }
