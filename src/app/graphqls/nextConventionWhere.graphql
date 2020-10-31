@@ -11,6 +11,7 @@ query nextConventionWhere($whereClause: JSON!) {
         startDate
         endDate
         Cancelled
+        Postponed
         regDates {
             id
             _id

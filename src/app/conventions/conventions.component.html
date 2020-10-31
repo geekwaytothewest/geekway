@@ -26,7 +26,7 @@
         </ng-container>
         <ng-container matColumnDef="Status">
             <mat-header-cell *matHeaderCellDef> Status </mat-header-cell>
-            <mat-cell *matCellDef="let c"><span class="mobile-label">Status</span> <div *ngIf="c.Cancelled" class="cancelled">Cancelled</div></mat-cell>
+            <mat-cell *matCellDef="let c"><span class="mobile-label">Status</span> <div *ngIf="c.Postponed" class="postponed">Postponed</div><div *ngIf="c.Cancelled" class="cancelled">Cancelled</div></mat-cell>
         </ng-container>
         <mat-header-row *matHeaderRowDef="columnsToDisplay"></mat-header-row>
         <mat-row *matRowDef="let myRowData; columns: columnsToDisplay" (click)="redirectConvention(myRowData.id)"></mat-row>

@@ -9,6 +9,7 @@ query conventions {
     startDate
     endDate
     Cancelled
+    Postponed
     regDates {
       id
       _id
