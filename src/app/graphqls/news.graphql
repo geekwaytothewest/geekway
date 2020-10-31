@@ -14,10 +14,22 @@ query news {
     author {
       Name
       Job
+      id
+      _id
+      createdAt
+      updatedAt
     }
     HeaderPhoto {
       url
       name
+      id
+      _id
+      createdAt
+      updatedAt
+      mime
+      hash
+      size
+      provider
     }
   }
 }

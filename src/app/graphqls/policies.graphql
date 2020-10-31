@@ -9,6 +9,14 @@ query policies {
         Slug
         Icon
         HeaderPhoto {
+            id
+            _id
+            createdAt
+            updatedAt
+            mime
+            hash
+            size
+            provider
             name
             url
         }

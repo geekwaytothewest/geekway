@@ -11,6 +11,14 @@ query singlePolicy($whereClause: JSON!) {
         Content
         Slug
         HeaderPhoto {
+            id
+            _id
+            createdAt
+            updatedAt
+            mime
+            hash
+            size
+            provider
             name
             url
         }

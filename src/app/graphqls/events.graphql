@@ -8,12 +8,28 @@ query events {
         Slug
         Icon
         HeaderPhoto {
+            id
+            _id
+            createdAt
+            updatedAt
+            mime
+            provider
+            size
+            hash
             name
             url
         }
         Photos {
             name
             url
+            id
+            _id
+            createdAt
+            updatedAt
+            mime
+            hash
+            size
+            provider
         }
         Content
     }

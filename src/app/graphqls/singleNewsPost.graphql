@@ -13,10 +13,22 @@ query singleNewsPost($whereClause: JSON!) {
         featured
         content
         author {
+            id
+            _id
+            createdAt
+            updatedAt
             Name
             Job
         }
         HeaderPhoto {
+            id
+            _id
+            createdAt
+            updatedAt
+            mime
+            hash
+            size
+            provider
             url
             name
         }

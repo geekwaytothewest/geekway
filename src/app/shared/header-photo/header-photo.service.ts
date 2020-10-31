@@ -16,6 +16,6 @@ export class HeaderPhotoService {
   }
 
   announceHeaderLabelChanged(headerLabel: string | null) {    
-    this.headerLabelSource.next(headerLabel);    
+    this.headerLabelSource.next(headerLabel);
   }
 }
