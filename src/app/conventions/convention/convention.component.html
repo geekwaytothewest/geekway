@@ -37,24 +37,22 @@
     <mat-card *ngIf="g.doorPrizes.length > 0">
         <mat-card-title>Door Prizes</mat-card-title>
         <mat-card-content>
-            <igx-carousel #carousel>
-                <igx-slide *ngFor="let p of g.doorPrizes">
-                    <p>{{ p.Name }}</p>
-                    <img [src]="'https://cms.geekway.com/' + p.Boxart.url" (click)="redirect('https://boardgamegeek.com/boardgame/' + p.BGGID)">
-                </igx-slide>
-            </igx-carousel>
+            <carousel>
+                <div class="carousel-cell" *ngFor="let p of g.doorPrizes">
+                    <img [src]="'https://cms.geekway.com' + p.Boxart.url" (click)="redirect('https://boardgamegeek.com/boardgame/' + p.BGGID)">
+                </div>
+            </carousel>
         </mat-card-content>
     </mat-card>
 
     <mat-card *ngIf="g.playAndWins.length > 0" id="playAndWinCard">
         <mat-card-title>Play and Win Games</mat-card-title>
         <mat-card-content>
-            <igx-carousel #carousel *ngIf="g.playAndWins.length <= 10">
-                <igx-slide *ngFor="let p of g.playAndWins">
-                    <p>{{ p.Name }}</p>
-                    <img [src]="'https://cms.geekway.com/' + p.Boxart.url" (click)="redirect('https://boardgamegeek.com/boardgame/' + p.BGGID)">
-                </igx-slide>
-            </igx-carousel>
+            <carousel *ngIf="g.playAndWins.length <= 10">
+                <div class="carousel-cell" *ngFor="let p of g.playAndWins">
+                    <img [src]="'https://cms.geekway.com' + p.Boxart.url" (click)="redirect('https://boardgamegeek.com/boardgame/' + p.BGGID)">
+                </div>
+            </carousel>
 
             <table *ngIf="g.playAndWins.length > 10" mat-table matSort [dataSource]="playAndWinDataSource">                
                 <ng-container matColumnDef="Image">
@@ -74,7 +72,7 @@
                 <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
                 <tr mat-row *matRowDef="let myRowData; columns: columnsToDisplay" (click)="bggRedirect(myRowData.BGGID)"></tr>
             </table>
-            <mat-paginator [pageSizeOptions]="[10, 50, 100, 200]" showFirstLastButtons (page)="playAndWinPaginateChange($event)"></mat-paginator>
+            <mat-paginator *ngIf="g.playAndWins.length > 10" [pageSizeOptions]="[10, 50, 100, 200]" showFirstLastButtons (page)="playAndWinPaginateChange($event)"></mat-paginator>
         </mat-card-content>
     </mat-card>
 

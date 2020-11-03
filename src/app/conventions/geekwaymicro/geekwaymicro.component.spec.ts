@@ -5,7 +5,7 @@ import { MomentModule } from 'ngx-moment';
 import { MomentTimezoneModule } from 'src/app/shared/moment-timezone/moment-timezone.module';
 import { MatCardModule } from '@angular/material/card';
 import { FlipclockModule } from 'src/app/shared/flipclock/flipclock.module';
-import { IgxCarouselModule, IgxSliderModule, IgxProgressBarModule } from 'igniteui-angular';
+import { IvyCarouselModule } from 'angular-responsive-carousel';
 import { AgmCoreModule } from '@agm/core';
 import { AgmSnazzyInfoWindowModule } from '@agm/snazzy-info-window';
 import { ApolloTestingController, ApolloTestingModule } from 'apollo-angular/testing';
@@ -23,10 +23,8 @@ describe('GeekwaymicroComponent', () => {
         MomentModule, 
         MomentTimezoneModule, 
         MatCardModule, 
-        FlipclockModule, 
-        IgxCarouselModule,
-        IgxSliderModule,
-        IgxProgressBarModule,
+        FlipclockModule,
+        IvyCarouselModule,
         AgmCoreModule,
         AgmSnazzyInfoWindowModule,
         ApolloTestingModule,

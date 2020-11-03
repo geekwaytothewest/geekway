@@ -10,7 +10,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatTableModule } from '@angular/material/table';
 import { FlipclockModule } from 'src/app/shared/flipclock/flipclock.module';
-import { IgxCarouselModule, IgxSliderModule, IgxProgressBarModule } from 'igniteui-angular';
+import { IvyCarouselModule } from 'angular-responsive-carousel';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AgmCoreModule } from '@agm/core';
 import { AgmSnazzyInfoWindowModule } from '@agm/snazzy-info-window';
@@ -28,10 +28,8 @@ describe('ConventionComponent', () => {
         MomentModule, 
         MomentTimezoneModule, 
         MatCardModule, 
-        FlipclockModule, 
-        IgxSliderModule,
-        IgxCarouselModule, 
-        IgxProgressBarModule,
+        FlipclockModule,
+        IvyCarouselModule,
         MatTableModule,
         MatInputModule,
         MatPaginatorModule,

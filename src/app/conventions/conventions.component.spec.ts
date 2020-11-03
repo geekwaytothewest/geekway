@@ -5,7 +5,7 @@ import { MatTableModule } from '@angular/material/table';
 import { MomentModule } from 'ngx-moment';
 import { MomentTimezoneModule } from '../shared/moment-timezone/moment-timezone.module';
 import { ApolloTestingModule, ApolloTestingController } from 'apollo-angular/testing';
-import { IgxCarouselModule, IgxSliderModule, IgxProgressBarModule } from 'igniteui-angular';
+import { IvyCarouselModule } from 'angular-responsive-carousel';
 import { AgmCoreModule } from '@agm/core';
 import { AgmSnazzyInfoWindowModule } from '@agm/snazzy-info-window';
 import { RouterTestingModule } from '@angular/router/testing';
@@ -22,10 +22,8 @@ describe('ConventionsComponent', () => {
         MatTableModule, 
         MomentModule, 
         MomentTimezoneModule, 
-        ApolloTestingModule, 
-        IgxCarouselModule, 
-        IgxSliderModule, 
-        IgxProgressBarModule,
+        ApolloTestingModule,
+        IvyCarouselModule,
         AgmCoreModule,
         AgmSnazzyInfoWindowModule,
         RouterTestingModule

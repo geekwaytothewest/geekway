@@ -16,7 +16,7 @@ import { GeekwaytothewestComponent } from './geekwaytothewest/geekwaytothewest.c
 import { GeekwaymicroComponent } from './geekwaymicro/geekwaymicro.component';
 import { GeekwayminiComponent } from './geekwaymini/geekwaymini.component';
 import { FlipclockModule } from '../shared/flipclock/flipclock.module';
-import { IgxCarouselModule, IgxSliderModule, IgxProgressBarModule } from 'igniteui-angular';
+import { IvyCarouselModule } from 'angular-responsive-carousel';
 import { AgmCoreModule } from '@agm/core';
 import { AgmSnazzyInfoWindowModule } from '@agm/snazzy-info-window';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -45,9 +45,6 @@ const conventionsRoutes: Routes = [
     MatCardModule,
     FlipclockModule,
     MatButtonModule,
-    IgxCarouselModule,
-    IgxProgressBarModule,    
-    IgxSliderModule,
     MatPaginatorModule,
     MatSortModule,
     MatInputModule,
@@ -57,6 +54,7 @@ const conventionsRoutes: Routes = [
       apiKey: 'AIzaSyARBVehVJceiD-KIs9vS9YQm1F4XA1RgaI'
     }),
     AgmSnazzyInfoWindowModule,
+    IvyCarouselModule,
     RouterModule.forChild(conventionsRoutes)
   ]
 })

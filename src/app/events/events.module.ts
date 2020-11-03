@@ -4,7 +4,7 @@ import { EventComponent } from './event/event.component';
 import { EventsComponent } from './events/events.component';
 import { Routes, RouterModule } from '@angular/router';
 import { MatCardModule } from '@angular/material/card';
-import { IgxCarouselModule } from 'igniteui-angular';
+import { IvyCarouselModule } from 'angular-responsive-carousel';
 
 const eventsRoutes: Routes = [  
   { path: '', component: EventsComponent, pathMatch: 'full' },
@@ -16,7 +16,7 @@ const eventsRoutes: Routes = [
   imports: [
     CommonModule,
     MatCardModule,
-    IgxCarouselModule,
+    IvyCarouselModule,
     RouterModule.forChild(eventsRoutes)
   ]
 })

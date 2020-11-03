@@ -44,24 +44,22 @@
     <mat-card *ngIf="g.doorPrizes.length > 0">
         <mat-card-title>Door Prizes</mat-card-title>
         <mat-card-content>
-            <igx-carousel #carousel>
-                <igx-slide *ngFor="let p of g.doorPrizes">
-                    <p>{{ p.Name }}</p>
-                    <img [src]="'https://cms.geekway.com/' + p.Boxart.url" (click)="redirect('https://boardgamegeek.com/boardgame/' + p.BGGID)">
-                </igx-slide>
-            </igx-carousel>
+            <div>
+                <div class="carousel-cell" *ngFor="let p of g.doorPrizes">
+                    <img [src]="'https://cms.geekway.com' + p.Boxart.url" (click)="redirect('https://boardgamegeek.com/boardgame/' + p.BGGID)">
+                </div>
+            </div>
         </mat-card-content>
     </mat-card>
 
     <mat-card *ngIf="g.playAndWins.length > 0">
         <mat-card-title>Play and Win Games</mat-card-title>
         <mat-card-content>
-            <igx-carousel #carousel>
-                <igx-slide *ngFor="let p of g.playAndWins">
-                    <p>{{ p.Name }}</p>
-                    <img [src]="'https://cms.geekway.com/' + p.Boxart.url" (click)="redirect('https://boardgamegeek.com/boardgame/' + p.BGGID)">
-                </igx-slide>
-            </igx-carousel>
+            <carousel>
+                <div class="carousel-cell" *ngFor="let p of g.playAndWins">
+                    <img [src]="'https://cms.geekway.com' + p.Boxart.url" (click)="redirect('https://boardgamegeek.com/boardgame/' + p.BGGID)">
+                </div>
+            </carousel>
         </mat-card-content>
     </mat-card>
 
