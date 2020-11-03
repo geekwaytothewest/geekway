@@ -48,6 +48,7 @@ export class EventComponent implements OnInit {
       this.headerPhoto.announceHeaderLabelChanged(result.Name);
       this.headerPhoto.announceHeaderPhotoChanged("https://cms.geekway.com/" + result.HeaderPhoto.url);
     })
+    
   }
 
   ngOnDestroy() {
