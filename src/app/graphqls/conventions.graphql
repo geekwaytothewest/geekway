@@ -11,10 +11,6 @@ query conventions {
     Cancelled
     Postponed
     regDates {
-      id
-      _id
-      createdAt
-      updatedAt
       name
       date
     }
