@@ -70,7 +70,7 @@
                   <input id="tabAbout" type="checkbox" [checked]="!(this.router.url.startsWith('/page/about') || this.router.url.startsWith('/boardmembers'))">
                   <label for="tabAbout">About</label>
                   <ul class="nav-list">
-                      <li><a [ngClass]="{'nav-link' : true, 'active' : this.router.url.startsWith('/page/about')}" href="page/about" target="_blank"><i class="fas fa-dice"></i> About Us</a></li>
+                      <li><a [ngClass]="{'nav-link' : true, 'active' : this.router.url.startsWith('/page/about')}" href="page/about"><i class="fas fa-dice"></i> About Us</a></li>
                       <li><a [ngClass]="{'nav-link' : true, 'active' : this.router.url.startsWith('/boardmembers')}"  href="boardmembers"><i class="fa fa-users"></i> Board Members</a></li>
                       <li><a class="nav-link" href="https://twitter.com/geekway" target="_blank"><i class="fab fa-twitter"></i> Twitter</a></li>
                       <li><a class="nav-link" href="https://www.facebook.com/GeekwaytotheWest/" target="_blank"><i class="fab fa-facebook"></i> Facebook</a></li>
