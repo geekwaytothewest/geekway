@@ -1,5 +1,3 @@
-<h1>Registration Dates</h1>
-
 <div class="flexbox">
     <mat-card *ngIf="geekwayToTheWest | async as g">
         <mat-card-title>{{ g.conventionType.Name }} {{ g.startDate | amTz: 'America/Chicago' | amDateFormat: 'YYYY'}}</mat-card-title>
