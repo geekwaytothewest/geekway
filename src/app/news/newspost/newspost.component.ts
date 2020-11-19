@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { AfterViewChecked, Component, OnInit, ViewEncapsulation } from '@angular/core';
 import iframely from '@iframely/embed.js';
 import { Observable, Subscription } from 'rxjs';
 import { Newspost, SingleNewsPostGQL } from 'src/generated/types.graphql-gen';
@@ -13,7 +13,7 @@ import { HeaderPhotoService } from 'src/app/shared/header-photo/header-photo.ser
   styleUrls: ['./newspost.component.scss'],
   encapsulation: ViewEncapsulation.ShadowDom
 })
-export class NewspostComponent implements OnInit {
+export class NewspostComponent implements OnInit, AfterViewChecked {
 
   newsPost: Observable<Newspost>;
   newsPostSubscription: Subscription;

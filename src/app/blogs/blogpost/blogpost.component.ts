@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { AfterViewChecked, Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { Observable, Subscription } from 'rxjs';
 import { Blogpost, SingleBlogPostGQL } from 'src/generated/types.graphql-gen';
 import { SafeHtml, DomSanitizer } from '@angular/platform-browser';
@@ -13,7 +13,7 @@ import { HeaderPhotoService } from 'src/app/shared/header-photo/header-photo.ser
   styleUrls: ['./blogpost.component.scss'],
   encapsulation: ViewEncapsulation.ShadowDom
 })
-export class BlogpostComponent implements OnInit {
+export class BlogpostComponent implements OnInit, AfterViewChecked {
 
   blogPost: Observable<Blogpost>;
   blogPostSubscription: Subscription;
@@ -46,7 +46,7 @@ export class BlogpostComponent implements OnInit {
     this.blogPostSubscription = this.blogPost.subscribe(result => {
       this.blogContent = this.sanitizer.bypassSecurityTrustHtml(result.content.replace('<oembed url=', ' <div class="iframely-embed"><div class="iframely-responsive"><a data-iframely-url href=').replace('src="/uploads/', 'src="https://cms.geekway.com/uploads/') + '</div></div>');
       this.headerPhotos.announceHeaderLabelChanged(result.Title);
-      this.headerPhotos.announceHeaderPhotoChanged("https://cms.geekway.com/" + result.HeaderPhoto.url);
+      this.headerPhotos.announceHeaderPhotoChanged("https://cms.geekway.com" + result.HeaderPhoto.url);
     })
   }
 

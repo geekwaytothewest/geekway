@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { AfterViewChecked, Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { Observable, Subscription } from 'rxjs';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { SingleEventGQL, Premiereevent } from 'src/generated/types.graphql-gen';
@@ -13,7 +13,7 @@ import { HeaderPhotoService } from 'src/app/shared/header-photo/header-photo.ser
   styleUrls: ['./event.component.scss'],
   encapsulation: ViewEncapsulation.ShadowDom
 })
-export class EventComponent implements OnInit {
+export class EventComponent implements OnInit, AfterViewChecked {
 
   event: Observable<Premiereevent>;
   eventSubscription: Subscription;
