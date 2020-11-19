@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription, Observable } from 'rxjs';
 import { map } from 'rxjs/operators'
 import { NextConventionWhereGQL, Convention, SponsorsGQL, Sponsors, Newspost, FeaturedNewsGQL } from 'src/generated/types.graphql-gen';
@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
   templateUrl: './homepage.component.html',
   styleUrls: ['./homepage.component.scss']
 })
-export class HomepageComponent implements OnInit {
+export class HomepageComponent implements OnInit, OnDestroy {
 
   geekwayToTheWest: Observable<Convention>;
   geekwayToTheWestSubscription: Subscription;

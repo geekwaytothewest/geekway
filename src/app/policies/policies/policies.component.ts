@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Observable, Subscription } from 'rxjs';
 import { Policy, PoliciesGQL } from 'src/generated/types.graphql-gen';
 import { map } from 'rxjs/operators';
@@ -9,7 +9,7 @@ import { HeaderPhotoService } from 'src/app/shared/header-photo/header-photo.ser
   templateUrl: './policies.component.html',
   styleUrls: ['./policies.component.scss']
 })
-export class PoliciesComponent implements OnInit {
+export class PoliciesComponent implements OnInit, OnDestroy {
 
   policies: Observable<Policy[]>;
   policiesSubscription: Subscription;

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Observable, Subscription } from 'rxjs';
 import { EventsGQL, Premiereevent } from 'src/generated/types.graphql-gen';
 import { map } from 'rxjs/operators';
@@ -9,7 +9,7 @@ import { HeaderPhotoService } from 'src/app/shared/header-photo/header-photo.ser
   templateUrl: './events.component.html',
   styleUrls: ['./events.component.scss']
 })
-export class EventsComponent implements OnInit {
+export class EventsComponent implements OnInit, OnDestroy {
 
   events: Observable<Premiereevent[]>;
   eventsSubscription: Subscription;

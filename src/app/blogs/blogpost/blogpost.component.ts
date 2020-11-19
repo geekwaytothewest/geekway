@@ -1,4 +1,4 @@
-import { AfterViewChecked, Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { AfterViewChecked, Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
 import { Observable, Subscription } from 'rxjs';
 import { Blogpost, SingleBlogPostGQL } from 'src/generated/types.graphql-gen';
 import { SafeHtml, DomSanitizer } from '@angular/platform-browser';
@@ -13,7 +13,7 @@ import { HeaderPhotoService } from 'src/app/shared/header-photo/header-photo.ser
   styleUrls: ['./blogpost.component.scss'],
   encapsulation: ViewEncapsulation.ShadowDom
 })
-export class BlogpostComponent implements OnInit, AfterViewChecked {
+export class BlogpostComponent implements OnInit, AfterViewChecked, OnDestroy {
 
   blogPost: Observable<Blogpost>;
   blogPostSubscription: Subscription;

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { NextConventionWhereGQL, Convention } from 'src/generated/types.graphql-gen';
 import { Observable, Subscription } from 'rxjs';
@@ -10,7 +10,7 @@ import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
   templateUrl: './geekwaymini.component.html',
   styleUrls: ['./geekwaymini.component.scss']
 })
-export class GeekwayminiComponent implements OnInit {
+export class GeekwayminiComponent implements OnInit, OnDestroy {
 
   geekwayMini: Observable<Convention>;
   geekwayMiniSubscription: Subscription;

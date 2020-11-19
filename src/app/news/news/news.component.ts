@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { map } from 'rxjs/operators';
 import { Observable, Subscription } from 'rxjs';
@@ -10,7 +10,7 @@ import { HeaderPhotoService } from 'src/app/shared/header-photo/header-photo.ser
   templateUrl: './news.component.html',
   styleUrls: ['./news.component.scss']
 })
-export class NewsComponent implements OnInit {
+export class NewsComponent implements OnInit, OnDestroy {
 
   news: Observable<Newspost[]>;
   newsSubscription: Subscription;

@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, OnDestroy } from '@angular/core';
 import { Observable, Subscription } from 'rxjs';
 import { Convention, NextConventionWhereGQL } from 'src/generated/types.graphql-gen';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
@@ -14,7 +14,7 @@ import { HeaderPhotoService } from 'src/app/shared/header-photo/header-photo.ser
   templateUrl: './convention.component.html',
   styleUrls: ['./convention.component.scss']
 })
-export class ConventionComponent implements OnInit {
+export class ConventionComponent implements OnInit, OnDestroy {
 
   convention: Observable<Convention>;
   conventionSubscription: Subscription; 

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Observable, Subscription, timer } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
@@ -12,7 +12,7 @@ import { HeaderPhotoService } from '../shared/header-photo/header-photo.service'
   styleUrls: ['./navigation.component.scss'],
   providers: [HeaderPhotoService]
 })
-export class NavigationComponent {
+export class NavigationComponent implements OnInit, OnDestroy {
 
   policies: Observable<Policy[]>;
   policiesSubscription: Subscription;

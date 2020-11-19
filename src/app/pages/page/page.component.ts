@@ -1,4 +1,4 @@
-import { AfterViewChecked, Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { AfterViewChecked, Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { Observable, Subscription } from 'rxjs';
 import { Page, SinglePageGQL } from 'src/generated/types.graphql-gen';
@@ -13,7 +13,7 @@ import { HeaderPhotoService } from 'src/app/shared/header-photo/header-photo.ser
   styleUrls: ['./page.component.scss'],
   encapsulation: ViewEncapsulation.ShadowDom
 })
-export class PageComponent implements OnInit, AfterViewChecked {
+export class PageComponent implements OnInit, AfterViewChecked, OnDestroy {
 
   page: Observable<Page>;
   pageSubscription: Subscription;

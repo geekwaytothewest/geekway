@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Observable, Subscription } from 'rxjs';
 import { Convention, ConventionsGQL } from 'src/generated/types.graphql-gen';
 import { map } from 'rxjs/operators';
@@ -10,7 +10,7 @@ import { HeaderPhotoService } from '../shared/header-photo/header-photo.service'
   templateUrl: './conventions.component.html',
   styleUrls: ['./conventions.component.scss']
 })
-export class ConventionsComponent implements OnInit {
+export class ConventionsComponent implements OnInit, OnDestroy {
 
   conventions: Observable<Convention[]>;
   conventionsSubscription: Subscription;

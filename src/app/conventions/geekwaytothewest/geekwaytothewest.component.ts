@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Observable, Subscription } from 'rxjs';
 import { Convention, NextConventionWhereGQL } from 'src/generated/types.graphql-gen';
 import { map } from 'rxjs/operators';
@@ -10,7 +10,7 @@ import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
   templateUrl: './geekwaytothewest.component.html',
   styleUrls: ['./geekwaytothewest.component.scss']
 })
-export class GeekwaytothewestComponent implements OnInit {
+export class GeekwaytothewestComponent implements OnInit, OnDestroy {
 
   geekwayToTheWest: Observable<Convention>;
   geekwayToTheWestSubscription: Subscription;
