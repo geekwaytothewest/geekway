@@ -57,6 +57,16 @@ header {
     mat-card.moveUp {
       top: -100px;
     }
+
+    .footer {
+      background-color: white;
+      text-align: center;
+      margin-left: -20px;
+      margin-right: -20px;
+      margin-bottom: -20px;
+      padding: 10px;
+      border-top: 25px solid #00364d;
+    }
   }
 
   mat-card {

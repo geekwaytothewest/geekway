@@ -33,6 +33,8 @@ export class NavigationComponent {
   hoverTimer: Observable<number> = timer(250);
   hoverTimerSubscription: Subscription;
 
+  currentDate: Date = new Date()
+
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
     .pipe(
       map(result => result.matches),
