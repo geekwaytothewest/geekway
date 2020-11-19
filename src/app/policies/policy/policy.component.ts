@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { AfterViewChecked, Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { Observable, Subscription } from 'rxjs';
 import { Policy, SinglePolicyGQL } from 'src/generated/types.graphql-gen';
 import { ActivatedRoute, ParamMap } from '@angular/router';
@@ -13,7 +13,7 @@ import { HeaderPhotoService } from 'src/app/shared/header-photo/header-photo.ser
   styleUrls: ['./policy.component.scss'],
   encapsulation: ViewEncapsulation.ShadowDom
 })
-export class PolicyComponent implements OnInit {
+export class PolicyComponent implements OnInit, AfterViewChecked {
 
   policy: Observable<Policy>;
   policySubscription: Subscription;
