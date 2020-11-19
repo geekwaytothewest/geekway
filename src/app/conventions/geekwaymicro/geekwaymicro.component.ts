@@ -36,7 +36,7 @@ export class GeekwaymicroComponent implements OnInit, OnDestroy {
       );
 
     this.geekwayMicroSubscription = this.geekwayMicro.subscribe(result => {
-      this.content = this.sanitizer.bypassSecurityTrustHtml(result.conventionType.Content.replace('<oembed url=', ' <div class="iframely-embed"><div class="iframely-responsive"><a data-iframely-url href=') + '</div></div>');
+      this.content = this.sanitizer.bypassSecurityTrustHtml(result.conventionType.Content.replace(/<oembed url=(.*)><\/oembed>/, ' <div class="iframely-embed"><div class="iframely-responsive"><a data-iframely-url href=$1></div></div>'));
     });
   }
 

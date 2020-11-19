@@ -44,7 +44,7 @@ export class PolicyComponent implements OnInit, AfterViewChecked, OnDestroy {
     );
 
     this.policySubscription = this.policy.subscribe(result => {
-      this.policyContent = this.sanitizer.bypassSecurityTrustHtml(result.Content.replace('<oembed url=', ' <div class="iframely-embed"><div class="iframely-responsive"><a data-iframely-url href=').replace('src="/uploads/', 'src="https://cms.geekway.com/uploads/') + '</div></div>');
+      this.policyContent = this.sanitizer.bypassSecurityTrustHtml(result.Content.replace('/<oembed url=(.*)><\/oembed>/', ' <div class="iframely-embed"><div class="iframely-responsive"><a data-iframely-url href=$1></div></div>').replace('src="/uploads/', 'src="https://cms.geekway.com/uploads/'));
       this.headerPhoto.announceHeaderPhotoChanged("https://cms.geekway.com" + result.HeaderPhoto.url);
       this.headerPhoto.announceHeaderLabelChanged(result.Name);
     })

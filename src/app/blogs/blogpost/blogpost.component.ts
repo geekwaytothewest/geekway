@@ -44,7 +44,7 @@ export class BlogpostComponent implements OnInit, AfterViewChecked, OnDestroy {
     );
 
     this.blogPostSubscription = this.blogPost.subscribe(result => {
-      this.blogContent = this.sanitizer.bypassSecurityTrustHtml(result.content.replace('<oembed url=', ' <div class="iframely-embed"><div class="iframely-responsive"><a data-iframely-url href=').replace('src="/uploads/', 'src="https://cms.geekway.com/uploads/') + '</div></div>');
+      this.blogContent = this.sanitizer.bypassSecurityTrustHtml(result.content.replace(/<oembed url=(.*)><\/oembed>/, ' <div class="iframely-embed"><div class="iframely-responsive"><a data-iframely-url href=$1></div></div>').replace('src="/uploads/', 'src="https://cms.geekway.com/uploads/'));
       this.headerPhotos.announceHeaderLabelChanged(result.Title);
       this.headerPhotos.announceHeaderPhotoChanged("https://cms.geekway.com" + result.HeaderPhoto.url);
     })

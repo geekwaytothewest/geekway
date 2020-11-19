@@ -44,7 +44,7 @@ export class EventComponent implements OnInit, AfterViewChecked, OnDestroy {
     );
 
     this.eventSubscription = this.event.subscribe(result => {
-      this.eventContent = this.sanitizer.bypassSecurityTrustHtml(result.Content.replace('<oembed url=', ' <div class="iframely-embed"><div class="iframely-responsive"><a data-iframely-url href=').replace('src="/uploads/', 'src="https://cms.geekway.com/uploads/') + '</div></div>');
+      this.eventContent = this.sanitizer.bypassSecurityTrustHtml(result.Content.replace(/<oembed url=(.*)><\/oembed>/, ' <div class="iframely-embed"><div class="iframely-responsive"><a data-iframely-url href=$1></div></div>').replace('src="/uploads/', 'src="https://cms.geekway.com/uploads/'));
       this.headerPhoto.announceHeaderLabelChanged(result.Name);
       this.headerPhoto.announceHeaderPhotoChanged("https://cms.geekway.com" + result.HeaderPhoto.url);
     })
