@@ -67,7 +67,8 @@ export class PolicyComponent implements OnInit, AfterViewChecked, OnDestroy {
   }
 
   ngAfterViewChecked() {
-    iframely.iframely.load();
+    var el = document.querySelector('app-page').shadowRoot.querySelector('.iframely-embed iframe');
+    iframely.iframely.load(el);
   }
 
 }
