@@ -42,8 +42,7 @@ export class GeekwaymicroComponent implements OnInit, OnDestroy {
     this.geekwayMicroSubscription = this.geekwayMicro.subscribe(result => {
       this.workingContent = result.conventionType.Content;
 
-      // @ts-ignore
-      for (const match of result.Content.matchAll(this.oembedService.oembedRegex)) {
+      for (const match of result.conventionType.Content.matchAll(this.oembedService.oembedRegex)) {
         this.oembedService.getOembed(match[1]).subscribe(oembed => {
           this.workingContent = this.workingContent.replace(match[0], oembed.html).replace('src="/uploads/', 'src="https://cms.geekway.com/uploads/')
           this.content = this.sanitizer.bypassSecurityTrustHtml(this.workingContent);
