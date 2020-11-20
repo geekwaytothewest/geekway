@@ -1,17 +1,18 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { AfterViewChecked, Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { NextConventionWhereGQL, Convention } from 'src/generated/types.graphql-gen';
 import { Observable, Subscription } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { OembedService } from 'src/app/shared/oembed/oembed.service';
+import iframely from '@iframely/embed.js';
 
 @Component({
   selector: 'app-geekwaymini',
   templateUrl: './geekwaymini.component.html',
   styleUrls: ['./geekwaymini.component.scss']
 })
-export class GeekwayminiComponent implements OnInit, OnDestroy {
+export class GeekwayminiComponent implements OnInit, OnDestroy, AfterViewChecked {
 
   geekwayMini: Observable<Convention>;
   geekwayMiniSubscription: Subscription;
@@ -54,6 +55,10 @@ export class GeekwayminiComponent implements OnInit, OnDestroy {
     if (this.geekwayMiniSubscription) {
       this.geekwayMiniSubscription.unsubscribe();
     }
+  }
+
+  ngAfterViewChecked() {
+    iframely.iframely.load();
   }
 
   redirect(url: string) {

@@ -1,17 +1,18 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { AfterViewChecked, Component, OnDestroy, OnInit } from '@angular/core';
 import { Observable, Subscription } from 'rxjs';
 import { Convention, NextConventionWhereGQL } from 'src/generated/types.graphql-gen';
 import { map } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { OembedService } from 'src/app/shared/oembed/oembed.service';
+import iframely from '@iframely/embed.js';
 
 @Component({
   selector: 'app-geekwaytothewest',
   templateUrl: './geekwaytothewest.component.html',
   styleUrls: ['./geekwaytothewest.component.scss']
 })
-export class GeekwaytothewestComponent implements OnInit, OnDestroy {
+export class GeekwaytothewestComponent implements OnInit, OnDestroy, AfterViewChecked {
 
   geekwayToTheWest: Observable<Convention>;
   geekwayToTheWestSubscription: Subscription;
@@ -56,6 +57,10 @@ export class GeekwaytothewestComponent implements OnInit, OnDestroy {
     if (this.geekwayToTheWestSubscription) {
       this.geekwayToTheWestSubscription.unsubscribe();
     }
+  }
+
+  ngAfterViewChecked() {
+    iframely.iframely.load();
   }
 
   redirect(url: string) {

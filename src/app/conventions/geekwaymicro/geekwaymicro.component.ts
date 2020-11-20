@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { map } from 'rxjs/operators';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { OembedService } from 'src/app/shared/oembed/oembed.service';
+import iframely from '@iframely/embed.js';
 
 @Component({
   selector: 'app-geekwaymicro',
@@ -55,6 +56,10 @@ export class GeekwaymicroComponent implements OnInit, OnDestroy {
     if (this.geekwayMicroSubscription) {
       this.geekwayMicroSubscription.unsubscribe();
     }
+  }
+
+  ngAfterViewChecked() {
+    iframely.iframely.load();
   }
 
   redirect(url: string) {
