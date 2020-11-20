@@ -40,10 +40,11 @@ export class GeekwayminiComponent implements OnInit, OnDestroy, AfterViewChecked
 
     this.geekwayMiniSubscription = this.geekwayMini.subscribe(result => {
       this.workingContent = result.conventionType.Content;
+      this.content = this.sanitizer.bypassSecurityTrustHtml(this.workingContent);
 
       for (const match of result.conventionType.Content.matchAll(this.oembedService.oembedRegex)) {
         this.oembedService.getOembed(match[1]).subscribe(oembed => {
-          this.workingContent = this.workingContent.replace(match[0], oembed.html).replace('src="/uploads/', 'src="https://cms.geekway.com/uploads/')
+          this.workingContent = this.workingContent.replace(match[0], oembed.html).replace('src="/uploads/', 'src="https://cms.geekway.com/uploads/');
           this.content = this.sanitizer.bypassSecurityTrustHtml(this.workingContent);
         })
       }
@@ -57,7 +58,7 @@ export class GeekwayminiComponent implements OnInit, OnDestroy, AfterViewChecked
   }
 
   ngAfterViewChecked() {
-    var el = document.querySelector('app-page')?.shadowRoot.querySelector('.iframely-embed iframe');
+    var el = document.querySelector('app-geekwaymini')?.shadowRoot.querySelector('.iframely-embed iframe');
     iframely.iframely.load(el);
   }
 

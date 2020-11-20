@@ -46,10 +46,11 @@ export class NewspostComponent implements OnInit, AfterViewChecked, OnDestroy {
 
     this.newsPostSubscription = this.newsPost.subscribe(result => {      
       this.workingContent = result.content;
+      this.newsContent = this.sanitizer.bypassSecurityTrustHtml(this.workingContent);
 
       for (const match of result.content.matchAll(this.oembedService.oembedRegex)) {
         this.oembedService.getOembed(match[1]).subscribe(oembed => {
-          this.workingContent = this.workingContent.replace(match[0], oembed.html).replace('src="/uploads/', 'src="https://cms.geekway.com/uploads/')
+          this.workingContent = this.workingContent.replace(match[0], oembed.html).replace('src="/uploads/', 'src="https://cms.geekway.com/uploads/');
           this.newsContent = this.sanitizer.bypassSecurityTrustHtml(this.workingContent);
         })
       }
@@ -68,7 +69,7 @@ export class NewspostComponent implements OnInit, AfterViewChecked, OnDestroy {
   }
 
   ngAfterViewChecked() {
-    var el = document.querySelector('app-page')?.shadowRoot.querySelector('.iframely-embed iframe');
+    var el = document.querySelector('app-newspost')?.shadowRoot.querySelector('.iframely-embed iframe');
     iframely.iframely.load(el);
   }
 

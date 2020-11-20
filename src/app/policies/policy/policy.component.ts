@@ -46,10 +46,11 @@ export class PolicyComponent implements OnInit, AfterViewChecked, OnDestroy {
 
     this.policySubscription = this.policy.subscribe(result => {
       this.workingContent = result.Content;
+      this.policyContent = this.sanitizer.bypassSecurityTrustHtml(this.workingContent);
 
       for (const match of result.Content.matchAll(this.oembedService.oembedRegex)) {
         this.oembedService.getOembed(match[1]).subscribe(oembed => {
-          this.workingContent = this.workingContent.replace(match[0], oembed.html).replace('src="/uploads/', 'src="https://cms.geekway.com/uploads/')
+          this.workingContent = this.workingContent.replace(match[0], oembed.html).replace('src="/uploads/', 'src="https://cms.geekway.com/uploads/');
           this.policyContent = this.sanitizer.bypassSecurityTrustHtml(this.workingContent);
         })
       }
@@ -66,7 +67,7 @@ export class PolicyComponent implements OnInit, AfterViewChecked, OnDestroy {
   }
 
   ngAfterViewChecked() {
-    var el = document.querySelector('app-page')?.shadowRoot.querySelector('.iframely-embed iframe');
+    var el = document.querySelector('app-policy')?.shadowRoot.querySelector('.iframely-embed iframe');
     iframely.iframely.load(el);
   }
 

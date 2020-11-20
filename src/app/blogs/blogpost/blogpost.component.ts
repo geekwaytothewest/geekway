@@ -46,10 +46,11 @@ export class BlogpostComponent implements OnInit, AfterViewChecked, OnDestroy {
 
     this.blogPostSubscription = this.blogPost.subscribe(result => {
       this.workingContent = result.content;
+      this.blogContent = this.sanitizer.bypassSecurityTrustHtml(this.workingContent);
 
       for (const match of result.content.matchAll(this.oembedService.oembedRegex)) {
         this.oembedService.getOembed(match[1]).subscribe(oembed => {
-          this.workingContent = this.workingContent.replace(match[0], oembed.html).replace('src="/uploads/', 'src="https://cms.geekway.com/uploads/')
+          this.workingContent = this.workingContent.replace(match[0], oembed.html).replace('src="/uploads/', 'src="https://cms.geekway.com/uploads/');
           this.blogContent = this.sanitizer.bypassSecurityTrustHtml(this.workingContent);
         })
       }
@@ -66,7 +67,7 @@ export class BlogpostComponent implements OnInit, AfterViewChecked, OnDestroy {
   }
 
   ngAfterViewChecked() {
-    var el = document.querySelector('app-page')?.shadowRoot.querySelector('.iframely-embed iframe');
+    var el = document.querySelector('app-blogpost')?.shadowRoot.querySelector('.iframely-embed iframe');
     iframely.iframely.load(el);
   }
 
