@@ -47,7 +47,7 @@ export class BlogpostComponent implements OnInit, AfterViewChecked, OnDestroy {
     this.blogPostSubscription = this.blogPost.subscribe(result => {
       this.workingContent = result.content;
 
-      for (const match of result.Content.matchAll(this.oembedService.oembedRegex)) {
+      for (const match of result.content.matchAll(this.oembedService.oembedRegex)) {
         this.oembedService.getOembed(match[1]).subscribe(oembed => {
           this.workingContent = this.workingContent.replace(match[0], oembed.html).replace('src="/uploads/', 'src="https://cms.geekway.com/uploads/')
           this.blogContent = this.sanitizer.bypassSecurityTrustHtml(this.workingContent);
