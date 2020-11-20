@@ -4,6 +4,7 @@ import { EventComponent } from './event.component';
 import { MatCardModule } from '@angular/material/card';
 import { RouterModule } from '@angular/router';
 import { IvyCarouselModule } from 'angular-responsive-carousel';
+import { HttpClientModule } from '@angular/common/http';
 
 describe('EventComponent', () => {
   let component: EventComponent;
@@ -13,7 +14,7 @@ describe('EventComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ EventComponent ],
-      imports: [ IvyCarouselModule, MatCardModule, RouterModule.forRoot([]), ApolloTestingModule ]
+      imports: [ IvyCarouselModule, MatCardModule, RouterModule.forRoot([]), ApolloTestingModule, HttpClientModule ]
     })
     .compileComponents();
   }));

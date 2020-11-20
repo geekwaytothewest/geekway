@@ -3,6 +3,7 @@ import { ApolloTestingController, ApolloTestingModule } from 'apollo-angular/tes
 import { MatCardModule } from '@angular/material/card';
 
 import { PoliciesComponent } from './policies.component';
+import { HttpClientModule } from '@angular/common/http';
 
 describe('PoliciesComponent', () => {
   let component: PoliciesComponent;

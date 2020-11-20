@@ -10,6 +10,7 @@ import { IvyCarouselModule } from 'angular-responsive-carousel';
 import { AgmCoreModule } from '@agm/core';
 import { AgmSnazzyInfoWindowModule } from '@agm/snazzy-info-window';
 import { RouterTestingModule } from '@angular/router/testing';
+import { HttpClientModule } from '@angular/common/http';
 
 describe('GeekwaytothewestComponent', () => {
   let component: GeekwaytothewestComponent;
@@ -28,7 +29,8 @@ describe('GeekwaytothewestComponent', () => {
         AgmCoreModule,
         AgmSnazzyInfoWindowModule,
         ApolloTestingModule,
-        RouterTestingModule
+        RouterTestingModule,
+        HttpClientModule
        ]
     })
     .compileComponents();

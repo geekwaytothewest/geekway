@@ -3,6 +3,7 @@ import { ApolloTestingController, ApolloTestingModule } from 'apollo-angular/tes
 
 import { PageComponent } from './page.component';
 import { RouterModule } from '@angular/router';
+import { HttpClientModule } from '@angular/common/http';
 
 describe('PageComponent', () => {
   let component: PageComponent;
@@ -12,7 +13,7 @@ describe('PageComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ PageComponent ],
-      imports: [ ApolloTestingModule, RouterModule.forRoot([]) ]
+      imports: [ ApolloTestingModule, HttpClientModule, RouterModule.forRoot([]) ]
     })
     .compileComponents();
   }));

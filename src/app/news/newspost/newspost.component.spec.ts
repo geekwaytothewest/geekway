@@ -5,6 +5,7 @@ import { NewspostComponent } from './newspost.component';
 import { MomentTimezoneModule } from 'src/app/shared/moment-timezone/moment-timezone.module';
 import { MomentModule } from 'ngx-moment';
 import { RouterModule } from '@angular/router';
+import { HttpClientModule } from '@angular/common/http';
 
 describe('NewspostComponent', () => {
   let component: NewspostComponent;
@@ -14,7 +15,7 @@ describe('NewspostComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ NewspostComponent ],
-      imports: [ MomentTimezoneModule, MomentModule, RouterModule.forRoot([]), ApolloTestingModule ]
+      imports: [ MomentTimezoneModule, MomentModule, RouterModule.forRoot([]), ApolloTestingModule, HttpClientModule ]
     })
     .compileComponents();
   }));

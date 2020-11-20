@@ -2,6 +2,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { ApolloTestingController, ApolloTestingModule } from 'apollo-angular/testing';
 import { PolicyComponent } from './policy.component';
 import { RouterModule } from '@angular/router';
+import { HttpClientModule } from '@angular/common/http';
 
 describe('PolicyComponent', () => {
   let component: PolicyComponent;
@@ -11,7 +12,7 @@ describe('PolicyComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ PolicyComponent ],
-      imports: [ RouterModule.forRoot([]), ApolloTestingModule ]
+      imports: [ RouterModule.forRoot([]), ApolloTestingModule, HttpClientModule ]
     })
     .compileComponents();
   }));

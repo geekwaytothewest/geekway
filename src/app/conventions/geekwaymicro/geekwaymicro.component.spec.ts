@@ -10,6 +10,7 @@ import { AgmCoreModule } from '@agm/core';
 import { AgmSnazzyInfoWindowModule } from '@agm/snazzy-info-window';
 import { ApolloTestingController, ApolloTestingModule } from 'apollo-angular/testing';
 import { RouterTestingModule } from '@angular/router/testing';
+import { HttpClientModule } from '@angular/common/http';
 
 describe('GeekwaymicroComponent', () => {
   let component: GeekwaymicroComponent;
@@ -28,7 +29,8 @@ describe('GeekwaymicroComponent', () => {
         AgmCoreModule,
         AgmSnazzyInfoWindowModule,
         ApolloTestingModule,
-        RouterTestingModule
+        RouterTestingModule,
+        HttpClientModule
       ]
     })
     .compileComponents();
