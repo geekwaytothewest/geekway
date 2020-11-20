@@ -6,6 +6,7 @@ import { switchMap, map } from 'rxjs/operators';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import iframely from '@iframely/embed.js';
 import { HeaderPhotoService } from 'src/app/shared/header-photo/header-photo.service';
+import { OembedService } from 'src/app/shared/oembed/oembed.service';
 
 @Component({
   selector: 'app-event',
@@ -18,12 +19,14 @@ export class EventComponent implements OnInit, AfterViewChecked, OnDestroy {
   event: Observable<Premiereevent>;
   eventSubscription: Subscription;
   eventContent: SafeHtml;
+  workingContent: string;
 
   constructor(
     private route: ActivatedRoute,
     private singleEventGQL: SingleEventGQL,
     private sanitizer: DomSanitizer,
-    public headerPhoto: HeaderPhotoService
+    private headerPhoto: HeaderPhotoService,
+    private oembedService: OembedService
   ) { }
 
   ngOnInit() {    
@@ -41,8 +44,17 @@ export class EventComponent implements OnInit, AfterViewChecked, OnDestroy {
       })
     );
 
-    this.eventSubscription = this.event.subscribe(result => {
-      this.eventContent = this.sanitizer.bypassSecurityTrustHtml(result.Content.replace(/<oembed url=(.*)><\/oembed>/, ' <div class="iframely-embed"><div class="iframely-responsive"><a data-iframely-url href=$1></div></div>').replace('src="/uploads/', 'src="https://cms.geekway.com/uploads/'));
+    this.eventSubscription = this.event.subscribe(result => {      
+      this.workingContent = result.Content;
+
+      // @ts-ignore
+      for (const match of result.Content.matchAll(this.oembedService.oembedRegex)) {
+        this.oembedService.getOembed(match[1]).subscribe(oembed => {
+          this.workingContent = this.workingContent.replace(match[0], oembed.html).replace('src="/uploads/', 'src="https://cms.geekway.com/uploads/')
+          this.eventContent = this.sanitizer.bypassSecurityTrustHtml(this.workingContent);
+        })
+      }
+
       this.headerPhoto.announceHeaderLabelChanged(result.Name);
       this.headerPhoto.announceHeaderPhotoChanged("https://cms.geekway.com" + result.HeaderPhoto.url);
     })

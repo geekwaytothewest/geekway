@@ -6,6 +6,7 @@ import { ActivatedRoute, ParamMap } from '@angular/router';
 import iframely from '@iframely/embed.js';
 import { switchMap, map } from 'rxjs/operators';
 import { HeaderPhotoService } from 'src/app/shared/header-photo/header-photo.service';
+import { OembedService } from 'src/app/shared/oembed/oembed.service';
 
 @Component({
   selector: 'app-blogpost',
@@ -18,12 +19,14 @@ export class BlogpostComponent implements OnInit, AfterViewChecked, OnDestroy {
   blogPost: Observable<Blogpost>;
   blogPostSubscription: Subscription;
   blogContent: SafeHtml;
+  workingContent: string;
   
   constructor(
     private route: ActivatedRoute,
     private singlePostGQL: SingleBlogPostGQL,
     private sanitizer: DomSanitizer,
-    private headerPhotos: HeaderPhotoService
+    private headerPhotos: HeaderPhotoService,
+    private oembedService: OembedService
   ) { }
 
   ngOnInit() {
@@ -42,7 +45,16 @@ export class BlogpostComponent implements OnInit, AfterViewChecked, OnDestroy {
     );
 
     this.blogPostSubscription = this.blogPost.subscribe(result => {
-      this.blogContent = this.sanitizer.bypassSecurityTrustHtml(result.content.replace(/<oembed url=(.*)><\/oembed>/, ' <div class="iframely-embed"><div class="iframely-responsive"><a data-iframely-url href=$1></div></div>').replace('src="/uploads/', 'src="https://cms.geekway.com/uploads/'));
+      this.workingContent = result.content;
+
+      // @ts-ignore
+      for (const match of result.Content.matchAll(this.oembedService.oembedRegex)) {
+        this.oembedService.getOembed(match[1]).subscribe(oembed => {
+          this.workingContent = this.workingContent.replace(match[0], oembed.html).replace('src="/uploads/', 'src="https://cms.geekway.com/uploads/')
+          this.blogContent = this.sanitizer.bypassSecurityTrustHtml(this.workingContent);
+        })
+      }
+      
       this.headerPhotos.announceHeaderLabelChanged(result.Title);
       this.headerPhotos.announceHeaderPhotoChanged("https://cms.geekway.com" + result.HeaderPhoto.url);
     })

@@ -6,6 +6,7 @@ import { switchMap, map } from 'rxjs/operators';
 import { DomSanitizer, SafeHtml, Meta, Title } from '@angular/platform-browser';
 import iframely from '@iframely/embed.js';
 import { HeaderPhotoService } from 'src/app/shared/header-photo/header-photo.service';
+import { OembedService } from 'src/app/shared/oembed/oembed.service';
 
 @Component({
   selector: 'app-page',
@@ -18,6 +19,7 @@ export class PageComponent implements OnInit, AfterViewChecked, OnDestroy {
   page: Observable<Page>;
   pageSubscription: Subscription;
   pageContent: SafeHtml;
+  workingContent: string;
   
   constructor(
     private route: ActivatedRoute,
@@ -25,7 +27,8 @@ export class PageComponent implements OnInit, AfterViewChecked, OnDestroy {
     private sanitizer: DomSanitizer,
     private meta: Meta,
     private title: Title,
-    public headerPhoto: HeaderPhotoService
+    private oembedService: OembedService,
+    private headerPhoto: HeaderPhotoService
   ) { 
   }
 
@@ -45,7 +48,15 @@ export class PageComponent implements OnInit, AfterViewChecked, OnDestroy {
     );
 
     this.pageSubscription = this.page.subscribe(result => {
-      this.pageContent = this.sanitizer.bypassSecurityTrustHtml(result.Content.replace(/<oembed url=(.*)><\/oembed>/, ' <div class="iframely-embed"><div class="iframely-responsive"><a data-iframely-url href=$1></div></div>').replace('src="/uploads/', 'src="https://cms.geekway.com/uploads/'));
+      this.workingContent = result.Content;
+
+      // @ts-ignore
+      for (const match of result.Content.matchAll(this.oembedService.oembedRegex)) {
+        this.oembedService.getOembed(match[1]).subscribe(oembed => {
+          this.workingContent = this.workingContent.replace(match[0], oembed.html).replace('src="/uploads/', 'src="https://cms.geekway.com/uploads/')
+          this.pageContent = this.sanitizer.bypassSecurityTrustHtml(this.workingContent);
+        })
+      }
       if (result.HeaderImage) {
         this.headerPhoto.announceHeaderPhotoChanged("https://cms.geekway.com" + result.HeaderImage.url);
       }

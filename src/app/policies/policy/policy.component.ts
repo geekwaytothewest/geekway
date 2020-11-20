@@ -6,6 +6,7 @@ import { switchMap, map } from 'rxjs/operators';
 import { SafeHtml, DomSanitizer } from '@angular/platform-browser';
 import iframely from '@iframely/embed.js';
 import { HeaderPhotoService } from 'src/app/shared/header-photo/header-photo.service';
+import { OembedService } from 'src/app/shared/oembed/oembed.service';
 
 @Component({
   selector: 'app-policy',
@@ -18,12 +19,14 @@ export class PolicyComponent implements OnInit, AfterViewChecked, OnDestroy {
   policy: Observable<Policy>;
   policySubscription: Subscription;
   policyContent: SafeHtml;
+  workingContent: string;
 
   constructor(
     private route: ActivatedRoute,
     private singlePolicyGQL: SinglePolicyGQL,
     private sanitizer: DomSanitizer,
-    private headerPhoto: HeaderPhotoService
+    private headerPhoto: HeaderPhotoService,
+    private oembedService: OembedService
   ) { }
 
   ngOnInit() {    
@@ -42,7 +45,16 @@ export class PolicyComponent implements OnInit, AfterViewChecked, OnDestroy {
     );
 
     this.policySubscription = this.policy.subscribe(result => {
-      this.policyContent = this.sanitizer.bypassSecurityTrustHtml(result.Content.replace('/<oembed url=(.*)><\/oembed>/', ' <div class="iframely-embed"><div class="iframely-responsive"><a data-iframely-url href=$1></div></div>').replace('src="/uploads/', 'src="https://cms.geekway.com/uploads/'));
+      this.workingContent = result.Content;
+
+      // @ts-ignore
+      for (const match of result.Content.matchAll(this.oembedService.oembedRegex)) {
+        this.oembedService.getOembed(match[1]).subscribe(oembed => {
+          this.workingContent = this.workingContent.replace(match[0], oembed.html).replace('src="/uploads/', 'src="https://cms.geekway.com/uploads/')
+          this.policyContent = this.sanitizer.bypassSecurityTrustHtml(this.workingContent);
+        })
+      }
+
       this.headerPhoto.announceHeaderPhotoChanged("https://cms.geekway.com" + result.HeaderPhoto.url);
       this.headerPhoto.announceHeaderLabelChanged(result.Name);
     })
