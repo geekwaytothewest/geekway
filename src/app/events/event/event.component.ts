@@ -67,7 +67,7 @@ export class EventComponent implements OnInit, AfterViewChecked, OnDestroy {
   }
 
   ngAfterViewChecked() {
-    var el = document.querySelector('app-page').shadowRoot.querySelector('.iframely-embed iframe');
+    var el = document.querySelector('app-page')?.shadowRoot.querySelector('.iframely-embed iframe');
     iframely.iframely.load(el);
   }
 

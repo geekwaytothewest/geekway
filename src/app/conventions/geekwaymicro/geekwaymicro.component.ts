@@ -58,7 +58,7 @@ export class GeekwaymicroComponent implements OnInit, OnDestroy {
   }
 
   ngAfterViewChecked() {
-    var el = document.querySelector('app-page').shadowRoot.querySelector('.iframely-embed iframe');
+    var el = document.querySelector('app-page')?.shadowRoot.querySelector('.iframely-embed iframe');
     iframely.iframely.load(el);
   }
 
