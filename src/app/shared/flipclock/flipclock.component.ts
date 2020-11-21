@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, AfterViewChecked } from '@angular/core';
 import * as moment from 'moment-timezone';
 
 declare var FlipClock: any;
@@ -8,12 +8,12 @@ declare var FlipClock: any;
   templateUrl: './flipclock.component.html',
   styleUrls: ['./flipclock.component.scss']
 })
-export class FlipclockComponent implements OnInit {
+export class FlipclockComponent implements OnInit, AfterViewChecked {
 
   @Input() date: Date | string;
   @Input() id: string;
 
-  rendered: boolean = false;
+  rendered = false;
 
   constructor() { }
 
@@ -22,9 +22,9 @@ export class FlipclockComponent implements OnInit {
 
   ngAfterViewChecked() {
     if (!this.rendered) {
-      var countdownDate: Date;
+      let countdownDate: Date;
 
-      if (typeof this.date === "string") {
+      if (typeof this.date === 'string') {
         countdownDate = new Date(this.date);
       } else {
         countdownDate = this.date;

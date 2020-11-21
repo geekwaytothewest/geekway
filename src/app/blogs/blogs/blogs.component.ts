@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Observable, Subscription } from 'rxjs';
 import { Blogpost, BlogsGQL } from 'src/generated/types.graphql-gen';
 import { Router } from '@angular/router';
@@ -10,7 +10,7 @@ import { HeaderPhotoService } from 'src/app/shared/header-photo/header-photo.ser
   templateUrl: './blogs.component.html',
   styleUrls: ['./blogs.component.scss']
 })
-export class BlogsComponent implements OnInit {
+export class BlogsComponent implements OnInit, OnDestroy {
 
   blogs: Observable<Blogpost[]>;
   blogsSubscription: Subscription;
@@ -25,14 +25,14 @@ export class BlogsComponent implements OnInit {
   ngOnInit() {
     this.blogs = this.blogsGQL.watch()
       .valueChanges
-      .pipe(        
+      .pipe(
         map(result => result.data.blogposts)
       );
 
     this.blogsSubscription = this.blogs.subscribe();
 
-    this.headerPhoto.announceHeaderLabelChanged("Blog Posts");
-    this.headerPhoto.announceHeaderPhotoChanged("/assets/images/blogposts.jpg")
+    this.headerPhoto.announceHeaderLabelChanged('Blog Posts');
+    this.headerPhoto.announceHeaderPhotoChanged('/assets/images/blogposts.jpg');
   }
 
   ngOnDestroy() {
@@ -43,14 +43,14 @@ export class BlogsComponent implements OnInit {
 
   redirect(url: string) {
     console.log(url);
-    if (url.startsWith("http")) {
+    if (url.startsWith('http')) {
       this.router.navigate(['/externalRedirect', { externalUrl: url }], {
         skipLocationChange: true,
       });
     } else {
       this.router.navigate([url]);
     }
-    
+
     event.preventDefault();
   }
 }

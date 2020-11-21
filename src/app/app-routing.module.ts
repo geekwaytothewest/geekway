@@ -55,7 +55,7 @@ const routes: Routes = [
     loadChildren: () => import('./pages/pages.module').then(m => m.PagesModule)
   },
   {path: '404', component: NotfoundComponent},
-  {path: '**', redirectTo: '/404'} 
+  {path: '**', redirectTo: '/404'}
 ];
 
 @NgModule({

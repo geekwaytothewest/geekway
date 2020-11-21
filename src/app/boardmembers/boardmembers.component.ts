@@ -26,7 +26,7 @@ export class BoardmembersComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.boardMembers = this.boardMembersGQL.watch()
       .valueChanges
-      .pipe(        
+      .pipe(
         map(result => result.data.boardmembers)
       );
 

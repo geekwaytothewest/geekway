@@ -5,10 +5,10 @@ import { PolicyComponent } from './policy/policy.component';
 import { Routes, RouterModule } from '@angular/router';
 import { MatCardModule } from '@angular/material/card';
 
-const policiesRoutes: Routes = [  
+const policiesRoutes: Routes = [
   { path: '', component: PoliciesComponent, pathMatch: 'full' },
   { path: 'policy/:slug', component: PolicyComponent }
-]
+];
 
 @NgModule({
   declarations: [PoliciesComponent, PolicyComponent],

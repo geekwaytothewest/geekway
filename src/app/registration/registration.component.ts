@@ -22,36 +22,36 @@ export class RegistrationComponent implements OnInit, OnDestroy {
   geekwayMiniConventoin: Convention;
 
   geekwayMicro: Observable<Convention>;
-  geekwayMicroSubscription: Subscription
+  geekwayMicroSubscription: Subscription;
   geekwayMicroConvention: Convention;
-  
+
   constructor(
-    private nextGWConventionWhere: NextConventionWhereGQL, 
-    private nextGWMiniConventionWhere: NextConventionWhereGQL, 
+    private nextGWConventionWhere: NextConventionWhereGQL,
+    private nextGWMiniConventionWhere: NextConventionWhereGQL,
     private nextGWMicroConventionWhere: NextConventionWhereGQL,
     private router: Router,
     private meta: Meta,
     private title: Title
-  ) { 
+  ) {
   }
 
   ngOnInit() {
-    let whereClauseGW = {
-      "Type": "GeekwayToTheWest",
-      "endDate_gt": new Date().toISOString()
+    const whereClauseGW = {
+      Type: 'GeekwayToTheWest',
+      endDate_gt: new Date().toISOString()
     };
 
     this.geekwayToTheWest = this.nextGWConventionWhere.watch({whereClause: whereClauseGW})
       .valueChanges
-      .pipe(        
+      .pipe(
         map(result => result.data.conventions[0])
       );
 
     this.geekwayToTheWestSubscription = this.geekwayToTheWest.subscribe(c => this.geekwayToTheWestConvention = c);
 
-    let whereClauseGWMini = {
-      "Type": "GeekwayMini",
-      "endDate_gt": new Date().toISOString()
+    const whereClauseGWMini = {
+      Type: 'GeekwayMini',
+      endDate_gt: new Date().toISOString()
     };
 
     this.geekwayMini = this.nextGWMiniConventionWhere.watch({whereClause: whereClauseGWMini})
@@ -59,12 +59,12 @@ export class RegistrationComponent implements OnInit, OnDestroy {
       .pipe(
         map(result => result.data.conventions[0])
       );
-      
+
     this.geekwayMiniSubscription = this.geekwayMini.subscribe(c => this.geekwayMicroConvention = c);
-    
-    let whereClauseGWMicro = {
-      "Type": "GeekwayMicro",
-      "endDate_gt": new Date().toISOString()
+
+    const whereClauseGWMicro = {
+      Type: 'GeekwayMicro',
+      endDate_gt: new Date().toISOString()
     };
 
     this.geekwayMicro = this.nextGWMicroConventionWhere.watch({whereClause: whereClauseGWMicro})
@@ -72,7 +72,7 @@ export class RegistrationComponent implements OnInit, OnDestroy {
       .pipe(
         map(result => result.data.conventions[0])
       );
-      
+
     this.geekwayMicroSubscription = this.geekwayMicro.subscribe(c => this.geekwayMicroConvention = c);
   }
 
@@ -92,14 +92,14 @@ export class RegistrationComponent implements OnInit, OnDestroy {
 
   redirect(url: string) {
     console.log(url);
-    if (url.startsWith("http")) {
+    if (url.startsWith('http')) {
       this.router.navigate(['/externalRedirect', { externalUrl: url }], {
         skipLocationChange: true,
       });
     } else {
       this.router.navigate([url]);
     }
-    
+
     event.preventDefault();
   }
 

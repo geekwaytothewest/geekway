@@ -18,7 +18,7 @@ export class GeekwaytothewestComponent implements OnInit, OnDestroy, AfterViewCh
   geekwayToTheWestSubscription: Subscription;
   content: SafeHtml;
   workingContent: string;
-  mapCount: number = 0;
+  mapCount = 0;
 
   constructor(
     private nextGWConventionWhere: NextConventionWhereGQL,
@@ -28,22 +28,22 @@ export class GeekwaytothewestComponent implements OnInit, OnDestroy, AfterViewCh
   ) { }
 
   ngOnInit() {
-    let whereClauseGW = {
-      "Type": "GeekwayToTheWest",
-      "endDate_gt": new Date().toISOString()
+    const whereClauseGW = {
+      Type: 'GeekwayToTheWest',
+      endDate_gt: new Date().toISOString()
     };
 
     this.geekwayToTheWest = this.nextGWConventionWhere.watch({whereClause: whereClauseGW})
       .valueChanges
-      .pipe(        
+      .pipe(
         map(result => result.data.conventions[0])
       );
 
-    this.geekwayToTheWestSubscription = this.geekwayToTheWest.subscribe(result => {      
+    this.geekwayToTheWestSubscription = this.geekwayToTheWest.subscribe(result => {
       for (const v of result.venues) {
         this.mapCount += v.maps.length;
       }
-      
+
       this.workingContent = result.conventionType.Content;
       this.content = this.sanitizer.bypassSecurityTrustHtml(this.workingContent);
 
@@ -51,7 +51,7 @@ export class GeekwaytothewestComponent implements OnInit, OnDestroy, AfterViewCh
         this.oembedService.getOembed(match[1]).subscribe(oembed => {
           this.workingContent = this.workingContent.replace(match[0], oembed.html).replace('src="/uploads/', 'src="https://cms.geekway.com/uploads/');
           this.content = this.sanitizer.bypassSecurityTrustHtml(this.workingContent);
-        })
+        });
       }
 
       this.content = this.sanitizer.bypassSecurityTrustHtml(result.conventionType.Content.replace(/<oembed url=(.*)><\/oembed>/, ' <div class="iframely-embed"><div class="iframely-responsive"><a data-iframely-url href=$1></div></div>'));
@@ -65,20 +65,20 @@ export class GeekwaytothewestComponent implements OnInit, OnDestroy, AfterViewCh
   }
 
   ngAfterViewChecked() {
-    var el = document.querySelector('app-geekwaytothewest')?.shadowRoot?.querySelector('.iframely-embed iframe');
+    const el = document.querySelector('app-geekwaytothewest')?.shadowRoot?.querySelector('.iframely-embed iframe');
     iframely.iframely.load(el);
   }
 
   redirect(url: string) {
     console.log(url);
-    if (url.startsWith("http")) {
+    if (url.startsWith('http')) {
       this.router.navigate(['/externalRedirect', { externalUrl: url }], {
         skipLocationChange: true,
       });
     } else {
       this.router.navigate([url]);
     }
-    
+
     event.preventDefault();
   }
 

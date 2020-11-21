@@ -20,7 +20,7 @@ export class BlogpostComponent implements OnInit, AfterViewChecked, OnDestroy {
   blogPostSubscription: Subscription;
   blogContent: SafeHtml;
   workingContent: string;
-  
+
   constructor(
     private route: ActivatedRoute,
     private singlePostGQL: SingleBlogPostGQL,
@@ -31,14 +31,14 @@ export class BlogpostComponent implements OnInit, AfterViewChecked, OnDestroy {
 
   ngOnInit() {
     this.blogPost = this.route.paramMap.pipe(
-      switchMap((params: ParamMap) => {        
-        let whereClauseGW = {
-          "slug": params.get('slug')
+      switchMap((params: ParamMap) => {
+        const whereClauseGW = {
+          slug: params.get('slug')
         };
 
         return this.singlePostGQL.watch({whereClause: whereClauseGW})
           .valueChanges
-          .pipe(        
+          .pipe(
             map(result => result.data.blogposts[0])
           );
       })
@@ -52,12 +52,12 @@ export class BlogpostComponent implements OnInit, AfterViewChecked, OnDestroy {
         this.oembedService.getOembed(match[1]).subscribe(oembed => {
           this.workingContent = this.workingContent.replace(match[0], oembed.html).replace('src="/uploads/', 'src="https://cms.geekway.com/uploads/');
           this.blogContent = this.sanitizer.bypassSecurityTrustHtml(this.workingContent);
-        })
+        });
       }
-      
+
       this.headerPhotos.announceHeaderLabelChanged(result.Title);
-      this.headerPhotos.announceHeaderPhotoChanged("https://cms.geekway.com" + result.HeaderPhoto.url);
-    })
+      this.headerPhotos.announceHeaderPhotoChanged('https://cms.geekway.com' + result.HeaderPhoto.url);
+    });
   }
 
   ngOnDestroy() {
@@ -67,7 +67,7 @@ export class BlogpostComponent implements OnInit, AfterViewChecked, OnDestroy {
   }
 
   ngAfterViewChecked() {
-    var el = document.querySelector('app-blogpost')?.shadowRoot.querySelector('.iframely-embed iframe');
+    const el = document.querySelector('app-blogpost')?.shadowRoot.querySelector('.iframely-embed iframe');
     iframely.iframely.load(el);
   }
 

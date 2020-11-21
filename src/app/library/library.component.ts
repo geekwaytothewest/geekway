@@ -18,10 +18,10 @@ export class LibraryComponent implements OnInit, OnDestroy {
 
   library: Observable<Library>;
   librarySubscription: Subscription;
-  libraryXml: String;
-  libraryJson: String;
+  libraryXml: string;
+  libraryJson: string;
   libraryData: any;
-  libraryDataObservable: Observable<any>;  
+  libraryDataObservable: Observable<any>;
   libraryDataSubscription: Subscription;
   dataSource: MatTableDataSource<any>;
   columnsToDisplay = ['Image', 'Name', 'Year', 'Players', 'Playtime', 'Rating'];
@@ -66,18 +66,18 @@ export class LibraryComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.library = this.librariesGQL.watch()
       .valueChanges
-      .pipe(        
+      .pipe(
         map(result => result.data.libraries[0])
       );
 
     this.librarySubscription = this.library.subscribe(library => {
       this.libraryXml = library.BggLibraryXml;
 
-      this.libraryDataObservable = new Observable<object>(observer => {    
-        let parser = new xml2js.Parser();
-  
+      this.libraryDataObservable = new Observable<object>(observer => {
+        const parser = new xml2js.Parser();
+
         parser.parseStringPromise(this.libraryXml).then((result) => {
-          observer.next(result.items.item);                        
+          observer.next(result.items.item);
           this.libraryData = result.items.item;
           observer.complete();
         });
@@ -87,15 +87,15 @@ export class LibraryComponent implements OnInit, OnDestroy {
         this.dataSource = new MatTableDataSource();
         this.dataSource.data = data;
         this.dataSource.sortingDataAccessor  = (data, col) => {
-          if (col == 'Name') {
+          if (col === 'Name') {
             return data.name[0]._;
-          } else if (col == 'Year') {
+          } else if (col === 'Year') {
             if (data.yearpublished != null) {
               return data.yearpublished[0];
             } else {
               return null;
             }
-          } else if (col == 'Rating') {
+          } else if (col === 'Rating') {
             return data.stats[0].rating[0].average[0].$.value;
           } else {
             return data[col];
@@ -105,7 +105,7 @@ export class LibraryComponent implements OnInit, OnDestroy {
         this.dataSource.paginator = this.paginator;
         this.dataSource.filterPredicate = this.tableFilter();
       });
-    })
+    });
 
     this.nameFilter.valueChanges.subscribe(name => {
       this.filterValues.name = name;
@@ -132,18 +132,18 @@ export class LibraryComponent implements OnInit, OnDestroy {
       this.dataSource.filter = JSON.stringify(this.filterValues);
     });
 
-    this.headerPhotos.announceHeaderLabelChanged("Library");
-    this.headerPhotos.announceHeaderPhotoChanged("/assets/images/library.jpg");
+    this.headerPhotos.announceHeaderLabelChanged('Library');
+    this.headerPhotos.announceHeaderPhotoChanged('/assets/images/library.jpg');
   }
 
   tableFilter(): (data: any, filter: string) => boolean {
-    let filterFunction = function(data, filter): boolean {
-      let searchTerms = JSON.parse(filter);
+    const filterFunction = function(data, filter): boolean {
+      const searchTerms = JSON.parse(filter);
 
-      let nameFound = data.name[0]._.toLowerCase().indexOf(searchTerms.name) !== -1;
-      let yearFound = data.yearpublished ? data.yearpublished[0].indexOf(searchTerms.year) !== -1 : false;
+      const nameFound = data.name[0]._.toLowerCase().indexOf(searchTerms.name) !== -1;
+      const yearFound = data.yearpublished ? data.yearpublished[0].indexOf(searchTerms.year) !== -1 : false;
 
-      let statsObject = data.stats[0].$;
+      const statsObject = data.stats[0].$;
 
       let players = true;
       let playtime = true;
@@ -164,9 +164,9 @@ export class LibraryComponent implements OnInit, OnDestroy {
       }
 
       return nameFound && yearFound && players && playtime && rating;
-    }
+    };
     return filterFunction;
-  } 
+  }
 
   ngOnDestroy() {
     if (this.librarySubscription) {
@@ -178,8 +178,8 @@ export class LibraryComponent implements OnInit, OnDestroy {
     }
   }
 
-  bggRedirect(bggId: String) {
-    window.open("https://boardgamegeek.com/boardgame/" + bggId, '_blank');
+  bggRedirect(bggId: string) {
+    window.open('https://boardgamegeek.com/boardgame/' + bggId, '_blank');
   }
 
   paginateChange(event: any) {

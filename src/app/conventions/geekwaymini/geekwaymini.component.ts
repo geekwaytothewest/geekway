@@ -18,7 +18,7 @@ export class GeekwayminiComponent implements OnInit, OnDestroy, AfterViewChecked
   geekwayMiniSubscription: Subscription;
   content: SafeHtml;
   workingContent: string;
-  mapCount: number = 0;
+  mapCount = 0;
 
   constructor(
     private nextGWConventionWhere: NextConventionWhereGQL,
@@ -28,14 +28,14 @@ export class GeekwayminiComponent implements OnInit, OnDestroy, AfterViewChecked
   ) { }
 
   ngOnInit() {
-    let whereClauseGW = {
-      "Type": "GeekwayMini",
-      "endDate_gt": new Date().toISOString()
+    const whereClauseGW = {
+      Type: 'GeekwayMini',
+      endDate_gt: new Date().toISOString()
     };
 
     this.geekwayMini = this.nextGWConventionWhere.watch({whereClause: whereClauseGW})
       .valueChanges
-      .pipe(        
+      .pipe(
         map(result => result.data.conventions[0])
       );
 
@@ -43,7 +43,7 @@ export class GeekwayminiComponent implements OnInit, OnDestroy, AfterViewChecked
       for (const v of result.venues) {
         this.mapCount += v.maps.length;
       }
-      
+
       this.workingContent = result.conventionType.Content;
       this.content = this.sanitizer.bypassSecurityTrustHtml(this.workingContent);
 
@@ -51,7 +51,7 @@ export class GeekwayminiComponent implements OnInit, OnDestroy, AfterViewChecked
         this.oembedService.getOembed(match[1]).subscribe(oembed => {
           this.workingContent = this.workingContent.replace(match[0], oembed.html).replace('src="/uploads/', 'src="https://cms.geekway.com/uploads/');
           this.content = this.sanitizer.bypassSecurityTrustHtml(this.workingContent);
-        })
+        });
       }
     });
   }
@@ -63,20 +63,20 @@ export class GeekwayminiComponent implements OnInit, OnDestroy, AfterViewChecked
   }
 
   ngAfterViewChecked() {
-    var el = document.querySelector('app-geekwaymini')?.shadowRoot.querySelector('.iframely-embed iframe');
+    const el = document.querySelector('app-geekwaymini')?.shadowRoot.querySelector('.iframely-embed iframe');
     iframely.iframely.load(el);
   }
 
   redirect(url: string) {
     console.log(url);
-    if (url.startsWith("http")) {
+    if (url.startsWith('http')) {
       this.router.navigate(['/externalRedirect', { externalUrl: url }], {
         skipLocationChange: true,
       });
     } else {
       this.router.navigate([url]);
     }
-    
+
     event.preventDefault();
   }
 

@@ -1,5 +1,5 @@
-import {NgModule} from "@angular/core";
-import {TzPipe} from "./tz.pipe";
+import {NgModule} from '@angular/core';
+import {TzPipe} from './tz.pipe';
 
 @NgModule({
   imports: [],

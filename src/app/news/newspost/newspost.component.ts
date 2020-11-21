@@ -20,7 +20,7 @@ export class NewspostComponent implements OnInit, AfterViewChecked, OnDestroy {
   newsPostSubscription: Subscription;
   newsContent: SafeHtml;
   workingContent: string;
-  
+
   constructor(
     private route: ActivatedRoute,
     private singlePostGQL: SingleNewsPostGQL,
@@ -31,20 +31,20 @@ export class NewspostComponent implements OnInit, AfterViewChecked, OnDestroy {
 
   ngOnInit() {
     this.newsPost = this.route.paramMap.pipe(
-      switchMap((params: ParamMap) => {        
-        let whereClauseGW = {
-          "slug": params.get('slug')
+      switchMap((params: ParamMap) => {
+        const whereClauseGW = {
+          slug: params.get('slug')
         };
 
         return this.singlePostGQL.watch({whereClause: whereClauseGW})
           .valueChanges
-          .pipe(        
+          .pipe(
             map(result => result.data.newsposts[0])
           );
       })
     );
 
-    this.newsPostSubscription = this.newsPost.subscribe(result => {      
+    this.newsPostSubscription = this.newsPost.subscribe(result => {
       this.workingContent = result.content;
       this.newsContent = this.sanitizer.bypassSecurityTrustHtml(this.workingContent);
 
@@ -52,14 +52,14 @@ export class NewspostComponent implements OnInit, AfterViewChecked, OnDestroy {
         this.oembedService.getOembed(match[1]).subscribe(oembed => {
           this.workingContent = this.workingContent.replace(match[0], oembed.html).replace('src="/uploads/', 'src="https://cms.geekway.com/uploads/');
           this.newsContent = this.sanitizer.bypassSecurityTrustHtml(this.workingContent);
-        })
+        });
       }
 
       this.headerPhotos.announceHeaderLabelChanged(result.Title);
       if (result.HeaderPhoto?.url) {
-        this.headerPhotos.announceHeaderPhotoChanged("https://cms.geekway.com" + result.HeaderPhoto.url);
+        this.headerPhotos.announceHeaderPhotoChanged('https://cms.geekway.com' + result.HeaderPhoto.url);
       }
-    })
+    });
   }
 
   ngOnDestroy() {
@@ -69,7 +69,7 @@ export class NewspostComponent implements OnInit, AfterViewChecked, OnDestroy {
   }
 
   ngAfterViewChecked() {
-    var el = document.querySelector('app-newspost')?.shadowRoot.querySelector('.iframely-embed iframe');
+    const el = document.querySelector('app-newspost')?.shadowRoot.querySelector('.iframely-embed iframe');
     iframely.iframely.load(el);
   }
 

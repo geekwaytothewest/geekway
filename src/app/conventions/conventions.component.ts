@@ -15,7 +15,7 @@ export class ConventionsComponent implements OnInit, OnDestroy {
   conventions: Observable<Convention[]>;
   conventionsSubscription: Subscription;
 
-  columnsToDisplay = ['Type', 'Annual', 'Theme', 'Dates', 'Location', 'Size', 'Status']
+  columnsToDisplay = ['Type', 'Annual', 'Theme', 'Dates', 'Location', 'Size', 'Status'];
 
   constructor(
     private conventionsGQL: ConventionsGQL,
@@ -26,14 +26,14 @@ export class ConventionsComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.conventions = this.conventionsGQL.watch()
       .valueChanges
-      .pipe(        
+      .pipe(
         map(result => result.data.conventions)
       );
 
     this.conventionsSubscription = this.conventions.subscribe();
 
-    this.headerPhoto.announceHeaderLabelChanged("Conventions - Past, Present, and Future");
-    this.headerPhoto.announceHeaderPhotoChanged("/assets/images/conventioncenter.png")
+    this.headerPhoto.announceHeaderLabelChanged('Conventions - Past, Present, and Future');
+    this.headerPhoto.announceHeaderPhotoChanged('/assets/images/conventioncenter.png');
   }
 
   ngOnDestroy() {
@@ -44,7 +44,7 @@ export class ConventionsComponent implements OnInit, OnDestroy {
 
   redirectConvention(id: string) {
     this.router.navigate(['conventions/convention/' + id]);
-    
+
     event.preventDefault();
   }
 

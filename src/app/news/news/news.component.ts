@@ -25,13 +25,13 @@ export class NewsComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.news = this.newsGQL.watch()
       .valueChanges
-      .pipe(        
+      .pipe(
         map(result => result.data.newsposts)
       );
 
     this.newsSubscription = this.news.subscribe();
-    this.headerPhotos.announceHeaderLabelChanged("News Posts");
-    this.headerPhotos.announceHeaderPhotoChanged("/assets/images/newsletter.png");
+    this.headerPhotos.announceHeaderLabelChanged('News Posts');
+    this.headerPhotos.announceHeaderPhotoChanged('/assets/images/newsletter.png');
   }
 
   ngOnDestroy() {
@@ -42,14 +42,14 @@ export class NewsComponent implements OnInit, OnDestroy {
 
   redirect(url: string) {
     console.log(url);
-    if (url.startsWith("http")) {
+    if (url.startsWith('http')) {
       this.router.navigate(['/externalRedirect', { externalUrl: url }], {
         skipLocationChange: true,
       });
     } else {
       this.router.navigate([url]);
     }
-    
+
     event.preventDefault();
   }
 

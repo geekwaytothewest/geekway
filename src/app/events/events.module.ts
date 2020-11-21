@@ -7,10 +7,10 @@ import { MatCardModule } from '@angular/material/card';
 import { IvyCarouselModule } from 'angular-responsive-carousel';
 import { CrystalLightboxModule } from '@crystalui/angular-lightbox';
 
-const eventsRoutes: Routes = [  
+const eventsRoutes: Routes = [
   { path: '', component: EventsComponent, pathMatch: 'full' },
   { path: 'event/:slug', component: EventComponent }
-]
+];
 
 @NgModule({
   declarations: [EventComponent, EventsComponent],

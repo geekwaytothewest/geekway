@@ -3,9 +3,9 @@ import { CommonModule } from '@angular/common';
 import { Routes, RouterModule } from '@angular/router';
 import { PageComponent } from './page/page.component';
 
-const pagesRoutes: Routes = [  
+const pagesRoutes: Routes = [
   { path: '', component: PageComponent }
-]
+];
 
 @NgModule({
   declarations: [PageComponent],

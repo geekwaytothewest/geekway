@@ -18,7 +18,7 @@ export class OembedService {
   getOembed(url: string): Observable<Oembed> {
     return this.http.get<Oembed>(this.iframelyUrl, {
       params: {
-        url: url,
+        url,
         key: '253d913d6041e5d6f884180f898d2986',
         omit_css: 'true'
       }

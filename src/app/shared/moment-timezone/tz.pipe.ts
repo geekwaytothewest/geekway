@@ -1,9 +1,9 @@
-import {Pipe, PipeTransform} from "@angular/core";
-import * as momentFromTz from "moment-timezone";
-import * as moment from "moment";
+import {Pipe, PipeTransform} from '@angular/core';
+import * as momentFromTz from 'moment-timezone';
+import * as moment from 'moment';
 
 @Pipe({
-  name: "amTz"
+  name: 'amTz'
 })
 export class TzPipe implements PipeTransform {
 

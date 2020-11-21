@@ -22,14 +22,14 @@ export class EventsComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.events = this.eventsGQL.watch()
       .valueChanges
-      .pipe(        
+      .pipe(
         map(result => result.data.premiereevents)
       );
 
     this.eventsSubscription = this.events.subscribe();
 
-    this.headerPhoto.announceHeaderLabelChanged("Events");
-    this.headerPhoto.announceHeaderPhotoChanged("/assets/images/fancygaming1.jpg");
+    this.headerPhoto.announceHeaderLabelChanged('Events');
+    this.headerPhoto.announceHeaderPhotoChanged('/assets/images/fancygaming1.jpg');
   }
 
   ngOnDestroy() {

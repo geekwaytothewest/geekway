@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { AfterViewChecked, Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { Observable, Subscription } from 'rxjs';
 import { Convention, NextConventionWhereGQL } from 'src/generated/types.graphql-gen';
 import { Router } from '@angular/router';
@@ -12,13 +12,13 @@ import iframely from '@iframely/embed.js';
   templateUrl: './geekwaymicro.component.html',
   styleUrls: ['./geekwaymicro.component.scss']
 })
-export class GeekwaymicroComponent implements OnInit, OnDestroy {
+export class GeekwaymicroComponent implements OnInit, OnDestroy, AfterViewChecked {
 
   geekwayMicro: Observable<Convention>;
   geekwayMicroSubscription: Subscription;
   content: SafeHtml;
   workingContent: string;
-  mapCount: number = 0;
+  mapCount = 0;
 
   constructor(
     private nextGWConventionWhere: NextConventionWhereGQL,
@@ -29,14 +29,14 @@ export class GeekwaymicroComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
 
-    let whereClauseGW = {
-      "Type": "GeekwayMicro",
-      "endDate_gt": new Date().toISOString()
+    const whereClauseGW = {
+      Type: 'GeekwayMicro',
+      endDate_gt: new Date().toISOString()
     };
 
     this.geekwayMicro = this.nextGWConventionWhere.watch({whereClause: whereClauseGW})
       .valueChanges
-      .pipe(        
+      .pipe(
         map(result => result.data.conventions[0])
       );
 
@@ -44,7 +44,7 @@ export class GeekwaymicroComponent implements OnInit, OnDestroy {
       for (const v of result.venues) {
         this.mapCount += v.maps.length;
       }
-      
+
       this.workingContent = result.conventionType.Content;
       this.content = this.sanitizer.bypassSecurityTrustHtml(this.workingContent);
 
@@ -52,8 +52,8 @@ export class GeekwaymicroComponent implements OnInit, OnDestroy {
         this.oembedService.getOembed(match[1]).subscribe(oembed => {
           this.workingContent = this.workingContent.replace(match[0], oembed.html).replace('src="/uploads/', 'src="https://cms.geekway.com/uploads/');
           this.content = this.sanitizer.bypassSecurityTrustHtml(this.workingContent);
-        })
-      }      
+        });
+      }
     });
   }
 
@@ -64,20 +64,20 @@ export class GeekwaymicroComponent implements OnInit, OnDestroy {
   }
 
   ngAfterViewChecked() {
-    var el = document.querySelector('app-geekwaymicro')?.shadowRoot.querySelector('.iframely-embed iframe');
+    const el = document.querySelector('app-geekwaymicro')?.shadowRoot.querySelector('.iframely-embed iframe');
     iframely.iframely.load(el);
   }
 
   redirect(url: string) {
     console.log(url);
-    if (url.startsWith("http")) {
+    if (url.startsWith('http')) {
       this.router.navigate(['/externalRedirect', { externalUrl: url }], {
         skipLocationChange: true,
       });
     } else {
       this.router.navigate([url]);
     }
-    
+
     event.preventDefault();
   }
 

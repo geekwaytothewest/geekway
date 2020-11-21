@@ -17,12 +17,12 @@ import { HeaderPhotoService } from 'src/app/shared/header-photo/header-photo.ser
 export class ConventionComponent implements OnInit, OnDestroy {
 
   convention: Observable<Convention>;
-  conventionSubscription: Subscription; 
+  conventionSubscription: Subscription;
   playAndWinDataSource: MatTableDataSource<any>;
   todaysDate = Date();
   paginator: MatPaginator;
   sort: MatSort;
-  mapCount: number = 0;
+  mapCount = 0;
 
   @ViewChild(MatSort) set matSort(ms: MatSort) {
     this.sort = ms;
@@ -39,7 +39,7 @@ export class ConventionComponent implements OnInit, OnDestroy {
       this.playAndWinDataSource.paginator = this.paginator;
     }
   }
-  
+
   columnsToDisplay = ['Image', 'Name'];
 
   nameFilter = new FormControl();
@@ -50,7 +50,7 @@ export class ConventionComponent implements OnInit, OnDestroy {
 
   constructor(
     private nextGWConventionWhere: NextConventionWhereGQL,
-    private router: Router,    
+    private router: Router,
     private route: ActivatedRoute,
     private headerPhotos: HeaderPhotoService
   ) { }
@@ -58,14 +58,14 @@ export class ConventionComponent implements OnInit, OnDestroy {
   ngOnInit() {
 
     this.convention = this.route.paramMap.pipe(
-      switchMap((params: ParamMap) => {        
-        let whereClauseGW = {
-          "_id": params.get('id')
+      switchMap((params: ParamMap) => {
+        const whereClauseGW = {
+          _id: params.get('id')
         };
 
         return this.nextGWConventionWhere.watch({whereClause: whereClauseGW})
           .valueChanges
-          .pipe(        
+          .pipe(
             map(result => result.data.conventions[0])
           );
       })
@@ -75,18 +75,18 @@ export class ConventionComponent implements OnInit, OnDestroy {
       for (const v of data.venues) {
         this.mapCount += v.maps.length;
       }
-      
+
       this.playAndWinDataSource = new MatTableDataSource();
       this.playAndWinDataSource.data = data.playAndWins;
-      this.playAndWinDataSource.sort = this.sort
+      this.playAndWinDataSource.sort = this.sort;
       this.playAndWinDataSource.paginator = this.paginator;
       this.playAndWinDataSource.filterPredicate = this.tableFilter();
-    })
+    });
 
     this.nameFilter.valueChanges.subscribe(name => {
       this.filterValues.name = name;
       this.playAndWinDataSource.filter = JSON.stringify(this.filterValues);
-    })
+    });
 
     this.headerPhotos.announceHeaderLabelChanged(null);
     this.headerPhotos.announceHeaderPhotoChanged(null);
@@ -100,26 +100,26 @@ export class ConventionComponent implements OnInit, OnDestroy {
 
   redirect(url: string) {
     console.log(url);
-    if (url.startsWith("http")) {
+    if (url.startsWith('http')) {
       this.router.navigate(['/externalRedirect', { externalUrl: url }], {
         skipLocationChange: true,
       });
     } else {
       this.router.navigate([url]);
     }
-    
+
     event.preventDefault();
   }
 
   tableFilter(): (data: any, filter: string) => boolean {
-    let filterFunction = function(data, filter): boolean {
-      let searchTerms = JSON.parse(filter);
+    const filterFunction = function(data, filter): boolean {
+      const searchTerms = JSON.parse(filter);
 
-      let nameFound = data.Name.toLowerCase().indexOf(searchTerms.name) !== -1;
+      const nameFound = data.Name.toLowerCase().indexOf(searchTerms.name) !== -1;
 
       return nameFound;
-    }
-    
+    };
+
     return filterFunction;
   }
 
@@ -127,8 +127,8 @@ export class ConventionComponent implements OnInit, OnDestroy {
     document.getElementById('playAndWinCard').scrollIntoView();
   }
 
-  bggRedirect(bggId: String) {
-    window.open("https://boardgamegeek.com/boardgame/" + bggId, '_blank');
+  bggRedirect(bggId: string) {
+    window.open('https://boardgamegeek.com/boardgame/' + bggId, '_blank');
   }
 
 }

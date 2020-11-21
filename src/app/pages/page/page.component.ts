@@ -20,7 +20,7 @@ export class PageComponent implements OnInit, AfterViewChecked, OnDestroy {
   pageSubscription: Subscription;
   pageContent: SafeHtml;
   workingContent: string;
-  
+
   constructor(
     private route: ActivatedRoute,
     private singlepageGQL: SinglePageGQL,
@@ -29,19 +29,19 @@ export class PageComponent implements OnInit, AfterViewChecked, OnDestroy {
     private title: Title,
     private oembedService: OembedService,
     private headerPhoto: HeaderPhotoService
-  ) { 
+  ) {
   }
 
   ngOnInit() {
     this.page = this.route.paramMap.pipe(
-      switchMap((params: ParamMap) => {        
-        let whereClauseGW = {
-          "slug": params.get('slug')
+      switchMap((params: ParamMap) => {
+        const whereClauseGW = {
+          slug: params.get('slug')
         };
 
         return this.singlepageGQL.watch({whereClause: whereClauseGW})
           .valueChanges
-          .pipe(        
+          .pipe(
             map(result => result.data.pages[0])
           );
       })
@@ -55,13 +55,13 @@ export class PageComponent implements OnInit, AfterViewChecked, OnDestroy {
         this.oembedService.getOembed(match[1]).subscribe(oembed => {
           this.workingContent = this.workingContent.replace(match[0], oembed.html).replace('src="/uploads/', 'src="https://cms.geekway.com/uploads/');
           this.pageContent = this.sanitizer.bypassSecurityTrustHtml(this.workingContent);
-        })
+        });
       }
       if (result.HeaderImage) {
-        this.headerPhoto.announceHeaderPhotoChanged("https://cms.geekway.com" + result.HeaderImage.url);
+        this.headerPhoto.announceHeaderPhotoChanged('https://cms.geekway.com' + result.HeaderImage.url);
       }
       this.headerPhoto.announceHeaderLabelChanged(result.Name);
-    })
+    });
   }
 
   ngOnDestroy() {
@@ -71,7 +71,7 @@ export class PageComponent implements OnInit, AfterViewChecked, OnDestroy {
   }
 
   ngAfterViewChecked() {
-    var el = document.querySelector('app-page')?.shadowRoot.querySelector('.iframely-embed iframe');
+    const el = document.querySelector('app-page')?.shadowRoot.querySelector('.iframely-embed iframe');
     iframely.iframely.load(el);
   }
 

@@ -29,22 +29,22 @@ export class EventComponent implements OnInit, AfterViewChecked, OnDestroy {
     private oembedService: OembedService
   ) { }
 
-  ngOnInit() {    
+  ngOnInit() {
     this.event = this.route.paramMap.pipe(
-      switchMap((params: ParamMap) => {        
-        let whereClauseGW = {
-          "Slug": params.get('slug')
+      switchMap((params: ParamMap) => {
+        const whereClauseGW = {
+          Slug: params.get('slug')
         };
 
         return this.singleEventGQL.watch({whereClause: whereClauseGW})
           .valueChanges
-          .pipe(        
+          .pipe(
             map(result => result.data.premiereevents[0])
           );
       })
     );
 
-    this.eventSubscription = this.event.subscribe(result => {      
+    this.eventSubscription = this.event.subscribe(result => {
       this.workingContent = result.Content;
       this.eventContent = this.sanitizer.bypassSecurityTrustHtml(this.workingContent);
 
@@ -52,13 +52,13 @@ export class EventComponent implements OnInit, AfterViewChecked, OnDestroy {
         this.oembedService.getOembed(match[1]).subscribe(oembed => {
           this.workingContent = this.workingContent.replace(match[0], oembed.html).replace('src="/uploads/', 'src="https://cms.geekway.com/uploads/');
           this.eventContent = this.sanitizer.bypassSecurityTrustHtml(this.workingContent);
-        })
+        });
       }
 
       this.headerPhoto.announceHeaderLabelChanged(result.Name);
-      this.headerPhoto.announceHeaderPhotoChanged("https://cms.geekway.com" + result.HeaderPhoto.url);
-    })
-    
+      this.headerPhoto.announceHeaderPhotoChanged('https://cms.geekway.com' + result.HeaderPhoto.url);
+    });
+
   }
 
   ngOnDestroy() {
@@ -68,7 +68,7 @@ export class EventComponent implements OnInit, AfterViewChecked, OnDestroy {
   }
 
   ngAfterViewChecked() {
-    var el = document.querySelector('app-event')?.shadowRoot.querySelector('.iframely-embed iframe');
+    const el = document.querySelector('app-event')?.shadowRoot.querySelector('.iframely-embed iframe');
     iframely.iframely.load(el);
   }
 

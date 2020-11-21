@@ -20,12 +20,12 @@ export class NavigationComponent implements OnInit, OnDestroy {
   events: Observable<Premiereevent[]>;
   eventsSubscription: Subscription;
 
-  showSidenav: boolean = false;
-  showSlogan: boolean = true;
-  showAboutSubnav: boolean = false;
-  showPoliciesSubnav: boolean = false;
-  showEventsSubnav: boolean = false;
-  showConventionsSubnav: boolean = false;
+  showSidenav = false;
+  showSlogan = true;
+  showAboutSubnav = false;
+  showPoliciesSubnav = false;
+  showEventsSubnav = false;
+  showConventionsSubnav = false;
 
   headerPhotoSubscription: Subscription;
   headerLabelSubscription: Subscription;
@@ -33,7 +33,7 @@ export class NavigationComponent implements OnInit, OnDestroy {
   hoverTimer: Observable<number> = timer(250);
   hoverTimerSubscription: Subscription;
 
-  currentDate: Date = new Date()
+  currentDate: Date = new Date();
 
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
     .pipe(
@@ -61,7 +61,7 @@ export class NavigationComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.policies = this.policiesGQL.watch()
       .valueChanges
-      .pipe(        
+      .pipe(
         map(result => result.data.policies)
       );
 
@@ -101,28 +101,28 @@ export class NavigationComponent implements OnInit, OnDestroy {
   showSubnav(subnav: string) {
     this.hoverTimerSubscription = this.hoverTimer.subscribe(() => {
       switch (subnav) {
-        case "about":
+        case 'about':
           this.showSlogan = false;
           this.showAboutSubnav = true;
           this.showPoliciesSubnav = false;
           this.showEventsSubnav = false;
           this.showConventionsSubnav = false;
           break;
-        case "policies":
+        case 'policies':
           this.showSlogan = false;
           this.showAboutSubnav = false;
           this.showPoliciesSubnav = true;
           this.showEventsSubnav = false;
           this.showConventionsSubnav = false;
           break;
-        case "events":
+        case 'events':
           this.showSlogan = false;
           this.showAboutSubnav = false;
           this.showPoliciesSubnav = false;
           this.showEventsSubnav = true;
           this.showConventionsSubnav = false;
           break;
-        case "conventions":
+        case 'conventions':
           this.showSlogan = false;
           this.showAboutSubnav = false;
           this.showPoliciesSubnav = false;
@@ -137,7 +137,7 @@ export class NavigationComponent implements OnInit, OnDestroy {
           this.showConventionsSubnav = false;
           break;
       }
-    })
+    });
   }
 
   cancelSubnav() {

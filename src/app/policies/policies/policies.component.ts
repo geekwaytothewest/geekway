@@ -22,13 +22,13 @@ export class PoliciesComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.policies = this.policiesGQL.watch()
       .valueChanges
-      .pipe(        
+      .pipe(
         map(result => result.data.policies)
       );
 
     this.policiesSubscription = this.policies.subscribe();
-    this.headerPhoto.announceHeaderPhotoChanged("/assets/images/rainbow.jpg");
-    this.headerPhoto.announceHeaderLabelChanged("Policies");
+    this.headerPhoto.announceHeaderPhotoChanged('/assets/images/rainbow.jpg');
+    this.headerPhoto.announceHeaderLabelChanged('Policies');
   }
 
   ngOnDestroy() {

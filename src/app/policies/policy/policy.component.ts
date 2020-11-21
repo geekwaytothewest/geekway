@@ -29,16 +29,16 @@ export class PolicyComponent implements OnInit, AfterViewChecked, OnDestroy {
     private oembedService: OembedService
   ) { }
 
-  ngOnInit() {    
+  ngOnInit() {
     this.policy = this.route.paramMap.pipe(
-      switchMap((params: ParamMap) => {        
-        let whereClauseGW = {
-          "Slug": params.get('slug')
+      switchMap((params: ParamMap) => {
+        const whereClauseGW = {
+          Slug: params.get('slug')
         };
 
         return this.singlePolicyGQL.watch({whereClause: whereClauseGW})
           .valueChanges
-          .pipe(        
+          .pipe(
             map(result => result.data.policies[0])
           );
       })
@@ -52,12 +52,12 @@ export class PolicyComponent implements OnInit, AfterViewChecked, OnDestroy {
         this.oembedService.getOembed(match[1]).subscribe(oembed => {
           this.workingContent = this.workingContent.replace(match[0], oembed.html).replace('src="/uploads/', 'src="https://cms.geekway.com/uploads/');
           this.policyContent = this.sanitizer.bypassSecurityTrustHtml(this.workingContent);
-        })
+        });
       }
 
-      this.headerPhoto.announceHeaderPhotoChanged("https://cms.geekway.com" + result.HeaderPhoto.url);
+      this.headerPhoto.announceHeaderPhotoChanged('https://cms.geekway.com' + result.HeaderPhoto.url);
       this.headerPhoto.announceHeaderLabelChanged(result.Name);
-    })
+    });
   }
 
   ngOnDestroy() {
@@ -67,7 +67,7 @@ export class PolicyComponent implements OnInit, AfterViewChecked, OnDestroy {
   }
 
   ngAfterViewChecked() {
-    var el = document.querySelector('app-policy')?.shadowRoot.querySelector('.iframely-embed iframe');
+    const el = document.querySelector('app-policy')?.shadowRoot.querySelector('.iframely-embed iframe');
     iframely.iframely.load(el);
   }
 

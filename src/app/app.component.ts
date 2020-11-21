@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { Router, NavigationEnd } from '@angular/router';
 
@@ -7,13 +7,13 @@ import { Router, NavigationEnd } from '@angular/router';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
 
   constructor(
     private title: Title,
     private router: Router
   ) {
-    this.title.setTitle("Geekway to the West - Four Days of Peace, Love, and Board Games");
+    this.title.setTitle('Geekway to the West - Four Days of Peace, Love, and Board Games');
  }
 
  ngOnInit() {
@@ -22,7 +22,7 @@ export class AppComponent {
         return;
       }
 
-      window.scrollTo(0, 0)
+      window.scrollTo(0, 0);
     });
  }
 }

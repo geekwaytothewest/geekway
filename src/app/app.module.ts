@@ -13,7 +13,7 @@ import { RedirectionMessageComponent } from './shared/redirection-message/redire
 import { GraphQLModule } from './graphql.module';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { NotfoundComponent } from './notfound/notfound.component';
-import { ClarityModule } from "@clr/angular";
+import { ClarityModule } from '@clr/angular';
 import { MatCardModule } from '@angular/material/card';
 import { MatRippleModule } from '@angular/material/core';
 import { HttpClientModule } from '@angular/common/http';
