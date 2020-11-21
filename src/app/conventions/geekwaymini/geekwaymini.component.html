@@ -87,7 +87,7 @@
         <mat-card-content>
             <div *ngFor="let v of g.venues">
                 <div class="venueMaps" *ngIf="v.maps.length > 0" lightbox-group>
-                    {{v.Name}}
+                    <mat-card-subtitle>{{ v.Name }}</mat-card-subtitle>
                     <carousel [cellWidth]="300">
                         <div class="carousel-cell" *ngFor="let p of v.maps">
                             <img [src]="'https://cms.geekway.com' + p.url" lightbox>
