@@ -28,14 +28,14 @@ const conventionsRoutes: Routes = [
   { path: 'mini', component: GeekwayminiComponent},
   { path: 'micro', component: GeekwaymicroComponent},
   { path: 'convention/:id', component: ConventionComponent }
-]
+];
 
 @NgModule({
   declarations: [
-    ConventionsComponent, 
-    ConventionComponent, 
-    GeekwaytothewestComponent, 
-    GeekwayminiComponent, 
+    ConventionsComponent,
+    ConventionComponent,
+    GeekwaytothewestComponent,
+    GeekwayminiComponent,
     GeekwaymicroComponent
   ],
   imports: [
