@@ -18,6 +18,7 @@ export class GeekwayminiComponent implements OnInit, OnDestroy, AfterViewChecked
   geekwayMiniSubscription: Subscription;
   content: SafeHtml;
   workingContent: string;
+  mapCount: number = 0;
 
   constructor(
     private nextGWConventionWhere: NextConventionWhereGQL,
@@ -39,6 +40,10 @@ export class GeekwayminiComponent implements OnInit, OnDestroy, AfterViewChecked
       );
 
     this.geekwayMiniSubscription = this.geekwayMini.subscribe(result => {
+      for (const v of result.venues) {
+        this.mapCount += v.maps.length;
+      }
+      
       this.workingContent = result.conventionType.Content;
       this.content = this.sanitizer.bypassSecurityTrustHtml(this.workingContent);
 

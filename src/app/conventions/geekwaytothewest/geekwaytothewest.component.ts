@@ -18,6 +18,7 @@ export class GeekwaytothewestComponent implements OnInit, OnDestroy, AfterViewCh
   geekwayToTheWestSubscription: Subscription;
   content: SafeHtml;
   workingContent: string;
+  mapCount: number = 0;
 
   constructor(
     private nextGWConventionWhere: NextConventionWhereGQL,
@@ -39,6 +40,10 @@ export class GeekwaytothewestComponent implements OnInit, OnDestroy, AfterViewCh
       );
 
     this.geekwayToTheWestSubscription = this.geekwayToTheWest.subscribe(result => {      
+      for (const v of result.venues) {
+        this.mapCount += v.maps.length;
+      }
+      
       this.workingContent = result.conventionType.Content;
       this.content = this.sanitizer.bypassSecurityTrustHtml(this.workingContent);
 

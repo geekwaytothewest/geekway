@@ -22,6 +22,7 @@ export class ConventionComponent implements OnInit, OnDestroy {
   todaysDate = Date();
   paginator: MatPaginator;
   sort: MatSort;
+  mapCount: number = 0;
 
   @ViewChild(MatSort) set matSort(ms: MatSort) {
     this.sort = ms;
@@ -71,6 +72,10 @@ export class ConventionComponent implements OnInit, OnDestroy {
     );
 
     this.conventionSubscription = this.convention.subscribe(data => {
+      for (const v of data.venues) {
+        this.mapCount += v.maps.length;
+      }
+      
       this.playAndWinDataSource = new MatTableDataSource();
       this.playAndWinDataSource.data = data.playAndWins;
       this.playAndWinDataSource.sort = this.sort

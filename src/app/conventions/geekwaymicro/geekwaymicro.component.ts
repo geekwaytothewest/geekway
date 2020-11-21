@@ -18,6 +18,7 @@ export class GeekwaymicroComponent implements OnInit, OnDestroy {
   geekwayMicroSubscription: Subscription;
   content: SafeHtml;
   workingContent: string;
+  mapCount: number = 0;
 
   constructor(
     private nextGWConventionWhere: NextConventionWhereGQL,
@@ -40,6 +41,10 @@ export class GeekwaymicroComponent implements OnInit, OnDestroy {
       );
 
     this.geekwayMicroSubscription = this.geekwayMicro.subscribe(result => {
+      for (const v of result.venues) {
+        this.mapCount += v.maps.length;
+      }
+      
       this.workingContent = result.conventionType.Content;
       this.content = this.sanitizer.bypassSecurityTrustHtml(this.workingContent);
 
