@@ -41,16 +41,20 @@ export class GeekwaymicroComponent implements OnInit, OnDestroy, AfterViewChecke
       );
 
     this.geekwayMicroSubscription = this.geekwayMicro.subscribe(result => {
-      this.mapCount += result.PrimaryVenue.maps.length;
+      if (result) {
+        for (const v of result.venues) {
+          this.mapCount += v.maps.length;
+        }
 
-      this.workingContent = result.conventionType.Content;
-      this.content = this.sanitizer.bypassSecurityTrustHtml(this.workingContent);
+        this.workingContent = result.conventionType.Content;
+        this.content = this.sanitizer.bypassSecurityTrustHtml(this.workingContent);
 
-      for (const match of result.conventionType.Content.matchAll(this.oembedService.oembedRegex)) {
-        this.oembedService.getOembed(match[1]).subscribe(oembed => {
-          this.workingContent = this.workingContent.replace(match[0], oembed.html).replace('src="/uploads/', 'src="https://cms.geekway.com/uploads/');
-          this.content = this.sanitizer.bypassSecurityTrustHtml(this.workingContent);
-        });
+        for (const match of result.conventionType.Content.matchAll(this.oembedService.oembedRegex)) {
+          this.oembedService.getOembed(match[1]).subscribe(oembed => {
+            this.workingContent = this.workingContent.replace(match[0], oembed.html).replace('src="/uploads/', 'src="https://cms.geekway.com/uploads/');
+            this.content = this.sanitizer.bypassSecurityTrustHtml(this.workingContent);
+          });
+        }
       }
     });
   }
