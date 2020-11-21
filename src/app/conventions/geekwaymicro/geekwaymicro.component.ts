@@ -41,9 +41,7 @@ export class GeekwaymicroComponent implements OnInit, OnDestroy, AfterViewChecke
       );
 
     this.geekwayMicroSubscription = this.geekwayMicro.subscribe(result => {
-      for (const v of result.venues) {
-        this.mapCount += v.maps.length;
-      }
+      this.mapCount += result.PrimaryVenue.maps.length;
 
       this.workingContent = result.conventionType.Content;
       this.content = this.sanitizer.bypassSecurityTrustHtml(this.workingContent);
