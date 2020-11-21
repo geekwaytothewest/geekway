@@ -63,7 +63,7 @@ export class GeekwayminiComponent implements OnInit, OnDestroy, AfterViewChecked
   }
 
   ngAfterViewChecked() {
-    const el = document.querySelector('app-geekwaymini')?.shadowRoot.querySelector('.iframely-embed iframe');
+    const el = document.querySelector('app-geekwaymini')?.shadowRoot?.querySelector('.iframely-embed iframe');
     iframely.iframely.load(el);
   }
 

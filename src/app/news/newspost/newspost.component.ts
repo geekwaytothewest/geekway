@@ -69,7 +69,7 @@ export class NewspostComponent implements OnInit, AfterViewChecked, OnDestroy {
   }
 
   ngAfterViewChecked() {
-    const el = document.querySelector('app-newspost')?.shadowRoot.querySelector('.iframely-embed iframe');
+    const el = document.querySelector('app-newspost')?.shadowRoot?.querySelector('.iframely-embed iframe');
     iframely.iframely.load(el);
   }
 

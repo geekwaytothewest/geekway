@@ -71,7 +71,7 @@ export class PageComponent implements OnInit, AfterViewChecked, OnDestroy {
   }
 
   ngAfterViewChecked() {
-    const el = document.querySelector('app-page')?.shadowRoot.querySelector('.iframely-embed iframe');
+    const el = document.querySelector('app-page')?.shadowRoot?.querySelector('.iframely-embed iframe');
     iframely.iframely.load(el);
   }
 
