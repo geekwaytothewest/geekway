@@ -7,7 +7,7 @@
     </ul>
   </div>
   <header class="header-6">
-    <div class="branding">        
+    <div class="branding">
         <button
           type="button"
           aria-label="Toggle sidenav"
@@ -48,10 +48,10 @@
       <ul class="nav" *ngIf="showPoliciesSubnav">
           <li *ngFor="let p of policies | async" class="nav-item" matRipple><a class="nav-link" href="/policies/policy/{{ p.Slug }}"><i *ngIf="p.Icon" class="{{ p.Icon }}"></i> {{ p.Name }}</a></li>
       </ul>
-      <ul class="nav" *ngIf="showEventsSubnav">        
+      <ul class="nav" *ngIf="showEventsSubnav">
           <li *ngFor="let e of events | async" class="nav-item" matRipple><a class="nav-link" href="/events/event/{{ e.Slug }}"><i *ngIf="e.Icon" class="{{ e.Icon }}"></i> {{ e.Name }}</a></li>
       </ul>
-      <ul class="nav" *ngIf="showConventionsSubnav">            
+      <ul class="nav" *ngIf="showConventionsSubnav">
         <li class="nav-item" matRipple><a class="nav-link" href="/conventions/geekway"><i class="fas fa-dice-one fa-spin"></i> Geekway to the West</a></li>
         <li class="nav-item" matRipple><a class="nav-link" href="/conventions/mini"><i class="fas fa-dice-two fa-spin"></i> Geekway Mini</a></li>
         <li class="nav-item" matRipple><a class="nav-link" href="/conventions/micro"><i class="fas fa-dice-three fa-spin"></i> Geekway Micro</a></li>
@@ -65,7 +65,7 @@
               <a href="/" [ngClass]="{'nav-link' : true, 'active' : this.router.url == '/'}">
                 Home
               </a>
-              
+
               <section class="nav-group collapsible">
                   <input id="tabAbout" type="checkbox" [checked]="!(this.router.url.startsWith('/page/about') || this.router.url.startsWith('/boardmembers'))">
                   <label for="tabAbout">About</label>
@@ -83,7 +83,7 @@
               <section class="nav-group collapsible">
                 <input id="tabConventions" type="checkbox" [checked]="!(this.router.url.startsWith('/conventions'))">
                 <label for="tabConventions">Conventions</label>
-                <ul class="nav-list">                  
+                <ul class="nav-list">
                   <li class="nav-item"><a class="nav-link" href="/conventions/geekway"><i class="fas fa-dice-one fa-spin"></i> Geekway to the West</a></li>
                   <li class="nav-item"><a class="nav-link" href="/conventions/mini"><i class="fas fa-dice-two fa-spin"></i> Geekway Mini</a></li>
                   <li class="nav-item"><a class="nav-link" href="/conventions/micro"><i class="fas fa-dice-three fa-spin"></i> Geekway Micro</a></li>
@@ -94,30 +94,30 @@
               <a href="registration" [ngClass]="{'nav-link' : true, 'active' : this.router.url.startsWith('/registration')}">
                 Registration
               </a>
-              
+
               <section class="nav-group collapsible">
                   <input id="tabPolicies" type="checkbox" [checked]="!this.router.url.startsWith('/policies')">
                   <label for="tabPolicies">Policies</label>
                   <ul class="nav-list">
                       <li *ngFor="let p of policies | async"><a [ngClass]="{'nav-link' : true, 'active' : this.router.url.startsWith('/policies/policy/' + p.Slug )}" href="/policies/policy/{{ p.Slug }}"><i *ngIf="p.Icon" class="{{ p.Icon }}"></i> {{ p.Name }}</a></li>
                   </ul>
-              </section>  
-              
+              </section>
+
               <section class="nav-group collapsible">
                   <input id="tabEvents" type="checkbox" [checked]="!this.router.url.startsWith('/events')">
                   <label for="tabEvents">Events</label>
                   <ul class="nav-list">
                       <li *ngFor="let e of events | async"><a [ngClass]="{'nav-link' : true, 'active' : this.router.url.startsWith('/events/event/' + e.Slug )}" href="/events/event/{{ e.Slug }}"><i *ngIf="e.Icon" class="{{ e.Icon }}"></i> {{ e.Name }}</a></li>
                   </ul>
-              </section>   
+              </section>
 
               <a href="page/vendors" [ngClass]="{'nav-link' : true, 'active' : this.router.url.startsWith('/vendors')}">
                 Vendors
-              </a>     
+              </a>
 
               <a href="library" [ngClass]="{'nav-link' : true, 'active' : this.router.url.startsWith('/library')}">
                 Library
-              </a>                
+              </a>
 
               <a href="page/geekguides" [ngClass]="{'nav-link' : true, 'active' : this.router.url.startsWith('/page/geekguides')}">
                 Geek Guides
@@ -144,8 +144,8 @@
             <h1>
                 {{ photoLabel.label }}
             </h1>
-          </div>          
-        
+          </div>
+
           <mat-card [ngClass]="{'mat-elevation-z8': true, 'desktop': !(isHandset$ | async), 'moveUp': photoLabel.photo || photoLabel.label }">
             <mat-card-content>
               <router-outlet></router-outlet>
@@ -153,7 +153,7 @@
           </mat-card>
           <br/><br/>
         </div>
-        <div class="footer">          
+        <div class="footer">
           <div class="copyright">Copyright &copy; Geekway, LLC {{ currentDate | date: 'yyyy' }}</div>
         </div>
       </div>

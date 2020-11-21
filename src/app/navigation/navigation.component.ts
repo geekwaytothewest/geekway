@@ -98,6 +98,10 @@ export class NavigationComponent implements OnInit, OnDestroy {
     this.showSidenav = !this.showSidenav;
   }
 
+  hideSidenav() {
+    this.showSidenav = false;
+  }
+
   showSubnav(subnav: string) {
     this.hoverTimerSubscription = this.hoverTimer.subscribe(() => {
       switch (subnav) {
