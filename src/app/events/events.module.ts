@@ -5,6 +5,7 @@ import { EventsComponent } from './events/events.component';
 import { Routes, RouterModule } from '@angular/router';
 import { MatCardModule } from '@angular/material/card';
 import { IvyCarouselModule } from 'angular-responsive-carousel';
+import { CrystalLightboxModule } from '@crystalui/angular-lightbox';
 
 const eventsRoutes: Routes = [  
   { path: '', component: EventsComponent, pathMatch: 'full' },
@@ -17,6 +18,7 @@ const eventsRoutes: Routes = [
     CommonModule,
     MatCardModule,
     IvyCarouselModule,
+    CrystalLightboxModule,
     RouterModule.forChild(eventsRoutes)
   ]
 })

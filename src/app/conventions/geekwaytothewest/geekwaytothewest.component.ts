@@ -60,7 +60,7 @@ export class GeekwaytothewestComponent implements OnInit, OnDestroy, AfterViewCh
   }
 
   ngAfterViewChecked() {
-    var el = document.querySelector('app-geekwaytothewest')?.shadowRoot.querySelector('.iframely-embed iframe');
+    var el = document.querySelector('app-geekwaytothewest')?.shadowRoot?.querySelector('.iframely-embed iframe');
     iframely.iframely.load(el);
   }
 

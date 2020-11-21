@@ -20,6 +20,7 @@ import { IvyCarouselModule } from 'angular-responsive-carousel';
 import { AgmCoreModule } from '@agm/core';
 import { AgmSnazzyInfoWindowModule } from '@agm/snazzy-info-window';
 import { ReactiveFormsModule } from '@angular/forms';
+import { CrystalLightboxModule } from '@crystalui/angular-lightbox';
 
 const conventionsRoutes: Routes = [
   { path: '', component: ConventionsComponent, pathMatch: 'full' },
@@ -55,6 +56,7 @@ const conventionsRoutes: Routes = [
     }),
     AgmSnazzyInfoWindowModule,
     IvyCarouselModule,
+    CrystalLightboxModule,
     RouterModule.forChild(conventionsRoutes)
   ]
 })
