@@ -47,3 +47,4 @@ Thumbs.db
 *.graphql-gen.ts
 deploy_rsa
 deploy_rsa.pub
+debug.log
