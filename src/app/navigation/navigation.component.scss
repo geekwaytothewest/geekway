@@ -89,10 +89,12 @@ header {
 
 .miniHeader {
   background-color: #00B259;
+  font-size: smaller;
 
   ul {
     list-style: none;
     float: right;
+    margin-top: 5px;
 
     li {
       display: inline-block;
@@ -110,10 +112,6 @@ header {
 
     li:hover {
       background-color: #0093D2;
-
-      a {
-        color: black;
-      }
     }
   }
 }
