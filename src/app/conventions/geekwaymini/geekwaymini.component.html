@@ -75,6 +75,8 @@
                         <ng-template>
                             <p><b>{{ v.Name }}</b></p>
                             <p>{{ v.Address }}</p>
+                            <p *ngIf="v.website"><a href="{{ v.website }}">website</a></p>
+                            <p *ngIf="v.groupCode">Group Code: {{ v.groupCode }}</p>
                         </ng-template>
                     </agm-snazzy-info-window>                          
                 </agm-marker>

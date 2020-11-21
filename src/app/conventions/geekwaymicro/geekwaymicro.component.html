@@ -73,6 +73,7 @@
                         <ng-template>
                             <p><b>{{g.PrimaryVenue.Name}}</b></p>
                             <p>{{g.PrimaryVenue.Address}}</p>
+                            <p *ngIf="g.PrimaryVenue.website"><a href="{{ g.PrimaryVenue.website }}">website</a></p>
                         </ng-template>
                     </agm-snazzy-info-window>                          
                 </agm-marker>
