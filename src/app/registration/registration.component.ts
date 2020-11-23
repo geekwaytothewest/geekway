@@ -91,7 +91,6 @@ export class RegistrationComponent implements OnInit, OnDestroy {
   }
 
   redirect(url: string) {
-    console.log(url);
     if (url.startsWith('http')) {
       this.router.navigate(['/externalRedirect', { externalUrl: url }], {
         skipLocationChange: true,

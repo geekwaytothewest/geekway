@@ -71,7 +71,6 @@ export class GeekwaymicroComponent implements OnInit, OnDestroy, AfterViewChecke
   }
 
   redirect(url: string) {
-    console.log(url);
     if (url.startsWith('http')) {
       this.router.navigate(['/externalRedirect', { externalUrl: url }], {
         skipLocationChange: true,
