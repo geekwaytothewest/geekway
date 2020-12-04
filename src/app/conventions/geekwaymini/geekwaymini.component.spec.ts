@@ -20,12 +20,12 @@ describe('GeekwayminiComponent', () => {
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [ GeekwayminiComponent ],
-      imports: [ 
-        MomentModule, 
-        MomentTimezoneModule, 
-        MatCardModule, 
-        FlipclockModule, 
-        AgmCoreModule, 
+      imports: [
+        MomentModule,
+        MomentTimezoneModule,
+        MatCardModule,
+        FlipclockModule,
+        AgmCoreModule,
         IvyCarouselModule,
         AgmCoreModule,
         AgmSnazzyInfoWindowModule,

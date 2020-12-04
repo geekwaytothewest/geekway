@@ -15,7 +15,13 @@ describe('BlogpostComponent', () => {
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [ BlogpostComponent ],
-      imports: [ MomentModule, MomentTimezoneModule, RouterModule.forRoot([], { relativeLinkResolution: 'legacy' }), ApolloTestingModule, HttpClientModule ]
+      imports: [
+        MomentModule,
+        MomentTimezoneModule,
+        RouterModule.forRoot([], { relativeLinkResolution: 'legacy' }),
+        ApolloTestingModule,
+        HttpClientModule
+      ]
     })
     .compileComponents();
   }));

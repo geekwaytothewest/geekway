@@ -20,10 +20,10 @@ describe('GeekwaymicroComponent', () => {
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [ GeekwaymicroComponent ],
-      imports: [ 
-        MomentModule, 
-        MomentTimezoneModule, 
-        MatCardModule, 
+      imports: [
+        MomentModule,
+        MomentTimezoneModule,
+        MatCardModule,
         FlipclockModule,
         IvyCarouselModule,
         AgmCoreModule,

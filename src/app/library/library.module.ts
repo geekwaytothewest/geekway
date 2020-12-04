@@ -13,7 +13,7 @@ import { MomentTimezoneModule } from '../shared/moment-timezone/moment-timezone.
 
 const libraryRoutes: Routes = [
   { path: '', component: LibraryComponent, pathMatch: 'full' }
-]
+];
 
 @NgModule({
   declarations: [LibraryComponent],

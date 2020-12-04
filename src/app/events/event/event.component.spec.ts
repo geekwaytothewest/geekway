@@ -14,7 +14,13 @@ describe('EventComponent', () => {
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [ EventComponent ],
-      imports: [ IvyCarouselModule, MatCardModule, RouterModule.forRoot([], { relativeLinkResolution: 'legacy' }), ApolloTestingModule, HttpClientModule ]
+      imports: [
+        IvyCarouselModule,
+        MatCardModule,
+        RouterModule.forRoot([], { relativeLinkResolution: 'legacy' }),
+        ApolloTestingModule,
+        HttpClientModule
+      ]
     })
     .compileComponents();
   }));

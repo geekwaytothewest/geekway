@@ -18,10 +18,10 @@ describe('ConventionsComponent', () => {
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [ ConventionsComponent ],
-      imports: [ 
-        MatTableModule, 
-        MomentModule, 
-        MomentTimezoneModule, 
+      imports: [
+        MatTableModule,
+        MomentModule,
+        MomentTimezoneModule,
         ApolloTestingModule,
         IvyCarouselModule,
         AgmCoreModule,

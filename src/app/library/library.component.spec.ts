@@ -19,13 +19,13 @@ describe('LibraryComponent', () => {
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [ LibraryComponent ],
-      imports: [ 
-        MomentModule, 
-        MomentTimezoneModule, 
-        MatTableModule, 
-        MatFormFieldModule, 
-        MatInputModule, 
-        ReactiveFormsModule, 
+      imports: [
+        MomentModule,
+        MomentTimezoneModule,
+        MatTableModule,
+        MatFormFieldModule,
+        MatInputModule,
+        ReactiveFormsModule,
         MatPaginatorModule,
         ApolloTestingModule,
         BrowserAnimationsModule

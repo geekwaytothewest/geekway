@@ -10,7 +10,7 @@ import { FlipclockModule } from '../shared/flipclock/flipclock.module';
 
 const registrationRoutes: Routes = [
   { path: '', component: RegistrationComponent, pathMatch: 'full' }
-]
+];
 
 @NgModule({
   declarations: [

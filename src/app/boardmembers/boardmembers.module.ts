@@ -5,7 +5,7 @@ import { Routes, RouterModule } from '@angular/router';
 
 const boardMembersRoutes: Routes = [
   { path: '', component: BoardmembersComponent, pathMatch: 'full' }
-]
+];
 
 @NgModule({
   declarations: [BoardmembersComponent],

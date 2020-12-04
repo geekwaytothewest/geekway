@@ -53,7 +53,9 @@ export class PageComponent implements OnInit, AfterViewChecked, OnDestroy {
 
       for (const match of result.Content.matchAll(this.oembedService.oembedRegex)) {
         this.oembedService.getOembed(match[1]).subscribe(oembed => {
-          this.workingContent = this.workingContent.replace(match[0], oembed.html).replace('src="/uploads/', 'src="https://cms.geekway.com/uploads/');
+          this.workingContent = this.workingContent
+                                  .replace(match[0], oembed.html)
+                                  .replace('src="/uploads/', 'src="https://cms.geekway.com/uploads/');
           this.pageContent = this.sanitizer.bypassSecurityTrustHtml(this.workingContent);
         });
       }

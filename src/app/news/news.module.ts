@@ -8,10 +8,10 @@ import { MatCardModule } from '@angular/material/card';
 import { MomentModule } from 'ngx-moment';
 import { MomentTimezoneModule } from '../shared/moment-timezone/moment-timezone.module';
 
-const newsRoutes: Routes = [  
+const newsRoutes: Routes = [
   { path: '', component: NewsComponent, pathMatch: 'full' },
   { path: 'post/:slug', component: NewspostComponent }
-]
+];
 
 @NgModule({
   declarations: [NewsComponent, NewspostComponent],

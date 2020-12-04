@@ -8,8 +8,8 @@ import { Observable } from 'rxjs';
 })
 export class OembedService {
 
-  private iframelyUrl = 'https://cdn.iframe.ly/api/oembed/';
   oembedRegex = /<oembed url="(.*?)"><\/oembed>/g;
+  private iframelyUrl = 'https://cdn.iframe.ly/api/oembed/';
 
   constructor(
     private http: HttpClient

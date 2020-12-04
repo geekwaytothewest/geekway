@@ -20,12 +20,12 @@ describe('GeekwaytothewestComponent', () => {
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [ GeekwaytothewestComponent ],
-      imports: [ 
-        MomentModule, 
-        MomentTimezoneModule, 
-        MatCardModule, 
+      imports: [
+        MomentModule,
+        MomentTimezoneModule,
+        MatCardModule,
         FlipclockModule,
-        IvyCarouselModule, 
+        IvyCarouselModule,
         AgmCoreModule,
         AgmSnazzyInfoWindowModule,
         ApolloTestingModule,

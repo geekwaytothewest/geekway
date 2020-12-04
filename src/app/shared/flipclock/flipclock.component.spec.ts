@@ -29,6 +29,6 @@ describe('FlipclockComponent', () => {
     selector: `host-component`,
     template: `<app-flipclock id="testing" date="2019-11-30"></app-flipclock>`
   })
-  class TestHostComponent {    
+  class TestHostComponent {
   }
 });

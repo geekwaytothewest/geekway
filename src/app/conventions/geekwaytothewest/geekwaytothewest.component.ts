@@ -49,12 +49,20 @@ export class GeekwaytothewestComponent implements OnInit, OnDestroy, AfterViewCh
 
       for (const match of result.conventionType.Content.matchAll(this.oembedService.oembedRegex)) {
         this.oembedService.getOembed(match[1]).subscribe(oembed => {
-          this.workingContent = this.workingContent.replace(match[0], oembed.html).replace('src="/uploads/', 'src="https://cms.geekway.com/uploads/');
+          this.workingContent = this.workingContent
+                                  .replace(match[0], oembed.html)
+                                  .replace('src="/uploads/', 'src="https://cms.geekway.com/uploads/');
           this.content = this.sanitizer.bypassSecurityTrustHtml(this.workingContent);
         });
       }
 
-      this.content = this.sanitizer.bypassSecurityTrustHtml(result.conventionType.Content.replace(/<oembed url=(.*)><\/oembed>/, ' <div class="iframely-embed"><div class="iframely-responsive"><a data-iframely-url href=$1></div></div>'));
+      this.content = this.sanitizer.bypassSecurityTrustHtml(
+        result.conventionType.Content
+          .replace(
+            /<oembed url=(.*)><\/oembed>/,
+            ' <div class="iframely-embed"><div class="iframely-responsive"><a data-iframely-url href=$1></div></div>'
+          )
+      );
     });
   }
 
