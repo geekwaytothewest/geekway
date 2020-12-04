@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { ApolloTestingController, ApolloTestingModule } from 'apollo-angular/testing';
 
 import { PageComponent } from './page.component';
@@ -10,10 +10,10 @@ describe('PageComponent', () => {
   let fixture: ComponentFixture<PageComponent>;
   let backend: ApolloTestingController;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [ PageComponent ],
-      imports: [ ApolloTestingModule, HttpClientModule, RouterModule.forRoot([]) ]
+      imports: [ ApolloTestingModule, HttpClientModule, RouterModule.forRoot([], { relativeLinkResolution: 'legacy' }) ]
     })
     .compileComponents();
   }));

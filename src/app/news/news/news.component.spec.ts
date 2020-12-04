@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { ApolloTestingController, ApolloTestingModule } from 'apollo-angular/testing';
 
 import { NewsComponent } from './news.component';
@@ -12,7 +12,7 @@ describe('NewsComponent', () => {
   let fixture: ComponentFixture<NewsComponent>;
   let backend: ApolloTestingController;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [ NewsComponent ],
       imports: [ MatCardModule, MomentTimezoneModule, MomentModule, ApolloTestingModule, RouterTestingModule ]

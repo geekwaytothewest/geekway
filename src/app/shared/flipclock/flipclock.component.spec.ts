@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { FlipclockComponent } from './flipclock.component';
 import { Component } from '@angular/core';
@@ -8,7 +8,7 @@ describe('FlipclockComponent', () => {
   let fixture: ComponentFixture<TestHostComponent>;
   let testHostComponent: TestHostComponent;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [ FlipclockComponent, TestHostComponent ]
     })

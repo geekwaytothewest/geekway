@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { ApolloTestingController, ApolloTestingModule } from 'apollo-angular/testing';
 import { EventComponent } from './event.component';
 import { MatCardModule } from '@angular/material/card';
@@ -11,10 +11,10 @@ describe('EventComponent', () => {
   let fixture: ComponentFixture<EventComponent>;
   let backend: ApolloTestingController;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [ EventComponent ],
-      imports: [ IvyCarouselModule, MatCardModule, RouterModule.forRoot([]), ApolloTestingModule, HttpClientModule ]
+      imports: [ IvyCarouselModule, MatCardModule, RouterModule.forRoot([], { relativeLinkResolution: 'legacy' }), ApolloTestingModule, HttpClientModule ]
     })
     .compileComponents();
   }));

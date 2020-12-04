@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { ApolloTestingController, ApolloTestingModule } from 'apollo-angular/testing';
 
 import { RegistrationComponent } from './registration.component';
@@ -13,7 +13,7 @@ describe('RegistrationComponent', () => {
   let fixture: ComponentFixture<RegistrationComponent>;
   let backend: ApolloTestingController;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [ RegistrationComponent ],
       imports: [ MomentTimezoneModule, MomentModule, MatCardModule, FlipclockModule, ApolloTestingModule, RouterTestingModule ]

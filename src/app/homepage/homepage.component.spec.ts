@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { HomepageComponent } from './homepage.component';
 import { MomentModule } from 'ngx-moment';
@@ -13,7 +13,7 @@ describe('HomepageComponent', () => {
   let fixture: ComponentFixture<HomepageComponent>;
   let backend: ApolloTestingController;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [ HomepageComponent ],
       imports: [ MomentModule, MomentTimezoneModule, FlipclockModule, MatCardModule, ApolloTestingModule, RouterTestingModule ]
