@@ -18,6 +18,7 @@
   "dependencies": {
     "@agm/core": "^3.0.0-beta.0",
     "@agm/snazzy-info-window": "^3.0.0-beta.0",
+    "@angular-eslint/schematics": "^0.8.0-beta.3",
     "@angular/animations": "^10.2.3",
     "@angular/cdk": "^10.2.7",
     "@angular/common": "^10.2.3",
@@ -78,7 +79,6 @@
     "@types/jasmine": "~3.3.8",
     "@types/jasminewd2": "~2.0.3",
     "@types/node": "^12.19.5",
-    "codelyzer": "^5.2.1",
     "graphql-cli": "^4.0.0-alpha",
     "graphql-toolkit": "^0.7.5",
     "html-webpack-plugin": "^3.2.0",
@@ -93,7 +93,6 @@
     "preload-webpack-plugin": "^3.0.0-beta.4",
     "protractor": "~7.0.0",
     "ts-node": "~7.0.0",
-    "tslint": "~6.1.0",
     "typescript": "~4.0.5"
   }
 }
