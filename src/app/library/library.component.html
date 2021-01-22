@@ -1,67 +1,91 @@
-<p>The Geekway library currently has more than 1800 games for attendees to check out and play! At Geekway, you simply go to the library, choose a game, and bring it to the librarian who will scan the game and your badge. You then just bring the game back when you are done playing!</p>
+<p>
+  The Geekway library currently has more than 1800 games for attendees to check
+  out and play! At Geekway, you simply go to the library, choose a game, and
+  bring it to the librarian who will scan the game and your badge. You then just
+  bring the game back when you are done playing!
+</p>
 
-<p>This library data is taken from <a href="http://boardgamegeek.com/user/geekway">BoardGameGeek</a>.</p>
+<p>
+  This library data is taken from
+  <a href="http://boardgamegeek.com/user/geekway">BoardGameGeek</a>.
+</p>
 
-<p *ngIf="library | async as l">Last Updated: {{ l.updatedAt | amTz: 'America/Chicago' | amTimeAgo }}</p>
+<p *ngIf="library | async as l">
+  Last Updated: {{ l.updatedAt | amTz: "America/Chicago" | amTimeAgo }}
+</p>
 
 <div class="tableContainer mat-elevation-z8" id="libraryDiv">
-    <table mat-table [dataSource]="dataSource" matSort>
-        <ng-container matColumnDef="Image">
-            <th mat-header-cell *matHeaderCellDef> Image </th>
-            <td mat-cell *matCellDef="let c" class="centered"><img src="{{ c.thumbnail[0] }}" class="boardGameBox"></td>
-        </ng-container>
-        <ng-container matColumnDef="Name">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header>
-                Name
-                <mat-form-field class="filter" floatLabel="never">
-                    <mat-label>Search</mat-label>
-                    <input matInput [formControl]="nameFilter">
-                </mat-form-field>
-            </th>
-            <td mat-cell *matCellDef="let c"> {{ c.name[0]._ }} </td>
-        </ng-container>
-        <ng-container matColumnDef="Year">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header>
-                Year
-                <mat-form-field class="filter" floatLabel="never">
-                    <mat-label>Search</mat-label>
-                    <input matInput [formControl]="yearFilter">
-                </mat-form-field>
-            </th>
-            <td mat-cell *matCellDef="let c"> <span *ngIf="c.yearpublished">{{ c.yearpublished[0] }}</span> </td>
-        </ng-container>
-        <ng-container matColumnDef="Players">
-            <th mat-header-cell *matHeaderCellDef>
-                Players
-                <mat-form-field class="filter" floatLabel="never">
-                    <mat-label>Search</mat-label>
-                    <input matInput [formControl]="playersFilter">
-                </mat-form-field>
-            </th>
-            <td mat-cell *matCellDef="let c">{{ c.stats[0].$.minplayers }}-{{ c.stats[0].$.maxplayers }}</td>
-        </ng-container>
-        <ng-container matColumnDef="Playtime">
-            <th mat-header-cell *matHeaderCellDef>
-                Playtime
-                <mat-form-field class="filter" floatLabel="never">
-                    <mat-label>Search</mat-label>
-                    <input matInput [formControl]="playtimeFilter">
-                </mat-form-field>
-            </th>
-            <td mat-cell *matCellDef="let c">{{ c.stats[0].$.minplaytime }}-{{ c.stats[0].$.maxplaytime }}</td>
-        </ng-container>
-        <ng-container matColumnDef="Rating">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header>
-                Rating
-                <mat-form-field class="filter" floatLabel="never">
-                    <mat-label>Search</mat-label>
-                    <input matInput [formControl]="ratingFilter">
-                </mat-form-field>
-            </th>
-            <td mat-cell *matCellDef="let c">{{ c.stats[0].rating[0].average[0].$.value }}</td>
-        </ng-container>
-        <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
-        <tr mat-row *matRowDef="let myRowData; columns: columnsToDisplay" (click)="bggRedirect(myRowData.$.objectid)"></tr>
-    </table>
-    <mat-paginator #paginator [pageSize]="50" [pageSizeOptions]="[50, 100, 200, 500]" (page)="paginateChange($event)"></mat-paginator>
+  <table mat-table [dataSource]="dataSource" matSort>
+    <ng-container matColumnDef="Image">
+      <th mat-header-cell *matHeaderCellDef>Image</th>
+      <td mat-cell *matCellDef="let c" class="centered">
+        <img src="{{ c.thumbnail[0] }}" class="boardGameBox" />
+      </td>
+    </ng-container>
+    <ng-container matColumnDef="Name">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>
+        <mat-form-field class="filter" floatLabel="never">
+          <mat-label>Name</mat-label>
+          <input matInput [formControl]="nameFilter" />
+        </mat-form-field>
+      </th>
+      <td mat-cell *matCellDef="let c">{{ c.name[0]._ }}</td>
+    </ng-container>
+    <ng-container matColumnDef="Year">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>
+        <mat-form-field class="filter" floatLabel="never">
+          <mat-label>Year</mat-label>
+          <input matInput [formControl]="yearFilter" />
+        </mat-form-field>
+      </th>
+      <td mat-cell *matCellDef="let c">
+        <span *ngIf="c.yearpublished">{{ c.yearpublished[0] }}</span>
+      </td>
+    </ng-container>
+    <ng-container matColumnDef="Players">
+      <th mat-header-cell *matHeaderCellDef>
+        <mat-form-field class="filter" floatLabel="never">
+          <mat-label>Players</mat-label>
+          <input matInput [formControl]="playersFilter" />
+        </mat-form-field>
+      </th>
+      <td mat-cell *matCellDef="let c">
+        {{ c.stats[0].$.minplayers }}-{{ c.stats[0].$.maxplayers }}
+      </td>
+    </ng-container>
+    <ng-container matColumnDef="Playtime">
+      <th mat-header-cell *matHeaderCellDef>
+        <mat-form-field class="filter" floatLabel="never">
+          <mat-label>Playtime</mat-label>
+          <input matInput [formControl]="playtimeFilter" />
+        </mat-form-field>
+      </th>
+      <td mat-cell *matCellDef="let c">
+        {{ c.stats[0].$.minplaytime }}-{{ c.stats[0].$.maxplaytime }}
+      </td>
+    </ng-container>
+    <ng-container matColumnDef="Rating">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>
+        <mat-form-field class="filter" floatLabel="never">
+          <mat-label>Rating</mat-label>
+          <input matInput [formControl]="ratingFilter" />
+        </mat-form-field>
+      </th>
+      <td mat-cell *matCellDef="let c">
+        {{ c.stats[0].rating[0].average[0].$.value }}
+      </td>
+    </ng-container>
+    <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
+    <tr
+      mat-row
+      *matRowDef="let myRowData; columns: columnsToDisplay"
+      (click)="bggRedirect(myRowData.$.objectid)"
+    ></tr>
+  </table>
+  <mat-paginator
+    #paginator
+    [pageSize]="50"
+    [pageSizeOptions]="[50, 100, 200, 500]"
+    (page)="paginateChange($event)"
+  ></mat-paginator>
 </div>
