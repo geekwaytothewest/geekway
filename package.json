@@ -6,7 +6,7 @@
     "start": "run-p start:ng gql:codegen:watch",
     "start:ng": "ng serve",
     "build": "graphql-codegen --config codegen.yml && ng build --prod",
-    "test": "ng test",
+    "test": "ng test --watch=false --browsers=ChromeHeadless",
     "lint": "ng lint",
     "e2e": "ng e2e",
     "gql:update-schema": "graphql get-schema -e default",
