@@ -2,8 +2,6 @@ name: Angular CD
 
 on:
   push:
-    branches:
-      - master
     tags:
       - "*"
 
