@@ -1,6 +1,6 @@
 <mat-card>
     <mat-card-content class="center">
-        <b>Geekway to the West</b> hosts board game conventions and events in and around the <b>St. Louis, Missouri</b> area. Our premiere annual convention is hosted in the summer and attracts more than 3,000 board game enthusiants from all over.
+        <b>Geekway to the West</b> hosts board game conventions and events in and around the <b>St. Louis, Missouri</b> area. Our premiere annual convention is hosted in the summer and attracts more than 3,000 board game enthusiasts from all over.
     </mat-card-content>
 </mat-card>
 
@@ -33,7 +33,7 @@
 
         <br/>
 
-        <div class="flexbox">    
+        <div class="flexbox">
             <mat-card *ngIf="geekwayMini | async as gwMini" (click)="redirect('conventions/mini')">
                 <img *ngIf="gwMini.Logo; else gwMiniLogo" class="cardImage" matCardImage src="https://cms.geekway.com{{ gwMini.LogoSquare.url }}">
                 <ng-template #gwMiniLogo>
