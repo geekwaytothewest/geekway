@@ -4,9 +4,9 @@
         <div [innerHTML]="content" id="content"></div>
     </mat-card-content>
 </mat-card>
-    
+
 <br/>
-    
+
 <div *ngIf="geekwayToTheWest | async as g">
     <mat-card>
         <mat-card-title>Geekway to the West {{ g.startDate | amTz: 'America/Chicago' | amDateFormat: 'YYYY' }}</mat-card-title>
@@ -28,10 +28,10 @@
             </div>
         </mat-card-content>
     </mat-card>
-    
+
     <mat-card *ngIf="g.regDates.length > 0">
         <mat-card-title>Registration</mat-card-title>
-        <mat-card-content>            
+        <mat-card-content>
             <div *ngFor="let r of g.regDates; let i = index" class="registrationBlock">
                 <b>{{ r.name }} registration begins:</b> {{ r.date | amTz: 'America/Chicago' | amDateFormat: 'MMMM Do YYYY, h:mm a' }}
                 <br/><br/>
@@ -39,7 +39,7 @@
             </div>
         </mat-card-content>
         <mat-card-actions *ngIf="g.registrationUrl">
-            <button mat-button (click)="redirect(g.registrationUrl)">Register on Tabletop.Events</button>
+            <button mat-button (click)="redirect(g.registrationUrl)">Register</button>
         </mat-card-actions>
     </mat-card>
 
@@ -78,12 +78,12 @@
                             <p *ngIf="v.website"><a href="{{ v.website }}" target="_blank">website</a></p>
                             <p *ngIf="v.groupCode"><b>Group Code:</b> {{ v.groupCode }}</p>
                         </ng-template>
-                    </agm-snazzy-info-window>                          
+                    </agm-snazzy-info-window>
                 </agm-marker>
-            </agm-map>            
+            </agm-map>
         </mat-card-content>
     </mat-card>
-    
+
     <mat-card *ngIf="mapCount > 0">
         <mat-card-title>Venue Maps</mat-card-title>
         <mat-card-content>
