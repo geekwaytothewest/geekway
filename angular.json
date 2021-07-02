@@ -31,15 +31,13 @@
               "src/styles.scss",
               "node_modules/flipclock/dist/flipclock.css",
               "node_modules/snazzy-info-window/dist/snazzy-info-window.css",
-              "node_modules/@clr/icons/clr-icons.min.css",
               "node_modules/@clr/ui/clr-ui.min.css"
             ],
             "scripts": [
               "node_modules/@webcomponents/webcomponentsjs/custom-elements-es5-adapter.js",
               "node_modules/@webcomponents/webcomponentsjs/webcomponents-bundle.js",
               "node_modules/flipclock/dist/flipclock.js",
-              "node_modules/marked/lib/marked.js",
-              "node_modules/@clr/icons/clr-icons.min.js"
+              "node_modules/marked/lib/marked.js"
             ]
           },
           "configurations": {
