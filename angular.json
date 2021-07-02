@@ -40,10 +40,7 @@
               "node_modules/flipclock/dist/flipclock.js",
               "node_modules/marked/lib/marked.js",
               "node_modules/@clr/icons/clr-icons.min.js"
-            ],
-            "customWebpackConfig": {
-              "path": "custom-webpack.config.js"
-            }
+            ]
           },
           "configurations": {
             "production": {
@@ -80,10 +77,7 @@
         "serve": {
           "builder": "@angular-builders/custom-webpack:dev-server",
           "options": {
-            "browserTarget": "geekway:build",
-            "customWebpackConfig": {
-              "path": "custom-webpack.config.js"
-            }
+            "browserTarget": "geekway:build"
           },
           "configurations": {
             "production": {
