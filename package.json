@@ -52,7 +52,7 @@
     "graphql": "^15.5.1",
     "graphql-type-datetime": "^0.2.4",
     "jszip": "^3.6.0",
-    "lit-html": "^1.4.1",
+    "lit": "^2.0.0-rc.2",
     "moment": "^2.24.0",
     "moment-timezone": "^0.5.33",
     "ngx-moment": "^3.5.0",
