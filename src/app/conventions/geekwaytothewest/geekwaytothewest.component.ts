@@ -6,6 +6,8 @@ import { Router } from '@angular/router';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { OembedService } from 'src/app/shared/oembed/oembed.service';
 import iframely from '@iframely/embed.js';
+import { MatTableDataSource } from '@angular/material/table';
+import { FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-geekwaytothewest',
@@ -16,9 +18,18 @@ export class GeekwaytothewestComponent implements OnInit, OnDestroy, AfterViewCh
 
   geekwayToTheWest: Observable<Convention>;
   geekwayToTheWestSubscription: Subscription;
+  playAndWinDataSource: MatTableDataSource<any>;
   content: SafeHtml;
   workingContent: string;
   mapCount = 0;
+
+  columnsToDisplay = ['Image', 'Name'];
+
+  nameFilter = new FormControl();
+
+  filterValues = {
+    name: '',
+  };
 
   constructor(
     private nextGWConventionWhere: NextConventionWhereGQL,
@@ -87,6 +98,14 @@ export class GeekwaytothewestComponent implements OnInit, OnDestroy, AfterViewCh
     }
 
     event.preventDefault();
+  }
+
+  bggRedirect(bggId: string) {
+    window.open('https://boardgamegeek.com/boardgame/' + bggId, '_blank');
+  }
+
+  playAndWinPaginateChange(event: any) {
+    document.getElementById('playAndWinCard').scrollIntoView();
   }
 
 }
