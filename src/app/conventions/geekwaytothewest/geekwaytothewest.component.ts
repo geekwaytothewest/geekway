@@ -85,6 +85,11 @@ export class GeekwaytothewestComponent implements OnInit, OnDestroy, AfterViewCh
       this.playAndWinDataSource.paginator = this.paginator;
       this.playAndWinDataSource.filterPredicate = this.tableFilter();
 
+      this.nameFilter.valueChanges.subscribe(name => {
+        this.filterValues.name = name;
+        this.playAndWinDataSource.filter = JSON.stringify(this.filterValues);
+      });
+
       for (const match of result.conventionType.Content.matchAll(this.oembedService.oembedRegex)) {
         this.oembedService.getOembed(match[1]).subscribe(oembed => {
           this.workingContent = this.workingContent
