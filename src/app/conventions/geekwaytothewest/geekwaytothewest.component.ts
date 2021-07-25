@@ -26,6 +26,7 @@ export class GeekwaytothewestComponent implements OnInit, OnDestroy, AfterViewCh
   paginator: MatPaginator;
   sort: MatSort;
   mapCount = 0;
+  todaysDate = Date();
 
   columnsToDisplay = ['Image', 'Name'];
 
