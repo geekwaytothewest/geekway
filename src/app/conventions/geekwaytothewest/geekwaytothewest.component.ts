@@ -1,4 +1,4 @@
-import { AfterViewChecked, Component, OnDestroy, OnInit } from '@angular/core';
+import { AfterViewChecked, Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { Observable, Subscription } from 'rxjs';
 import { Convention, NextConventionWhereGQL } from 'src/generated/types.graphql-gen';
 import { map } from 'rxjs/operators';
@@ -8,6 +8,8 @@ import { OembedService } from 'src/app/shared/oembed/oembed.service';
 import iframely from '@iframely/embed.js';
 import { MatTableDataSource } from '@angular/material/table';
 import { FormControl } from '@angular/forms';
+import { MatSort } from '@angular/material/sort';
+import { MatPaginator } from '@angular/material/paginator';
 
 @Component({
   selector: 'app-geekwaytothewest',
@@ -21,6 +23,8 @@ export class GeekwaytothewestComponent implements OnInit, OnDestroy, AfterViewCh
   playAndWinDataSource: MatTableDataSource<any>;
   content: SafeHtml;
   workingContent: string;
+  paginator: MatPaginator;
+  sort: MatSort;
   mapCount = 0;
 
   columnsToDisplay = ['Image', 'Name'];
@@ -30,6 +34,22 @@ export class GeekwaytothewestComponent implements OnInit, OnDestroy, AfterViewCh
   filterValues = {
     name: '',
   };
+
+  @ViewChild(MatSort) set matSort(ms: MatSort) {
+    this.sort = ms;
+
+    if (this.playAndWinDataSource) {
+      this.playAndWinDataSource.sort = this.sort;
+    }
+  }
+
+  @ViewChild(MatPaginator) set matPaginator(mp: MatPaginator) {
+    this.paginator = mp;
+
+    if (this.playAndWinDataSource) {
+      this.playAndWinDataSource.paginator = this.paginator;
+    }
+  }
 
   constructor(
     private nextGWConventionWhere: NextConventionWhereGQL,
@@ -58,6 +78,12 @@ export class GeekwaytothewestComponent implements OnInit, OnDestroy, AfterViewCh
       this.workingContent = result.conventionType.Content;
       this.content = this.sanitizer.bypassSecurityTrustHtml(this.workingContent);
 
+      this.playAndWinDataSource = new MatTableDataSource();
+      this.playAndWinDataSource.data = result.playAndWins;
+      this.playAndWinDataSource.sort = this.sort;
+      this.playAndWinDataSource.paginator = this.paginator;
+      this.playAndWinDataSource.filterPredicate = this.tableFilter();
+
       for (const match of result.conventionType.Content.matchAll(this.oembedService.oembedRegex)) {
         this.oembedService.getOembed(match[1]).subscribe(oembed => {
           this.workingContent = this.workingContent
@@ -75,6 +101,18 @@ export class GeekwaytothewestComponent implements OnInit, OnDestroy, AfterViewCh
           )
       );
     });
+  }
+
+  tableFilter(): (data: any, filter: string) => boolean {
+    const filterFunction = function(data, filter): boolean {
+      const searchTerms = JSON.parse(filter);
+
+      const nameFound = data.Name.toLowerCase().indexOf(searchTerms.name) !== -1;
+
+      return nameFound;
+    };
+
+    return filterFunction;
   }
 
   ngOnDestroy() {
