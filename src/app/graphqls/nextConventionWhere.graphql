@@ -62,7 +62,7 @@ query nextConventionWhere($whereClause: JSON!) {
                 name
                 url
             }
-            BGGID      
+            BGGID
         }
         Type
         conventionType {
@@ -72,19 +72,19 @@ query nextConventionWhere($whereClause: JSON!) {
             updatedAt
             Name
             Description
-            Logo {     
+            Logo {
                 id
                 _id
                 createdAt
-                updatedAt  
+                updatedAt
                 hash
                 mime
                 size
-                provider         
+                provider
                 name
                 url
             }
-            Icon 
+            Icon
             LogoSquare {
                 id
                 _id
@@ -149,6 +149,8 @@ query nextConventionWhere($whereClause: JSON!) {
             provider
             name
             url
-        }  
+        }
+        doorPrizesAnnounced
+        playAndWinAnnounced
     }
 }

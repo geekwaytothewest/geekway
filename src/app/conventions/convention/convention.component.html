@@ -34,7 +34,7 @@
         </mat-card-actions>
     </mat-card>
 
-    <mat-card *ngIf="g.doorPrizes.length > 0">
+    <mat-card *ngIf="g.doorPrizesAnnounced && g.doorPrizes.length > 0">
         <mat-card-title>Door Prizes</mat-card-title>
         <mat-card-content>
             <carousel>
@@ -45,7 +45,7 @@
         </mat-card-content>
     </mat-card>
 
-    <mat-card *ngIf="g.playAndWins.length > 0" id="playAndWinCard">
+    <mat-card *ngIf="g.playAndWinAnnounced && g.playAndWins.length > 0" id="playAndWinCard">
         <mat-card-title>Play and Win Games</mat-card-title>
         <mat-card-content>
             <carousel *ngIf="g.playAndWins.length <= 10">

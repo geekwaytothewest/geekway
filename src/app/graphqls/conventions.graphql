@@ -64,7 +64,7 @@ query conventions {
         mime
         provider
       }
-      BGGID      
+      BGGID
     }
     Type
     conventionType {
@@ -74,7 +74,7 @@ query conventions {
       updatedAt
       Name
       Description
-      Logo  {                
+      Logo  {
         name
         url
         id
@@ -151,6 +151,8 @@ query conventions {
       size
       mime
       provider
-    }    
+    }
+    doorPrizesAnnounced
+    playAndWinAnnounced
   }
 }
