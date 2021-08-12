@@ -34,8 +34,6 @@
         <mat-card-content>
             <div *ngFor="let r of g.regDates; let i = index" class="registrationBlock">
                 <div *ngIf="isRegistrationOpen(r)">
-                    <b>{{ r.name }} registration began:</b> {{ r.date | amTz: 'America/Chicago' | amDateFormat: 'MMMM Do YYYY, h:mm a' }}
-                    <br/>
                     <b>{{ r.name }} registration ends:</b> {{ r.dateClosed | amTz: 'America/Chicago' | amDateFormat: 'MMMM Do YYYY, h:mm a' }}
                     <br/><br/>
                     <app-flipclock [id]="'gwCountdownRegistration' + i" [date]="r.dateClosed"></app-flipclock>
