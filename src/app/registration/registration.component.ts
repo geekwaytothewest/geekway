@@ -102,4 +102,12 @@ export class RegistrationComponent implements OnInit, OnDestroy {
     event.preventDefault();
   }
 
+  isRegistrationOpen(reg) {
+    return moment(reg.date).isBefore(moment(new Date())) && moment(reg.dateClosed).isAfter(moment(new Date()));
+  }
+
+  isRegistrationSoon(reg) {
+    return moment(reg.date).isAfter(moment(new Date()));
+  }
+
 }

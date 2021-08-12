@@ -10,9 +10,18 @@
         </ng-template>
         <mat-card-content>
             <div *ngFor="let r of g.regDates; let i = index" class="registrationBlock">
-                <b>{{ r.name }} registration begins:</b> {{ r.date | amTz: 'America/Chicago' | amDateFormat: 'MMMM Do YYYY, h:mm a' }}
-                <br/><br/>
-                <app-flipclock [id]="'gw' + i" [date]="r.date"></app-flipclock>
+                <div *ngIf="isRegistrationOpen(r)">
+                    <b>{{ r.name }} registration began:</b> {{ r.date | amTz: 'America/Chicago' | amDateFormat: 'MMMM Do YYYY, h:mm a' }}
+                    <br/>
+                    <b>{{ r.name }} registration ends:</b> {{ r.dateClosed | amTz: 'America/Chicago' | amDateFormat: 'MMMM Do YYYY, h:mm a' }}
+                    <br/><br/>
+                    <app-flipclock [id]="'gwCountdownRegistration' + i" [date]="r.dateClosed"></app-flipclock>
+                </div>
+                <div *ngIf="isRegistrationSoon(r)">
+                    <b>{{ r.name }} registration began:</b> {{ r.date | amTz: 'America/Chicago' | amDateFormat: 'MMMM Do YYYY, h:mm a' }}
+                    <br/><br/>
+                    <app-flipclock [id]="'gwCountdownRegistration' + i" [date]="r.date"></app-flipclock>
+                </div>
             </div>
             <div *ngIf="g.regDates.length === 0">Check back soon for registration dates.</div>
         </mat-card-content>
@@ -33,8 +42,8 @@
                 <b>{{ r.name }} registration begins:</b> {{ r.date | amTz: 'America/Chicago' | amDateFormat: 'MMMM Do YYYY, h:mm a' }}
                 <br/><br/>
                 <app-flipclock [id]="'gwMini' + i" [date]="r.date"></app-flipclock>
-            </div>      
-            <div *ngIf="g.regDates.length === 0">Check back soon for registration dates.</div>      
+            </div>
+            <div *ngIf="g.regDates.length === 0">Check back soon for registration dates.</div>
         </mat-card-content>
         <mat-card-actions *ngIf="g.registrationUrl">
             <button mat-button (click)="redirect(g.registrationUrl)">Register</button>
