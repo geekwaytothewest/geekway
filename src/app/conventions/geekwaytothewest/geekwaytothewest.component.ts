@@ -10,6 +10,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { FormControl } from '@angular/forms';
 import { MatSort } from '@angular/material/sort';
 import { MatPaginator } from '@angular/material/paginator';
+import moment from 'moment';
 
 @Component({
   selector: 'app-geekwaytothewest',
@@ -26,7 +27,8 @@ export class GeekwaytothewestComponent implements OnInit, OnDestroy, AfterViewCh
   paginator: MatPaginator;
   sort: MatSort;
   mapCount = 0;
-  todaysDate = Date();
+  todaysDate = new Date();
+  endRegDate = new Date();
 
   columnsToDisplay = ['Image', 'Name'];
 
@@ -84,6 +86,10 @@ export class GeekwaytothewestComponent implements OnInit, OnDestroy, AfterViewCh
       this.playAndWinDataSource.sort = this.sort;
       this.playAndWinDataSource.paginator = this.paginator;
       this.playAndWinDataSource.filterPredicate = this.tableFilter();
+
+      if (result.regDates != null && result.regDates.length > 0) {
+        this.endRegDate = new Date(Math.max(...result.regDates.map(rd => new Date(rd.dateClosed).getTime())));
+      }
 
       this.nameFilter.valueChanges.subscribe(name => {
         this.filterValues.name = name;
@@ -152,4 +158,11 @@ export class GeekwaytothewestComponent implements OnInit, OnDestroy, AfterViewCh
     document.getElementById('playAndWinCard').scrollIntoView();
   }
 
+  isRegistrationOpen(reg) {
+    return moment(reg.date).isBefore(moment(this.todaysDate)) && moment(reg.dateClosed).isAfter(moment(this.todaysDate));
+  }
+
+  isRegistrationSoon(reg) {
+    return moment(reg.date).isAfter(moment(this.todaysDate));
+  }
 }

@@ -15,6 +15,7 @@ query conventions {
       _id
       name
       date
+      dateClosed
     }
     Icon
     Theme

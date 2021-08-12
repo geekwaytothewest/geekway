@@ -17,6 +17,7 @@ query nextConventionWhere($whereClause: JSON!) {
             _id
             name
             date
+            dateClosed
         }
         Icon
         Theme

@@ -6,6 +6,7 @@ import { map } from 'rxjs/operators';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { OembedService } from 'src/app/shared/oembed/oembed.service';
 import iframely from '@iframely/embed.js';
+import moment from 'moment';
 
 @Component({
   selector: 'app-geekwaymini',
@@ -19,6 +20,8 @@ export class GeekwayminiComponent implements OnInit, OnDestroy, AfterViewChecked
   content: SafeHtml;
   workingContent: string;
   mapCount = 0;
+  todaysDate = new Date();
+  endRegDate = null;
 
   constructor(
     private nextGWConventionWhere: NextConventionWhereGQL,
@@ -46,6 +49,9 @@ export class GeekwayminiComponent implements OnInit, OnDestroy, AfterViewChecked
 
       this.workingContent = result.conventionType.Content;
       this.content = this.sanitizer.bypassSecurityTrustHtml(this.workingContent);
+      if (result.regDates != null && result.regDates.length > 0) {
+        this.endRegDate = new Date(Math.max(...result.regDates.map(rd => new Date(rd.dateClosed).getTime())));
+      }
 
       for (const match of result.conventionType.Content.matchAll(this.oembedService.oembedRegex)) {
         this.oembedService.getOembed(match[1]).subscribe(oembed => {
@@ -79,6 +85,14 @@ export class GeekwayminiComponent implements OnInit, OnDestroy, AfterViewChecked
     }
 
     event.preventDefault();
+  }
+
+  isRegistrationOpen(reg) {
+    return moment(reg.date).isBefore(moment(this.todaysDate)) && moment(reg.dateClosed).isAfter(moment(this.todaysDate));
+  }
+
+  isRegistrationSoon(reg) {
+    return moment(reg.date).isAfter(moment(this.todaysDate));
   }
 
 }

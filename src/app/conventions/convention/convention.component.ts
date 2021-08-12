@@ -8,6 +8,8 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { HeaderPhotoService } from 'src/app/shared/header-photo/header-photo.service';
+import { AlertIconAndTypesService } from '@clr/angular/emphasis/alert/providers/icon-and-types.service';
+import moment from 'moment';
 
 @Component({
   selector: 'app-convention',
@@ -19,10 +21,11 @@ export class ConventionComponent implements OnInit, OnDestroy {
   convention: Observable<Convention>;
   conventionSubscription: Subscription;
   playAndWinDataSource: MatTableDataSource<any>;
-  todaysDate = Date();
+  todaysDate = new Date();
   paginator: MatPaginator;
   sort: MatSort;
   mapCount = 0;
+  endRegDate = null;
 
   @ViewChild(MatSort) set matSort(ms: MatSort) {
     this.sort = ms;
@@ -81,6 +84,9 @@ export class ConventionComponent implements OnInit, OnDestroy {
       this.playAndWinDataSource.sort = this.sort;
       this.playAndWinDataSource.paginator = this.paginator;
       this.playAndWinDataSource.filterPredicate = this.tableFilter();
+      if (data.regDates != null && data.regDates.length > 0) {
+        this.endRegDate = new Date(Math.max(...data.regDates.map(rd => new Date(rd.dateClosed).getTime())));
+      }
     });
 
     this.nameFilter.valueChanges.subscribe(name => {
@@ -130,4 +136,11 @@ export class ConventionComponent implements OnInit, OnDestroy {
     window.open('https://boardgamegeek.com/boardgame/' + bggId, '_blank');
   }
 
+  isRegistrationOpen(reg) {
+    return moment(reg.date).isBefore(moment(this.todaysDate)) && moment(reg.dateClosed).isAfter(moment(this.todaysDate));
+  }
+
+  isRegistrationSoon(reg) {
+    return moment(reg.date).isAfter(moment(this.todaysDate));
+  }
 }
