@@ -25,6 +25,10 @@ export class RegistrationComponent implements OnInit, OnDestroy {
   geekwayMicroSubscription: Subscription;
   geekwayMicroConvention: Convention;
 
+  todaysDate = new Date();
+  endRegDateGW = null;
+  endRegDateGWMini = null;
+
   constructor(
     private nextGWConventionWhere: NextConventionWhereGQL,
     private nextGWMiniConventionWhere: NextConventionWhereGQL,
@@ -47,7 +51,13 @@ export class RegistrationComponent implements OnInit, OnDestroy {
         map(result => result.data.conventions[0])
       );
 
-    this.geekwayToTheWestSubscription = this.geekwayToTheWest.subscribe(c => this.geekwayToTheWestConvention = c);
+    this.geekwayToTheWestSubscription = this.geekwayToTheWest.subscribe(c => {
+      this.geekwayToTheWestConvention = c;
+
+      if (c.regDates != null && c.regDates.length > 0) {
+        this.endRegDateGW = new Date(Math.max(...c.regDates.map(rd => new Date(rd.dateClosed).getTime())));
+      }
+    });
 
     const whereClauseGWMini = {
       Type: 'GeekwayMini',
@@ -60,7 +70,13 @@ export class RegistrationComponent implements OnInit, OnDestroy {
         map(result => result.data.conventions[0])
       );
 
-    this.geekwayMiniSubscription = this.geekwayMini.subscribe(c => this.geekwayMicroConvention = c);
+    this.geekwayMiniSubscription = this.geekwayMini.subscribe(c => {
+      this.geekwayMicroConvention = c;
+
+      if (c.regDates != null && c.regDates.length > 0) {
+        this.endRegDateGWMini = new Date(Math.max(...c.regDates.map(rd => new Date(rd.dateClosed).getTime())));
+      }
+    });
 
     const whereClauseGWMicro = {
       Type: 'GeekwayMicro',
