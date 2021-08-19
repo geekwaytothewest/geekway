@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, ElementRef, OnDestroy } from '@angular/core';
+import { Component, OnInit, ViewChild, OnDestroy } from '@angular/core';
 import { Observable, Subscription } from 'rxjs';
 import { Convention, NextConventionWhereGQL } from 'src/generated/types.graphql-gen';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
@@ -8,7 +8,6 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { HeaderPhotoService } from 'src/app/shared/header-photo/header-photo.service';
-import { AlertIconAndTypesService } from '@clr/angular/emphasis/alert/providers/icon-and-types.service';
 import moment from 'moment';
 
 @Component({
