@@ -22,7 +22,7 @@
                 </div>
             </div>
             <div *ngIf="g.regDates.length === 0">Check back soon for registration dates.</div>
-            <div *ngIf="endRegDateGW < todaysDate">Registration has ended.</div>
+            <div *ngIf="g.regDates.length > 0 && endRegDateGW < todaysDate">Registration has ended.</div>
         </mat-card-content>
         <mat-card-actions *ngIf="g.registrationUrl && endRegDateGW > todaysDate">
             <button mat-button (click)="redirect(g.registrationUrl)">Register</button>
@@ -50,7 +50,7 @@
                 </div>
             </div>
             <div *ngIf="g.regDates.length === 0">Check back soon for registration dates.</div>
-            <div *ngIf="endRegDateGWMini < todaysDate">Registration has ended.</div>
+            <div *ngIf="g.regDates.length > 0 && endRegDateGWMini < todaysDate">Registration has ended.</div>
         </mat-card-content>
         <mat-card-actions *ngIf="g.registrationUrl && endRegDateGWMini > todaysDate">
             <button mat-button (click)="redirect(g.registrationUrl)">Register</button>
