@@ -10,10 +10,6 @@
   <a href="http://boardgamegeek.com/user/geekway">BoardGameGeek</a>.
 </p>
 
-<p *ngIf="library | async as l">
-  Last Updated: {{ l.updatedAt | amTz: "America/Chicago" | amTimeAgo }}
-</p>
-
 <div class="tableContainer mat-elevation-z8" id="libraryDiv">
   <table mat-table [dataSource]="dataSource" matSort>
     <ng-container matColumnDef="Image">
