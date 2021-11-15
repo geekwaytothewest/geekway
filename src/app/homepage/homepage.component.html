@@ -9,16 +9,27 @@
 <mat-card *ngIf="(featuredNews | async)?.length > 0" class="featured">
     <mat-card-title class="center">Featured News</mat-card-title>
     <mat-card-content class="center">
-        <div *ngFor="let f of featuredNews | async"><a href="/news/post/{{ f.slug }}">{{ f.Title }} - {{ f.postDate | amTz: 'America/Chicago' | amDateFormat: 'MMMM Do YYYY' }}</a></div>
+        <div *ngFor="let f of featuredNews | async"><a href="/news/post/{{ f.slug }}">{{ f.Title }} - posted on {{ f.postDate | amTz: 'America/Chicago' | amDateFormat: 'MMMM Do YYYY' }}</a></div>
     </mat-card-content>
+</mat-card>
+
+<br/>
+
+<mat-card>
+    <mat-card-content>
+        Geekway will send you email letting you know when to buy tickets, submit or sign up for events, apply to be a Geek Guide, and give important info about the convention. Sign up so you don’t miss out!
+    </mat-card-content>
+    <mat-card-actions>
+        <button mat-button (click)="redirect('https://us9.list-manage.com/subscribe?u=8ef36ba43ce2b4d6b894aabbb&id=f8d2f344e6')">Sign up now!</button>
+    </mat-card-actions>
 </mat-card>
 
 <br/>
 
 <div class="homepageContainer">
     <div class="conventionContainer">
-        <mat-card *ngIf="geekwayToTheWest | async as gw" (click)="redirect('conventions/geekway')">
-            <img *ngIf="gw.Logo; else gwLogo" class="cardImage" matCardImage src="https://cms.geekway.com{{ gw.Logo.url }}">
+        <mat-card *ngIf="geekwayToTheWest | async as gw">
+            <img *ngIf="gw.Logo; else gwLogo" class="cardImage" matCardImage src="https://cms.geekway.com{{ gw.Logo.url }}"  (click)="redirect('conventions/geekway')">
             <ng-template #gwLogo>
                 <img class="cardImage" matCardImage src="https://cms.geekway.com{{ gw.conventionType.Logo.url }}">
             </ng-template>
@@ -28,14 +39,23 @@
                 {{ gw.startDate | amTz: 'America/Chicago' | amDateFormat: 'MMMM Do YYYY' }} through {{ gw.endDate | amTz: 'America/Chicago'  | amDateFormat: 'MMMM Do YYYY' }}
                 <br/><br/>
                 <app-flipclock class="biggerClock" id="gwCountdown" [date]="gw.startDate"></app-flipclock>
+                <div *ngFor="let r of gw.regDates; let i = index" class="registrationBlock">
+                    <div *ngIf="isRegistrationOpen(r)">
+                        <b>{{ r.name }} registration ends:</b> {{ r.dateClosed | amTz: 'America/Chicago' | amDateFormat: 'MMMM Do YYYY, h:mm a' }}
+                    </div>
+                    <div *ngIf="isRegistrationSoon(r)">
+                        <b>{{ r.name }} registration begins:</b> {{ r.date | amTz: 'America/Chicago' | amDateFormat: 'MMMM Do YYYY, h:mm a' }}
+                    </div>
+                </div>
+                <button mat-button *ngIf="gw.registrationUrl" (click)="redirect(gw.registrationUrl)">Register</button>
             </mat-card-content>
         </mat-card>
 
         <br/>
 
         <div class="flexbox">
-            <mat-card *ngIf="geekwayMini | async as gwMini" (click)="redirect('conventions/mini')">
-                <img *ngIf="gwMini.Logo; else gwMiniLogo" class="cardImage" matCardImage src="https://cms.geekway.com{{ gwMini.Logo.url }}">
+            <mat-card *ngIf="geekwayMini | async as gwMini">
+                <img *ngIf="gwMini.Logo; else gwMiniLogo" class="cardImage" matCardImage src="https://cms.geekway.com{{ gwMini.LogoSquare.url }}" (click)="redirect('conventions/mini')">
                 <ng-template #gwMiniLogo>
                     <img class="cardImage" matCardImage src="https://cms.geekway.com{{ gwMini.conventionType.Logo.url }}">
                 </ng-template>
@@ -45,6 +65,15 @@
                     {{ gwMini.startDate | amTz: 'America/Chicago'  | amDateFormat: 'MMMM Do YYYY' }} through {{ gwMini.endDate | amTz: 'America/Chicago'  | amDateFormat: 'MMMM Do YYYY' }}
                     <br/><br/>
                     <app-flipclock class="biggerClock" id="gwMiniCountdown" [date]="gwMini.startDate"></app-flipclock>
+                    <div *ngFor="let r of gwMini.regDates; let i = index" class="registrationBlock">
+                        <div *ngIf="isRegistrationOpen(r)">
+                            <b>{{ r.name }} registration ends:</b> {{ r.dateClosed | amTz: 'America/Chicago' | amDateFormat: 'MMMM Do YYYY, h:mm a' }}
+                        </div>
+                        <div *ngIf="isRegistrationSoon(r)">
+                            <b>{{ r.name }} registration begins:</b> {{ r.date | amTz: 'America/Chicago' | amDateFormat: 'MMMM Do YYYY, h:mm a' }}
+                        </div>
+                    </div>
+                    <button mat-button *ngIf="gwMini.registrationUrl" (click)="redirect(gwMini.registrationUrl)">Register</button>
                 </mat-card-content>
             </mat-card>
 

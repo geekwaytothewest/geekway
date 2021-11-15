@@ -4,6 +4,7 @@ import { Convention, ConventionsGQL } from 'src/generated/types.graphql-gen';
 import { map } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { HeaderPhotoService } from '../shared/header-photo/header-photo.service';
+import moment from 'moment';
 
 @Component({
   selector: 'app-conventions',
@@ -14,6 +15,7 @@ export class ConventionsComponent implements OnInit, OnDestroy {
 
   conventions: Observable<Convention[]>;
   conventionsSubscription: Subscription;
+  todaysDate = new Date();
 
   columnsToDisplay = ['Type', 'Annual', 'Theme', 'Dates', 'Location', 'Size', 'Status'];
 
@@ -46,6 +48,22 @@ export class ConventionsComponent implements OnInit, OnDestroy {
     this.router.navigate(['conventions/convention/' + id]);
 
     event.preventDefault();
+  }
+
+  redirect(url: string) {
+    if (url.startsWith('http')) {
+      this.router.navigate(['/externalRedirect', { externalUrl: url }], {
+        skipLocationChange: true,
+      });
+    } else {
+      this.router.navigate([url]);
+    }
+
+    event.preventDefault();
+  }
+
+  isRegistrationSoon(reg) {
+    return moment(reg.date).isAfter(moment(this.todaysDate));
   }
 
 }

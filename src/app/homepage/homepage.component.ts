@@ -3,7 +3,7 @@ import { Subscription, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { NextConventionWhereGQL, Convention, SponsorsGQL, Sponsors, Newspost, FeaturedNewsGQL } from 'src/generated/types.graphql-gen';
 import { Router } from '@angular/router';
-
+import moment from 'moment';
 @Component({
   selector: 'app-homepage',
   templateUrl: './homepage.component.html',
@@ -25,6 +25,7 @@ export class HomepageComponent implements OnInit, OnDestroy {
 
   featuredNews: Observable<Newspost[]>;
   featuredNewsSubscription: Subscription;
+  todaysDate = new Date();
 
   constructor(
     private nextGWConventionWhere: NextConventionWhereGQL,
@@ -120,6 +121,14 @@ export class HomepageComponent implements OnInit, OnDestroy {
     }
 
     event.preventDefault();
+  }
+
+  isRegistrationOpen(reg) {
+    return moment(reg.date).isBefore(moment(this.todaysDate)) && moment(reg.dateClosed).isAfter(moment(this.todaysDate));
+  }
+
+  isRegistrationSoon(reg) {
+    return moment(reg.date).isAfter(moment(this.todaysDate));
   }
 
 }

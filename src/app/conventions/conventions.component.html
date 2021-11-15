@@ -1,3 +1,14 @@
+<mat-card>
+    <mat-card-content>
+        Geekway will send you email letting you know when to buy tickets, submit or sign up for events, apply to be a Geek Guide, and give important info about the convention. Sign up so you don’t miss out!
+    </mat-card-content>
+    <mat-card-actions>
+        <button mat-button (click)="redirect('https://us9.list-manage.com/subscribe?u=8ef36ba43ce2b4d6b894aabbb&id=f8d2f344e6')">Sign up now!</button>
+    </mat-card-actions>
+</mat-card>
+
+<br/><br/>
+
 <div class="flexContainer">
     <mat-table [dataSource]="conventions" class="mat-elevation-z8">
         <ng-container matColumnDef="Type">
@@ -26,7 +37,16 @@
         </ng-container>
         <ng-container matColumnDef="Status">
             <mat-header-cell *matHeaderCellDef> Status </mat-header-cell>
-            <mat-cell *matCellDef="let c"><span class="mobile-label">Status</span> <div *ngIf="c.Postponed" class="postponed">Postponed</div><div *ngIf="c.Cancelled" class="cancelled">Cancelled</div></mat-cell>
+            <mat-cell *matCellDef="let c">
+                <span class="mobile-label">Status</span>
+                <div>
+                    <div *ngIf="c.Postponed" class="postponed">Postponed</div>
+                    <div *ngIf="c.Cancelled" class="cancelled">Cancelled</div>
+                    <div *ngFor="let rd of c.regDates">
+                        <span *ngIf="isRegistrationSoon(rd)"><span style="font-weight: bold;">{{rd.name}} Begins: </span>{{rd.date | amTz: 'America/Chicago' | amDateFormat: 'MMMM Do YYYY, h:mm a' }}</span>
+                    </div>
+                </div>
+            </mat-cell>
         </ng-container>
         <mat-header-row *matHeaderRowDef="columnsToDisplay"></mat-header-row>
         <mat-row *matRowDef="let myRowData; columns: columnsToDisplay" (click)="redirectConvention(myRowData.id)"></mat-row>

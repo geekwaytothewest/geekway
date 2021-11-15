@@ -11,12 +11,12 @@
         <mat-card-content>
             <div *ngFor="let r of g.regDates; let i = index" class="registrationBlock">
                 <div *ngIf="isRegistrationOpen(r)">
-                    <b>{{ r.name }} registration ends:</b> {{ r.dateClosed | amTz: 'America/Chicago' | amDateFormat: 'MMMM Do YYYY, h:mm a' }}
+                    <b>{{ r.name }} ends:</b> {{ r.dateClosed | amTz: 'America/Chicago' | amDateFormat: 'MMMM Do YYYY, h:mm a' }}
                     <br/><br/>
                     <app-flipclock [id]="'gwCountdownRegistration' + i" [date]="r.dateClosed"></app-flipclock>
                 </div>
                 <div *ngIf="isRegistrationSoon(r)">
-                    <b>{{ r.name }} registration begins:</b> {{ r.date | amTz: 'America/Chicago' | amDateFormat: 'MMMM Do YYYY, h:mm a' }}
+                    <b>{{ r.name }} begins:</b> {{ r.date | amTz: 'America/Chicago' | amDateFormat: 'MMMM Do YYYY, h:mm a' }}
                     <br/><br/>
                     <app-flipclock [id]="'gwCountdownRegistration' + i" [date]="r.date"></app-flipclock>
                 </div>
@@ -39,12 +39,12 @@
         <mat-card-content>
             <div *ngFor="let r of g.regDates; let i = index" class="registrationBlock">
                 <div *ngIf="isRegistrationOpen(r)">
-                    <b>{{ r.name }} registration ends:</b> {{ r.dateClosed | amTz: 'America/Chicago' | amDateFormat: 'MMMM Do YYYY, h:mm a' }}
+                    <b>{{ r.name }} ends:</b> {{ r.dateClosed | amTz: 'America/Chicago' | amDateFormat: 'MMMM Do YYYY, h:mm a' }}
                     <br/><br/>
                     <app-flipclock [id]="'gwCountdownRegistration' + i" [date]="r.dateClosed"></app-flipclock>
                 </div>
                 <div *ngIf="isRegistrationSoon(r)">
-                    <b>{{ r.name }} registration begins:</b> {{ r.date | amTz: 'America/Chicago' | amDateFormat: 'MMMM Do YYYY, h:mm a' }}
+                    <b>{{ r.name }} begins:</b> {{ r.date | amTz: 'America/Chicago' | amDateFormat: 'MMMM Do YYYY, h:mm a' }}
                     <br/><br/>
                     <app-flipclock [id]="'gwCountdownRegistration' + i" [date]="r.date"></app-flipclock>
                 </div>
