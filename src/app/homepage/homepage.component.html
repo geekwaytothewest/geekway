@@ -55,7 +55,7 @@
 
         <div class="flexbox">
             <mat-card *ngIf="geekwayMini | async as gwMini">
-                <img *ngIf="gwMini.Logo; else gwMiniLogo" class="cardImage" matCardImage src="https://cms.geekway.com{{ gwMini.LogoSquare.url }}" (click)="redirect('conventions/mini')">
+                <img *ngIf="gwMini.Logo; else gwMiniLogo" class="cardImage" matCardImage src="https://cms.geekway.com{{ gwMini.Logo.url }}" (click)="redirect('conventions/mini')">
                 <ng-template #gwMiniLogo>
                     <img class="cardImage" matCardImage src="https://cms.geekway.com{{ gwMini.conventionType.Logo.url }}">
                 </ng-template>
