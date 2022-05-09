@@ -50,6 +50,41 @@
         </mat-card-actions>
     </mat-card>
 
+    <mat-card *ngIf="g.PrimaryVenue">
+        <mat-card-title>Venue</mat-card-title>
+        <mat-card-subtitle>{{ g.PrimaryVenue.Name }}</mat-card-subtitle>
+        <mat-card-content>
+            <agm-map [latitude]="g.PrimaryVenue.Lat" [longitude]="g.PrimaryVenue.Long" [zoom]="16">
+                <agm-marker *ngFor="let v of g.venues" [latitude]="v.Lat" [longitude]="v.Long">
+                    <agm-snazzy-info-window [maxWidth]="300" [closeWhenOthersOpen]="true">
+                        <ng-template>
+                            <p><b>{{ v.Name }}</b></p>
+                            <p>{{ v.Address }}</p>
+                            <p *ngIf="v.website"><a href="{{ v.website }}" target="_blank">website</a></p>
+                            <p *ngIf="v.groupCode"><b>Group Code:</b> {{ v.groupCode }}</p>
+                        </ng-template>
+                    </agm-snazzy-info-window>
+                </agm-marker>
+            </agm-map>
+        </mat-card-content>
+    </mat-card>
+
+    <mat-card *ngIf="mapCount > 0">
+        <mat-card-title>Venue Maps</mat-card-title>
+        <mat-card-content>
+            <div *ngFor="let v of g.venues">
+                <div class="venueMaps" *ngIf="v.maps.length > 0" lightbox-group>
+                    <mat-card-subtitle>{{ v.Name }}</mat-card-subtitle>
+                    <carousel [cellWidth]="300">
+                        <div class="carousel-cell" *ngFor="let p of v.maps">
+                            <img [src]="'https://cms.geekway.com' + p.url" lightbox>
+                        </div>
+                    </carousel>
+                </div>
+            </div>
+        </mat-card-content>
+    </mat-card>
+
     <mat-card *ngIf="g.doorPrizes.length > 0">
         <mat-card-title>Door Prizes</mat-card-title>
         <mat-card-content>
@@ -89,41 +124,6 @@
                 <tr mat-row *matRowDef="let myRowData; columns: columnsToDisplay" (click)="bggRedirect(myRowData.BGGID)"></tr>
             </table>
             <mat-paginator *ngIf="g.playAndWins.length > 10" [pageSize]="200" [pageSizeOptions]="[10, 50, 100, 200]" showFirstLastButtons (page)="playAndWinPaginateChange($event)"></mat-paginator>
-        </mat-card-content>
-    </mat-card>
-
-    <mat-card *ngIf="g.PrimaryVenue">
-        <mat-card-title>Venue</mat-card-title>
-        <mat-card-subtitle>{{ g.PrimaryVenue.Name }}</mat-card-subtitle>
-        <mat-card-content>
-            <agm-map [latitude]="g.PrimaryVenue.Lat" [longitude]="g.PrimaryVenue.Long" [zoom]="16">
-                <agm-marker *ngFor="let v of g.venues" [latitude]="v.Lat" [longitude]="v.Long">
-                    <agm-snazzy-info-window [maxWidth]="300" [closeWhenOthersOpen]="true">
-                        <ng-template>
-                            <p><b>{{ v.Name }}</b></p>
-                            <p>{{ v.Address }}</p>
-                            <p *ngIf="v.website"><a href="{{ v.website }}" target="_blank">website</a></p>
-                            <p *ngIf="v.groupCode"><b>Group Code:</b> {{ v.groupCode }}</p>
-                        </ng-template>
-                    </agm-snazzy-info-window>
-                </agm-marker>
-            </agm-map>
-        </mat-card-content>
-    </mat-card>
-
-    <mat-card *ngIf="mapCount > 0">
-        <mat-card-title>Venue Maps</mat-card-title>
-        <mat-card-content>
-            <div *ngFor="let v of g.venues">
-                <div class="venueMaps" *ngIf="v.maps.length > 0" lightbox-group>
-                    <mat-card-subtitle>{{ v.Name }}</mat-card-subtitle>
-                    <carousel [cellWidth]="300">
-                        <div class="carousel-cell" *ngFor="let p of v.maps">
-                            <img [src]="'https://cms.geekway.com' + p.url" lightbox>
-                        </div>
-                    </carousel>
-                </div>
-            </div>
         </mat-card-content>
     </mat-card>
 </div>
