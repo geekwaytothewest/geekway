@@ -53,44 +53,44 @@
 
         <br/>
 
-        <div class="flexbox">
-            <mat-card *ngIf="geekwayMini | async as gwMini">
-                <a href="conventions/mini"><img *ngIf="gwMini.Logo; else gwMiniLogo" class="cardImage" matCardImage src="https://cms.geekway.com{{ gwMini.Logo.url }}"></a>
-                <ng-template #gwMiniLogo>
-                    <img class="cardImage" matCardImage src="https://cms.geekway.com{{ gwMini.conventionType.Logo.url }}">
-                </ng-template>
-                <mat-card-content class="center">
-                    <i class="{{gwMini.conventionType.Icon}}"></i> {{ gwMini.conventionType.Name }} - {{ gwMini.conventionType.Description }}
-                    <br/><br/>
-                    {{ gwMini.startDate | amTz: 'America/Chicago'  | amDateFormat: 'MMMM Do YYYY' }} through {{ gwMini.endDate | amTz: 'America/Chicago'  | amDateFormat: 'MMMM Do YYYY' }}
-                    <br/><br/>
-                    <app-flipclock class="biggerClock" id="gwMiniCountdown" [date]="gwMini.startDate"></app-flipclock>
-                    <div *ngFor="let r of gwMini.regDates; let i = index" class="registrationBlock">
-                        <div *ngIf="isRegistrationOpen(r)">
-                            <b>{{ r.name }} registration ends:</b> {{ r.dateClosed | amTz: 'America/Chicago' | amDateFormat: 'MMMM Do YYYY, h:mm a' }}
-                        </div>
-                        <div *ngIf="isRegistrationSoon(r)">
-                            <b>{{ r.name }} registration begins:</b> {{ r.date | amTz: 'America/Chicago' | amDateFormat: 'MMMM Do YYYY, h:mm a' }}
-                        </div>
+        <mat-card *ngIf="geekwayMini | async as gwMini">
+            <a href="conventions/mini"><img *ngIf="gwMini.Logo; else gwMiniLogo" class="cardImage" matCardImage src="https://cms.geekway.com{{ gwMini.Logo.url }}"></a>
+            <ng-template #gwMiniLogo>
+                <img class="cardImage" matCardImage src="https://cms.geekway.com{{ gwMini.conventionType.Logo.url }}">
+            </ng-template>
+            <mat-card-content class="center">
+                <i class="{{gwMini.conventionType.Icon}}"></i> {{ gwMini.conventionType.Name }} - {{ gwMini.conventionType.Description }}
+                <br/><br/>
+                {{ gwMini.startDate | amTz: 'America/Chicago'  | amDateFormat: 'MMMM Do YYYY' }} through {{ gwMini.endDate | amTz: 'America/Chicago'  | amDateFormat: 'MMMM Do YYYY' }}
+                <br/><br/>
+                <app-flipclock class="biggerClock" id="gwMiniCountdown" [date]="gwMini.startDate"></app-flipclock>
+                <div *ngFor="let r of gwMini.regDates; let i = index" class="registrationBlock">
+                    <div *ngIf="isRegistrationOpen(r)">
+                        <b>{{ r.name }} registration ends:</b> {{ r.dateClosed | amTz: 'America/Chicago' | amDateFormat: 'MMMM Do YYYY, h:mm a' }}
                     </div>
-                    <button style="background-color: green; color: white; font-weight: bold; font-size: x-large; padding: 10px; border-radius: 1em;" mat-button *ngIf="gwMini.registrationUrl" (click)="redirect(gwMini.registrationUrl)">Register</button>
-                </mat-card-content>
-            </mat-card>
+                    <div *ngIf="isRegistrationSoon(r)">
+                        <b>{{ r.name }} registration begins:</b> {{ r.date | amTz: 'America/Chicago' | amDateFormat: 'MMMM Do YYYY, h:mm a' }}
+                    </div>
+                </div>
+                <button style="background-color: green; color: white; font-weight: bold; font-size: x-large; padding: 10px; border-radius: 1em;" mat-button *ngIf="gwMini.registrationUrl" (click)="redirect(gwMini.registrationUrl)">Register</button>
+            </mat-card-content>
+        </mat-card>
 
-            <mat-card *ngIf="geekwayMicro | async as gwMicro" (click)="redirect('conventions/micro')">
-                <img *ngIf="gwMicro.Logo; else gwMicroLogo" class="cardImage" matCardImage src="https://cms.geekway.com{{ gwMicro.Logo.url }">
-                <ng-template #gwMicroLogo>
-                    <img class="cardImage" matCardImage src="https://cms.geekway.com{{ gwMicro.conventionType.Logo.url }}">
-                </ng-template>
-                <mat-card-content class="center">
-                    <i class="{{gwMicro.conventionType.Icon}}"></i> {{ gwMicro.conventionType.Name }} - {{ gwMicro.conventionType.Description }}
-                    <br/><br/>
-                    {{ gwMicro.startDate | amTz: 'America/Chicago'  | amDateFormat: 'MMMM Do YYYY, h a' }} through {{ gwMicro.endDate | amTz: 'America/Chicago'  | amDateFormat: 'h a' }}
-                    <br/><br/>
-                    <app-flipclock class="biggerClock" id="gwMicroCountdown" [date]="gwMicro.startDate"></app-flipclock>
-                </mat-card-content>
-            </mat-card>
-        </div>
+        <br/>
+
+        <mat-card *ngIf="geekwayMicro | async as gwMicro" (click)="redirect('conventions/micro')">
+            <img *ngIf="gwMicro.Logo; else gwMicroLogo" class="cardImage" matCardImage src="https://cms.geekway.com{{ gwMicro.Logo.url }">
+            <ng-template #gwMicroLogo>
+                <img class="cardImage" matCardImage src="https://cms.geekway.com{{ gwMicro.conventionType.Logo.url }}">
+            </ng-template>
+            <mat-card-content class="center">
+                <i class="{{gwMicro.conventionType.Icon}}"></i> {{ gwMicro.conventionType.Name }} - {{ gwMicro.conventionType.Description }}
+                <br/><br/>
+                {{ gwMicro.startDate | amTz: 'America/Chicago'  | amDateFormat: 'MMMM Do YYYY, h a' }} through {{ gwMicro.endDate | amTz: 'America/Chicago'  | amDateFormat: 'h a' }}
+                <br/><br/>
+                <app-flipclock class="biggerClock" id="gwMicroCountdown" [date]="gwMicro.startDate"></app-flipclock>
+            </mat-card-content>
+        </mat-card>
     </div>
 
     <div class="sponsorContainer">
