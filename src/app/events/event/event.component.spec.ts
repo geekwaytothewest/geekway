@@ -3,7 +3,6 @@ import { ApolloTestingController, ApolloTestingModule } from 'apollo-angular/tes
 import { EventComponent } from './event.component';
 import { MatLegacyCardModule as MatCardModule } from '@angular/material/legacy-card';
 import { RouterModule } from '@angular/router';
-import { IvyCarouselModule } from 'angular-responsive-carousel';
 import { HttpClientModule } from '@angular/common/http';
 
 describe('EventComponent', () => {
@@ -15,7 +14,6 @@ describe('EventComponent', () => {
     TestBed.configureTestingModule({
       declarations: [ EventComponent ],
       imports: [
-        IvyCarouselModule,
         MatCardModule,
         RouterModule.forRoot([], {}),
         ApolloTestingModule,
