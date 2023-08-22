@@ -19,6 +19,8 @@ import { MatRippleModule } from '@angular/material/core';
 import { HttpClientModule } from '@angular/common/http';
 import { ApolloModule } from 'apollo-angular';
 import { GalleryModule } from 'ng-gallery';
+import { LIGHTBOX_CONFIG, LightboxConfig } from 'ng-gallery/lightbox';
+import { GALLERY_CONFIG, GalleryConfig } from 'ng-gallery';
 
 @NgModule({
   declarations: [
@@ -44,7 +46,20 @@ import { GalleryModule } from 'ng-gallery';
     HttpClientModule,
     GalleryModule
   ],
-  providers: [],
+  providers: [
+    {
+      provide: LIGHTBOX_CONFIG,
+      useValue: {
+        keyboardShortcuts: false,
+        exitAnimationTime: 1000
+      } as LightboxConfig
+    },
+    {
+      provide: GALLERY_CONFIG,
+      useValue: {
+      } as GalleryConfig
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {

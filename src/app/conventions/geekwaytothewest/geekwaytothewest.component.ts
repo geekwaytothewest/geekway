@@ -60,7 +60,7 @@ export class GeekwaytothewestComponent implements OnInit, OnDestroy, AfterViewCh
   markers: any = [];
 
   doorPrizeGalleryItems: GalleryItem[] = [];
-  venueMapsGalleryItems: [GalleryItem[]] = [[]];
+  venueMapsGalleryItems: GalleryItem[] = [];
 
   constructor(
     private nextGWConventionWhere: NextConventionWhereGQL,
@@ -129,11 +129,10 @@ export class GeekwaytothewestComponent implements OnInit, OnDestroy, AfterViewCh
           label: v.Name
         });
 
-        this.venueMapsGalleryItems[v.id] = [];
         for (let p of v.maps) {
-          this.venueMapsGalleryItems[v.id].push(new ImageItem({
-            src: 'https://cms.geekway.com' + p.url,
-            thumb: 'https://cms.geekway.com' + p.url
+          this.venueMapsGalleryItems.push(new ImageItem({
+            src: 'https://cms.geekway.com' + p.Boxart.url,
+            thumb: 'https://cms.geekway.com' + p.Boxart.url
           }));
         }
       }

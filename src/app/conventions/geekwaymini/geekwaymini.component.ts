@@ -29,7 +29,7 @@ export class GeekwayminiComponent implements OnInit, OnDestroy, AfterViewChecked
   markers: any = [];
 
   doorPrizeGalleryItems: GalleryItem[] = [];
-  venueMapsGalleryItems: [GalleryItem[]] = [[]];
+  venueMapsGalleryItems: GalleryItem[] = [];
 
   constructor(
     private nextGWConventionWhere: NextConventionWhereGQL,
@@ -78,9 +78,8 @@ export class GeekwayminiComponent implements OnInit, OnDestroy, AfterViewChecked
           label: v.Name
         })
 
-        this.venueMapsGalleryItems[v.id] = [];
         for (let p of v.maps) {
-          this.venueMapsGalleryItems[v.id].push(new ImageItem({
+          this.venueMapsGalleryItems.push(new ImageItem({
             src: 'https://cms.geekway.com' + p.url,
             thumb: 'https://cms.geekway.com' + p.url
           }));
@@ -89,8 +88,8 @@ export class GeekwayminiComponent implements OnInit, OnDestroy, AfterViewChecked
 
       for (let p of result.doorPrizes) {
         this.doorPrizeGalleryItems.push(new ImageItem({
-          src: 'https://cms.geekway.com' + p.url,
-          thumb: 'https://cms.geekway.com' + p.url
+          src: 'https://cms.geekway.com' + p.Boxart.url,
+          thumb: 'https://cms.geekway.com' + p.Boxart.url
         }));
       }
     });

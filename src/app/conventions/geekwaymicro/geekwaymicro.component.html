@@ -68,14 +68,8 @@
     <mat-card *ngIf="mapCount > 0">
         <mat-card-title>Venue Maps</mat-card-title>
         <mat-card-content>
-            <div *ngFor="let v of g.venues">
-                <div class="venueMaps" *ngIf="v.maps.length > 0">
-                    <mat-card-subtitle>{{ v.Name }}</mat-card-subtitle>
-
-                    <div gallerize>
-                        <img *ngFor="let p of v.maps" [src]="'https://cms.geekway.com' + p.url">
-                    </div>
-                </div>
+            <div class="venueMaps" *ngIf="venueMapsGalleryItems.length > 0">
+                <gallery gallerize [items]="venueMapsGalleryItems" thumbPosition="left"></gallery>
             </div>
         </mat-card-content>
     </mat-card>
