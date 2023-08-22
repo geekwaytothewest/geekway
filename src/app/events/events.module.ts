@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { EventComponent } from './event/event.component';
 import { EventsComponent } from './events/events.component';
 import { Routes, RouterModule } from '@angular/router';
-import { MatCardModule } from '@angular/material/card';
+import { MatLegacyCardModule as MatCardModule } from '@angular/material/legacy-card';
 import { IvyCarouselModule } from 'angular-responsive-carousel';
 import { CrystalLightboxModule } from '@crystalui/angular-lightbox';
 

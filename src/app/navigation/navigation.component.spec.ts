@@ -2,16 +2,16 @@ import { LayoutModule } from '@angular/cdk/layout';
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { ApolloTestingController, ApolloTestingModule } from 'apollo-angular/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { MatButtonModule } from '@angular/material/button';
+import { MatLegacyButtonModule as MatButtonModule } from '@angular/material/legacy-button';
 import { MatIconModule } from '@angular/material/icon';
-import { MatListModule } from '@angular/material/list';
+import { MatLegacyListModule as MatListModule } from '@angular/material/legacy-list';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
 
 import { NavigationComponent } from './navigation.component';
 import { MatTreeModule } from '@angular/material/tree';
 import { RouterTestingModule } from '@angular/router/testing';
-import { MatCardModule } from '@angular/material/card';
+import { MatLegacyCardModule as MatCardModule } from '@angular/material/legacy-card';
 
 describe('NavigationComponent', () => {
   let component: NavigationComponent;

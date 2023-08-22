@@ -4,9 +4,9 @@ import { Convention, NextConventionWhereGQL } from 'src/generated/types.graphql-
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { switchMap, map } from 'rxjs/operators';
 import { FormControl } from '@angular/forms';
-import { MatPaginator } from '@angular/material/paginator';
+import { MatLegacyPaginator as MatPaginator } from '@angular/material/legacy-paginator';
 import { MatSort } from '@angular/material/sort';
-import { MatTableDataSource } from '@angular/material/table';
+import { MatLegacyTableDataSource as MatTableDataSource } from '@angular/material/legacy-table';
 import { HeaderPhotoService } from 'src/app/shared/header-photo/header-photo.service';
 import moment from 'moment';
 

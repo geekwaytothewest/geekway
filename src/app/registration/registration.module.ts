@@ -4,8 +4,8 @@ import { Routes, RouterModule } from '@angular/router';
 import { RegistrationComponent } from './registration.component';
 import { MomentTimezoneModule } from '../shared/moment-timezone/moment-timezone.module';
 import { MomentModule } from 'ngx-moment';
-import { MatButtonModule } from '@angular/material/button';
-import { MatCardModule } from '@angular/material/card';
+import { MatLegacyButtonModule as MatButtonModule } from '@angular/material/legacy-button';
+import { MatLegacyCardModule as MatCardModule } from '@angular/material/legacy-card';
 import { FlipclockModule } from '../shared/flipclock/flipclock.module';
 
 const registrationRoutes: Routes = [

@@ -2,7 +2,7 @@ import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { ApolloTestingController, ApolloTestingModule } from 'apollo-angular/testing';
 
 import { NewsComponent } from './news.component';
-import { MatCardModule } from '@angular/material/card';
+import { MatLegacyCardModule as MatCardModule } from '@angular/material/legacy-card';
 import { MomentTimezoneModule } from 'src/app/shared/moment-timezone/moment-timezone.module';
 import { MomentModule } from 'ngx-moment';
 import { RouterTestingModule } from '@angular/router/testing';

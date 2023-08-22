@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { PoliciesComponent } from './policies/policies.component';
 import { PolicyComponent } from './policy/policy.component';
 import { Routes, RouterModule } from '@angular/router';
-import { MatCardModule } from '@angular/material/card';
+import { MatLegacyCardModule as MatCardModule } from '@angular/material/legacy-card';
 
 const policiesRoutes: Routes = [
   { path: '', component: PoliciesComponent, pathMatch: 'full' },

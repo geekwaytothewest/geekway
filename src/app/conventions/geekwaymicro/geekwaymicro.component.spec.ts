@@ -3,7 +3,7 @@ import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { GeekwaymicroComponent } from './geekwaymicro.component';
 import { MomentModule } from 'ngx-moment';
 import { MomentTimezoneModule } from 'src/app/shared/moment-timezone/moment-timezone.module';
-import { MatCardModule } from '@angular/material/card';
+import { MatLegacyCardModule as MatCardModule } from '@angular/material/legacy-card';
 import { FlipclockModule } from 'src/app/shared/flipclock/flipclock.module';
 import { IvyCarouselModule } from 'angular-responsive-carousel';
 import { AgmCoreModule } from '@agm/core';

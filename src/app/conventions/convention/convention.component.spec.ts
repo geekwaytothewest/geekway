@@ -4,11 +4,11 @@ import { ApolloTestingController, ApolloTestingModule } from 'apollo-angular/tes
 import { ConventionComponent } from './convention.component';
 import { MomentModule } from 'ngx-moment';
 import { MomentTimezoneModule } from 'src/app/shared/moment-timezone/moment-timezone.module';
-import { MatCardModule } from '@angular/material/card';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatInputModule } from '@angular/material/input';
-import { MatPaginatorModule } from '@angular/material/paginator';
-import { MatTableModule } from '@angular/material/table';
+import { MatLegacyCardModule as MatCardModule } from '@angular/material/legacy-card';
+import { MatLegacyFormFieldModule as MatFormFieldModule } from '@angular/material/legacy-form-field';
+import { MatLegacyInputModule as MatInputModule } from '@angular/material/legacy-input';
+import { MatLegacyPaginatorModule as MatPaginatorModule } from '@angular/material/legacy-paginator';
+import { MatLegacyTableModule as MatTableModule } from '@angular/material/legacy-table';
 import { FlipclockModule } from 'src/app/shared/flipclock/flipclock.module';
 import { IvyCarouselModule } from 'angular-responsive-carousel';
 import { ReactiveFormsModule } from '@angular/forms';
