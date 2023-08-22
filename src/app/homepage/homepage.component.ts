@@ -4,7 +4,6 @@ import { catchError, map } from 'rxjs/operators';
 import { NextConventionWhereGQL, Convention, SponsorsGQL, Sponsors, Newspost, FeaturedNewsGQL } from 'src/generated/types.graphql-gen';
 import { Router } from '@angular/router';
 import moment from 'moment';
-import { HttpClient } from '@angular/common/http';
 @Component({
   selector: 'app-homepage',
   templateUrl: './homepage.component.html',
@@ -28,22 +27,13 @@ export class HomepageComponent implements OnInit, OnDestroy {
   featuredNewsSubscription: Subscription;
   todaysDate = new Date();
 
-  apiLoaded: Observable<boolean>;
-
   constructor(
     private nextGWConventionWhere: NextConventionWhereGQL,
     private nextGWMiniConventionWhere: NextConventionWhereGQL,
     private nextGWMicroConventionWhere: NextConventionWhereGQL,
     private sponsorsGQL: SponsorsGQL,
     private featuredNewsGQL: FeaturedNewsGQL,
-    private router: Router,
-    private httpClient: HttpClient) {
-
-    this.apiLoaded = httpClient.jsonp('https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE', 'callback')
-      .pipe(
-        map(() => true),
-        catchError(() => of(false)),
-      );
+    private router: Router) {
   }
 
   ngOnInit() {

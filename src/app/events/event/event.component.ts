@@ -7,6 +7,7 @@ import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import iframely from '@iframely/embed.js';
 import { HeaderPhotoService } from 'src/app/shared/header-photo/header-photo.service';
 import { OembedService } from 'src/app/shared/oembed/oembed.service';
+import { GalleryItem, ImageItem } from 'ng-gallery';
 
 @Component({
   selector: 'app-event',
@@ -20,6 +21,8 @@ export class EventComponent implements OnInit, AfterViewChecked, OnDestroy {
   eventSubscription: Subscription;
   eventContent: SafeHtml;
   workingContent: string;
+
+  galleryItems: GalleryItem[] = [];
 
   constructor(
     private route: ActivatedRoute,
@@ -59,6 +62,13 @@ export class EventComponent implements OnInit, AfterViewChecked, OnDestroy {
 
       this.headerPhoto.announceHeaderLabelChanged(result.Name);
       this.headerPhoto.announceHeaderPhotoChanged('https://cms.geekway.com' + result.HeaderPhoto.url);
+
+      for (let p of result.Photos) {
+        this.galleryItems.push(new ImageItem({
+          src: 'https://cms.geekway.com' + p.url,
+          thumb: 'https://cms.geekway.com' + p.url
+        }));
+      }
     });
 
   }

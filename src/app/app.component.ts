@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { Router, NavigationEnd } from '@angular/router';
@@ -11,8 +12,8 @@ export class AppComponent implements OnInit {
 
   constructor(
     private title: Title,
-    private router: Router
-  ) {
+    private router: Router) {
+
     this.title.setTitle('Geekway to the West - Four Days of Peace, Love, and Board Games');
  }
 

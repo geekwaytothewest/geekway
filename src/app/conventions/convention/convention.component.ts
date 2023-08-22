@@ -1,14 +1,15 @@
 import { Component, OnInit, ViewChild, OnDestroy } from '@angular/core';
-import { Observable, Subscription } from 'rxjs';
+import { Observable, Subscription, of } from 'rxjs';
 import { Convention, NextConventionWhereGQL } from 'src/generated/types.graphql-gen';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
-import { switchMap, map } from 'rxjs/operators';
+import { switchMap, map, catchError } from 'rxjs/operators';
 import { FormControl } from '@angular/forms';
 import { MatLegacyPaginator as MatPaginator } from '@angular/material/legacy-paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatLegacyTableDataSource as MatTableDataSource } from '@angular/material/legacy-table';
 import { HeaderPhotoService } from 'src/app/shared/header-photo/header-photo.service';
 import moment from 'moment';
+import { GalleryItem, ImageItem } from 'ng-gallery';
 
 @Component({
   selector: 'app-convention',
@@ -50,6 +51,13 @@ export class ConventionComponent implements OnInit, OnDestroy {
     name: '',
   };
 
+  venueCenterLat: string;
+  venueCenterLng: string;
+  markers: any = [];
+
+  doorPrizeGalleryItems: GalleryItem[] = [];
+  venueMapsGalleryItems: [GalleryItem[]] = [[]];
+
   constructor(
     private nextGWConventionWhere: NextConventionWhereGQL,
     private router: Router,
@@ -85,6 +93,29 @@ export class ConventionComponent implements OnInit, OnDestroy {
       this.playAndWinDataSource.filterPredicate = this.tableFilter();
       if (data.regDates != null && data.regDates.length > 0) {
         this.endRegDate = new Date(Math.max(...data.regDates.map(rd => new Date(rd.dateClosed).getTime())));
+      }
+      this.venueCenterLat = data.PrimaryVenue.Lat;
+      this.venueCenterLng = data.PrimaryVenue.Long;
+      for (let v of data.venues) {
+        this.markers.push({
+          position: { lat: v.Lat, lng: v.Long},
+          label: v.Name
+        })
+
+        this.venueMapsGalleryItems[v.id] = [];
+        for (let p of v.maps) {
+          this.venueMapsGalleryItems[v.id].push(new ImageItem({
+            src: 'https://cms.geekway.com' + p.url,
+            thumb: 'https://cms.geekway.com' + p.url
+          }));
+        }
+      }
+
+      for (let p of data.doorPrizes) {
+        this.doorPrizeGalleryItems.push(new ImageItem({
+          src: 'https://cms.geekway.com' + p.url,
+          thumb: 'https://cms.geekway.com' + p.url
+        }));
       }
     });
 

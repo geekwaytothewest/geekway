@@ -6,6 +6,7 @@ import { map } from 'rxjs/operators';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { OembedService } from 'src/app/shared/oembed/oembed.service';
 import iframely from '@iframely/embed.js';
+import { GalleryItem, ImageItem } from 'ng-gallery';
 
 @Component({
   selector: 'app-geekwaymicro',
@@ -19,6 +20,13 @@ export class GeekwaymicroComponent implements OnInit, OnDestroy, AfterViewChecke
   content: SafeHtml;
   workingContent: string;
   mapCount = 0;
+
+  venueCenterLat: string;
+  venueCenterLng: string;
+  markers: any = [];
+
+  doorPrizeGalleryItems: GalleryItem[] = [];
+  venueMapsGalleryItems: [GalleryItem[]] = [[]];
 
   constructor(
     private nextGWConventionWhere: NextConventionWhereGQL,
@@ -56,6 +64,30 @@ export class GeekwaymicroComponent implements OnInit, OnDestroy, AfterViewChecke
                                     .replace('src="/uploads/', 'src="https://cms.geekway.com/uploads/');
             this.content = this.sanitizer.bypassSecurityTrustHtml(this.workingContent);
           });
+        }
+
+        this.venueCenterLat = result.PrimaryVenue.Lat;
+        this.venueCenterLng = result.PrimaryVenue.Long;
+        for (let v of result.venues) {
+          this.markers.push({
+            position: { lat: v.Lat, lng: v.Long},
+            label: v.Name
+          })
+
+          this.venueMapsGalleryItems[v.id] = [];
+          for (let p of v.maps) {
+            this.venueMapsGalleryItems[v.id].push(new ImageItem({
+              src: 'https://cms.geekway.com' + p.url,
+              thumb: 'https://cms.geekway.com' + p.url
+            }));
+          }
+        }
+
+        for (let p of result.doorPrizes) {
+          this.doorPrizeGalleryItems.push(new ImageItem({
+            src: 'https://cms.geekway.com' + p.url,
+            thumb: 'https://cms.geekway.com' + p.url
+          }));
         }
       }
     });

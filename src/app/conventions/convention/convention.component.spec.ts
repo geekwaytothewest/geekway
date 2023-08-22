@@ -26,14 +26,11 @@ describe('ConventionComponent', () => {
         MomentTimezoneModule,
         MatCardModule,
         FlipclockModule,
-        IvyCarouselModule,
         MatTableModule,
         MatInputModule,
         MatPaginatorModule,
         MatFormFieldModule,
         ReactiveFormsModule,
-        AgmCoreModule,
-        AgmSnazzyInfoWindowModule,
         ApolloTestingModule,
         RouterTestingModule
       ]

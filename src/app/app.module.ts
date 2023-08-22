@@ -18,6 +18,7 @@ import { MatLegacyCardModule as MatCardModule } from '@angular/material/legacy-c
 import { MatRippleModule } from '@angular/material/core';
 import { HttpClientModule } from '@angular/common/http';
 import { ApolloModule } from 'apollo-angular';
+import { GalleryModule } from 'ng-gallery';
 
 @NgModule({
   declarations: [
@@ -41,6 +42,7 @@ import { ApolloModule } from 'apollo-angular';
     MatRippleModule,
     ApolloModule,
     HttpClientModule,
+    GalleryModule
   ],
   providers: [],
   bootstrap: [AppComponent]

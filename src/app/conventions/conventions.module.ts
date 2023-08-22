@@ -18,6 +18,7 @@ import { GeekwayminiComponent } from './geekwaymini/geekwaymini.component';
 import { FlipclockModule } from '../shared/flipclock/flipclock.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { GoogleMapsModule } from '@angular/google-maps';
+import { GalleryModule } from 'ng-gallery';
 
 const conventionsRoutes: Routes = [
   { path: '', component: ConventionsComponent, pathMatch: 'full' },
@@ -49,6 +50,7 @@ const conventionsRoutes: Routes = [
     MatFormFieldModule,
     ReactiveFormsModule,
     GoogleMapsModule,
+    GalleryModule,
     RouterModule.forChild(conventionsRoutes)
   ],
 })

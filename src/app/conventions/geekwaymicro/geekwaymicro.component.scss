@@ -66,3 +66,28 @@ table {
 .venueMaps {
     margin-bottom: 20px;
 }
+
+@import url('https://cdn.jsdelivr.net/npm/lightgallery@2.0.0-beta.4/css/lightgallery.css');
+@import url('https://cdn.jsdelivr.net/npm/lightgallery@2.0.0-beta.4/css/lg-zoom.css');
+
+lightgallery {
+    img {
+        width: 200px;
+        margin-right: 10px;
+    }
+}
+
+.venues {
+    .venue {
+        float: left;
+        margin-right: 20px;
+        padding: 10px;
+        text-align: left;
+        border: 1px solid grey;
+        width: 200px;
+
+        p {
+            margin-block-start: 0em;
+        }
+    }
+}

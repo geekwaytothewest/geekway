@@ -45,19 +45,23 @@
         <mat-card-title>Venue</mat-card-title>
         <mat-card-subtitle>{{ g.PrimaryVenue.Name }}</mat-card-subtitle>
         <mat-card-content>
-            <google-map [center]= "{lat: g.PrimaryVenu.Lat, lng: g.PrimaryVenu.long}" [zoom]="16">
+            <google-map width="100%" [center]= "{lat: venueCenterLat, lng: venueCenterLng}" [zoom]="14">
+                <map-marker *ngFor="let m of markers" [position]="m.position" [label]="m.label">
+                </map-marker>
             </google-map>
-            <!--<agm-map [latitude]="g.PrimaryVenue.Lat" [longitude]="g.PrimaryVenue.Long" [zoom]="18">
-                <agm-marker [latitude]="g.PrimaryVenue.Lat" [longitude]="g.PrimaryVenue.Long">
-                    <agm-snazzy-info-window [maxWidth]="300" [closeWhenOthersOpen]="true">
-                        <ng-template>
-                            <p><b>{{g.PrimaryVenue.Name}}</b></p>
-                            <p>{{g.PrimaryVenue.Address}}</p>
-                            <p *ngIf="g.PrimaryVenue.website"><a href="{{ g.PrimaryVenue.website }}" target="_blank">website</a></p>
-                        </ng-template>
-                    </agm-snazzy-info-window>
-                </agm-marker>
-            </agm-map>-->
+
+            <br/><br/>
+
+            <div class="venues">
+                <div *ngFor="let v of g.venues" class="venue">
+                    <p style="font-weight: bold;">{{v.Name}}</p>
+                    <p>{{v.Address}}</p>
+                    <p *ngIf="v.website"><a href="{{ v.website }}" target="_blank">website</a></p>
+                    <p *ngIf="v.groupCode">Group Code: {{ v.groupCode }}</p>
+                </div>
+
+                <div style="clear: both;"></div>
+            </div>
         </mat-card-content>
     </mat-card>
 
@@ -65,13 +69,12 @@
         <mat-card-title>Venue Maps</mat-card-title>
         <mat-card-content>
             <div *ngFor="let v of g.venues">
-                <div class="venueMaps" *ngIf="v.maps.length > 0" lightbox-group>
+                <div class="venueMaps" *ngIf="v.maps.length > 0">
                     <mat-card-subtitle>{{ v.Name }}</mat-card-subtitle>
-                    <!--<carousel [cellWidth]="300">
-                        <div class="carousel-cell" *ngFor="let p of v.maps">
-                            <img [src]="'https://cms.geekway.com' + p.url" lightbox>
-                        </div>
-                    </carousel>-->
+
+                    <div gallerize>
+                        <img *ngFor="let p of v.maps" [src]="'https://cms.geekway.com' + p.url">
+                    </div>
                 </div>
             </div>
         </mat-card-content>
@@ -80,10 +83,8 @@
     <mat-card *ngIf="g.doorPrizes.length > 0">
         <mat-card-title>Door Prizes</mat-card-title>
         <mat-card-content>
-            <div>
-                <div class="carousel-cell" *ngFor="let p of g.doorPrizes">
-                    <img [src]="'https://cms.geekway.com' + p.Boxart.url" (click)="redirect('https://boardgamegeek.com/boardgame/' + p.BGGID)">
-                </div>
+            <div gallerize>
+                <img *ngFor="let p of g.doorPrizes" [src]="'https://cms.geekway.com' + p.url">
             </div>
         </mat-card-content>
     </mat-card>
@@ -91,11 +92,9 @@
     <mat-card *ngIf="g.doorPrizesAnnounced && g.playAndWinAnnounced && g.playAndWins.length > 0">
         <mat-card-title>Play and Win Games</mat-card-title>
         <mat-card-content>
-            <!--<carousel>
-                <div class="carousel-cell" *ngFor="let p of g.playAndWins">
-                    <img [src]="'https://cms.geekway.com' + p.Boxart.url" (click)="redirect('https://boardgamegeek.com/boardgame/' + p.BGGID)">
-                </div>
-            </carousel>-->
+            <div gallerize>
+                <img *ngFor="let p of g.playAndWins" [src]="'https://cms.geekway.com' + p.url">
+            </div>
         </mat-card-content>
     </mat-card>
 </div>
