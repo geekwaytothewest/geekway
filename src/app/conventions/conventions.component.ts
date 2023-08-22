@@ -13,7 +13,7 @@ import moment from 'moment';
 })
 export class ConventionsComponent implements OnInit, OnDestroy {
 
-  conventions: Observable<Convention[]>;
+  conventions: Observable<any[]>;
   conventionsSubscription: Subscription;
   todaysDate = new Date();
 

@@ -1,9 +1,10 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Subscription, Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { Subscription, Observable, of } from 'rxjs';
+import { catchError, map } from 'rxjs/operators';
 import { NextConventionWhereGQL, Convention, SponsorsGQL, Sponsors, Newspost, FeaturedNewsGQL } from 'src/generated/types.graphql-gen';
 import { Router } from '@angular/router';
 import moment from 'moment';
+import { HttpClient } from '@angular/common/http';
 @Component({
   selector: 'app-homepage',
   templateUrl: './homepage.component.html',
@@ -11,21 +12,23 @@ import moment from 'moment';
 })
 export class HomepageComponent implements OnInit, OnDestroy {
 
-  geekwayToTheWest: Observable<Convention>;
+  geekwayToTheWest: Observable<any>;
   geekwayToTheWestSubscription: Subscription;
 
-  geekwayMini: Observable<Convention>;
+  geekwayMini: Observable<any>;
   geekwayMiniSubscription: Subscription;
 
-  geekwayMicro: Observable<Convention>;
+  geekwayMicro: Observable<any>;
   geekwayMicroSubscription: Subscription;
 
-  sponsors: Observable<Sponsors[]>;
+  sponsors: Observable<any[]>;
   sponsorsSubscription: Subscription;
 
-  featuredNews: Observable<Newspost[]>;
+  featuredNews: Observable<any[]>;
   featuredNewsSubscription: Subscription;
   todaysDate = new Date();
+
+  apiLoaded: Observable<boolean>;
 
   constructor(
     private nextGWConventionWhere: NextConventionWhereGQL,
@@ -33,7 +36,14 @@ export class HomepageComponent implements OnInit, OnDestroy {
     private nextGWMicroConventionWhere: NextConventionWhereGQL,
     private sponsorsGQL: SponsorsGQL,
     private featuredNewsGQL: FeaturedNewsGQL,
-    private router: Router) {
+    private router: Router,
+    private httpClient: HttpClient) {
+
+    this.apiLoaded = httpClient.jsonp('https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE', 'callback')
+      .pipe(
+        map(() => true),
+        catchError(() => of(false)),
+      );
   }
 
   ngOnInit() {

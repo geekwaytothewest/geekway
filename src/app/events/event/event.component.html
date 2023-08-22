@@ -2,15 +2,15 @@
     <mat-card class="photos" *ngIf="e.Photos.length > 0">
         <mat-card-content>
             <div lightbox-group>
-                <carousel [cellWidth]="300">
+                <!--<carousel [cellWidth]="300">
                     <div class="carousel-cell" *ngFor="let p of e.Photos">
                         <img [src]="'https://cms.geekway.com' + p.url" lightbox>
                     </div>
-                </carousel>
+                </carousel>-->
             </div>
         </mat-card-content>
     </mat-card>
-    
+
     <div [innerHTML]="eventContent">
     </div>
 </div>

@@ -16,11 +16,8 @@ import { GeekwaytothewestComponent } from './geekwaytothewest/geekwaytothewest.c
 import { GeekwaymicroComponent } from './geekwaymicro/geekwaymicro.component';
 import { GeekwayminiComponent } from './geekwaymini/geekwaymini.component';
 import { FlipclockModule } from '../shared/flipclock/flipclock.module';
-import { IvyCarouselModule } from 'angular-responsive-carousel';
-import { AgmCoreModule } from '@agm/core';
-import { AgmSnazzyInfoWindowModule } from '@agm/snazzy-info-window';
 import { ReactiveFormsModule } from '@angular/forms';
-import { CrystalLightboxModule } from '@crystalui/angular-lightbox';
+import { GoogleMapsModule } from '@angular/google-maps';
 
 const conventionsRoutes: Routes = [
   { path: '', component: ConventionsComponent, pathMatch: 'full' },
@@ -51,13 +48,8 @@ const conventionsRoutes: Routes = [
     MatInputModule,
     MatFormFieldModule,
     ReactiveFormsModule,
-    AgmCoreModule.forRoot({
-      apiKey: 'AIzaSyARBVehVJceiD-KIs9vS9YQm1F4XA1RgaI'
-    }),
-    AgmSnazzyInfoWindowModule,
-    IvyCarouselModule,
-    CrystalLightboxModule,
+    GoogleMapsModule,
     RouterModule.forChild(conventionsRoutes)
-  ]
+  ],
 })
 export class ConventionsModule { }

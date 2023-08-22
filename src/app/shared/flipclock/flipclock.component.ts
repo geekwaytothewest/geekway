@@ -1,7 +1,6 @@
 import { Component, OnInit, Input, AfterViewChecked } from '@angular/core';
 import * as moment from 'moment-timezone';
-
-declare var FlipClock: any;
+import * as FlipClock from 'flipclock';
 
 @Component({
   selector: 'app-flipclock',

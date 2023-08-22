@@ -37,7 +37,6 @@
               "node_modules/@webcomponents/webcomponentsjs/custom-elements-es5-adapter.js",
               "node_modules/@webcomponents/webcomponentsjs/webcomponents-bundle.js",
               "node_modules/flipclock/dist/flipclock.js",
-              "node_modules/marked/lib/marked.js"
             ]
           },
           "configurations": {

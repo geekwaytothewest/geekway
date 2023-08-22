@@ -15,7 +15,7 @@ import moment from 'moment';
 })
 export class GeekwayminiComponent implements OnInit, OnDestroy, AfterViewChecked {
 
-  geekwayMini: Observable<Convention>;
+  geekwayMini: Observable<any>;
   geekwayMiniSubscription: Subscription;
   content: SafeHtml;
   workingContent: string;

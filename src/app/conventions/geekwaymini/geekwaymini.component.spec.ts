@@ -6,9 +6,6 @@ import { MomentModule } from 'ngx-moment';
 import { MomentTimezoneModule } from 'src/app/shared/moment-timezone/moment-timezone.module';
 import { MatLegacyCardModule as MatCardModule } from '@angular/material/legacy-card';
 import { FlipclockModule } from 'src/app/shared/flipclock/flipclock.module';
-import { IvyCarouselModule } from 'angular-responsive-carousel';
-import { AgmCoreModule } from '@agm/core';
-import { AgmSnazzyInfoWindowModule } from '@agm/snazzy-info-window';
 import { RouterTestingModule } from '@angular/router/testing';
 import { HttpClientModule } from '@angular/common/http';
 
@@ -25,10 +22,6 @@ describe('GeekwayminiComponent', () => {
         MomentTimezoneModule,
         MatCardModule,
         FlipclockModule,
-        AgmCoreModule,
-        IvyCarouselModule,
-        AgmCoreModule,
-        AgmSnazzyInfoWindowModule,
         ApolloTestingModule,
         RouterTestingModule,
         HttpClientModule

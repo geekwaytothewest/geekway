@@ -4,8 +4,6 @@ import { EventComponent } from './event/event.component';
 import { EventsComponent } from './events/events.component';
 import { Routes, RouterModule } from '@angular/router';
 import { MatLegacyCardModule as MatCardModule } from '@angular/material/legacy-card';
-import { IvyCarouselModule } from 'angular-responsive-carousel';
-import { CrystalLightboxModule } from '@crystalui/angular-lightbox';
 
 const eventsRoutes: Routes = [
   { path: '', component: EventsComponent, pathMatch: 'full' },
@@ -17,8 +15,6 @@ const eventsRoutes: Routes = [
   imports: [
     CommonModule,
     MatCardModule,
-    IvyCarouselModule,
-    CrystalLightboxModule,
     RouterModule.forChild(eventsRoutes)
   ]
 })

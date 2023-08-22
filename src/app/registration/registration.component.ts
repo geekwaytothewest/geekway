@@ -13,15 +13,15 @@ import * as moment from 'moment-timezone';
 })
 export class RegistrationComponent implements OnInit, OnDestroy {
 
-  geekwayToTheWest: Observable<Convention>;
+  geekwayToTheWest: Observable<any>;
   geekwayToTheWestSubscription: Subscription;
   geekwayToTheWestConvention: Convention;
 
-  geekwayMini: Observable<Convention>;
+  geekwayMini: Observable<any>;
   geekwayMiniSubscription: Subscription;
   geekwayMiniConventoin: Convention;
 
-  geekwayMicro: Observable<Convention>;
+  geekwayMicro: Observable<any>;
   geekwayMicroSubscription: Subscription;
   geekwayMicroConvention: Convention;
 

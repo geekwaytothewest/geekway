@@ -29,7 +29,7 @@
 <div class="homepageContainer">
     <div class="conventionContainer">
         <mat-card *ngIf="geekwayToTheWest | async as gw">
-            <img *ngIf="gw.Logo; else gwLogo" class="cardImage" matCardImage src="https://cms.geekway.com{{ gw.Logo.url }}"  (click)="redirect('conventions/geekway')">
+            <a href="conventions/geekway"><img *ngIf="gw.Logo; else gwLogo" class="cardImage" matCardImage src="https://cms.geekway.com{{ gw.Logo.url }}"></a>
             <ng-template #gwLogo>
                 <img class="cardImage" matCardImage src="https://cms.geekway.com{{ gw.conventionType.Logo.url }}">
             </ng-template>
@@ -55,7 +55,7 @@
 
         <div class="flexbox">
             <mat-card *ngIf="geekwayMini | async as gwMini">
-                <img *ngIf="gwMini.Logo; else gwMiniLogo" class="cardImage" matCardImage src="https://cms.geekway.com{{ gwMini.Logo.url }}" (click)="redirect('conventions/mini')">
+                <a href="conventions/mini"><img *ngIf="gwMini.Logo; else gwMiniLogo" class="cardImage" matCardImage src="https://cms.geekway.com{{ gwMini.Logo.url }}"></a>
                 <ng-template #gwMiniLogo>
                     <img class="cardImage" matCardImage src="https://cms.geekway.com{{ gwMini.conventionType.Logo.url }}">
                 </ng-template>

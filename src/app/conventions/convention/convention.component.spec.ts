@@ -10,10 +10,7 @@ import { MatLegacyInputModule as MatInputModule } from '@angular/material/legacy
 import { MatLegacyPaginatorModule as MatPaginatorModule } from '@angular/material/legacy-paginator';
 import { MatLegacyTableModule as MatTableModule } from '@angular/material/legacy-table';
 import { FlipclockModule } from 'src/app/shared/flipclock/flipclock.module';
-import { IvyCarouselModule } from 'angular-responsive-carousel';
 import { ReactiveFormsModule } from '@angular/forms';
-import { AgmCoreModule } from '@agm/core';
-import { AgmSnazzyInfoWindowModule } from '@agm/snazzy-info-window';
 import { RouterTestingModule } from '@angular/router/testing';
 
 describe('ConventionComponent', () => {

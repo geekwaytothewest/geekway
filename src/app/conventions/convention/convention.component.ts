@@ -17,7 +17,7 @@ import moment from 'moment';
 })
 export class ConventionComponent implements OnInit, OnDestroy {
 
-  convention: Observable<Convention>;
+  convention: any;
   conventionSubscription: Subscription;
   playAndWinDataSource: MatTableDataSource<any>;
   todaysDate = new Date();

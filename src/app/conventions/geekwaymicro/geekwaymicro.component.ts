@@ -14,7 +14,7 @@ import iframely from '@iframely/embed.js';
 })
 export class GeekwaymicroComponent implements OnInit, OnDestroy, AfterViewChecked {
 
-  geekwayMicro: Observable<Convention>;
+  geekwayMicro: Observable<any>;
   geekwayMicroSubscription: Subscription;
   content: SafeHtml;
   workingContent: string;

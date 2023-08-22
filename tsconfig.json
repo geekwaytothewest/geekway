@@ -11,7 +11,7 @@
     "module": "es2020",
     "moduleResolution": "node",
     "importHelpers": true,
-    "target": "ES2022",
+    "target": "ESNext",
     "typeRoots": [
       "node_modules/@types"
     ],

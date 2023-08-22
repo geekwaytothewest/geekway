@@ -19,7 +19,7 @@ import moment from 'moment';
 })
 export class GeekwaytothewestComponent implements OnInit, OnDestroy, AfterViewChecked {
 
-  geekwayToTheWest: Observable<Convention>;
+  geekwayToTheWest: Observable<any>;
   geekwayToTheWestSubscription: Subscription;
   playAndWinDataSource: MatTableDataSource<any>;
   content: SafeHtml;

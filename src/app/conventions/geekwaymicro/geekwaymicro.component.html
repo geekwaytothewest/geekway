@@ -45,7 +45,9 @@
         <mat-card-title>Venue</mat-card-title>
         <mat-card-subtitle>{{ g.PrimaryVenue.Name }}</mat-card-subtitle>
         <mat-card-content>
-            <agm-map [latitude]="g.PrimaryVenue.Lat" [longitude]="g.PrimaryVenue.Long" [zoom]="18">
+            <google-map [center]= "{lat: g.PrimaryVenu.Lat, lng: g.PrimaryVenu.long}" [zoom]="16">
+            </google-map>
+            <!--<agm-map [latitude]="g.PrimaryVenue.Lat" [longitude]="g.PrimaryVenue.Long" [zoom]="18">
                 <agm-marker [latitude]="g.PrimaryVenue.Lat" [longitude]="g.PrimaryVenue.Long">
                     <agm-snazzy-info-window [maxWidth]="300" [closeWhenOthersOpen]="true">
                         <ng-template>
@@ -55,7 +57,7 @@
                         </ng-template>
                     </agm-snazzy-info-window>
                 </agm-marker>
-            </agm-map>
+            </agm-map>-->
         </mat-card-content>
     </mat-card>
 
@@ -65,11 +67,11 @@
             <div *ngFor="let v of g.venues">
                 <div class="venueMaps" *ngIf="v.maps.length > 0" lightbox-group>
                     <mat-card-subtitle>{{ v.Name }}</mat-card-subtitle>
-                    <carousel [cellWidth]="300">
+                    <!--<carousel [cellWidth]="300">
                         <div class="carousel-cell" *ngFor="let p of v.maps">
                             <img [src]="'https://cms.geekway.com' + p.url" lightbox>
                         </div>
-                    </carousel>
+                    </carousel>-->
                 </div>
             </div>
         </mat-card-content>
@@ -89,11 +91,11 @@
     <mat-card *ngIf="g.doorPrizesAnnounced && g.playAndWinAnnounced && g.playAndWins.length > 0">
         <mat-card-title>Play and Win Games</mat-card-title>
         <mat-card-content>
-            <carousel>
+            <!--<carousel>
                 <div class="carousel-cell" *ngFor="let p of g.playAndWins">
                     <img [src]="'https://cms.geekway.com' + p.Boxart.url" (click)="redirect('https://boardgamegeek.com/boardgame/' + p.BGGID)">
                 </div>
-            </carousel>
+            </carousel>-->
         </mat-card-content>
     </mat-card>
 </div>

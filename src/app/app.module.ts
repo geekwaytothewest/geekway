@@ -17,6 +17,7 @@ import { ClarityModule } from '@clr/angular';
 import { MatLegacyCardModule as MatCardModule } from '@angular/material/legacy-card';
 import { MatRippleModule } from '@angular/material/core';
 import { HttpClientModule } from '@angular/common/http';
+import { ApolloModule } from 'apollo-angular';
 
 @NgModule({
   declarations: [
@@ -38,6 +39,7 @@ import { HttpClientModule } from '@angular/common/http';
     FontAwesomeModule,
     ClarityModule,
     MatRippleModule,
+    ApolloModule,
     HttpClientModule,
   ],
   providers: [],

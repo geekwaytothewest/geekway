@@ -5,9 +5,6 @@ import { MatLegacyTableModule as MatTableModule } from '@angular/material/legacy
 import { MomentModule } from 'ngx-moment';
 import { MomentTimezoneModule } from '../shared/moment-timezone/moment-timezone.module';
 import { ApolloTestingModule, ApolloTestingController } from 'apollo-angular/testing';
-import { IvyCarouselModule } from 'angular-responsive-carousel';
-import { AgmCoreModule } from '@agm/core';
-import { AgmSnazzyInfoWindowModule } from '@agm/snazzy-info-window';
 import { RouterTestingModule } from '@angular/router/testing';
 
 describe('ConventionsComponent', () => {
@@ -23,9 +20,6 @@ describe('ConventionsComponent', () => {
         MomentModule,
         MomentTimezoneModule,
         ApolloTestingModule,
-        IvyCarouselModule,
-        AgmCoreModule,
-        AgmSnazzyInfoWindowModule,
         RouterTestingModule
       ]
     })
