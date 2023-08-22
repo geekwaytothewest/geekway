@@ -17,7 +17,7 @@ describe('EventComponent', () => {
       imports: [
         IvyCarouselModule,
         MatCardModule,
-        RouterModule.forRoot([], { relativeLinkResolution: 'legacy' }),
+        RouterModule.forRoot([], {}),
         ApolloTestingModule,
         HttpClientModule
       ]

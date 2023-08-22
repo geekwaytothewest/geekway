@@ -13,7 +13,7 @@ describe('PageComponent', () => {
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [ PageComponent ],
-      imports: [ ApolloTestingModule, HttpClientModule, RouterModule.forRoot([], { relativeLinkResolution: 'legacy' }) ]
+      imports: [ ApolloTestingModule, HttpClientModule, RouterModule.forRoot([], {}) ]
     })
     .compileComponents();
   }));

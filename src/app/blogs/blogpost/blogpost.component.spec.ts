@@ -18,7 +18,7 @@ describe('BlogpostComponent', () => {
       imports: [
         MomentModule,
         MomentTimezoneModule,
-        RouterModule.forRoot([], { relativeLinkResolution: 'legacy' }),
+        RouterModule.forRoot([], {}),
         ApolloTestingModule,
         HttpClientModule
       ]

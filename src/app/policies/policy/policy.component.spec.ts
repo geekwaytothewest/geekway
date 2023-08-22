@@ -12,7 +12,7 @@ describe('PolicyComponent', () => {
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [ PolicyComponent ],
-      imports: [ RouterModule.forRoot([], { relativeLinkResolution: 'legacy' }), ApolloTestingModule, HttpClientModule ]
+      imports: [ RouterModule.forRoot([], {}), ApolloTestingModule, HttpClientModule ]
     })
     .compileComponents();
   }));
