@@ -48,14 +48,12 @@ export class EventComponent implements OnInit, AfterViewChecked, OnDestroy {
     );
 
     this.eventSubscription = this.event.subscribe(result => {
-      this.workingContent = result.Content;
-      this.eventContent = this.sanitizer.bypassSecurityTrustHtml(this.workingContent);
+      this.workingContent = result.content.replace('src="/uploads/', 'src="https://cms.geekway.com/uploads/');
 
       for (const match of result.Content.matchAll(this.oembedService.oembedRegex)) {
         this.oembedService.getOembed(match[1]).subscribe(oembed => {
           this.workingContent = this.workingContent
-                                  .replace(match[0], oembed.html)
-                                  .replace('src="/uploads/', 'src="https://cms.geekway.com/uploads/');
+                                  .replace(match[0], oembed.html);
           this.eventContent = this.sanitizer.bypassSecurityTrustHtml(this.workingContent);
         });
       }
