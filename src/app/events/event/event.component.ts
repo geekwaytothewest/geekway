@@ -48,7 +48,7 @@ export class EventComponent implements OnInit, AfterViewChecked, OnDestroy {
     );
 
     this.eventSubscription = this.event.subscribe(result => {
-      this.workingContent = result.content.replace('src="/uploads/', 'src="https://cms.geekway.com/uploads/');
+      this.workingContent = result.Content.replace('src="/uploads/', 'src="https://cms.geekway.com/uploads/');
 
       for (const match of result.Content.matchAll(this.oembedService.oembedRegex)) {
         this.oembedService.getOembed(match[1]).subscribe(oembed => {
