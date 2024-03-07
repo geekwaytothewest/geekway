@@ -1,6 +1,6 @@
 import { AfterViewChecked, Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { NextConventionWhereGQL, Convention } from 'src/generated/types.graphql-gen';
+import { NextConventionWhereGQL, Convention, SingleConventionTypeGQL } from 'src/generated/types.graphql-gen';
 import { Observable, Subscription } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
@@ -18,6 +18,8 @@ export class GeekwayminiComponent implements OnInit, OnDestroy, AfterViewChecked
 
   geekwayMini: Observable<any>;
   geekwayMiniSubscription: Subscription;
+  geekwayType: Observable<any>;
+  geekwayTypeSubscription: Subscription;
   content: SafeHtml;
   workingContent: string;
   mapCount = 0;
@@ -33,12 +35,28 @@ export class GeekwayminiComponent implements OnInit, OnDestroy, AfterViewChecked
 
   constructor(
     private nextGWConventionWhere: NextConventionWhereGQL,
+    private singleConventionType: SingleConventionTypeGQL,
     private sanitizer: DomSanitizer,
     private router: Router,
     private oembedService: OembedService
   ) { }
 
   ngOnInit() {
+    const whereClauseGWT = {
+      Name: 'Geekway Mini',
+    };
+
+    this.geekwayType = this.singleConventionType.watch({whereClause: whereClauseGWT})
+      .valueChanges
+      .pipe(
+        map(result => result.data.conventiontypes[0])
+      );
+
+    this.geekwayTypeSubscription = this.geekwayType.subscribe(result => {
+      this.workingContent = result.Content;
+      this.content = this.sanitizer.bypassSecurityTrustHtml(this.workingContent);
+    });
+
     const whereClauseGW = {
       Type: 'GeekwayMini',
       endDate_gt: new Date().toISOString()
@@ -56,7 +74,6 @@ export class GeekwayminiComponent implements OnInit, OnDestroy, AfterViewChecked
       }
 
       this.workingContent = result.conventionType.Content;
-      this.content = this.sanitizer.bypassSecurityTrustHtml(this.workingContent);
       if (result.regDates != null && result.regDates.length > 0) {
         this.endRegDate = new Date(Math.max(...result.regDates.map(rd => new Date(rd.dateClosed).getTime())));
       }
@@ -66,9 +83,10 @@ export class GeekwayminiComponent implements OnInit, OnDestroy, AfterViewChecked
           this.workingContent = this.workingContent
                                   .replace(match[0], oembed.html)
                                   .replace('src="/uploads/', 'src="https://cms.geekway.com/uploads/');
-          this.content = this.sanitizer.bypassSecurityTrustHtml(this.workingContent);
         });
       }
+
+      this.content = this.sanitizer.bypassSecurityTrustHtml(this.workingContent);
 
       this.venueCenterLat = result.PrimaryVenue.Lat;
       this.venueCenterLng = result.PrimaryVenue.Long;

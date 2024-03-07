@@ -1,6 +1,6 @@
 import { AfterViewChecked, Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { Observable, Subscription } from 'rxjs';
-import { Convention, NextConventionWhereGQL } from 'src/generated/types.graphql-gen';
+import { Convention, NextConventionWhereGQL, SingleConventionTypeGQL } from 'src/generated/types.graphql-gen';
 import { map } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
@@ -22,6 +22,8 @@ export class GeekwaytothewestComponent implements OnInit, OnDestroy, AfterViewCh
 
   geekwayToTheWest: Observable<any>;
   geekwayToTheWestSubscription: Subscription;
+  geekwayType: Observable<any>;
+  geekwayTypeSubscription: Subscription;
   playAndWinDataSource: MatTableDataSource<any>;
   content: SafeHtml;
   workingContent: string;
@@ -64,12 +66,28 @@ export class GeekwaytothewestComponent implements OnInit, OnDestroy, AfterViewCh
 
   constructor(
     private nextGWConventionWhere: NextConventionWhereGQL,
+    private singleConventionType: SingleConventionTypeGQL,
     private sanitizer: DomSanitizer,
     private router: Router,
     private oembedService: OembedService
   ) { }
 
   ngOnInit() {
+    const whereClauseGWT = {
+      Name: 'Geekway to the West',
+    };
+
+    this.geekwayType = this.singleConventionType.watch({whereClause: whereClauseGWT})
+      .valueChanges
+      .pipe(
+        map(result => result.data.conventiontypes[0])
+      );
+
+    this.geekwayTypeSubscription = this.geekwayType.subscribe(result => {
+      this.workingContent = result.Content;
+      this.content = this.sanitizer.bypassSecurityTrustHtml(this.workingContent);
+    });
+
     const whereClauseGW = {
       Type: 'GeekwayToTheWest',
       endDate_gt: new Date().toISOString()
@@ -87,7 +105,6 @@ export class GeekwaytothewestComponent implements OnInit, OnDestroy, AfterViewCh
       }
 
       this.workingContent = result.conventionType.Content;
-      this.content = this.sanitizer.bypassSecurityTrustHtml(this.workingContent);
 
       this.playAndWinDataSource = new MatTableDataSource();
       this.playAndWinDataSource.data = result.playAndWins;
@@ -109,12 +126,11 @@ export class GeekwaytothewestComponent implements OnInit, OnDestroy, AfterViewCh
           this.workingContent = this.workingContent
                                   .replace(match[0], oembed.html)
                                   .replace('src="/uploads/', 'src="https://cms.geekway.com/uploads/');
-          this.content = this.sanitizer.bypassSecurityTrustHtml(this.workingContent);
         });
       }
 
       this.content = this.sanitizer.bypassSecurityTrustHtml(
-        result.conventionType.Content
+        this.workingContent
           .replace(
             /<oembed url=(.*)><\/oembed>/,
             ' <div class="iframely-embed"><div class="iframely-responsive"><a data-iframely-url href=$1></div></div>'
@@ -130,9 +146,10 @@ export class GeekwaytothewestComponent implements OnInit, OnDestroy, AfterViewCh
         });
 
         for (let p of v.maps) {
+          console.log(p);
           this.venueMapsGalleryItems.push(new ImageItem({
-            src: 'https://cms.geekway.com' + p.Boxart.url,
-            thumb: 'https://cms.geekway.com' + p.Boxart.url
+            src: 'https://cms.geekway.com' + p.url,
+            thumb: 'https://cms.geekway.com' + p.url
           }));
         }
       }

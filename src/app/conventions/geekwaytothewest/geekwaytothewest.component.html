@@ -7,7 +7,7 @@
 
 <br/>
 
-<div *ngIf="geekwayToTheWest | async as g">
+<div *ngIf="geekwayToTheWest | async as g;else message">
     <mat-card>
         <mat-card-title>Geekway to the West {{ g.startDate | amTz: 'America/Chicago' | amDateFormat: 'YYYY' }}</mat-card-title>
         <mat-card-subtitle>{{ g.Theme }}</mat-card-subtitle>
@@ -115,3 +115,11 @@
         </mat-card-content>
     </mat-card>
 </div>
+
+<ng-template #message>
+    <div>
+        <mat-card>
+            <mat-card-title>Check back soon for more information on the next Geekway to the West</mat-card-title>
+        </mat-card>
+    </div>
+</ng-template>
