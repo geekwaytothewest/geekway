@@ -1,0 +1,39 @@
+query singleConventionType($whereClause: JSON!) {
+    conventiontypes (
+        where: $whereClause,
+        limit: 1
+    ) {
+      id
+      _id
+      createdAt
+      updatedAt
+      Name
+      Description
+      Logo {
+          id
+          _id
+          createdAt
+          updatedAt
+          hash
+          mime
+          size
+          provider
+          name
+          url
+      }
+      Icon
+      LogoSquare {
+          id
+          _id
+          createdAt
+          updatedAt
+          hash
+          mime
+          size
+          provider
+          name
+          url
+      }
+      Content
+  }
+}

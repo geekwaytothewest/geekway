@@ -1,6 +1,6 @@
 import { AfterViewChecked, Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { Observable, Subscription } from 'rxjs';
-import { Convention, NextConventionWhereGQL } from 'src/generated/types.graphql-gen';
+import { Convention, NextConventionWhereGQL, SingleConventionTypeGQL } from 'src/generated/types.graphql-gen';
 import { Router } from '@angular/router';
 import { map } from 'rxjs/operators';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
@@ -17,6 +17,8 @@ export class GeekwaymicroComponent implements OnInit, OnDestroy, AfterViewChecke
 
   geekwayMicro: Observable<any>;
   geekwayMicroSubscription: Subscription;
+  geekwayType: Observable<any>;
+  geekwayTypeSubscription: Subscription;
   content: SafeHtml;
   workingContent: string;
   mapCount = 0;
@@ -30,12 +32,27 @@ export class GeekwaymicroComponent implements OnInit, OnDestroy, AfterViewChecke
 
   constructor(
     private nextGWConventionWhere: NextConventionWhereGQL,
+    private singleConventionType: SingleConventionTypeGQL,
     private sanitizer: DomSanitizer,
     private router: Router,
     private oembedService: OembedService
   ) { }
 
   ngOnInit() {
+    const whereClauseGWT = {
+      Name: 'Geekway to the West',
+    };
+
+    this.geekwayType = this.singleConventionType.watch({whereClause: whereClauseGWT})
+      .valueChanges
+      .pipe(
+        map(result => result.data.conventiontypes[0])
+      );
+
+    this.geekwayTypeSubscription = this.geekwayType.subscribe(result => {
+      this.workingContent = result.Content;
+      this.content = this.sanitizer.bypassSecurityTrustHtml(this.workingContent);
+    });
 
     const whereClauseGW = {
       Type: 'GeekwayMicro',
