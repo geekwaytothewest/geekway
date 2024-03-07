@@ -87,7 +87,6 @@ export class GeekwaytothewestComponent implements OnInit, OnDestroy, AfterViewCh
       }
 
       this.workingContent = result.conventionType.Content;
-      this.content = this.sanitizer.bypassSecurityTrustHtml(this.workingContent);
 
       this.playAndWinDataSource = new MatTableDataSource();
       this.playAndWinDataSource.data = result.playAndWins;
@@ -109,12 +108,11 @@ export class GeekwaytothewestComponent implements OnInit, OnDestroy, AfterViewCh
           this.workingContent = this.workingContent
                                   .replace(match[0], oembed.html)
                                   .replace('src="/uploads/', 'src="https://cms.geekway.com/uploads/');
-          this.content = this.sanitizer.bypassSecurityTrustHtml(this.workingContent);
         });
       }
 
       this.content = this.sanitizer.bypassSecurityTrustHtml(
-        result.conventionType.Content
+        this.workingContent
           .replace(
             /<oembed url=(.*)><\/oembed>/,
             ' <div class="iframely-embed"><div class="iframely-responsive"><a data-iframely-url href=$1></div></div>'

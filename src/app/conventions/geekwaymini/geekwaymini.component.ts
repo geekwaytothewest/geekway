@@ -56,7 +56,6 @@ export class GeekwayminiComponent implements OnInit, OnDestroy, AfterViewChecked
       }
 
       this.workingContent = result.conventionType.Content;
-      this.content = this.sanitizer.bypassSecurityTrustHtml(this.workingContent);
       if (result.regDates != null && result.regDates.length > 0) {
         this.endRegDate = new Date(Math.max(...result.regDates.map(rd => new Date(rd.dateClosed).getTime())));
       }
@@ -66,9 +65,10 @@ export class GeekwayminiComponent implements OnInit, OnDestroy, AfterViewChecked
           this.workingContent = this.workingContent
                                   .replace(match[0], oembed.html)
                                   .replace('src="/uploads/', 'src="https://cms.geekway.com/uploads/');
-          this.content = this.sanitizer.bypassSecurityTrustHtml(this.workingContent);
         });
       }
+
+      this.content = this.sanitizer.bypassSecurityTrustHtml(this.workingContent);
 
       this.venueCenterLat = result.PrimaryVenue.Lat;
       this.venueCenterLng = result.PrimaryVenue.Long;
