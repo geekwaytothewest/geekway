@@ -40,7 +40,7 @@ export class GeekwaymicroComponent implements OnInit, OnDestroy, AfterViewChecke
 
   ngOnInit() {
     const whereClauseGWT = {
-      Name: 'Geekway to the West',
+      Name: 'Geekway Micro',
     };
 
     this.geekwayType = this.singleConventionType.watch({whereClause: whereClauseGWT})
