@@ -130,9 +130,10 @@ export class GeekwaytothewestComponent implements OnInit, OnDestroy, AfterViewCh
         });
 
         for (let p of v.maps) {
+          console.log(p);
           this.venueMapsGalleryItems.push(new ImageItem({
-            src: 'https://cms.geekway.com' + p.Boxart.url,
-            thumb: 'https://cms.geekway.com' + p.Boxart.url
+            src: 'https://cms.geekway.com' + p.url,
+            thumb: 'https://cms.geekway.com' + p.url
           }));
         }
       }
