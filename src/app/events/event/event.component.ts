@@ -54,9 +54,9 @@ export class EventComponent implements OnInit, AfterViewChecked, OnDestroy {
         this.oembedService.getOembed(match[1]).subscribe(oembed => {
           this.workingContent = this.workingContent
                                   .replace(match[0], oembed.html);
-          this.eventContent = this.sanitizer.bypassSecurityTrustHtml(this.workingContent);
         });
       }
+      this.eventContent = this.sanitizer.bypassSecurityTrustHtml(this.workingContent);
 
       this.headerPhoto.announceHeaderLabelChanged(result.Name);
       this.headerPhoto.announceHeaderPhotoChanged('https://cms.geekway.com' + result.HeaderPhoto.url);
