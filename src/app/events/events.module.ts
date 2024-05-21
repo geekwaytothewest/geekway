@@ -8,6 +8,7 @@ import { Gallery, GalleryModule } from 'ng-gallery';
 
 const eventsRoutes: Routes = [
   { path: '', component: EventsComponent, pathMatch: 'full' },
+  { path: 'play-and-win', redirectTo: '/events/event/play-and-win', pathMatch: 'full'},
   { path: 'event/:slug', component: EventComponent }
 ];
 
